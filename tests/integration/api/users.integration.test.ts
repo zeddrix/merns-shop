@@ -1,0 +1,44 @@
+import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
+import request from 'supertest';
+import app from '../../../backend/app.js';
+import { connectTestDb, disconnectTestDb, resetTestDb } from '../helpers/db.js';
+
+describe('users admin integration', () => {
+  let adminToken = '';
+
+  beforeAll(async () => {
+    await connectTestDb();
+  });
+
+  afterAll(async () => {
+    await disconnectTestDb();
+  });
+
+  beforeEach(async () => {
+    await resetTestDb();
+    const login = await request(app).post('/api/users/login').send({
+      email: 'admin@gmail.com',
+      password: '123456'
+    });
+    adminToken = login.body.token;
+  });
+
+  it('admin lists users', async () => {
+    const res = await request(app).get('/api/users').set('Authorization', `Bearer ${adminToken}`);
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+    expect(res.body.length).toBeGreaterThan(0);
+  });
+
+  it('admin gets user by id', async () => {
+    const users = await request(app).get('/api/users').set('Authorization', `Bearer ${adminToken}`);
+    expect(users.status).toBe(200);
+    const userId = users.body[0]._id;
+
+    const res = await request(app)
+      .get(`/api/users/${userId}`)
+      .set('Authorization', `Bearer ${adminToken}`);
+    expect(res.status).toBe(200);
+    expect(res.body._id).toBe(userId);
+  });
+});
