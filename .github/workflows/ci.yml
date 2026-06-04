@@ -25,6 +25,8 @@ jobs:
 
   unit:
     runs-on: ubuntu-latest
+    env:
+      REQUIRE_NODE_22: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
