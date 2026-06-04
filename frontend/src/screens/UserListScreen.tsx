@@ -20,10 +20,11 @@ const UserListScreen = () => {
   const { success: successDelete, error: errorDelete } = userDelete;
 
   useEffect(() => {
-    if (isAdmin) {
-      dispatch(listUsers());
+    if (!isAdmin || location.pathname !== '/admin/userlist') {
+      return;
     }
-  }, [dispatch, location.key, isAdmin, successDelete]);
+    dispatch(listUsers());
+  }, [dispatch, isAdmin, location.pathname, successDelete]);
 
   if (!isAdmin) {
     return null;
@@ -62,7 +63,7 @@ const UserListScreen = () => {
             {users.map((user) => (
               <tr key={user._id} data-testid={`admin-user-${user._id}`}>
                 <td>{user._id}</td>
-                <td>{user.name}</td>
+                <td data-testid={`admin-user-name-${user._id}`}>{user.name}</td>
                 <td>
                   <a href={`mailto:${user.email}`}>{user.email}</a>
                 </td>

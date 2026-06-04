@@ -169,8 +169,8 @@ export const updateUser = createAsyncThunk(
     try {
       const { userLogin } = getState() as UserSliceRootState;
       if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
-      await axios.put(`/api/users/${user._id}`, user);
-      return undefined;
+      const { data } = await axios.put<User>(`/api/users/${user._id}`, user);
+      return data;
     } catch (error) {
       const message = getErrorMessage(error);
       if (message === 'Not authorized, token failed') {
@@ -303,6 +303,14 @@ const userListSlice = createSlice({
       .addCase(listUsers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        const updated = action.payload;
+        if (!updated) return;
+        const index = state.users.findIndex((u) => u._id === updated._id);
+        if (index !== -1) {
+          state.users[index] = updated;
+        }
       })
       .addCase(logout.pending, () => ({ users: [] }));
   }
