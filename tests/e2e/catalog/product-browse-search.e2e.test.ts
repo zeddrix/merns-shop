@@ -29,4 +29,10 @@ test.describe('catalog browse and search', () => {
     await expect(page).toHaveURL(/\/page\/2/);
     await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
   });
+
+  test('search_no_results_shows_empty_state', async ({ page }) => {
+    await page.locator('[data-testid="search-input"]').fill('zzzz-no-match-product-xyz');
+    await page.locator('[data-testid="search-submit"]').click();
+    await expect(page.locator('[data-testid="search-empty"]')).toBeVisible();
+  });
 });

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { loginAsAdmin } from '../fixtures/test-helpers';
+import { loginAs, loginAsAdmin } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findProductById } from '../fixtures/mongo-helpers';
 
@@ -54,5 +54,11 @@ test.describe('admin products', () => {
 
     const deletedProduct = await findProductById(productId as string);
     expect(deletedProduct).toBeNull();
+  });
+
+  test('non_admin_blocked_from_admin_product_routes', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await page.goto('/admin/productlist');
+    await expect(page).toHaveURL(/\/login/);
   });
 });

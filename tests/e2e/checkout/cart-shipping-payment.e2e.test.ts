@@ -3,7 +3,8 @@ import {
   addFirstProductToCart,
   completeShippingStep,
   completePaymentStep,
-  loginWithCredentials
+  loginWithCredentials,
+  loginAs
 } from '../fixtures/test-helpers';
 import { TEST_USERS } from '../fixtures/test-users';
 
@@ -27,5 +28,24 @@ test.describe('checkout cart shipping payment', () => {
     await completePaymentStep(page);
     await expect(page.locator('[data-testid="place-order-screen"]')).toBeVisible();
     await expect(page.getByText('PayPal')).toBeVisible();
+  });
+
+  test('cart_remove_item_updates_total', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstProductToCart(page);
+    await page.locator('[data-testid="nav-cart"]').click();
+    const item = page.locator('[data-testid^="cart-item-"]').first();
+    const productId = (await item.getAttribute('data-testid'))?.replace('cart-item-', '');
+    await page.locator(`[data-testid="cart-remove-${productId}"]`).click();
+    await expect(page.locator('[data-testid="cart-empty"]')).toBeVisible();
+  });
+
+  test('shipping_requires_all_fields', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await page.goto('/shipping');
+    await page.locator('[data-testid="shipping-address"]').fill('');
+    await page.locator('[data-testid="shipping-submit"]').click();
+    await expect(page.locator('[data-testid="shipping-form"]')).toBeVisible();
+    await expect(page).toHaveURL(/\/shipping/);
   });
 });

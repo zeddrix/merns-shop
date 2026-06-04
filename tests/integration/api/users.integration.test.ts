@@ -54,4 +54,35 @@ describe('users admin integration', () => {
 
     expect(res.status).toBe(400);
   });
+
+  it('admin_edits_user_via_api', async () => {
+    const users = await request(app).get('/api/users').set('Authorization', `Bearer ${adminToken}`);
+    const john = users.body.find((user: { email: string }) => user.email === 'john@gmail.com');
+
+    const res = await request(app)
+      .put(`/api/users/${john._id}`)
+      .set('Authorization', `Bearer ${adminToken}`)
+      .send({ name: 'John API Updated', email: john.email, isAdmin: false });
+
+    expect(res.status).toBe(200);
+    expect(res.body.name).toBe('John API Updated');
+  });
+
+  it('admin_deletes_user_via_api', async () => {
+    const users = await request(app).get('/api/users').set('Authorization', `Bearer ${adminToken}`);
+    const jane = users.body.find((user: { email: string }) => user.email === 'jane@gmail.com');
+
+    const res = await request(app)
+      .delete(`/api/users/${jane._id}`)
+      .set('Authorization', `Bearer ${adminToken}`);
+
+    expect(res.status).toBe(200);
+
+    const remaining = await request(app)
+      .get('/api/users')
+      .set('Authorization', `Bearer ${adminToken}`);
+    expect(remaining.body.some((user: { email: string }) => user.email === 'jane@gmail.com')).toBe(
+      false
+    );
+  });
 });

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { loginAsAdmin } from '../fixtures/test-helpers';
+import { loginAs, loginAsAdmin } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { TEST_USERS } from '../fixtures/test-users';
 
@@ -43,5 +43,11 @@ test.describe('admin users', () => {
     await janeRow.locator('[data-testid^="admin-user-delete-"]').click();
 
     await expect(page.locator('tr', { hasText: TEST_USERS.jane.email })).toHaveCount(0);
+  });
+
+  test('non_admin_blocked_from_admin_user_routes', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await page.goto('/admin/userlist');
+    await expect(page).toHaveURL(/\/login/);
   });
 });
