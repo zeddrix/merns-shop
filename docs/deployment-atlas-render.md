@@ -101,7 +101,7 @@ pnpm db:seed
 
 ## ISSUE-015 — Repo rename checklist
 
-1. All tests green + `pnpm quality` clean
+1. All tests green + `pnpm quality` clean — run `pnpm verify:full` for the full gate
 2. GitHub → Settings → rename **`beamazedd-shop`** → **`merns-shop`**
 3. Local: `git remote set-url origin git@github.com:zeddrix/merns-shop.git`
 4. Optionally rename local folder to `merns-shop`
