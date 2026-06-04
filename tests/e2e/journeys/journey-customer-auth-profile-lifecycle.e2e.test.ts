@@ -5,6 +5,7 @@ import {
   createPaidOrderForCredentials
 } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
+import { findUserByEmail } from '../fixtures/mongo-helpers';
 
 test.describe('journey customer auth profile lifecycle', () => {
   test.beforeEach(async () => {
@@ -44,5 +45,8 @@ test.describe('journey customer auth profile lifecycle', () => {
     await expect(page.getByText('Profile Updated')).toBeVisible();
     await expect(page.locator('[data-testid="my-orders-table"]')).toBeVisible();
     await expect(page.locator(`[data-testid="my-order-${orderId}"]`)).toBeVisible();
+
+    const dbUser = await findUserByEmail(email);
+    expect(dbUser?.name).toBe('Journey Customer Updated');
   });
 });

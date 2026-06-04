@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { loginAs, loginAsAdmin, createPaidOrderViaApi } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
+import { findOrderById } from '../fixtures/mongo-helpers';
 
 test.describe('journey admin order fulfillment', () => {
   test.beforeEach(async () => {
@@ -31,5 +32,8 @@ test.describe('journey admin order fulfillment', () => {
     await expect(page.locator(`[data-testid="my-order-delivered-${orderId}"]`)).toHaveText(
       /\d{4}-\d{2}-\d{2}/
     );
+
+    const dbOrder = await findOrderById(orderId);
+    expect(dbOrder?.isDelivered).toBe(true);
   });
 });

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { loginAsAdmin, createPaidOrderViaApi } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
+import { findOrderById } from '../fixtures/mongo-helpers';
 
 test.describe('admin orders', () => {
   test.beforeEach(async () => {
@@ -29,5 +30,8 @@ test.describe('admin orders', () => {
 
     await expect(page.locator('[data-testid="order-delivered-message"]')).toBeVisible();
     await expect(page.locator('[data-testid="order-deliver"]')).toBeHidden();
+
+    const dbOrder = await findOrderById(orderId);
+    expect(dbOrder?.isDelivered).toBe(true);
   });
 });

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { loginAsAdmin } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
+import { findProductById } from '../fixtures/mongo-helpers';
 
 test.describe('admin products', () => {
   test.beforeEach(async () => {
@@ -22,6 +23,9 @@ test.describe('admin products', () => {
     await page.locator('[data-testid="admin-product-image"]').fill('/images/sample.jpg');
     await page.locator('[data-testid="admin-product-submit"]').click();
     await page.waitForURL('**/admin/productlist');
+
+    const createdProduct = await findProductById(productId as string);
+    expect(createdProduct?.name).toBe(productName);
 
     await page.locator('[data-testid="search-input"]').fill(productName);
     await page.locator('[data-testid="search-submit"]').click();
@@ -47,5 +51,8 @@ test.describe('admin products', () => {
 
     await page.goto(`/search/${encodeURIComponent(updatedName)}`);
     await expect(page.locator(`[data-testid="product-card-${productId}"]`)).toHaveCount(0);
+
+    const deletedProduct = await findProductById(productId as string);
+    expect(deletedProduct).toBeNull();
   });
 });
