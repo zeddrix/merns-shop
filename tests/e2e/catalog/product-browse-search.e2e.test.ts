@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import {
   assertHomeCatalogHealthy,
   openProductByExactName,
+  selectProductVariant,
   selectVariantAndAddToCart
 } from '../fixtures/test-helpers';
 import { MOBILE_VIEWPORT } from '../fixtures/viewports';
@@ -51,7 +52,7 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="product-variant-error"]')).toBeVisible();
     await expect(page).not.toHaveURL(/\/cart\//);
 
-    await page.locator('input[data-testid="product-variant-iphone-15-pro-256gb"]').check();
+    await selectProductVariant(page, 'iphone-15-pro-256gb');
     await Promise.all([
       page.waitForURL(/\/cart\//),
       page.locator('[data-testid="product-add-cart"]').click()
@@ -64,11 +65,11 @@ test.describe('catalog browse and search', () => {
     await openProductByExactName(page, IPHONE_15_PRO);
 
     const productImage = page.locator('[data-testid="product-details"] img');
-    await expect(productImage).toHaveAttribute('src', /\/images\/catalog\//);
+    await expect(productImage).toHaveAttribute('src', /\/images\/catalog\/.*\.webp$/);
     await expect(productImage).toHaveAttribute('alt', IPHONE_15_PRO);
     await expect
       .poll(async () =>
-        productImage.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)
+        productImage.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth >= 200)
       )
       .toBe(true);
   });
@@ -85,13 +86,11 @@ test.describe('catalog browse and search', () => {
 
   test('cart_supports_two_variants_same_product', async ({ page }) => {
     await openProductByExactName(page, IPHONE_15_PRO);
-
-    await page.locator('input[data-testid="product-variant-iphone-15-pro-128gb"]').check();
+    await selectProductVariant(page, 'iphone-15-pro-128gb');
     await selectVariantAndAddToCart(page);
 
     await openProductByExactName(page, IPHONE_15_PRO);
-
-    await page.locator('input[data-testid="product-variant-iphone-15-pro-256gb"]').check();
+    await selectProductVariant(page, 'iphone-15-pro-256gb');
     await selectVariantAndAddToCart(page);
 
     await expect(page.locator('[data-testid^="cart-item-"]')).toHaveCount(2);

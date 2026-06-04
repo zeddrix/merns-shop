@@ -31,11 +31,14 @@ test.describe('catalog filters and savings', () => {
   });
 
   test('pagination_window_uses_prev_and_next', async ({ page }) => {
-    await expect(page.locator('[data-testid="pagination-next"]')).toBeVisible();
-    await page.locator('[data-testid="pagination-next"]').click();
+    const pagination = page.locator('[data-testid="pagination"]');
+    await expect(pagination.locator('[data-testid="pagination-next"]')).toBeVisible();
+    await pagination.locator('[data-testid="pagination-next"] a').click();
     await expect(page).toHaveURL(/\/page\/2/);
-    await page.locator('[data-testid="pagination-prev"]').click();
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
+    await pagination.locator('[data-testid="pagination-prev"] a').click();
     await expect(page).not.toHaveURL(/\/page\/2/);
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
   });
 
   test('sort_price_low_to_high', async ({ page }) => {

@@ -65,24 +65,47 @@ export async function openProductByExactName(page: Page, name: string): Promise<
   await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
 }
 
+export async function selectProductVariant(page: Page, variantSku: string): Promise<void> {
+  const variantInput = page.locator(`input[data-testid="product-variant-${variantSku}"]`);
+  await variantInput.scrollIntoViewIfNeeded();
+  if (!(await variantInput.isChecked())) {
+    const variantId = await variantInput.getAttribute('id');
+    if (variantId) {
+      await page.locator(`label[for="${variantId}"]`).click();
+    } else {
+      await variantInput.click();
+    }
+    await expect(variantInput).toBeChecked();
+  }
+  await expect(page.locator('[data-testid="product-qty"]')).toBeVisible();
+}
+
 export async function selectVariantAndAddToCart(page: Page): Promise<void> {
+  await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
   const variantPicker = page.locator('[data-testid="product-variant-picker"]');
   if ((await variantPicker.count()) > 0) {
     const selectedCount = await page
-      .locator('input[data-testid^="product-variant-"]:checked')
+      .locator('input[data-testid^="product-variant-"]:checked:not(:disabled)')
       .count();
     if (selectedCount === 0) {
       const inStockVariant = page
         .locator('input[data-testid^="product-variant-"]:not(:disabled)')
         .first();
       await inStockVariant.scrollIntoViewIfNeeded();
-      await inStockVariant.check();
+      const variantId = await inStockVariant.getAttribute('id');
+      if (variantId) {
+        await page.locator(`label[for="${variantId}"]`).click();
+      } else {
+        await inStockVariant.click();
+      }
       await expect(inStockVariant).toBeChecked();
     }
     await expect(page.locator('[data-testid="product-variant-error"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="product-qty"]')).toBeVisible();
   }
   const addButton = page.locator('[data-testid="product-add-cart"]');
   await addButton.scrollIntoViewIfNeeded();
+  await expect(addButton).toBeEnabled();
   await Promise.all([page.waitForURL(/\/cart\//), addButton.click()]);
   await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
 }
