@@ -8,6 +8,7 @@ import {
   getTopProducts,
   updateProduct
 } from '../controllers/productController.js';
+import { getProductMeta } from '../controllers/productMetaController.js';
 import { admin, protect } from '../middleware/authMiddleware.js';
 import { validateBody } from '../middleware/validateMiddleware.js';
 import { productReviewSchema, productInputSchema } from '../validators/schemas.js';
@@ -19,6 +20,7 @@ router
   .get(getProducts)
   .post(protect, admin, validateBody(productInputSchema), createProduct);
 router.get('/top', getTopProducts);
+router.get('/meta', getProductMeta);
 router.route('/:id/reviews').post(protect, validateBody(productReviewSchema), createProductReview);
 router
   .route('/:id')

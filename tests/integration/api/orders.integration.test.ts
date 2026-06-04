@@ -5,17 +5,19 @@ import { connectTestDb, disconnectTestDb, resetTestDb } from '../helpers/db.js';
 import { getAuthToken } from '../helpers/auth.js';
 
 function buildOrderPayload(
-  product: { _id: string; name: string; image: string; price: number },
+  product: {
+    _id: string;
+    variants: Array<{ sku: string; price: number; countInStock: number }>;
+  },
   productId: string
 ) {
+  const variant = product.variants.find((v) => v.countInStock > 0) ?? product.variants[0];
   return {
     orderItems: [
       {
-        name: product.name,
+        product: productId,
         qty: 1,
-        image: product.image,
-        price: product.price,
-        product: productId
+        variantSku: variant.sku
       }
     ],
     shippingAddress: {
@@ -50,7 +52,10 @@ describe('orders integration', () => {
     await resetTestDb();
 
     const products = await request(app).get('/api/products');
-    productId = products.body.products[0]._id;
+    const inStockProduct =
+      products.body.products.find((p: { inStock?: boolean }) => p.inStock !== false) ??
+      products.body.products[0];
+    productId = inStockProduct._id;
 
     customerToken = await getAuthToken(app, 'john@gmail.com', '123456');
     otherCustomerToken = await getAuthToken(app, 'jane@gmail.com', '123456');

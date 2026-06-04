@@ -4,13 +4,18 @@ import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import { calculateOrderPrices, type ResolvedOrderItem } from '../utils/orderPricing.js';
 import {
+  getVariantDisplayImage,
+  getVariantLineName,
+  resolveVariant
+} from '../utils/productVariants.js';
+import {
   assertOrderOwner,
   assertOrderOwnerOrAdmin,
   OrderAccessError
 } from '../utils/orderAccess.js';
 
 const resolveOrderItems = async (
-  orderItems: Array<{ product: string; qty: number }>
+  orderItems: Array<{ product: string; qty: number; variantSku: string }>
 ): Promise<ResolvedOrderItem[]> => {
   const resolved: ResolvedOrderItem[] = [];
 
@@ -21,16 +26,23 @@ const resolveOrderItems = async (
       throw new Error(`Product not found: ${item.product}`);
     }
 
-    if (product.countInStock < item.qty) {
-      throw new Error(`Insufficient stock for ${product.name}`);
+    const variant = resolveVariant(product, item.variantSku);
+    if (!variant) {
+      throw new Error(`Invalid variant: ${item.variantSku}`);
+    }
+
+    if (variant.countInStock < item.qty) {
+      throw new Error(`Insufficient stock for ${product.name} (${variant.label})`);
     }
 
     resolved.push({
-      name: product.name,
+      name: getVariantLineName(product.name, variant),
       qty: item.qty,
-      image: product.image,
-      price: product.price,
-      product: String(product._id)
+      image: getVariantDisplayImage(product, variant),
+      price: variant.price,
+      product: String(product._id),
+      variantSku: variant.sku,
+      variantLabel: variant.label
     });
   }
 

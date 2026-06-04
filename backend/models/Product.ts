@@ -9,18 +9,35 @@ export interface IReview {
 
 export interface IReviewDocument extends IReview, Document {}
 
+export interface IProductVariant {
+  sku: string;
+  label: string;
+  storageGb?: number;
+  screenInches?: number;
+  ramGb?: number;
+  listPrice: number;
+  price: number;
+  countInStock: number;
+  image?: string;
+}
+
+export interface IProductVariantDocument extends IProductVariant, Document {}
+
 export interface IProduct {
   user: Types.ObjectId;
   name: string;
   image: string;
   brand: string;
   category: string;
+  subcategory: string;
+  modelKey: string;
+  releaseYear: number;
+  condition: string;
   description: string;
   reviews: IReviewDocument[];
   rating: number;
   numReviews: number;
-  price: number;
-  countInStock: number;
+  variants: IProductVariantDocument[];
 }
 
 export interface IProductDocument extends IProduct, Document {
@@ -43,6 +60,21 @@ const ReviewSchema = new Schema<IReviewDocument>(
   {
     timestamps: true
   }
+);
+
+const ProductVariantSchema = new Schema<IProductVariantDocument>(
+  {
+    sku: { type: String, required: true },
+    label: { type: String, required: true },
+    storageGb: { type: Number },
+    screenInches: { type: Number },
+    ramGb: { type: Number },
+    listPrice: { type: Number, required: true },
+    price: { type: Number, required: true },
+    countInStock: { type: Number, required: true, default: 0 },
+    image: { type: String }
+  },
+  { _id: false }
 );
 
 const ProductSchema = new Schema<IProductDocument>(
@@ -68,6 +100,23 @@ const ProductSchema = new Schema<IProductDocument>(
       type: String,
       required: true
     },
+    subcategory: {
+      type: String,
+      required: true
+    },
+    modelKey: {
+      type: String,
+      required: true
+    },
+    releaseYear: {
+      type: Number,
+      required: true
+    },
+    condition: {
+      type: String,
+      required: true,
+      default: 'Like New'
+    },
     description: {
       type: String,
       required: true
@@ -83,21 +132,23 @@ const ProductSchema = new Schema<IProductDocument>(
       required: true,
       default: 0
     },
-    price: {
-      type: Number,
+    variants: {
+      type: [ProductVariantSchema],
       required: true,
-      default: 0
-    },
-    countInStock: {
-      type: Number,
-      required: true,
-      default: 0
+      validate: {
+        validator: (v: IProductVariant[]) => Array.isArray(v) && v.length > 0,
+        message: 'At least one variant is required'
+      }
     }
   },
   {
     timestamps: true
   }
 );
+
+ProductSchema.index({ brand: 1, category: 1, subcategory: 1 });
+ProductSchema.index({ modelKey: 1 });
+ProductSchema.index({ 'variants.sku': 1 });
 
 const Product = mongoose.model<IProductDocument, IProductModel>('Product', ProductSchema);
 

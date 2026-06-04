@@ -2,9 +2,17 @@ import { describe, expect, it } from 'vitest';
 import { calculateOrderPrices } from '../../../backend/utils/orderPricing.js';
 
 describe('orderPricing', () => {
-  it('calculates shipping tax and total for items under 100', () => {
+  it('calculates prices for items under free shipping threshold', () => {
     const prices = calculateOrderPrices([
-      { name: 'Phone', qty: 1, image: '/images/phone.jpg', price: 89.99, product: 'p1' }
+      {
+        name: 'Phone',
+        qty: 1,
+        image: '/images/phone.jpg',
+        price: 89.99,
+        product: 'p1',
+        variantSku: 'phone-128gb',
+        variantLabel: '128GB'
+      }
     ]);
 
     expect(prices.itemsPrice).toBe(89.99);
@@ -13,9 +21,17 @@ describe('orderPricing', () => {
     expect(prices.totalPrice).toBe(203.49);
   });
 
-  it('waives shipping when items exceed 100', () => {
+  it('waives shipping for orders over 100', () => {
     const prices = calculateOrderPrices([
-      { name: 'Phone', qty: 1, image: '/images/phone.jpg', price: 599.99, product: 'p1' }
+      {
+        name: 'Phone',
+        qty: 1,
+        image: '/images/phone.jpg',
+        price: 599.99,
+        product: 'p1',
+        variantSku: 'phone-512gb',
+        variantLabel: '512GB'
+      }
     ]);
 
     expect(prices.itemsPrice).toBe(599.99);

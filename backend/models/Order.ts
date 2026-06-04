@@ -6,6 +6,8 @@ export interface IOrderItem {
   image: string;
   price: number;
   product: Types.ObjectId;
+  variantSku: string;
+  variantLabel: string;
 }
 
 export interface IShippingAddress {
@@ -60,7 +62,9 @@ const OrderSchema = new Schema<IOrderDocument>(
           type: Schema.Types.ObjectId,
           required: true,
           ref: 'Product'
-        }
+        },
+        variantSku: { type: String, required: true },
+        variantLabel: { type: String, required: true }
       }
     ],
     shippingAddress: {

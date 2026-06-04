@@ -26,7 +26,10 @@ describe('products integration', () => {
     const res = await request(app).get('/api/products?pageNumber=1');
     expect(res.status).toBe(200);
     expect(Array.isArray(res.body.products)).toBe(true);
+    expect(res.body.products.length).toBeLessThanOrEqual(12);
     expect(res.body.page).toBe(1);
+    expect(res.body.products[0].variants).toBeDefined();
+    expect(res.body.products[0].priceFrom).toBeDefined();
   });
 
   it('searches products by keyword', async () => {
@@ -35,15 +38,47 @@ describe('products integration', () => {
     expect(res.body.products.length).toBeGreaterThan(0);
   });
 
+  it('filters products by max price', async () => {
+    const res = await request(app).get('/api/products?maxPrice=50&pageNumber=1');
+    expect(res.status).toBe(200);
+    expect(res.body.products.length).toBeGreaterThan(0);
+    for (const product of res.body.products) {
+      expect(product.priceFrom).toBeLessThanOrEqual(50);
+    }
+  });
+
+  it('filters products by brand', async () => {
+    const res = await request(app).get('/api/products?brand=Apple&pageNumber=1');
+    expect(res.status).toBe(200);
+    expect(res.body.products.every((p: { brand: string }) => p.brand === 'Apple')).toBe(true);
+  });
+
+  it('returns product meta', async () => {
+    const res = await request(app).get('/api/products/meta');
+    expect(res.status).toBe(200);
+    expect(res.body.brands).toContain('Apple');
+    expect(res.body.subcategories).toContain('Phones');
+  });
+
   it('admin can create update and delete product', async () => {
     const productPayload = {
       name: 'Integration Test Product',
-      price: 29.99,
       image: '/images/sample.jpg',
       brand: 'Test Brand',
       category: 'Electronics',
+      subcategory: 'Phones',
+      modelKey: 'integration-test-phone',
+      releaseYear: 2024,
       description: 'Created during integration test',
-      countInStock: 5
+      variants: [
+        {
+          sku: 'integration-test-128gb',
+          label: '128GB',
+          listPrice: 99,
+          price: 69,
+          countInStock: 5
+        }
+      ]
     };
 
     const created = await request(app)
@@ -55,7 +90,11 @@ describe('products integration', () => {
     const updated = await request(app)
       .put(`/api/products/${created.body._id}`)
       .set('Authorization', `Bearer ${adminToken}`)
-      .send({ ...created.body, name: 'Updated Name', price: 10 });
+      .send({
+        ...productPayload,
+        name: 'Updated Name',
+        variants: [{ ...productPayload.variants[0], price: 59 }]
+      });
     expect(updated.status).toBe(200);
     expect(updated.body.name).toBe('Updated Name');
 

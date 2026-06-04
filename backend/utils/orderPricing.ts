@@ -1,6 +1,7 @@
 export interface OrderItemInput {
   product: string;
   qty: number;
+  variantSku: string;
 }
 
 export interface ResolvedOrderItem {
@@ -9,6 +10,8 @@ export interface ResolvedOrderItem {
   image: string;
   price: number;
   product: string;
+  variantSku: string;
+  variantLabel: string;
 }
 
 export interface OrderPriceBreakdown {

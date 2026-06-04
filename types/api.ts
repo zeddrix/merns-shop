@@ -15,21 +15,41 @@ export interface ApiReview {
   createdAt: string;
 }
 
+export interface ApiProductVariant {
+  sku: string;
+  label: string;
+  storageGb?: number;
+  screenInches?: number;
+  ramGb?: number;
+  listPrice: number;
+  price: number;
+  countInStock: number;
+  image?: string;
+}
+
 export interface ApiProduct {
   _id: string;
   name: string;
   image: string;
   brand: string;
   category: string;
+  subcategory: string;
+  modelKey: string;
+  releaseYear: number;
+  condition: string;
   description: string;
   rating: number;
   numReviews: number;
-  price: number;
-  countInStock: number;
+  variants: ApiProductVariant[];
   reviews: ApiReview[];
   user: string;
   createdAt?: string;
   updatedAt?: string;
+  priceFrom?: number;
+  listPriceFrom?: number;
+  savingsPercentMax?: number;
+  inStock?: boolean;
+  totalStock?: number;
 }
 
 export interface ApiOrderItem {
@@ -38,6 +58,8 @@ export interface ApiOrderItem {
   image: string;
   price: number;
   product: string;
+  variantSku: string;
+  variantLabel: string;
 }
 
 export interface ApiShippingAddress {
@@ -71,4 +93,10 @@ export interface PaginatedProductsResponse {
   products: ApiProduct[];
   page: number;
   pages: number;
+}
+
+export interface ProductMetaResponse {
+  brands: string[];
+  categories: string[];
+  subcategories: string[];
 }

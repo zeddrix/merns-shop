@@ -36,6 +36,20 @@ describe('request validation schemas', () => {
     expect(result.success).toBe(false);
   });
 
+  it('requires variantSku on order items', () => {
+    const result = createOrderSchema.safeParse({
+      orderItems: [{ product: '507f1f77bcf86cd799439011', qty: 1 }],
+      shippingAddress: {
+        address: '123',
+        city: 'City',
+        postalCode: '12345',
+        country: 'US'
+      },
+      paymentMethod: 'PayPal'
+    });
+    expect(result.success).toBe(false);
+  });
+
   it('rejects pay payload without payer email', () => {
     const result = payOrderSchema.safeParse({
       id: 'payment-id',
@@ -54,15 +68,55 @@ describe('request validation schemas', () => {
     expect(result.success).toBe(true);
   });
 
-  it('accepts product input payload', () => {
+  it('rejects duplicate variant skus', () => {
     const result = productInputSchema.safeParse({
       name: 'Sample',
-      price: 99,
       image: '/images/sample.jpg',
       brand: 'Brand',
-      category: 'Category',
+      category: 'Electronics',
+      subcategory: 'Phones',
+      modelKey: 'sample-phone',
+      releaseYear: 2024,
       description: 'Description',
-      countInStock: 5
+      variants: [
+        {
+          sku: 'dup-sku',
+          label: '128GB',
+          listPrice: 99,
+          price: 69,
+          countInStock: 5
+        },
+        {
+          sku: 'dup-sku',
+          label: '256GB',
+          listPrice: 109,
+          price: 79,
+          countInStock: 3
+        }
+      ]
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it('accepts product input with variants', () => {
+    const result = productInputSchema.safeParse({
+      name: 'Sample',
+      image: '/images/sample.jpg',
+      brand: 'Brand',
+      category: 'Electronics',
+      subcategory: 'Phones',
+      modelKey: 'sample-phone',
+      releaseYear: 2024,
+      description: 'Description',
+      variants: [
+        {
+          sku: 'sample-128gb',
+          label: '128GB',
+          listPrice: 99,
+          price: 69,
+          countInStock: 5
+        }
+      ]
     });
     expect(result.success).toBe(true);
   });
