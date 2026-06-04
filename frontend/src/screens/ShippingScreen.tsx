@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import FormContainer from '../components/FormContainer';
@@ -19,6 +19,8 @@ const ShippingScreen = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectPath = `${location.pathname}${location.search}`;
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ const ShippingScreen = () => {
 
   return (
     <FormContainer>
-      <CheckoutSteps step1 step2 />
+      <CheckoutSteps step1 step2 redirectPath={redirectPath} />
       <h1 data-testid="shipping-heading">Shipping</h1>
       <Form onSubmit={submitHandler} data-testid="shipping-form">
         <Form.Group controlId="address">

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
@@ -16,6 +16,8 @@ const PlaceOrderScreen = () => {
   const isAuthenticated = useRequireAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectPath = `${location.pathname}${location.search}`;
 
   const cart = useAppSelector((state) => state.cart);
 
@@ -69,7 +71,7 @@ const PlaceOrderScreen = () => {
 
   return (
     <div data-testid="place-order-screen">
-      <CheckoutSteps step1 step2 step3 step4 />
+      <CheckoutSteps step1 step2 step3 step4 redirectPath={redirectPath} />
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">

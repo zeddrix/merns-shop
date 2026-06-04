@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Product from '../components/Product';
@@ -10,8 +10,13 @@ import ProductCarousel from '../components/ProductCarousel';
 import CatalogFilters from '../components/CatalogFilters';
 import Meta from '../components/Meta';
 import { listProducts } from '../features/productSlice';
+import { isRegisterWelcomeState } from '../utils/authRedirect';
 
 const HomeScreen = () => {
+  const location = useLocation();
+  const registerWelcome = isRegisterWelcomeState(location.state)
+    ? location.state.registerWelcome
+    : null;
   const { keyword, pageNumber } = useParams<{
     keyword?: string;
     pageNumber?: string;
@@ -57,6 +62,11 @@ const HomeScreen = () => {
           Go Back
         </Link>
       )}
+      {registerWelcome ? (
+        <Message variant="success" data-testid="register-welcome">
+          Welcome, {registerWelcome}
+        </Message>
+      ) : null}
       <h1 data-testid="home-heading">Latest Products</h1>
       <CatalogFilters keyword={keyword} />
       {loading ? (

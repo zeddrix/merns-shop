@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Form, Button, Col } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import FormContainer from '../components/FormContainer';
@@ -12,6 +12,8 @@ const PaymentScreen = () => {
   const cart = useAppSelector((state) => state.cart);
   const { shippingAddress } = cart;
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectPath = `${location.pathname}${location.search}`;
 
   const [paymentMethod, setPaymentMethod] = useState('PayPal');
 
@@ -39,7 +41,7 @@ const PaymentScreen = () => {
 
   return (
     <FormContainer>
-      <CheckoutSteps step1 step2 step3 />
+      <CheckoutSteps step1 step2 step3 redirectPath={redirectPath} />
       <h1 data-testid="payment-heading">Payment Method</h1>
       <Form onSubmit={submitHandler} data-testid="payment-form">
         <Form.Group>

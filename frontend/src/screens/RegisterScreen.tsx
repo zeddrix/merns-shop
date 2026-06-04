@@ -6,14 +6,16 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { register } from '../features/userSlice';
-import { getRedirectPath } from '../hooks/useRequireAuth';
+import { buildLoginRedirectUrl, getRedirectPath } from '../utils/authRedirect';
+
+type ClientValidationError = 'mismatch' | 'too-short';
 
 const RegisterScreen = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState<string | null>(null);
+  const [clientError, setClientError] = useState<ClientValidationError | null>(null);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -25,25 +27,53 @@ const RegisterScreen = () => {
   const redirect = getRedirectPath(location.search);
 
   useEffect(() => {
-    if (userInfo) {
-      navigate(redirect);
+    if (!userInfo) {
+      return;
     }
+
+    if (redirect === '/') {
+      navigate('/', { replace: true, state: { registerWelcome: userInfo.name } });
+      return;
+    }
+
+    navigate(redirect, { replace: true });
   }, [navigate, userInfo, redirect]);
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage('Passwords do not match');
-    } else {
-      dispatch(register({ name, email, password }));
+    setClientError(null);
+
+    if (password.length < 6) {
+      setClientError('too-short');
+      return;
     }
+
+    if (password !== confirmPassword) {
+      setClientError('mismatch');
+      return;
+    }
+
+    dispatch(register({ name, email, password }));
   };
 
   return (
     <FormContainer>
       <h1 data-testid="register-heading">Sign Up</h1>
-      {message && <Message variant="danger">{message}</Message>}
-      {error && <Message variant="danger">{error}</Message>}
+      {clientError === 'mismatch' && (
+        <Message variant="danger" data-testid="register-password-mismatch">
+          Passwords do not match
+        </Message>
+      )}
+      {clientError === 'too-short' && (
+        <Message variant="danger" data-testid="register-password-too-short">
+          Password must be at least 6 characters
+        </Message>
+      )}
+      {error && (
+        <Message variant="danger" data-testid="register-error">
+          {error}
+        </Message>
+      )}
       {loading && <Loader />}
       <Form onSubmit={submitHandler} data-testid="register-form">
         <Form.Group controlId="name">
@@ -91,7 +121,7 @@ const RegisterScreen = () => {
         </Form.Group>
 
         <Button type="submit" variant="primary" data-testid="register-submit">
-          Register
+          Sign Up
         </Button>
       </Form>
 
@@ -99,7 +129,7 @@ const RegisterScreen = () => {
         <Col>
           Have an Account?{' '}
           <Link
-            to={redirect ? `/login?redirect=${redirect}` : '/login'}
+            to={redirect === '/' ? '/login' : buildLoginRedirectUrl(redirect)}
             data-testid="register-login-link"
           >
             Login
