@@ -39,7 +39,11 @@ test.describe('journey guest purchase lifecycle', () => {
   });
 
   test('guest_completes_paypal_payment_when_opt_in', async ({ page }) => {
-    test.skip(!shouldRunPayPalE2e(), payPalSkipReason);
+    test.skip(
+      !shouldRunPayPalE2e() || process.env.PW_RUN_PAYPAL !== '1',
+      `${payPalSkipReason} (journey PayPal is opt-in via PW_RUN_PAYPAL=1; canonical spec: paypal-sandbox-payment.e2e.test.ts)`
+    );
+    test.setTimeout(240_000);
 
     await addFirstProductToCart(page);
     await page.locator('[data-testid="nav-cart"]').click();
@@ -53,6 +57,8 @@ test.describe('journey guest purchase lifecycle', () => {
       ),
       page.locator('[data-testid="place-order-submit"]').click()
     ]);
+    await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
+    await page.reload();
     await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
 
     const orderId = page.url().split('/order/')[1]?.split(/[/?#]/)[0];

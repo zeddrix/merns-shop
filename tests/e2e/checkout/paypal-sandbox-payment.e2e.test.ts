@@ -12,6 +12,8 @@ import { resetE2eDatabase } from '../fixtures/reset-db';
 import { shouldRunPayPalE2e, payPalSkipReason } from '../fixtures/paypal-env';
 
 test.describe('PayPal sandbox payment', () => {
+  test.describe.configure({ timeout: 240_000 });
+
   test.skip(!shouldRunPayPalE2e(), payPalSkipReason);
 
   test.beforeEach(async ({ context }) => {

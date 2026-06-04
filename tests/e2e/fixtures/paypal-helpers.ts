@@ -129,6 +129,7 @@ async function clickPayPalConfirm(surface: LoginSurface): Promise<void> {
   const confirmSelectors = [
     '#confirmButtonTop',
     '#payment-submit-btn',
+    '[data-testid="submit-button-initial"]',
     'button:has-text("Pay Now")',
     'button:has-text("Complete Purchase")',
     'button:has-text("Continue")',
@@ -138,7 +139,7 @@ async function clickPayPalConfirm(surface: LoginSurface): Promise<void> {
   for (const selector of confirmSelectors) {
     const button = surface.locator(selector).first();
     if (await button.isVisible().catch(() => false)) {
-      await button.click();
+      await button.click({ force: true });
       return;
     }
   }
@@ -147,7 +148,7 @@ async function clickPayPalConfirm(surface: LoginSurface): Promise<void> {
     .getByRole('button', { name: /pay now|complete purchase|^pay$/i })
     .first();
   await roleButton.waitFor({ state: 'visible', timeout: PAYPAL_CONFIRM_TIMEOUT_MS });
-  await roleButton.click();
+  await roleButton.click({ force: true });
 }
 
 async function completePayPalLogin(
@@ -219,8 +220,22 @@ export async function completePayPalSandboxPayment(page: Page): Promise<void> {
       .catch(() => undefined);
   }
 
-  await page.locator('[data-testid="order-paid-message"]').waitFor({
-    state: 'visible',
-    timeout: PAYPAL_CONFIRM_TIMEOUT_MS
-  });
+  await page.bringToFront();
+
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      await page.locator('[data-testid="order-paid-message"]').waitFor({
+        state: 'visible',
+        timeout: PAYPAL_CONFIRM_TIMEOUT_MS
+      });
+      return;
+    } catch {
+      if (attempt === 0) {
+        await page.reload({ waitUntil: 'domcontentloaded' });
+        await page.locator('[data-testid="order-screen"]').waitFor({ state: 'visible' });
+      }
+    }
+  }
+
+  throw new Error('Order paid message did not appear after PayPal sandbox checkout');
 }

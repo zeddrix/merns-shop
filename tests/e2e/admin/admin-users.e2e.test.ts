@@ -28,7 +28,14 @@ test.describe('admin users', () => {
       page.locator('[data-testid="admin-user-submit"]').click()
     ]);
     await page.waitForURL('**/admin/userlist');
-    await expect(page.locator('tr', { hasText: 'John Updated' })).toBeVisible();
+    await page.waitForResponse(
+      (response) =>
+        response.url().includes('/api/users') &&
+        response.request().method() === 'GET' &&
+        response.status() === 200
+    );
+    const johnRow = page.locator('tr', { hasText: TEST_USERS.customer.email });
+    await expect(johnRow.locator('[data-testid^="admin-user-name-"]')).toHaveText('John Updated');
   });
 
   test('admin_deletes_user', async ({ page }) => {
