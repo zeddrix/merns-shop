@@ -2,6 +2,7 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import request from 'supertest';
 import app from '../../../backend/app.js';
 import { connectTestDb, disconnectTestDb, resetTestDb } from '../helpers/db.js';
+import { getAuthToken } from '../helpers/auth.js';
 
 function buildOrderPayload(
   product: { _id: string; name: string; image: string; price: number },
@@ -51,23 +52,9 @@ describe('orders integration', () => {
     const products = await request(app).get('/api/products');
     productId = products.body.products[0]._id;
 
-    const customerLogin = await request(app).post('/api/users/login').send({
-      email: 'john@gmail.com',
-      password: '123456'
-    });
-    customerToken = customerLogin.body.token;
-
-    const otherLogin = await request(app).post('/api/users/login').send({
-      email: 'jane@gmail.com',
-      password: '123456'
-    });
-    otherCustomerToken = otherLogin.body.token;
-
-    const adminLogin = await request(app).post('/api/users/login').send({
-      email: 'admin@gmail.com',
-      password: '123456'
-    });
-    adminToken = adminLogin.body.token;
+    customerToken = await getAuthToken(app, 'john@gmail.com', '123456');
+    otherCustomerToken = await getAuthToken(app, 'jane@gmail.com', '123456');
+    adminToken = await getAuthToken(app, 'admin@gmail.com', '123456');
   });
 
   it('creates order and lists my orders', async () => {

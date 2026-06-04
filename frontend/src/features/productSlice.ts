@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { axios } from '../api/http';
+import { hasSession } from '../utils/requireSession';
 import type { Product, ProductListResponse } from '../types';
 import type { UserInfo } from '../types';
 
@@ -13,10 +14,6 @@ interface ProductSliceRootState {
 import { getErrorMessage } from '../utils/getErrorMessage';
 import { logout } from './userSlice';
 import { DEFAULT_NEW_PRODUCT } from '../constants/defaultProduct';
-
-const getAuthConfig = (token: string) => ({
-  headers: { Authorization: `Bearer ${token}` }
-});
 
 const handleAuthError = (message: string, dispatch: (action: unknown) => void) => {
   if (message === 'Not authorized, token failed') {
@@ -123,9 +120,8 @@ export const deleteProduct = createAsyncThunk(
   async (id: string, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as ProductSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      await axios.delete(`/api/products/${id}`, getAuthConfig(token));
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      await axios.delete(`/api/products/${id}`);
       return undefined;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -162,13 +158,8 @@ export const createProduct = createAsyncThunk(
   async (_void: undefined, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as ProductSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      const { data } = await axios.post<Product>(
-        '/api/products',
-        DEFAULT_NEW_PRODUCT,
-        getAuthConfig(token)
-      );
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      const { data } = await axios.post<Product>('/api/products', DEFAULT_NEW_PRODUCT);
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -208,14 +199,8 @@ export const updateProduct = createAsyncThunk(
   async (product: Product, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as ProductSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      const { data } = await axios.put<Product>(`/api/products/${product._id}`, product, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      });
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      const { data } = await axios.put<Product>(`/api/products/${product._id}`, product);
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -282,14 +267,8 @@ export const createProductReview = createAsyncThunk(
   ) => {
     try {
       const { userLogin } = getState() as ProductSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      await axios.post(`/api/products/${productId}/reviews`, review, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      });
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      await axios.post(`/api/products/${productId}/reviews`, review);
       return undefined;
     } catch (error) {
       const message = getErrorMessage(error);

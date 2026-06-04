@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { axios } from '../api/http';
 import {
   PayPalScriptProvider,
   PayPalButtons,
   type PayPalButtonsComponentProps
 } from '@paypal/react-paypal-js';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
@@ -17,6 +17,7 @@ import {
   orderPayReset,
   orderDeliverReset
 } from '../features/orderSlice';
+import { useRequireAuth } from '../hooks/useRequireAuth';
 import type { Order, PaymentResult } from '../types';
 
 const addDecimals = (num: number) => {
@@ -25,7 +26,7 @@ const addDecimals = (num: number) => {
 
 const OrderScreen = () => {
   const { id: orderId } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const isAuthenticated = useRequireAuth();
   const [clientId, setClientId] = useState('');
 
   const dispatch = useAppDispatch();
@@ -51,28 +52,25 @@ const OrderScreen = () => {
     : undefined;
 
   useEffect(() => {
-    if (!userInfo) {
-      navigate('/login');
+    if (!orderId) {
+      return;
     }
-  }, [navigate, userInfo]);
-
-  useEffect(() => {
     const fetchPayPalClientId = async () => {
       const { data } = await axios.get<string>('/api/config/paypal');
-      setClientId(data);
+      setClientId(typeof data === 'string' ? data : '');
     };
     void fetchPayPalClientId();
-  }, []);
+  }, [orderId]);
 
   useEffect(() => {
-    if (!orderId) return;
+    if (!isAuthenticated || !orderId) return;
 
     if (!order || successPay || successDeliver || order._id !== orderId) {
       dispatch(orderPayReset());
       dispatch(orderDeliverReset());
       dispatch(getOrderDetails(orderId));
     }
-  }, [dispatch, orderId, successPay, order, successDeliver]);
+  }, [dispatch, isAuthenticated, orderId, successPay, order, successDeliver]);
 
   const successPaymentHandler: NonNullable<PayPalButtonsComponentProps['onApprove']> = async (
     _data,
@@ -100,12 +98,20 @@ const OrderScreen = () => {
     }
   };
 
-  if (loading || !orderWithPrices) {
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  if (loading || (!error && !orderWithPrices)) {
     return <Loader />;
   }
 
   if (error) {
-    return <Message variant="danger">{error}</Message>;
+    return (
+      <Message variant="danger" data-testid="order-details-error">
+        {error}
+      </Message>
+    );
   }
 
   const displayOrder = orderWithPrices as Order & { itemsPrice: string };

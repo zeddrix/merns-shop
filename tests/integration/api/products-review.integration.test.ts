@@ -2,6 +2,7 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import request from 'supertest';
 import app from '../../../backend/app.js';
 import { connectTestDb, disconnectTestDb, resetTestDb } from '../helpers/db.js';
+import { getAuthToken } from '../helpers/auth.js';
 
 describe('products review integration', () => {
   let productId = '';
@@ -20,11 +21,7 @@ describe('products review integration', () => {
     const products = await request(app).get('/api/products');
     productId = products.body.products[0]._id;
 
-    const login = await request(app).post('/api/users/login').send({
-      email: 'john@gmail.com',
-      password: '123456'
-    });
-    token = login.body.token;
+    token = await getAuthToken(app, 'john@gmail.com', '123456');
   });
 
   it('POST review persists on product', async () => {

@@ -5,6 +5,7 @@ import {
   getAllUsers,
   getUserById,
   getUserProfile,
+  logoutUser,
   registerUser,
   updateUser,
   updateUserProfile
@@ -25,6 +26,7 @@ router
   .post(validateBody(registerUserSchema), registerUser)
   .get(protect, admin, getAllUsers);
 router.post('/login', validateBody(loginUserSchema), authUser);
+router.post('/logout', logoutUser);
 router
   .route('/profile')
   .get(protect, getUserProfile)

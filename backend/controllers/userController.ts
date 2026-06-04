@@ -2,6 +2,14 @@ import asyncHandler from 'express-async-handler';
 import type { Request, Response } from 'express';
 import User from '../models/User.js';
 import generateToken from '../utils/generateToken.js';
+import { clearAuthCookie, setAuthCookie } from '../utils/authCookie.js';
+
+const toPublicUser = (user: { _id: unknown; name: string; email: string; isAdmin: boolean }) => ({
+  _id: user._id,
+  name: user.name,
+  email: user.email,
+  isAdmin: user.isAdmin
+});
 
 const authUser = asyncHandler(async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -9,13 +17,8 @@ const authUser = asyncHandler(async (req: Request, res: Response) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      token: generateToken(user._id)
-    });
+    setAuthCookie(res, generateToken(user._id));
+    res.json(toPublicUser(user));
   } else {
     res.status(401);
     throw new Error('Invalid email or password');
@@ -39,13 +42,8 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   });
 
   if (user) {
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      token: generateToken(user._id)
-    });
+    setAuthCookie(res, generateToken(user._id));
+    res.status(201).json(toPublicUser(user));
   } else {
     res.status(400);
     throw new Error('Invalid user data');
@@ -90,17 +88,17 @@ const updateUserProfile = asyncHandler(async (req: Request, res: Response) => {
 
     const updatedUser = await user.save();
 
-    res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
-      token: generateToken(updatedUser._id)
-    });
+    setAuthCookie(res, generateToken(updatedUser._id));
+    res.json(toPublicUser(updatedUser));
   } else {
     res.status(404);
     throw new Error('User not found');
   }
+});
+
+const logoutUser = asyncHandler(async (_req: Request, res: Response) => {
+  clearAuthCookie(res);
+  res.json({ message: 'Logged out' });
 });
 
 const getAllUsers = asyncHandler(async (_req: Request, res: Response) => {
@@ -166,6 +164,7 @@ const updateUser = asyncHandler(async (req: Request, res: Response) => {
 export {
   authUser,
   registerUser,
+  logoutUser,
   getUserProfile,
   updateUserProfile,
   getAllUsers,

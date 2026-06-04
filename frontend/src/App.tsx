@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
+import { useAuthBootstrap } from './features/authBootstrap';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomeScreen from './screens/HomeScreen';
@@ -18,9 +19,11 @@ import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 
-const App = () => {
+const AppRoutes = () => {
+  useAuthBootstrap();
+
   return (
-    <Router>
+    <>
       <Header />
       <main className="py-3">
         <Container>
@@ -48,6 +51,14 @@ const App = () => {
         </Container>
       </main>
       <Footer />
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AppRoutes />
     </Router>
   );
 };

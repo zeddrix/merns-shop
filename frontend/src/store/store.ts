@@ -26,16 +26,11 @@ import {
   myOrderReducer,
   orderListReducer
 } from '../features/orderSlice';
-import type { CartItem, ShippingAddress, UserInfo } from '../types';
+import type { CartItem, ShippingAddress } from '../types';
 
 const cartItemsFromStorage = (): CartItem[] => {
   const stored = localStorage.getItem('cartItems');
   return stored ? (JSON.parse(stored) as CartItem[]) : [];
-};
-
-const userInfoFromStorage = (): UserInfo | undefined => {
-  const stored = localStorage.getItem('userInfo');
-  return stored ? (JSON.parse(stored) as UserInfo) : undefined;
 };
 
 const shippingAddressFromStorage = (): ShippingAddress => {
@@ -72,9 +67,7 @@ export const store = configureStore({
       cartItems: cartItemsFromStorage(),
       shippingAddress: shippingAddressFromStorage()
     },
-    userLogin: {
-      userInfo: userInfoFromStorage()
-    }
+    userLogin: {}
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

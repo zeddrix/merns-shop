@@ -2,6 +2,7 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import request from 'supertest';
 import app from '../../../backend/app.js';
 import { connectTestDb, disconnectTestDb, resetTestDb } from '../helpers/db.js';
+import { getAuthToken } from '../helpers/auth.js';
 
 describe('products integration', () => {
   let adminToken = '';
@@ -16,11 +17,7 @@ describe('products integration', () => {
 
   beforeEach(async () => {
     await resetTestDb();
-    const login = await request(app).post('/api/users/login').send({
-      email: 'admin@gmail.com',
-      password: '123456'
-    });
-    adminToken = login.body.token;
+    adminToken = await getAuthToken(app, 'admin@gmail.com', '123456');
 
     await request(app).get('/api/products');
   });

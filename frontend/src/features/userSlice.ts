@@ -1,15 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { axios } from '../api/http';
 import type { User, UserInfo } from '../types';
+import { getErrorMessage } from '../utils/getErrorMessage';
+import { hasSession } from '../utils/requireSession';
+import { clearCartItems } from './cartSlice';
+
 interface UserSliceRootState {
   userLogin: { userInfo?: UserInfo };
 }
-import { getErrorMessage } from '../utils/getErrorMessage';
-import { clearCartItems } from './cartSlice';
-
-const getAuthConfig = (token: string) => ({
-  headers: { Authorization: `Bearer ${token}` }
-});
 
 export interface AuthState {
   loading?: boolean;
@@ -37,16 +35,23 @@ const emptyUser = (): User => ({
   isAdmin: false
 });
 
+export const loadUserFromSession = createAsyncThunk(
+  'userLogin/loadSession',
+  async (_void: undefined, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get<UserInfo>('/api/users/profile');
+      return data;
+    } catch {
+      return rejectWithValue('No active session');
+    }
+  }
+);
+
 export const login = createAsyncThunk(
   'userLogin/login',
   async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post<UserInfo>(
-        '/api/users/login',
-        { email, password },
-        { headers: { 'Content-Type': 'application/json' } }
-      );
-      localStorage.setItem('userInfo', JSON.stringify(data));
+      const { data } = await axios.post<UserInfo>('/api/users/login', { email, password });
       return data;
     } catch (error) {
       return rejectWithValue(getErrorMessage(error));
@@ -61,12 +66,7 @@ export const register = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const { data } = await axios.post<UserInfo>(
-        '/api/users',
-        { name, email, password },
-        { headers: { 'Content-Type': 'application/json' } }
-      );
-      localStorage.setItem('userInfo', JSON.stringify(data));
+      const { data } = await axios.post<UserInfo>('/api/users', { name, email, password });
       return data;
     } catch (error) {
       return rejectWithValue(getErrorMessage(error));
@@ -75,7 +75,11 @@ export const register = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk('user/logout', async (_void: undefined, { dispatch }) => {
-  localStorage.removeItem('userInfo');
+  try {
+    await axios.post('/api/users/logout');
+  } catch {
+    // Clear client state even if the network call fails
+  }
   localStorage.removeItem('cartItems');
   localStorage.removeItem('shippingAddress');
   localStorage.removeItem('paymentMethod');
@@ -88,10 +92,9 @@ export const getUserDetails = createAsyncThunk(
   async (id: string, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as UserSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
       const url = id === 'profile' ? '/api/users/profile' : `/api/users/${id}`;
-      const { data } = await axios.get<User>(url, getAuthConfig(token));
+      const { data } = await axios.get<User>(url);
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -111,15 +114,8 @@ export const updateUserProfile = createAsyncThunk(
   ) => {
     try {
       const { userLogin } = getState() as UserSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      const { data } = await axios.put<UserInfo>('/api/users/profile', user, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      });
-      localStorage.setItem('userInfo', JSON.stringify(data));
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      const { data } = await axios.put<UserInfo>('/api/users/profile', user);
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -136,9 +132,8 @@ export const listUsers = createAsyncThunk(
   async (_void: undefined, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as UserSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      const { data } = await axios.get<User[]>('/api/users', getAuthConfig(token));
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      const { data } = await axios.get<User[]>('/api/users');
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -155,9 +150,8 @@ export const deleteUser = createAsyncThunk(
   async (id: string, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as UserSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      await axios.delete(`/api/users/${id}`, getAuthConfig(token));
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      await axios.delete(`/api/users/${id}`);
       return undefined;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -174,14 +168,8 @@ export const updateUser = createAsyncThunk(
   async (user: User, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as UserSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      await axios.put(`/api/users/${user._id}`, user, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      });
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      await axios.put(`/api/users/${user._id}`, user);
       return undefined;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -210,13 +198,23 @@ const userLoginSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
       })
+      .addCase(loadUserFromSession.fulfilled, (state, action) => {
+        state.userInfo = action.payload;
+      })
+      .addCase(loadUserFromSession.rejected, (state) => {
+        state.userInfo = undefined;
+      })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.userInfo = action.payload;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.userInfo = action.payload;
       })
-      .addCase(logout.pending, () => ({}));
+      .addCase(logout.pending, (state) => {
+        state.userInfo = undefined;
+        state.loading = false;
+        state.error = undefined;
+      });
   }
 });
 

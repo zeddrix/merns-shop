@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { axios } from '../api/http';
+import { hasSession } from '../utils/requireSession';
 import type { Order, PaymentResult } from '../types';
 import type { UserInfo } from '../types';
 
@@ -9,10 +10,6 @@ interface OrderSliceRootState {
 import { getErrorMessage } from '../utils/getErrorMessage';
 import { clearCartItems } from './cartSlice';
 import { logout } from './userSlice';
-
-const getAuthConfig = (token: string) => ({
-  headers: { Authorization: `Bearer ${token}` }
-});
 
 export interface OrderMutationState {
   loading?: boolean;
@@ -51,14 +48,8 @@ export const createOrder = createAsyncThunk(
   async (order: CreateOrderPayload, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as OrderSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      const { data } = await axios.post<Order>('/api/orders', order, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      });
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      const { data } = await axios.post<Order>('/api/orders', order);
       dispatch(clearCartItems());
       return data;
     } catch (error) {
@@ -74,9 +65,8 @@ export const getOrderDetails = createAsyncThunk(
   async (id: string, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as OrderSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      const { data } = await axios.get<Order>(`/api/orders/${id}`, getAuthConfig(token));
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      const { data } = await axios.get<Order>(`/api/orders/${id}`);
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -94,14 +84,8 @@ export const payOrder = createAsyncThunk(
   ) => {
     try {
       const { userLogin } = getState() as OrderSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      await axios.put(`/api/orders/${orderId}/pay`, paymentResult, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      });
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      await axios.put(`/api/orders/${orderId}/pay`, paymentResult);
       return undefined;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -116,9 +100,8 @@ export const deliverOrder = createAsyncThunk(
   async (order: Order, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as OrderSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      await axios.put(`/api/orders/${order._id}/deliver`, {}, getAuthConfig(token));
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      await axios.put(`/api/orders/${order._id}/deliver`, {});
       return undefined;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -133,9 +116,8 @@ export const listMyOrder = createAsyncThunk(
   async (_void: undefined, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as OrderSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      const { data } = await axios.get<Order[]>('/api/orders/myorders', getAuthConfig(token));
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      const { data } = await axios.get<Order[]>('/api/orders/myorders');
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -150,9 +132,8 @@ export const listOrders = createAsyncThunk(
   async (_void: undefined, { getState, dispatch, rejectWithValue }) => {
     try {
       const { userLogin } = getState() as OrderSliceRootState;
-      const token = userLogin.userInfo?.token;
-      if (!token) throw new Error('Not authenticated');
-      const { data } = await axios.get<Order[]>('/api/orders', getAuthConfig(token));
+      if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
+      const { data } = await axios.get<Order[]>('/api/orders');
       return data;
     } catch (error) {
       const message = getErrorMessage(error);

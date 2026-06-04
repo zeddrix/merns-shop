@@ -1,13 +1,15 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Table, Form, Button, Row, Col } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../features/userSlice';
 import { listMyOrder } from '../features/orderSlice';
+import { useRequireAuth } from '../hooks/useRequireAuth';
 
 const ProfileScreen = () => {
+  const isAuthenticated = useRequireAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +17,6 @@ const ProfileScreen = () => {
   const [message, setMessage] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const userDetails = useAppSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
@@ -30,7 +31,6 @@ const ProfileScreen = () => {
 
   useEffect(() => {
     if (!userInfo) {
-      navigate('/login');
       return;
     }
 
@@ -44,7 +44,11 @@ const ProfileScreen = () => {
       setName(user.name);
       setEmail(user.email);
     }
-  }, [dispatch, navigate, userInfo, user._id, user.name, user.email, success]);
+  }, [dispatch, userInfo, user._id, user.name, user.email, success]);
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();

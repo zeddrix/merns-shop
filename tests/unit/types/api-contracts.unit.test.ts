@@ -53,24 +53,23 @@ describe('api contract types', () => {
     }
   });
 
-  it('ApiUser login fields align with frontend UserInfo', () => {
+  it('ApiUser public fields align with frontend UserInfo', () => {
     const apiUser: ApiUser = {
       _id: '507f1f77bcf86cd799439011',
       name: 'John',
       email: 'john@gmail.com',
-      isAdmin: false,
-      token: 'jwt-token'
+      isAdmin: false
     };
 
     const userInfo: UserInfo = {
       _id: apiUser._id,
       name: apiUser.name,
       email: apiUser.email,
-      isAdmin: apiUser.isAdmin,
-      token: apiUser.token ?? ''
+      isAdmin: apiUser.isAdmin
     };
 
-    expect(userInfo.token).toBe('jwt-token');
+    expect(userInfo.email).toBe('john@gmail.com');
+    expect('token' in userInfo).toBe(false);
   });
 
   it('ApiOrder core fields align with frontend Order', () => {
