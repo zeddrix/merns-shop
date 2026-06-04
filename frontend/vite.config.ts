@@ -11,6 +11,14 @@ export default defineConfig({
         target: 'http://localhost:5021',
         changeOrigin: true,
         cookieDomainRewrite: 'localhost'
+      },
+      '/robots.txt': {
+        target: 'http://localhost:5021',
+        changeOrigin: true
+      },
+      '/sitemap.xml': {
+        target: 'http://localhost:5021',
+        changeOrigin: true
       }
     }
   },

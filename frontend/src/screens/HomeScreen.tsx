@@ -9,8 +9,20 @@ import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import CatalogFilters from '../components/CatalogFilters';
 import Meta from '../components/Meta';
+import {
+  DEFAULT_META_DESCRIPTION,
+  DEFAULT_META_TITLE,
+  ROBOTS_INDEX_FOLLOW,
+  ROBOTS_NOINDEX_FOLLOW
+} from '../constants/seo';
 import { listProducts } from '../features/productSlice';
 import { isRegisterWelcomeState } from '../utils/authRedirect';
+import {
+  buildHomeCanonicalPath,
+  buildOrganizationJsonLd,
+  buildSearchTitle,
+  buildWebsiteJsonLd
+} from '../utils/seoMeta';
 
 const HomeScreen = () => {
   const location = useLocation();
@@ -52,9 +64,28 @@ const HomeScreen = () => {
     );
   }, [dispatch, keyword, page, brand, category, subcategory, minPrice, maxPrice, sort]);
 
+  const hasFilterQuery = Boolean(brand || category || subcategory || minPrice || maxPrice || sort);
+  const canonicalPath = buildHomeCanonicalPath({
+    keyword,
+    pageNumber: page,
+    hasFilterQuery
+  });
+  const metaTitle = keyword ? buildSearchTitle(keyword) : DEFAULT_META_TITLE;
+  const metaDescription = keyword
+    ? `Browse results for "${keyword}" at our electronics store.`
+    : DEFAULT_META_DESCRIPTION;
+  const robots = keyword ? ROBOTS_NOINDEX_FOLLOW : ROBOTS_INDEX_FOLLOW;
+  const jsonLd = keyword ? undefined : [buildWebsiteJsonLd(), buildOrganizationJsonLd()];
+
   return (
     <>
-      <Meta />
+      <Meta
+        title={metaTitle}
+        description={metaDescription}
+        canonicalPath={canonicalPath}
+        robots={robots}
+        jsonLd={jsonLd}
+      />
       {!keyword ? (
         <ProductCarousel />
       ) : (

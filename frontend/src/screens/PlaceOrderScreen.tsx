@@ -7,6 +7,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder, orderCreateReset } from '../features/orderSlice';
 import { userDetailsReset } from '../features/userSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const addDecimals = (num: number) => {
   return (Math.round(num * 100) / 100).toFixed(2);
@@ -71,6 +72,7 @@ const PlaceOrderScreen = () => {
 
   return (
     <div data-testid="place-order-screen">
+      <SeoPrivateMeta canonicalPath="/placeorder" />
       <CheckoutSteps step1 step2 step3 step4 redirectPath={redirectPath} />
       <Row>
         <Col md={8}>

@@ -19,6 +19,7 @@ import {
 } from '../features/orderSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
 import type { Order, PaymentResult } from '../types';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const addDecimals = (num: number) => {
   return (Math.round(num * 100) / 100).toFixed(2);
@@ -118,6 +119,7 @@ const OrderScreen = () => {
 
   return (
     <div data-testid="order-screen">
+      <SeoPrivateMeta canonicalPath={`/order/${displayOrder._id}`} />
       <h1 data-testid="order-heading">Order {displayOrder._id}</h1>
       <Row>
         <Col md={8}>

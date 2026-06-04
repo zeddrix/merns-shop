@@ -7,6 +7,12 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Meta from '../components/Meta';
 import PriceDisplay from '../components/PriceDisplay';
+import {
+  buildProductJsonLd,
+  buildProductTitle,
+  productOgImageUrl,
+  truncateDescription
+} from '../utils/seoMeta';
 import ProductVariantPicker from '../components/ProductVariantPicker';
 import { capQtyOptions } from '../constants/cartLimits';
 import {
@@ -94,7 +100,14 @@ const ProductScreen = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Meta title={product.name} />
+          <Meta
+            title={buildProductTitle(product.name)}
+            description={truncateDescription(product.description)}
+            canonicalPath={`/product/${product._id}`}
+            ogImage={productOgImageUrl(product)}
+            ogType="product"
+            jsonLd={buildProductJsonLd(product)}
+          />
           <Row data-testid="product-details">
             <Col md={6}>
               <Image src={displayImage} alt={product.name} fluid />

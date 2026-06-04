@@ -6,6 +6,7 @@ import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { saveShippingAddress } from '../features/cartSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const ShippingScreen = () => {
   const isAuthenticated = useRequireAuth();
@@ -34,6 +35,7 @@ const ShippingScreen = () => {
 
   return (
     <FormContainer>
+      <SeoPrivateMeta canonicalPath="/shipping" />
       <CheckoutSteps step1 step2 redirectPath={redirectPath} />
       <h1 data-testid="shipping-heading">Shipping</h1>
       <Form onSubmit={submitHandler} data-testid="shipping-form">

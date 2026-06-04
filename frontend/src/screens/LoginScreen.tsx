@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 import { login } from '../features/userSlice';
 import { buildRegisterRedirectUrl, getRedirectPath } from '../utils/authRedirect';
 
@@ -37,6 +38,7 @@ const LoginScreen = () => {
 
   return (
     <FormContainer>
+      <SeoPrivateMeta canonicalPath="/login" />
       <h1 data-testid="login-heading">Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}

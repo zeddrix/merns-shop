@@ -15,7 +15,7 @@ const Product = ({ product }: ProductProps) => {
   return (
     <Card className="my-3 p-3 rounded h-100" data-testid={`product-card-${product._id}`}>
       <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} variant="top" />
+        <Card.Img src={product.image} alt={product.name} variant="top" />
       </Link>
 
       <Card.Body className="d-flex flex-column">

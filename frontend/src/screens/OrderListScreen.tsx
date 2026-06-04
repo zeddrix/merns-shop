@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listOrders } from '../features/orderSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const OrderListScreen = () => {
   const dispatch = useAppDispatch();
@@ -27,6 +28,7 @@ const OrderListScreen = () => {
 
   return (
     <div data-testid="admin-order-list">
+      <SeoPrivateMeta canonicalPath="/admin/orderlist" />
       <h1>Orders</h1>
       {loading ? (
         <Loader />

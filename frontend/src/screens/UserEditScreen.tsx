@@ -11,6 +11,7 @@ import {
   userUpdateReset,
   userDetailsReset
 } from '../features/userSlice';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const UserEditScreen = () => {
   const { id: userId } = useParams<{ id: string }>();
@@ -48,8 +49,11 @@ const UserEditScreen = () => {
     dispatch(updateUser({ _id: userId, name, email, isAdmin }));
   };
 
+  const editCanonicalPath = userId ? `/admin/user/${userId}/edit` : '/admin/userlist';
+
   return (
     <div data-testid="admin-user-edit">
+      <SeoPrivateMeta canonicalPath={editCanonicalPath} />
       <Link to="/admin/userlist" className="btn btn-light my-3" data-testid="admin-user-edit-back">
         Go Back
       </Link>

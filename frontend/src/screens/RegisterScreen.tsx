@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 import { register } from '../features/userSlice';
 import { buildLoginRedirectUrl, getRedirectPath } from '../utils/authRedirect';
 
@@ -58,6 +59,7 @@ const RegisterScreen = () => {
 
   return (
     <FormContainer>
+      <SeoPrivateMeta canonicalPath="/register" />
       <h1 data-testid="register-heading">Sign Up</h1>
       {clientError === 'mismatch' && (
         <Message variant="danger" data-testid="register-password-mismatch">

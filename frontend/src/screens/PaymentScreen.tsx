@@ -6,6 +6,7 @@ import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { savePaymentMethod } from '../features/cartSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const PaymentScreen = () => {
   const isAuthenticated = useRequireAuth();
@@ -41,6 +42,7 @@ const PaymentScreen = () => {
 
   return (
     <FormContainer>
+      <SeoPrivateMeta canonicalPath="/payment" />
       <CheckoutSteps step1 step2 step3 redirectPath={redirectPath} />
       <h1 data-testid="payment-heading">Payment Method</h1>
       <Form onSubmit={submitHandler} data-testid="payment-form">

@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { listProductDetails, updateProduct, productUpdateReset } from '../features/productSlice';
 import type { ProductVariant } from '../types';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const ProductEditScreen = () => {
   const { id: productId } = useParams<{ id: string }>();
@@ -98,8 +99,11 @@ const ProductEditScreen = () => {
     );
   };
 
+  const editCanonicalPath = productId ? `/admin/product/${productId}/edit` : '/admin/productlist';
+
   return (
     <div data-testid="admin-product-edit">
+      <SeoPrivateMeta canonicalPath={editCanonicalPath} />
       <Link
         to="/admin/productlist"
         className="btn btn-light my-3"

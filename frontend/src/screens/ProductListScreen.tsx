@@ -12,6 +12,7 @@ import {
   productCreateReset
 } from '../features/productSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const ProductListScreen = () => {
   const { pageNumber } = useParams<{ pageNumber?: string }>();
@@ -66,6 +67,7 @@ const ProductListScreen = () => {
 
   return (
     <div data-testid="admin-product-list">
+      <SeoPrivateMeta canonicalPath="/admin/productlist" />
       <Row className="align-items-center">
         <Col>
           <h1>Products</h1>

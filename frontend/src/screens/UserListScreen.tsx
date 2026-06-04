@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listUsers, deleteUser } from '../features/userSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
+import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const UserListScreen = () => {
   const dispatch = useAppDispatch();
@@ -38,6 +39,7 @@ const UserListScreen = () => {
 
   return (
     <div data-testid="admin-user-list">
+      <SeoPrivateMeta canonicalPath="/admin/userlist" />
       <h1>Users</h1>
       {errorDelete && (
         <Message variant="danger" data-testid="admin-user-delete-error">
