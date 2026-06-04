@@ -1,1782 +1,2226 @@
 {
-  "generatedAt": "2026-06-04T12:29:45.773Z",
-  "note": "Run pnpm catalog:images to ensure files exist. Set sourceUrl and run with --fetch to download.",
+  "generatedAt": "2026-06-04T21:57:58.155Z",
+  "note": "Run pnpm catalog:sources then pnpm catalog:images to populate WebP assets from Wikimedia Commons.",
   "entries": [
     {
       "modelKey": "iphone-11",
       "name": "iPhone 11",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-11.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-11.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/IPhone_11_Pro%2C_iPhone_XS_and_iPhone_X_Carbon_Emissions_of_the_1st_Life_Cycle.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Fabian V. Thobe of riCompro Srl in Italy",
+      "commonsTitle": "File:IPhone 11 Pro, iPhone XS and iPhone X Carbon Emissions of the 1st Life Cycle.png"
     },
     {
       "modelKey": "iphone-11-pro",
       "name": "iPhone 11 Pro",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-11-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-11-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Scan_of_back_of_iPhone_11_Pro_Max_Space_Grey.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Dllu",
+      "commonsTitle": "File:Scan of back of iPhone 11 Pro Max Space Grey.jpg"
     },
     {
       "modelKey": "iphone-11-pro-max",
       "name": "iPhone 11 Pro Max",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-11-pro-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-11-pro-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Scan_of_back_of_iPhone_11_Pro_Max_Space_Grey.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Dllu",
+      "commonsTitle": "File:Scan of back of iPhone 11 Pro Max Space Grey.jpg"
     },
     {
       "modelKey": "iphone-12-mini",
       "name": "iPhone 12 mini",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-12-mini.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-12-mini.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/86/Rear_3_lenses_of_an_iPhone_12.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Asdaiang14453",
+      "commonsTitle": "File:Rear 3 lenses of an iPhone 12.jpg"
     },
     {
       "modelKey": "iphone-12",
       "name": "iPhone 12",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-12.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-12.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Apple_iPhone_12_Pro_-_Cameras_%2850535314721%29.jpg",
+      "license": "CC BY 2.0",
+      "author": "ajay_suresh",
+      "commonsTitle": "File:Apple iPhone 12 Pro - Cameras (50535314721).jpg"
     },
     {
       "modelKey": "iphone-12-pro",
       "name": "iPhone 12 Pro",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-12-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-12-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Apple_iPhone_12_Pro_-_Cameras_%2850535314721%29.jpg",
+      "license": "CC BY 2.0",
+      "author": "ajay_suresh",
+      "commonsTitle": "File:Apple iPhone 12 Pro - Cameras (50535314721).jpg"
     },
     {
       "modelKey": "iphone-12-pro-max",
       "name": "iPhone 12 Pro Max",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-12-pro-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-12-pro-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Apple_MacBook_Pro_16%22_M2_Max_and_iPhone_13_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "SimonWaldherr",
+      "commonsTitle": "File:Apple MacBook Pro 16\" M2 Max and iPhone 13 Pro.jpg"
     },
     {
       "modelKey": "iphone-13-mini",
       "name": "iPhone 13 mini",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-13-mini.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-13-mini.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/HK_Kwun_Tong_Apm_Apple_Store_13_Pro_December_2021_IPhone_33.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Diipmok Lauk",
+      "commonsTitle": "File:HK Kwun Tong Apm Apple Store 13 Pro December 2021 IPhone 33.jpg"
     },
     {
       "modelKey": "iphone-13",
       "name": "iPhone 13",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-13.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-13.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Apple_iPhone_13_Pro_on_MacBook_Pro_06.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "SimonWaldherr",
+      "commonsTitle": "File:Apple iPhone 13 Pro on MacBook Pro 06.jpg"
     },
     {
       "modelKey": "iphone-13-pro",
       "name": "iPhone 13 Pro",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-13-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-13-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "SimonWaldherr",
+      "commonsTitle": "File:Apple iPhone 13 Pro on MacBook Pro 05.jpg"
     },
     {
       "modelKey": "iphone-13-pro-max",
       "name": "iPhone 13 Pro Max",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-13-pro-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-13-pro-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Apple_iPhone_13_Pro_and_13_Pro_Max.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "SimonWaldherr",
+      "commonsTitle": "File:Apple iPhone 13 Pro and 13 Pro Max.jpg"
     },
     {
       "modelKey": "iphone-14",
       "name": "iPhone 14",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-14.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-14.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/IPhone_14_Pro_-_2.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:IPhone 14 Pro - 2.jpg"
     },
     {
       "modelKey": "iphone-14-plus",
       "name": "iPhone 14 Plus",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-14-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-14-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/IPhone_14_Product_Red.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:IPhone 14 Product Red.jpg"
     },
     {
       "modelKey": "iphone-14-pro",
       "name": "iPhone 14 Pro",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-14-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-14-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Apple_iPhone_13_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "SimonWaldherr",
+      "commonsTitle": "File:Apple iPhone 13 Pro.jpg"
     },
     {
       "modelKey": "iphone-14-pro-max",
       "name": "iPhone 14 Pro Max",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-14-pro-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-14-pro-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/Back_of_the_iPhone_14_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the iPhone 14 Pro.jpg"
     },
     {
       "modelKey": "iphone-15",
       "name": "iPhone 15",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-15.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-15.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/48/Apple_iPhone_15.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "IPHONE 15",
+      "commonsTitle": "File:Apple iPhone 15.jpg"
     },
     {
       "modelKey": "iphone-15-plus",
       "name": "iPhone 15 Plus",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-15-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-15-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a3/IPhone_15_and_15_Plus_in_Apple_Store_-_1.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kyu3",
+      "commonsTitle": "File:IPhone 15 and 15 Plus in Apple Store - 1.jpg"
     },
     {
       "modelKey": "iphone-15-pro",
       "name": "iPhone 15 Pro",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-15-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-15-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Apple_iPhone_13_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "SimonWaldherr",
+      "commonsTitle": "File:Apple iPhone 13 Pro.jpg"
     },
     {
       "modelKey": "iphone-15-pro-max",
       "name": "iPhone 15 Pro Max",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-15-pro-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-15-pro-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dc/IPhone_15_Pro_and_Pro_Max_in_Apple_Store_-_2.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kyu3",
+      "commonsTitle": "File:IPhone 15 Pro and Pro Max in Apple Store - 2.jpg"
     },
     {
       "modelKey": "iphone-16",
       "name": "iPhone 16",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-16.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-16.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/IPhone_16_series_in_Apple_Store_Nagoya_Sakae.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kyu3a",
+      "commonsTitle": "File:IPhone 16 series in Apple Store Nagoya Sakae.jpg"
     },
     {
       "modelKey": "iphone-16-plus",
       "name": "iPhone 16 Plus",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-16-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-16-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/Apple_iPhone_X_and_included_accessories_%288127%29.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Gregory Varnum",
+      "commonsTitle": "File:Apple iPhone X and included accessories (8127).jpg"
     },
     {
       "modelKey": "iphone-16-pro",
       "name": "iPhone 16 Pro",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-16-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-16-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/60/IPhone_16_Pro_Max_%2854252176424%29.jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "メイド理世",
+      "commonsTitle": "File:IPhone 16 Pro Max (54252176424).jpg"
     },
     {
       "modelKey": "iphone-16-pro-max",
       "name": "iPhone 16 Pro Max",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-16-pro-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-16-pro-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/88/Iphone_11_pro_max.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ahmadkurdi44",
+      "commonsTitle": "File:Iphone 11 pro max.jpg"
     },
     {
       "modelKey": "iphone-16e",
       "name": "iPhone 16e",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-16e.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-16e.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/IPhone_16e.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hinothi1",
+      "commonsTitle": "File:IPhone 16e.png"
     },
     {
       "modelKey": "iphone-17",
       "name": "iPhone 17",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-17.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-17.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/IPhone_17_launch_at_Apple_TRX_Malaysia_10.jpg",
+      "license": "CC0",
+      "author": "Ahmad Ali Karim",
+      "commonsTitle": "File:IPhone 17 launch at Apple TRX Malaysia 10.jpg"
     },
     {
       "modelKey": "iphone-17-air",
       "name": "iPhone 17 Air",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-17-air.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-17-air.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/IPhone_17_launch_at_Apple_TRX_Malaysia_13.jpg",
+      "license": "CC0",
+      "author": "Ahmad Ali Karim",
+      "commonsTitle": "File:IPhone 17 launch at Apple TRX Malaysia 13.jpg"
     },
     {
       "modelKey": "iphone-17-pro",
       "name": "iPhone 17 Pro",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-17-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-17-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/IPhone_17_launch_at_Apple_TRX_Malaysia_76.jpg",
+      "license": "CC0",
+      "author": "Ahmad Ali Karim",
+      "commonsTitle": "File:IPhone 17 launch at Apple TRX Malaysia 76.jpg"
     },
     {
       "modelKey": "iphone-17-pro-max",
       "name": "iPhone 17 Pro Max",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-17-pro-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-17-pro-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/IPhone_17_launch_at_Apple_TRX_Malaysia_18.jpg",
+      "license": "CC0",
+      "author": "Ahmad Ali Karim",
+      "commonsTitle": "File:IPhone 17 launch at Apple TRX Malaysia 18.jpg"
     },
     {
       "modelKey": "ipad-9",
       "name": "iPad (9th generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-9.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-9.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/IPad_10.2%E2%80%91inch.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Piscopro",
+      "commonsTitle": "File:IPad 10.2‑inch.png"
     },
     {
       "modelKey": "ipad-10",
       "name": "iPad (10th generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-10.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-10.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/29/IPad_10.2_%287%29_%28A2197%29_%2815.1%29_frwiki_iPhone_13_environmental_impact.png",
+      "license": "CC BY-SA 4.0",
+      "author": "BP001002004008",
+      "commonsTitle": "File:IPad 10.2 (7) (A2197) (15.1) frwiki iPhone 13 environmental impact.png"
     },
     {
       "modelKey": "ipad-air-4",
       "name": "iPad Air (4th generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-air-4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-air-4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/IPad_Air_4_Sky_Blue.png",
+      "license": "CC BY-SA 4.0",
+      "author": "KLPeople",
+      "commonsTitle": "File:IPad Air 4 Sky Blue.png"
     },
     {
       "modelKey": "ipad-air-5",
       "name": "iPad Air (5th generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-air-5.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-air-5.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/IPad_Air.png",
+      "license": "CC BY-SA 3.0",
+      "author": "Zach Vega",
+      "commonsTitle": "File:IPad Air.png"
     },
     {
       "modelKey": "ipad-air-m2",
       "name": "iPad Air (M2)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-air-m2.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-air-m2.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/56/M2_iPad_Air_13inti.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kyu3a",
+      "commonsTitle": "File:M2 iPad Air 13inti.jpg"
     },
     {
       "modelKey": "ipad-mini-6",
       "name": "iPad mini (6th generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-mini-6.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-mini-6.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/58/IPad_Mini_6_in_hand.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Theknine2",
+      "commonsTitle": "File:IPad Mini 6 in hand.jpg"
     },
     {
       "modelKey": "ipad-mini-a17",
       "name": "iPad mini (A17 Pro)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-mini-a17.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-mini-a17.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Apple_smartwatch.jpeg",
+      "license": "Public domain",
+      "author": "KK IN HK",
+      "commonsTitle": "File:Apple smartwatch.jpeg"
     },
     {
       "modelKey": "ipad-pro-11-m1",
       "name": "iPad Pro 11\" (3rd generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-pro-11-m1.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-pro-11-m1.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Apple_iPad.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "彭家杰",
+      "commonsTitle": "File:Apple iPad.jpg"
     },
     {
       "modelKey": "ipad-pro-129-m1",
       "name": "iPad Pro 12.9\" (5th generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-pro-129-m1.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-pro-129-m1.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/66/IPad_Wiki.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "彭家杰",
+      "commonsTitle": "File:IPad Wiki.jpg"
     },
     {
       "modelKey": "ipad-pro-11-m4",
       "name": "iPad Pro 11\" (M4)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-pro-11-m4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-pro-11-m4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/M4_iPad_Pro_back_camera.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kyu3a",
+      "commonsTitle": "File:M4 iPad Pro back camera.jpg"
     },
     {
       "modelKey": "ipad-pro-13-m4",
       "name": "iPad Pro 13\" (M4)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-pro-13-m4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-pro-13-m4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/M4_iPad_Pro_series_-_1.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kyu3a",
+      "commonsTitle": "File:M4 iPad Pro series - 1.jpg"
     },
     {
       "modelKey": "ipad-a16",
       "name": "iPad (A16)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/ipad-a16.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/ipad-a16.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/29/IPad_10.2_%287%29_%28A2197%29_%2815.1%29_frwiki_iPhone_13_environmental_impact.png",
+      "license": "CC BY-SA 4.0",
+      "author": "BP001002004008",
+      "commonsTitle": "File:IPad 10.2 (7) (A2197) (15.1) frwiki iPhone 13 environmental impact.png"
     },
     {
       "modelKey": "macbook-air-m1",
       "name": "MacBook Air (M1)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/macbook-air-m1.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/macbook-air-m1.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/MacBook_Air_M1.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Padgriffin",
+      "commonsTitle": "File:MacBook Air M1.png"
     },
     {
       "modelKey": "macbook-air-m2",
       "name": "MacBook Air (M2)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/macbook-air-m2.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/macbook-air-m2.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Apple_M2.jpg",
+      "license": "CC0",
+      "author": "Henriok",
+      "commonsTitle": "File:Apple M2.jpg"
     },
     {
       "modelKey": "macbook-air-m3-13",
       "name": "MacBook Air 13\" (M3)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/macbook-air-m3-13.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/macbook-air-m3-13.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Apple_MacBook_Pro_%28M3%29.jpg",
+      "license": "CC0",
+      "author": "Xkalponik",
+      "commonsTitle": "File:Apple MacBook Pro (M3).jpg"
     },
     {
       "modelKey": "macbook-air-m3-15",
       "name": "MacBook Air 15\" (M3)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/macbook-air-m3-15.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/macbook-air-m3-15.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Apple_MacBook_Pro_%28M3%29.jpg",
+      "license": "CC0",
+      "author": "Xkalponik",
+      "commonsTitle": "File:Apple MacBook Pro (M3).jpg"
     },
     {
       "modelKey": "macbook-pro-14-m1-pro",
       "name": "MacBook Pro 14\" (M1 Pro)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/macbook-pro-14-m1-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/macbook-pro-14-m1-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Apple_Macbook_Pro_14%22_2021_-_Keyboard.png",
+      "license": "CC BY 3.0",
+      "author": "Gyasi Linje",
+      "commonsTitle": "File:Apple Macbook Pro 14\" 2021 - Keyboard.png"
     },
     {
       "modelKey": "macbook-pro-16-m1-pro",
       "name": "MacBook Pro 16\" (M1 Pro)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/macbook-pro-16-m1-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/macbook-pro-16-m1-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg",
+      "license": "CC BY 2.0",
+      "author": "Top left: PremeditatedTop right: Tom PageBottom left and right: Maurizio Pesce",
+      "commonsTitle": "File:Laptop collage.jpg"
     },
     {
       "modelKey": "macbook-pro-14-m3-pro",
       "name": "MacBook Pro 14\" (M3 Pro)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/macbook-pro-14-m3-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/macbook-pro-14-m3-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Apple_MacBook_Pro_%28M3%29.jpg",
+      "license": "CC0",
+      "author": "Xkalponik",
+      "commonsTitle": "File:Apple MacBook Pro (M3).jpg"
     },
     {
       "modelKey": "macbook-pro-16-m3-max",
       "name": "MacBook Pro 16\" (M3 Max)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/macbook-pro-16-m3-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/macbook-pro-16-m3-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Review_zu_Apple_Hardware_mit_Apple_M4-CPUs_%28Geekerwan%29_16.png",
+      "license": "CC BY 3.0",
+      "author": "极客湾Geekerwan",
+      "commonsTitle": "File:Review zu Apple Hardware mit Apple M4-CPUs (Geekerwan) 16.png"
     },
     {
       "modelKey": "imac-m1",
       "name": "iMac 24\" (M1)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/imac-m1.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/imac-m1.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/M1_iMac_Green_model.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW",
+      "commonsTitle": "File:M1 iMac Green model.jpg"
     },
     {
       "modelKey": "imac-m4",
       "name": "iMac 24\" (M4)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/imac-m4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/imac-m4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/King_Joe_disposing_of_his_Spanish_crown_%21%21%21_LCCN2006678169.jpg",
+      "license": "Public domain",
+      "author": "British Cartoon Prints Collection",
+      "commonsTitle": "File:King Joe disposing of his Spanish crown !!! LCCN2006678169.jpg"
     },
     {
       "modelKey": "mac-mini-m1",
       "name": "Mac mini (M1)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/mac-mini-m1.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/mac-mini-m1.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Mac_mini_2020_%28A1%29_rear_view.jpg",
+      "license": "CC BY 4.0",
+      "author": "Gerd Fahrenhorst",
+      "commonsTitle": "File:Mac mini 2020 (A1) rear view.jpg"
     },
     {
       "modelKey": "mac-mini-m2-pro",
       "name": "Mac mini (M2 Pro)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/mac-mini-m2-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/mac-mini-m2-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Apple_MacBook_Pro_16%22_M2_Max_with_Drone.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "SimonWaldherr",
+      "commonsTitle": "File:Apple MacBook Pro 16\" M2 Max with Drone.jpg"
     },
     {
       "modelKey": "mac-studio-m2-max",
       "name": "Mac Studio (M2 Max)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/mac-studio-m2-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/mac-studio-m2-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Apple_MacBook_Pro_%28M3%29.jpg",
+      "license": "CC0",
+      "author": "Xkalponik",
+      "commonsTitle": "File:Apple MacBook Pro (M3).jpg"
     },
     {
       "modelKey": "mac-studio-m2-ultra",
       "name": "Mac Studio (M2 Ultra)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/mac-studio-m2-ultra.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/mac-studio-m2-ultra.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Apple_MacBook_Pro_%28M3%29.jpg",
+      "license": "CC0",
+      "author": "Xkalponik",
+      "commonsTitle": "File:Apple MacBook Pro (M3).jpg"
     },
     {
       "modelKey": "airpods-2",
       "name": "AirPods (2nd generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/airpods-2.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/airpods-2.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Airpods_Pro_2_in_dunkelblau.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Burkhard Mücke",
+      "commonsTitle": "File:Airpods Pro 2 in dunkelblau.jpg"
     },
     {
       "modelKey": "airpods-3",
       "name": "AirPods (3rd generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/airpods-3.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/airpods-3.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Airpods_Pro_2_in_dunkelblau.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Burkhard Mücke",
+      "commonsTitle": "File:Airpods Pro 2 in dunkelblau.jpg"
     },
     {
       "modelKey": "airpods-pro-1",
       "name": "AirPods Pro (1st generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/airpods-pro-1.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/airpods-pro-1.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Airpods_and_Airpods_Pro_being_displayed_in_electronics_retail_store.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW",
+      "commonsTitle": "File:Airpods and Airpods Pro being displayed in electronics retail store.jpg"
     },
     {
       "modelKey": "airpods-pro-2",
       "name": "AirPods Pro (2nd generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/airpods-pro-2.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/airpods-pro-2.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Airpods_Pro_2_in_dunkelblau.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Burkhard Mücke",
+      "commonsTitle": "File:Airpods Pro 2 in dunkelblau.jpg"
     },
     {
       "modelKey": "airpods-4",
       "name": "AirPods 4",
       "brand": "Apple",
-      "file": "/images/catalog/apple/airpods-4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/airpods-4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Apple_AirPods_and_Apple_AirPods_Pro_at_the_Media_Markt%2C_Rotterdam-Centrum%2C_Rotterdam_%282021%29_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Donald Trung Quoc Don (Chữ Hán: 徵國單) - Wikimedia Commons - © CC BY-SA 4.0 International.(Want to use this image?)Original publication 📤: --Donald Trung 『徵國單』 (No Fake News 💬) (WikiProject Numismatics 💴) (Articles 📚) 20:58, 5 July 2021 (UTC)",
+      "commonsTitle": "File:Apple AirPods and Apple AirPods Pro at the Media Markt, Rotterdam-Centrum, Rotterdam (2021) 01.jpg"
     },
     {
       "modelKey": "airpods-max",
       "name": "AirPods Max",
       "brand": "Apple",
-      "file": "/images/catalog/apple/airpods-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/airpods-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Apple_airpods_max_1.jpg",
+      "license": "CC BY-SA 3.0 de",
+      "author": "Arne Müseler",
+      "commonsTitle": "File:Apple airpods max 1.jpg"
     },
     {
       "modelKey": "watch-series-6",
       "name": "Apple Watch Series 6",
       "brand": "Apple",
-      "file": "/images/catalog/apple/watch-series-6.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/watch-series-6.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/IPhone_11_Pro_%26_Apple_Watch_Series_5.jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "Flying Bailey",
+      "commonsTitle": "File:IPhone 11 Pro & Apple Watch Series 5.jpg"
     },
     {
       "modelKey": "watch-series-7",
       "name": "Apple Watch Series 7",
       "brand": "Apple",
-      "file": "/images/catalog/apple/watch-series-7.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/watch-series-7.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Apple_Watch_Series_7%3B_January_2022_%2802%29.jpg",
+      "license": "CC BY 2.0",
+      "author": "MIKI Yoshihito",
+      "commonsTitle": "File:Apple Watch Series 7; January 2022 (02).jpg"
     },
     {
       "modelKey": "watch-series-8",
       "name": "Apple Watch Series 8",
       "brand": "Apple",
-      "file": "/images/catalog/apple/watch-series-8.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/watch-series-8.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/Man_using_black_Apple_Watch_%28Unsplash%29.jpg",
+      "license": "CC0",
+      "author": "Crew crew",
+      "commonsTitle": "File:Man using black Apple Watch (Unsplash).jpg"
     },
     {
       "modelKey": "watch-series-9",
       "name": "Apple Watch Series 9",
       "brand": "Apple",
-      "file": "/images/catalog/apple/watch-series-9.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/watch-series-9.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Apple_Watch_Pride_56205_%2818515989556%29.jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "Ted Eytan",
+      "commonsTitle": "File:Apple Watch Pride 56205 (18515989556).jpg"
     },
     {
       "modelKey": "watch-series-10",
       "name": "Apple Watch Series 10",
       "brand": "Apple",
-      "file": "/images/catalog/apple/watch-series-10.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/watch-series-10.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/Apple_Watch_series_%220%22%2C_6%2C_7_%2851680095540%29.jpg",
+      "license": "CC BY 2.0",
+      "author": "Blake Patterson from Alexandria, VA, USA",
+      "commonsTitle": "File:Apple Watch series \"0\", 6, 7 (51680095540).jpg"
     },
     {
       "modelKey": "watch-se-2",
       "name": "Apple Watch SE (2nd generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/watch-se-2.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/watch-se-2.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Watch_SE_%282nd_generation%29.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "茅野ふたば",
+      "commonsTitle": "File:Watch SE (2nd generation).jpg"
     },
     {
       "modelKey": "watch-ultra-1",
       "name": "Apple Watch Ultra",
       "brand": "Apple",
-      "file": "/images/catalog/apple/watch-ultra-1.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/watch-ultra-1.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/Apple_Watch_Ultra_-_3.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Apple Watch Ultra - 3.jpg"
     },
     {
       "modelKey": "watch-ultra-2",
       "name": "Apple Watch Ultra 2",
       "brand": "Apple",
-      "file": "/images/catalog/apple/watch-ultra-2.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/watch-ultra-2.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/Apple_Watch_Ultra_2.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Pangalau",
+      "commonsTitle": "File:Apple Watch Ultra 2.jpg"
     },
     {
       "modelKey": "galaxy-s20",
       "name": "Galaxy S20",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s20.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s20.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Gr%C3%B6%C3%9Fenvergleich_Samsung_Galaxy_S10_und_S20_Ultra_5G.jpg",
+      "license": "CC BY 4.0",
+      "author": "PantheraLeo1359531",
+      "commonsTitle": "File:Größenvergleich Samsung Galaxy S10 und S20 Ultra 5G.jpg"
     },
     {
       "modelKey": "galaxy-s20-plus",
       "name": "Galaxy S20+",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s20-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s20-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Gr%C3%B6%C3%9Fenvergleich_Samsung_Galaxy_S10_und_S20_Ultra_5G.jpg",
+      "license": "CC BY 4.0",
+      "author": "PantheraLeo1359531",
+      "commonsTitle": "File:Größenvergleich Samsung Galaxy S10 und S20 Ultra 5G.jpg"
     },
     {
       "modelKey": "galaxy-s20-ultra",
       "name": "Galaxy S20 Ultra",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s20-ultra.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s20-ultra.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Gr%C3%B6%C3%9Fenvergleich_Samsung_Galaxy_S10_und_S20_Ultra_5G.jpg",
+      "license": "CC BY 4.0",
+      "author": "PantheraLeo1359531",
+      "commonsTitle": "File:Größenvergleich Samsung Galaxy S10 und S20 Ultra 5G.jpg"
     },
     {
       "modelKey": "galaxy-s21",
       "name": "Galaxy S21",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s21.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s21.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/GalaxyS21.png",
+      "license": "CC BY 4.0",
+      "author": "Marcusph",
+      "commonsTitle": "File:GalaxyS21.png"
     },
     {
       "modelKey": "galaxy-s21-plus",
       "name": "Galaxy S21+",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s21-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s21-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/GalaxyS21.png",
+      "license": "CC BY 4.0",
+      "author": "Marcusph",
+      "commonsTitle": "File:GalaxyS21.png"
     },
     {
       "modelKey": "galaxy-s21-ultra",
       "name": "Galaxy S21 Ultra",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s21-ultra.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s21-ultra.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/GalaxyS21.png",
+      "license": "CC BY 4.0",
+      "author": "Marcusph",
+      "commonsTitle": "File:GalaxyS21.png"
     },
     {
       "modelKey": "galaxy-s22",
       "name": "Galaxy S22",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s22.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s22.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/IPhone_SE3_%26_SAMSUNG_Galaxy_S22_Ultra.jpg_%282%29.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Dinkun Chen",
+      "commonsTitle": "File:IPhone SE3 & SAMSUNG Galaxy S22 Ultra.jpg (2).jpg"
     },
     {
       "modelKey": "galaxy-s22-plus",
       "name": "Galaxy S22+",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s22-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s22-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/IPhone_SE3_%26_SAMSUNG_Galaxy_S22_Ultra.jpg_%282%29.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Dinkun Chen",
+      "commonsTitle": "File:IPhone SE3 & SAMSUNG Galaxy S22 Ultra.jpg (2).jpg"
     },
     {
       "modelKey": "galaxy-s22-ultra",
       "name": "Galaxy S22 Ultra",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s22-ultra.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s22-ultra.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Back_of_the_Samsung_Galaxy_S22_Ultra.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy S22 Ultra.jpg"
     },
     {
       "modelKey": "galaxy-s23",
       "name": "Galaxy S23",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s23.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s23.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Samsung_S24_Ultra_Phone.png",
+      "license": "CC BY-SA 4.0",
+      "author": "FarihF10",
+      "commonsTitle": "File:Samsung S24 Ultra Phone.png"
     },
     {
       "modelKey": "galaxy-s23-plus",
       "name": "Galaxy S23+",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s23-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s23-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Samsung_S24_Ultra_Phone.png",
+      "license": "CC BY-SA 4.0",
+      "author": "FarihF10",
+      "commonsTitle": "File:Samsung S24 Ultra Phone.png"
     },
     {
       "modelKey": "galaxy-s23-ultra",
       "name": "Galaxy S23 Ultra",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s23-ultra.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s23-ultra.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Samsung_S24_Ultra_Phone.png",
+      "license": "CC BY-SA 4.0",
+      "author": "FarihF10",
+      "commonsTitle": "File:Samsung S24 Ultra Phone.png"
     },
     {
       "modelKey": "galaxy-s24",
       "name": "Galaxy S24",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s24.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s24.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Samsung_S24_Ultra_Phone.png",
+      "license": "CC BY-SA 4.0",
+      "author": "FarihF10",
+      "commonsTitle": "File:Samsung S24 Ultra Phone.png"
     },
     {
       "modelKey": "galaxy-s24-plus",
       "name": "Galaxy S24+",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s24-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s24-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Samsung_S24_Ultra_Phone.png",
+      "license": "CC BY-SA 4.0",
+      "author": "FarihF10",
+      "commonsTitle": "File:Samsung S24 Ultra Phone.png"
     },
     {
       "modelKey": "galaxy-s24-ultra",
       "name": "Galaxy S24 Ultra",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s24-ultra.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s24-ultra.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Samsung_S24_Ultra_Phone.png",
+      "license": "CC BY-SA 4.0",
+      "author": "FarihF10",
+      "commonsTitle": "File:Samsung S24 Ultra Phone.png"
     },
     {
       "modelKey": "galaxy-s25",
       "name": "Galaxy S25",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s25.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s25.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/%E7%AC%AC%E4%B8%80%E6%89%8B%EF%BC%81Samsung_Galaxy_S25%E7%B3%BB%E5%88%97%E6%8B%BF%E5%88%B0%E4%BA%86%EF%BC%9A5%E4%B8%AA%E5%8D%87%E7%BA%A7%EF%BC%81S_Pen%E4%B8%8D%E6%94%AF%E6%8C%81%E8%93%9D%E7%89%99%E4%BA%86%EF%BC%9F_%282160p_50fps_VP9-96kbit_AAC%29-00.07.47.789.png",
+      "license": "CC BY 3.0",
+      "author": "可恩Ke En",
+      "commonsTitle": "File:第一手！Samsung Galaxy S25系列拿到了：5个升级！S Pen不支持蓝牙了？ (2160p 50fps VP9-96kbit AAC)-00.07.47.789.png"
     },
     {
       "modelKey": "galaxy-s25-plus",
       "name": "Galaxy S25+",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s25-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s25-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/%E7%AC%AC%E4%B8%80%E6%89%8B%EF%BC%81Samsung_Galaxy_S25%E7%B3%BB%E5%88%97%E6%8B%BF%E5%88%B0%E4%BA%86%EF%BC%9A5%E4%B8%AA%E5%8D%87%E7%BA%A7%EF%BC%81S_Pen%E4%B8%8D%E6%94%AF%E6%8C%81%E8%93%9D%E7%89%99%E4%BA%86%EF%BC%9F_%282160p_50fps_VP9-96kbit_AAC%29-00.07.47.789.png",
+      "license": "CC BY 3.0",
+      "author": "可恩Ke En",
+      "commonsTitle": "File:第一手！Samsung Galaxy S25系列拿到了：5个升级！S Pen不支持蓝牙了？ (2160p 50fps VP9-96kbit AAC)-00.07.47.789.png"
     },
     {
       "modelKey": "galaxy-s25-ultra",
       "name": "Galaxy S25 Ultra",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s25-ultra.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s25-ultra.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/Samsung_Galaxy_S25_Ultra_phone%27s_screen.jpg",
+      "license": "CC0",
+      "author": "HuangWending18072009",
+      "commonsTitle": "File:Samsung Galaxy S25 Ultra phone's screen.jpg"
     },
     {
       "modelKey": "galaxy-z-fold3",
       "name": "Galaxy Z Fold3",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-z-fold3.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-z-fold3.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Samsung_Galaxy_Z_Fold3_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Jakub CA",
+      "commonsTitle": "File:Samsung Galaxy Z Fold3 5G.jpg"
     },
     {
       "modelKey": "galaxy-z-flip3",
       "name": "Galaxy Z Flip3",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-z-flip3.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-z-flip3.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Galaxy_Z_Flip.jpg",
+      "license": "CC BY 3.0",
+      "author": "Ka Kit Pang\n\nGoogle LLC",
+      "commonsTitle": "File:Galaxy Z Flip.jpg"
     },
     {
       "modelKey": "galaxy-z-fold4",
       "name": "Galaxy Z Fold4",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-z-fold4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-z-fold4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Front_of_the_Samsung_Galaxy_Z_Fold_4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Front of the Samsung Galaxy Z Fold 4.jpg"
     },
     {
       "modelKey": "galaxy-z-flip4",
       "name": "Galaxy Z Flip4",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-z-flip4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-z-flip4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Samsung_Galaxy_Z_Flip_4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Samsung Galaxy Z Flip 4.jpg"
     },
     {
       "modelKey": "galaxy-z-fold5",
       "name": "Galaxy Z Fold5",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-z-fold5.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-z-fold5.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/48/20230729_%EC%82%BC%EC%84%B1_%EA%B0%A4%EB%9F%AD%EC%8B%9C_Z_%ED%8F%B4%EB%93%9C5.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "Striker9498",
+      "commonsTitle": "File:20230729 삼성 갤럭시 Z 폴드5.jpg"
     },
     {
       "modelKey": "galaxy-z-flip5",
       "name": "Galaxy Z Flip5",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-z-flip5.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-z-flip5.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/71/Comparison_of_Samsung_Galaxy_z_flip5_phone_with_gameboy_advance_SP.jpg",
+      "license": "CC0",
+      "author": "Steveprutz",
+      "commonsTitle": "File:Comparison of Samsung Galaxy z flip5 phone with gameboy advance SP.jpg"
     },
     {
       "modelKey": "galaxy-z-fold6",
       "name": "Galaxy Z Fold6",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-z-fold6.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-z-fold6.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Samsung_Galaxy_Z_Fold_6.jpg",
+      "license": "CC0",
+      "author": "Miyako Fujimiya",
+      "commonsTitle": "File:Samsung Galaxy Z Fold 6.jpg"
     },
     {
       "modelKey": "galaxy-z-flip6",
       "name": "Galaxy Z Flip6",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-z-flip6.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-z-flip6.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Samsung_Galaxy_Z_Flip_6.jpg",
+      "license": "CC BY 4.0",
+      "author": "Miyako Fujimiya",
+      "commonsTitle": "File:Samsung Galaxy Z Flip 6.jpg"
     },
     {
       "modelKey": "galaxy-a51",
       "name": "Galaxy A51",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a51.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a51.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/HK_TKO_Spot_mall_%E5%B0%87%E8%BB%8D%E6%BE%B3_Tseung_Kwan_O_%E5%B0%9A%E5%BE%B7%E5%BB%A3%E5%A0%B4_Sheung_Tak_Estate_TKO_SPOT_Shopping_Centre_mall_shop_Smartphone_May_2022_Px3_06.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "HSGTLAEHRE 3041",
+      "commonsTitle": "File:HK TKO Spot mall 將軍澳 Tseung Kwan O 尚德廣場 Sheung Tak Estate TKO SPOT Shopping Centre mall shop Smartphone May 2022 Px3 06.jpg"
     },
     {
       "modelKey": "galaxy-a52",
       "name": "Galaxy A52",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a52.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a52.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/HK_WC_Wan_Chai_Road_shop_SmarTone_Digital_smartphone_window_display_Samsung_Galaxy_Nokia_Xiaomi_telephone_December_2021_SS2.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Tauoming Ka Seeai",
+      "commonsTitle": "File:HK WC Wan Chai Road shop SmarTone Digital smartphone window display Samsung Galaxy Nokia Xiaomi telephone December 2021 SS2.jpg"
     },
     {
       "modelKey": "galaxy-a53",
       "name": "Galaxy A53",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a53.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a53.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A53 5G.jpg"
     },
     {
       "modelKey": "galaxy-a54",
       "name": "Galaxy A54",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a54.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a54.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg"
     },
     {
       "modelKey": "galaxy-a55",
       "name": "Galaxy A55",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a55.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a55.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Samsung_Galaxy_A34_5G_20231122_HOF01948-HDR_RAW-Export_cens.png",
+      "license": "CC BY 4.0",
+      "author": "PantheraLeo1359531",
+      "commonsTitle": "File:Samsung Galaxy A34 5G 20231122 HOF01948-HDR RAW-Export cens.png"
     },
     {
       "modelKey": "galaxy-a35",
       "name": "Galaxy A35",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a35.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a35.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Samsung_Galaxy_A35_5G_Phone_%28Back%29.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "M65.MGBD1",
+      "commonsTitle": "File:Samsung Galaxy A35 5G Phone (Back).jpg"
     },
     {
       "modelKey": "galaxy-tab-s7",
       "name": "Galaxy Tab S7",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-tab-s7.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-tab-s7.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/BYD_S7_02_China_2015-04-06.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Navigator84",
+      "commonsTitle": "File:BYD S7 02 China 2015-04-06.jpg"
     },
     {
       "modelKey": "galaxy-tab-s8",
       "name": "Galaxy Tab S8",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-tab-s8.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-tab-s8.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Samsung_Galaxy_Tab_S8.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Samsung Galaxy Tab S8.jpg"
     },
     {
       "modelKey": "galaxy-tab-s9",
       "name": "Galaxy Tab S9",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-tab-s9.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-tab-s9.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/20230729_%EC%82%BC%EC%84%B1_%EA%B0%A4%EB%9F%AD%EC%8B%9C_%ED%83%AD_S9.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "Striker9498",
+      "commonsTitle": "File:20230729 삼성 갤럭시 탭 S9.jpg"
     },
     {
       "modelKey": "galaxy-tab-s9-ultra",
       "name": "Galaxy Tab S9 Ultra",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-tab-s9-ultra.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-tab-s9-ultra.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/20230729_%EC%82%BC%EC%84%B1_%EA%B0%A4%EB%9F%AD%EC%8B%9C_%ED%83%AD_S9.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "Striker9498",
+      "commonsTitle": "File:20230729 삼성 갤럭시 탭 S9.jpg"
     },
     {
       "modelKey": "galaxy-tab-s10-plus",
       "name": "Galaxy Tab S10+",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-tab-s10-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-tab-s10-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/Tab_S10_Ultra_frontal_image.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hinothi1",
+      "commonsTitle": "File:Tab S10 Ultra frontal image.png"
     },
     {
       "modelKey": "galaxy-watch3",
       "name": "Galaxy Watch3",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-watch3.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-watch3.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/Tienda_Samsung_Bmanga_enr_2022.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "EEIM",
+      "commonsTitle": "File:Tienda Samsung Bmanga enr 2022.jpg"
     },
     {
       "modelKey": "galaxy-watch4",
       "name": "Galaxy Watch4",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-watch4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-watch4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/SAMSUNG_Galaxy_Watch.jpg",
+      "license": "Public domain",
+      "author": "Ka Kit Pang",
+      "commonsTitle": "File:SAMSUNG Galaxy Watch.jpg"
     },
     {
       "modelKey": "galaxy-watch5-pro",
       "name": "Galaxy Watch5 Pro",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-watch5-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-watch5-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/07/Samsung_Galaxy_A34_5G_20231122_HOF01933_RAW-Export_cens.png",
+      "license": "CC BY 4.0",
+      "author": "PantheraLeo1359531",
+      "commonsTitle": "File:Samsung Galaxy A34 5G 20231122 HOF01933 RAW-Export cens.png"
     },
     {
       "modelKey": "galaxy-watch6",
       "name": "Galaxy Watch6",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-watch6.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-watch6.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/SAMSUNG_Galaxy_Tab_S9%2C_SAMSUNG_W24%2C_%28FROM_SAMSUNG_Galaxy_Z_Fold_5%29%2C_SAMSUNG_W24_FLIP_%28FROM_SAMSUNG_Galaxy_Z_Flip_5%29_%26_SAMSUNG_Galaxy_Watch_6_Classic.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Dinkun Chen",
+      "commonsTitle": "File:SAMSUNG Galaxy Tab S9, SAMSUNG W24, (FROM SAMSUNG Galaxy Z Fold 5), SAMSUNG W24 FLIP (FROM SAMSUNG Galaxy Z Flip 5) & SAMSUNG Galaxy Watch 6 Classic.jpg"
     },
     {
       "modelKey": "galaxy-watch7",
       "name": "Galaxy Watch7",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-watch7.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-watch7.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Galaxy_Watch7.jpg",
+      "license": "CC0",
+      "author": "Pierre-Félix Vautrin",
+      "commonsTitle": "File:Galaxy Watch7.jpg"
     },
     {
       "modelKey": "galaxy-watch-ultra",
       "name": "Galaxy Watch Ultra",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-watch-ultra.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-watch-ultra.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/SAMSUNG_Galaxy_Watch%2C_SAMSUNG_Galaxy_Buds%2B%2C_SAMSUNG_Galaxy_S10_5G%2C_SAMSUNG_Galaxy_S22_Ultra.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Dinkun Chen",
+      "commonsTitle": "File:SAMSUNG Galaxy Watch, SAMSUNG Galaxy Buds+, SAMSUNG Galaxy S10 5G, SAMSUNG Galaxy S22 Ultra.jpg"
     },
     {
       "modelKey": "samsung-q60a",
       "name": "Samsung Q60A QLED TV",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/samsung-q60a.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/samsung-q60a.webp",
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "samsung-q80b",
       "name": "Samsung Q80B QLED TV",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/samsung-q80b.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/samsung-q80b.webp",
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "samsung-s90c",
       "name": "Samsung S90C OLED TV",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/samsung-s90c.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/samsung-s90c.webp",
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "samsung-s95d",
       "name": "Samsung S95D OLED TV",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/samsung-s95d.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/samsung-s95d.webp",
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "samsung-qn900c",
       "name": "Samsung Neo QLED 8K QN900C",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/samsung-qn900c.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/samsung-qn900c.webp",
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "vivo-x50-pro",
       "name": "vivo X50 Pro",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-x50-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-x50-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "X-SHLIED",
+      "commonsTitle": "File:Vivo X50 Pro.jpg"
     },
     {
       "modelKey": "vivo-x60-pro",
       "name": "vivo X60 Pro",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-x60-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-x60-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "X-SHLIED",
+      "commonsTitle": "File:Vivo X50 Pro.jpg"
     },
     {
       "modelKey": "vivo-x70-pro-plus",
       "name": "vivo X70 Pro+",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-x70-pro-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-x70-pro-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/T%C3%ADnh_ti%E1%BB%81n_b%E1%BB%AFa_%C4%83n_t%E1%BB%91i_v%E1%BB%9Bi_M%E1%BA%A1nh_An.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Song Toàn Võ",
+      "commonsTitle": "File:Tính tiền bữa ăn tối với Mạnh An.jpg"
     },
     {
       "modelKey": "vivo-x80-pro",
       "name": "vivo X80 Pro",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-x80-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-x80-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/85/Interior_of_VinFast_VF8_car.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Meiko",
+      "commonsTitle": "File:Interior of VinFast VF8 car.jpg"
     },
     {
       "modelKey": "vivo-x90-pro",
       "name": "vivo X90 Pro",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-x90-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-x90-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Sublsublimated_azulene.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "NickItch",
+      "commonsTitle": "File:Sublsublimated azulene.jpg"
     },
     {
       "modelKey": "vivo-x100-pro",
       "name": "vivo X100 Pro",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-x100-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-x100-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6f/VIVO_X100_and_X100_Pro%2C_January_28%2C_2024.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "メイド理世",
+      "commonsTitle": "File:VIVO X100 and X100 Pro, January 28, 2024.jpg"
     },
     {
       "modelKey": "vivo-x200-pro",
       "name": "vivo X200 Pro",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-x200-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-x200-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Vivo_X200_Pro_mini_pink.png",
+      "license": "CC BY 4.0",
+      "author": "X-SHLIED",
+      "commonsTitle": "File:Vivo X200 Pro mini pink.png"
     },
     {
       "modelKey": "vivo-v21",
       "name": "vivo V21",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-v21.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-v21.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Makro%C3%A7ekim%C3%A7i%C3%A7ek.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Mahmut Mutlu",
+      "commonsTitle": "File:Makroçekimçiçek.jpg"
     },
     {
       "modelKey": "vivo-v23",
       "name": "vivo V23",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-v23.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-v23.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Surgery_of_upperlip.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Thanusha.Akasapu",
+      "commonsTitle": "File:Surgery of upperlip.jpg"
     },
     {
       "modelKey": "vivo-v25",
       "name": "vivo V25",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-v25.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-v25.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Inner_surface_of_Parietal_bone.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Patchamalla divya",
+      "commonsTitle": "File:Inner surface of Parietal bone.jpg"
     },
     {
       "modelKey": "vivo-v27",
       "name": "vivo V27",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-v27.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-v27.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Souvik_Chakraborty.jpg",
+      "license": "CC0",
+      "author": "Souvik19",
+      "commonsTitle": "File:Souvik Chakraborty.jpg"
     },
     {
       "modelKey": "vivo-v29",
       "name": "vivo V29",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-v29.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-v29.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Cindy_Turku_on_the_Aura_River_01.jpg",
+      "license": "CC0",
+      "author": "Tochiprecious",
+      "commonsTitle": "File:Cindy Turku on the Aura River 01.jpg"
     },
     {
       "modelKey": "vivo-v40",
       "name": "vivo V40",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-v40.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-v40.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Radek_Kolar_%281970%29_Taiti_Akademie_2024_A.jpg",
+      "license": "CC0",
+      "author": "Mojmir Churavy",
+      "commonsTitle": "File:Radek Kolar (1970) Taiti Akademie 2024 A.jpg"
     },
     {
       "modelKey": "vivo-v50",
       "name": "vivo V50",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-v50.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-v50.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/%2708_Volvo_V50.jpg",
+      "license": "Public domain",
+      "author": "Bull-Doser",
+      "commonsTitle": "File:'08 Volvo V50.jpg"
     },
     {
       "modelKey": "vivo-y20",
       "name": "vivo Y20",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y20.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y20.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Salon_Razee.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Rasindu Pabasara By salon Razee",
+      "commonsTitle": "File:Salon Razee.jpg"
     },
     {
       "modelKey": "vivo-y33s",
       "name": "vivo Y33s",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y33s.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y33s.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Cruz_del_cementerio_xd.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Smaug3Smooth",
+      "commonsTitle": "File:Cruz del cementerio xd.jpg"
     },
     {
       "modelKey": "vivo-y36",
       "name": "vivo Y36",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y36.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y36.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f2/VIVO_Y36%EF%BC%882024%E5%B9%B42%E6%9C%8820%E6%97%A5%EF%BC%89.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "メイド理世",
+      "commonsTitle": "File:VIVO Y36（2024年2月20日）.jpg"
     },
     {
       "modelKey": "vivo-y100",
       "name": "vivo Y100",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y100.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y100.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/ShreyaDip.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Shreyadip Creation",
+      "commonsTitle": "File:ShreyaDip.jpg"
     },
     {
       "modelKey": "mi-10",
       "name": "Mi 10",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/mi-10.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/mi-10.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/38/Xiaomi_Mi_band_2_10.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Nahid.rajbd",
+      "commonsTitle": "File:Xiaomi Mi band 2 10.jpg"
     },
     {
       "modelKey": "mi-10-pro",
       "name": "Mi 10 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/mi-10-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/mi-10-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/HK_TWD_%E8%8D%83%E7%81%A3_Tsuen_Wan_%E8%A5%BF%E6%A8%93%E8%A7%92%E8%B7%AF_168_Sai_Lau_Kok_Road_%E8%8D%83%E8%B1%90%E4%B8%AD%E5%BF%83_Tsuen_Fung_Centre_computer_shopping_mall_January_2022_Px3_second_hand_smartphones.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Blclkpfooda mbaop6",
+      "commonsTitle": "File:HK TWD 荃灣 Tsuen Wan 西樓角路 168 Sai Lau Kok Road 荃豐中心 Tsuen Fung Centre computer shopping mall January 2022 Px3 second hand smartphones.jpg"
     },
     {
       "modelKey": "mi-11",
       "name": "Mi 11",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/mi-11.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/mi-11.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Xiaomi_Mi_11_front.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "30000lightyears",
+      "commonsTitle": "File:Xiaomi Mi 11 front.jpg"
     },
     {
       "modelKey": "mi-12",
       "name": "Mi 12",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/mi-12.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/mi-12.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/HK_MK_%E6%97%BA%E8%A7%92_Mongkok_%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E5%BA%97_Xiao_Mi_XiaoMi_12_smartphone_June_2022_Xm12_05.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Mx12 MK M616",
+      "commonsTitle": "File:HK MK 旺角 Mongkok 小米手机店 Xiao Mi XiaoMi 12 smartphone June 2022 Xm12 05.jpg"
     },
     {
       "modelKey": "xiaomi-13",
       "name": "Xiaomi 13",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/xiaomi-13.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/xiaomi-13.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/04/2023_Wkr%C4%99tak_elektryczny_Xiaomi.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Jacek Halicki",
+      "commonsTitle": "File:2023 Wkrętak elektryczny Xiaomi.jpg"
     },
     {
       "modelKey": "xiaomi-14",
       "name": "Xiaomi 14",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/xiaomi-14.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/xiaomi-14.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/11/Xiaomi_Store_Portugal.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Justin Sijbolts",
+      "commonsTitle": "File:Xiaomi Store Portugal.jpg"
     },
     {
       "modelKey": "xiaomi-15",
       "name": "Xiaomi 15",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/xiaomi-15.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/xiaomi-15.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/af/Xiaomi_15_%281%29.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "茅野ふたば",
+      "commonsTitle": "File:Xiaomi 15 (1).jpg"
     },
     {
       "modelKey": "redmi-note-9-pro",
       "name": "Redmi Note 9 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-note-9-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-note-9-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/25/Braniewo_stadnina_koni_9.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Aleksander Durkiewicz",
+      "commonsTitle": "File:Braniewo stadnina koni 9.jpg"
     },
     {
       "modelKey": "redmi-note-10-pro",
       "name": "Redmi Note 10 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-note-10-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-note-10-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Redmi_Note_10_Pro_front.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Maksdroider",
+      "commonsTitle": "File:Redmi Note 10 Pro front.jpg"
     },
     {
       "modelKey": "redmi-note-11-pro",
       "name": "Redmi Note 11 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-note-11-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-note-11-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Redmi_note_11_4G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "meganuggetts",
+      "commonsTitle": "File:Redmi note 11 4G.jpg"
     },
     {
       "modelKey": "redmi-note-12-pro",
       "name": "Redmi Note 12 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-note-12-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-note-12-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Redmi_Note_10_Pro_back_with_in-box_cover.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Maksdroider",
+      "commonsTitle": "File:Redmi Note 10 Pro back with in-box cover.jpg"
     },
     {
       "modelKey": "redmi-note-13-pro",
       "name": "Redmi Note 13 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-note-13-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-note-13-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Redmi_Note_10_Pro_top.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Maksdroider",
+      "commonsTitle": "File:Redmi Note 10 Pro top.jpg"
     },
     {
       "modelKey": "poco-f3",
       "name": "POCO F3",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/poco-f3.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/poco-f3.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6f/HK_MK_Mongkok_Nathan_Road_XiaoMi_Store_smart_phone_Poco_M4_Pro_5G_testing_macro_standard_n_wide_lens_effects_December_2021_RedMi_13.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KongWuood Hangi 1219",
+      "commonsTitle": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Poco M4 Pro 5G testing macro standard n wide lens effects December 2021 RedMi 13.jpg"
     },
     {
       "modelKey": "poco-f4",
       "name": "POCO F4",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/poco-f4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/poco-f4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Back_of_POCO_F4.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Maksdroider",
+      "commonsTitle": "File:Back of POCO F4.png"
     },
     {
       "modelKey": "poco-f5",
       "name": "POCO F5",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/poco-f5.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/poco-f5.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/76/The_Back_of_Redmi_K60.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "洛微",
+      "commonsTitle": "File:The Back of Redmi K60.jpg"
     },
     {
       "modelKey": "poco-f6",
       "name": "POCO F6",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/poco-f6.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/poco-f6.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Hoja_con_gotas_de_lluvia.jpg",
+      "license": "CC0",
+      "author": "Ideas Como",
+      "commonsTitle": "File:Hoja con gotas de lluvia.jpg"
     },
     {
       "modelKey": "xiaomi-watch-s1",
       "name": "Xiaomi Watch S1",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/xiaomi-watch-s1.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/xiaomi-watch-s1.webp",
+      "sourceUrl": "https://live.staticflickr.com/5779/29729617883_5b6a2c7e2e_b.jpg",
+      "license": "Public domain",
+      "author": "MIUI",
+      "commonsTitle": "Xiaomi Mi Band (Flickr)"
     },
     {
       "modelKey": "xiaomi-watch-2",
       "name": "Xiaomi Watch 2",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/xiaomi-watch-2.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/xiaomi-watch-2.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f7/HK_NgauTamMei_Watch_house.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "Chong Fat",
+      "commonsTitle": "File:HK NgauTamMei Watch house.jpg"
     },
     {
       "modelKey": "redmi-buds-4-pro",
       "name": "Redmi Buds 4 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-buds-4-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-buds-4-pro.webp",
+      "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
+      "license": "CC BY 2.0",
+      "author": "Mpow",
+      "commonsTitle": "Wireless earbuds product photo (Flickr)"
     },
     {
       "modelKey": "xiaomi-buds-5-pro",
       "name": "Xiaomi Buds 5 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/xiaomi-buds-5-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/xiaomi-buds-5-pro.webp",
+      "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
+      "license": "CC BY 2.0",
+      "author": "Mpow",
+      "commonsTitle": "Wireless earbuds product photo (Flickr)"
     },
     {
       "modelKey": "ps4-slim",
       "name": "PlayStation 4 Slim",
       "brand": "Sony",
-      "file": "/images/catalog/sony/ps4-slim.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/ps4-slim.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1c/PS2-Versions.jpg",
+      "license": "Public domain",
+      "author": "Evan-Amos",
+      "commonsTitle": "File:PS2-Versions.jpg"
     },
     {
       "modelKey": "ps4-pro",
       "name": "PlayStation 4 Pro",
       "brand": "Sony",
-      "file": "/images/catalog/sony/ps4-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/ps4-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/PS4-Console-wDS4.jpg",
+      "license": "Public domain",
+      "author": "Evan-Amos",
+      "commonsTitle": "File:PS4-Console-wDS4.jpg"
     },
     {
       "modelKey": "ps5",
       "name": "PlayStation 5",
       "brand": "Sony",
-      "file": "/images/catalog/sony/ps5.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/ps5.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Sony-PlayStation-3-2001A-wController-L.jpg",
+      "license": "Public domain",
+      "author": "Evan-Amos",
+      "commonsTitle": "File:Sony-PlayStation-3-2001A-wController-L.jpg"
     },
     {
       "modelKey": "ps5-slim",
       "name": "PlayStation 5 Slim",
       "brand": "Sony",
-      "file": "/images/catalog/sony/ps5-slim.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/ps5-slim.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Playstation2_slim_back.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "Benjamin.nagel",
+      "commonsTitle": "File:Playstation2 slim back.jpg"
     },
     {
       "modelKey": "ps5-pro",
       "name": "PlayStation 5 Pro",
       "brand": "Sony",
-      "file": "/images/catalog/sony/ps5-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/ps5-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_Playstation_2_SCPH-5001_V9_%2819290958318%29.jpg",
+      "license": "CC BY 2.0",
+      "author": "Deni Williams from São Paulo, Brasil / Brazil",
+      "commonsTitle": "File:Sony Playstation 2 SCPH-5001 V9 (19290958318).jpg"
     },
     {
       "modelKey": "sony-x80j",
       "name": "Sony Bravia X80J",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-x80j.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-x80j.webp",
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)"
     },
     {
       "modelKey": "sony-x90j",
       "name": "Sony Bravia X90J",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-x90j.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-x90j.webp",
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)"
     },
     {
       "modelKey": "sony-a80j",
       "name": "Sony Bravia A80J OLED",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-a80j.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-a80j.webp",
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)"
     },
     {
       "modelKey": "sony-a95l",
       "name": "Sony Bravia A95L QD-OLED",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-a95l.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-a95l.webp",
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)"
     },
     {
       "modelKey": "sony-xr8",
       "name": "Sony Bravia XR8 Mini LED",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-xr8.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-xr8.webp",
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)"
     },
     {
       "modelKey": "sony-wh1000xm4",
       "name": "Sony WH-1000XM4",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-wh1000xm4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-wh1000xm4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg"
     },
     {
       "modelKey": "sony-wh1000xm5",
       "name": "Sony WH-1000XM5",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-wh1000xm5.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-wh1000xm5.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg"
     },
     {
       "modelKey": "sony-wh1000xm6",
       "name": "Sony WH-1000XM6",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-wh1000xm6.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-wh1000xm6.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg"
     },
     {
       "modelKey": "sony-wf1000xm4",
       "name": "Sony WF-1000XM4",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-wf1000xm4.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-wf1000xm4.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg"
     },
     {
       "modelKey": "sony-wf1000xm5",
       "name": "Sony WF-1000XM5",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-wf1000xm5.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-wf1000xm5.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg"
     },
     {
       "modelKey": "sony-linkbuds-s",
       "name": "Sony LinkBuds S",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-linkbuds-s.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-linkbuds-s.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Epipactis_helleborine_by_Danny_S._-_002.JPG",
+      "license": "CC BY-SA 3.0",
+      "author": "Danny Steven S.",
+      "commonsTitle": "File:Epipactis helleborine by Danny S. - 002.JPG"
     },
     {
       "modelKey": "galaxy-note-20",
       "name": "Galaxy Note 20",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-note-20.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-note-20.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Samsung_Galaxy_Note_3_home_screen.jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "https://www.flickr.com/photos/liewcf/",
+      "commonsTitle": "File:Samsung Galaxy Note 3 home screen.jpg"
     },
     {
       "modelKey": "galaxy-note-20-ultra",
       "name": "Galaxy Note 20 Ultra",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-note-20-ultra.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-note-20-ultra.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/HK_TKO_Spot_mall_%E5%B0%87%E8%BB%8D%E6%BE%B3_Tseung_Kwan_O_%E5%B0%9A%E5%BE%B7%E5%BB%A3%E5%A0%B4_Sheung_Tak_Estate_Shopping_Centre_shop_digital_smartphone_parts_February_2022_Px3_04.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Gorgeo Wrmalauoi Htainup",
+      "commonsTitle": "File:HK TKO Spot mall 將軍澳 Tseung Kwan O 尚德廣場 Sheung Tak Estate Shopping Centre shop digital smartphone parts February 2022 Px3 04.jpg"
     },
     {
       "modelKey": "galaxy-s10",
       "name": "Galaxy S10",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s10.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s10.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Samsung_S10_Phone.png",
+      "license": "CC BY-SA 4.0",
+      "author": "FarihF10",
+      "commonsTitle": "File:Samsung S10 Phone.png"
     },
     {
       "modelKey": "galaxy-s10-plus",
       "name": "Galaxy S10+",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-s10-plus.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-s10-plus.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Samsung_S10_Phone.png",
+      "license": "CC BY-SA 4.0",
+      "author": "FarihF10",
+      "commonsTitle": "File:Samsung S10 Phone.png"
     },
     {
       "modelKey": "vivo-x51",
       "name": "vivo X51 5G",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-x51.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-x51.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg"
     },
     {
       "modelKey": "vivo-x30-pro",
       "name": "vivo X30 Pro",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-x30-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-x30-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1a/GokartSuper4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "NanoKid",
+      "commonsTitle": "File:GokartSuper4.jpg"
     },
     {
       "modelKey": "vivo-s1-pro",
       "name": "vivo S1 Pro",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-s1-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-s1-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Chalk_work_anti_nrc_caa_pro_unity_shaheen_bagh_protests_7_jan_2020.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "DiplomatTesterMan",
+      "commonsTitle": "File:Chalk work anti nrc caa pro unity shaheen bagh protests 7 jan 2020.jpg"
     },
     {
       "modelKey": "mi-9",
       "name": "Mi 9",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/mi-9.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/mi-9.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Xiaomi_Mi_band_2_9.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Nahid.rajbd",
+      "commonsTitle": "File:Xiaomi Mi band 2 9.jpg"
     },
     {
       "modelKey": "redmi-note-8-pro",
       "name": "Redmi Note 8 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-note-8-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-note-8-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Redmi_Note_10_Pro_front.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Maksdroider",
+      "commonsTitle": "File:Redmi Note 10 Pro front.jpg"
     },
     {
       "modelKey": "redmi-10",
       "name": "Redmi 10",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-10.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-10.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/HK_MK_Mongkok_Nathan_Road_XiaoMi_Store_smart_phone_Redmi_10_testing_macro_standard_n_wide_lens_effects_December_2021_RedMi_03.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KongWuood Hangi 1219",
+      "commonsTitle": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Redmi 10 testing macro standard n wide lens effects December 2021 RedMi 03.jpg"
     },
     {
       "modelKey": "redmi-12",
       "name": "Redmi 12",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-12.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-12.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Xiaomi_Redmi_A1%2B._About_phone_menu.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "Сергей Михель",
+      "commonsTitle": "File:Xiaomi Redmi A1+. About phone menu.jpg"
     },
     {
       "modelKey": "redmi-13",
       "name": "Redmi 13",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-13.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-13.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/39/Redmi_13_Product_photography_05.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Wasiul Bahar",
+      "commonsTitle": "File:Redmi 13 Product photography 05.jpg"
     },
     {
       "modelKey": "iphone-se-2",
       "name": "iPhone SE (2nd generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-se-2.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-se-2.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/IPhone_SE%28%E7%AC%AC2%E4%B8%96%E4%BB%A3%29%E3%81%AE%E7%AE%B1%E5%8F%8A%E3%81%B3%E5%90%8C%E6%A2%B1%E7%89%A9.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "A13Bionic",
+      "commonsTitle": "File:IPhone SE(第2世代)の箱及び同梱物.jpg"
     },
     {
       "modelKey": "iphone-se-3",
       "name": "iPhone SE (3rd generation)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-se-3.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-se-3.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7f/IPhone_SE_3rd_Gen.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Toad40",
+      "commonsTitle": "File:IPhone SE 3rd Gen.jpg"
     },
     {
       "modelKey": "iphone-xr",
       "name": "iPhone XR",
       "brand": "Apple",
-      "file": "/images/catalog/apple/iphone-xr.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/iphone-xr.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/IPhone_Xr_%28Red_-_Orange%29.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ahmadkurdi44",
+      "commonsTitle": "File:IPhone Xr (Red - Orange).jpg"
     },
     {
       "modelKey": "samsung-cu7000",
       "name": "Samsung CU7000 Crystal UHD",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/samsung-cu7000.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/samsung-cu7000.webp",
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "sony-x85k",
       "name": "Sony X85K LED TV",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-x85k.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-x85k.webp",
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)"
     },
     {
       "modelKey": "galaxy-buds2",
       "name": "Samsung Galaxy Buds2",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-buds2.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-buds2.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/52/Samsung_Galaxy_Buds2.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Samsung Galaxy Buds2.jpg"
     },
     {
       "modelKey": "galaxy-buds2-pro",
       "name": "Samsung Galaxy Buds2 Pro",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-buds2-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-buds2-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/11/SAMSUNG_Galaxy_Tab_S8%2B%2C_SAMSUNG_Galaxy_Z_Fold_4%2C_SAMSUNG_Galaxy_Z_FLIP_4%2C_SAMSUNG_Galaxy_Watch_5%2C_SAMSUNG_Galaxy_Buds2_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Dinkun Chen",
+      "commonsTitle": "File:SAMSUNG Galaxy Tab S8+, SAMSUNG Galaxy Z Fold 4, SAMSUNG Galaxy Z FLIP 4, SAMSUNG Galaxy Watch 5, SAMSUNG Galaxy Buds2 Pro.jpg"
     },
     {
       "modelKey": "sony-wf-c500",
       "name": "Sony WF-C500",
       "brand": "Sony",
-      "file": "/images/catalog/sony/sony-wf-c500.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/sony/sony-wf-c500.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Sony_in-ear_headphone_WF-C500.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony in-ear headphone WF-C500.jpg"
     },
     {
       "modelKey": "macbook-pro-14-m4-pro",
       "name": "MacBook Pro 14\" (M4 Pro)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/macbook-pro-14-m4-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/macbook-pro-14-m4-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Review_zu_Apple_Hardware_mit_Apple_M4-CPUs_%28Geekerwan%29_14.png",
+      "license": "CC BY 3.0",
+      "author": "极客湾Geekerwan",
+      "commonsTitle": "File:Review zu Apple Hardware mit Apple M4-CPUs (Geekerwan) 14.png"
     },
     {
       "modelKey": "macbook-pro-16-m4-max",
       "name": "MacBook Pro 16\" (M4 Max)",
       "brand": "Apple",
-      "file": "/images/catalog/apple/macbook-pro-16-m4-max.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/apple/macbook-pro-16-m4-max.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Review_zu_Apple_Hardware_mit_Apple_M4-CPUs_%28Geekerwan%29_16.png",
+      "license": "CC BY 3.0",
+      "author": "极客湾Geekerwan",
+      "commonsTitle": "File:Review zu Apple Hardware mit Apple M4-CPUs (Geekerwan) 16.png"
     },
     {
       "modelKey": "galaxy-a12",
       "name": "Galaxy A12",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a12.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a12.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/HK_Ngau_Tau_Kok_Mall_%E6%B7%98%E5%A4%A7%E5%95%86%E5%A0%B4_Fortress_Electric_Store_%E4%B8%89%E6%98%9F%E6%89%93%E6%A9%9F_Samsung_Galaxy_A12_November_2021_SS2_06.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Amorymm200",
+      "commonsTitle": "File:HK Ngau Tau Kok Mall 淘大商場 Fortress Electric Store 三星打機 Samsung Galaxy A12 November 2021 SS2 06.jpg"
     },
     {
       "modelKey": "galaxy-a13",
       "name": "Galaxy A13",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a13.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a13.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/HK_TKL_%E8%AA%BF%E6%99%AF%E5%B6%BA_Tiu_Keng_Leng_%E5%BD%A9%E6%98%8E%E5%95%86%E5%A0%B4_Choi_Ming_Shopping_Mall_shop_smartphones_March_2023_Px3.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Manholametam Lunagouwhi",
+      "commonsTitle": "File:HK TKL 調景嶺 Tiu Keng Leng 彩明商場 Choi Ming Shopping Mall shop smartphones March 2023 Px3.jpg"
     },
     {
       "modelKey": "galaxy-a14",
       "name": "Galaxy A14",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a14.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a14.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Samsung_Galaxy_A14_5G.jpg",
+      "license": "CC0",
+      "author": "Worm-b0y16",
+      "commonsTitle": "File:Samsung Galaxy A14 5G.jpg"
     },
     {
       "modelKey": "galaxy-a23",
       "name": "Galaxy A23",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a23.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a23.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/HK_TKL_%E8%AA%BF%E6%99%AF%E5%B6%BA_Tiu_Keng_Leng_%E5%BD%A9%E6%98%8E%E5%95%86%E5%A0%B4_Choi_Ming_Shopping_Mall_shop_smartphones_March_2023_Px3.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Manholametam Lunagouwhi",
+      "commonsTitle": "File:HK TKL 調景嶺 Tiu Keng Leng 彩明商場 Choi Ming Shopping Mall shop smartphones March 2023 Px3.jpg"
     },
     {
       "modelKey": "galaxy-a24",
       "name": "Galaxy A24",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a24.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a24.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/af/%EC%82%BC%EC%84%B1_%EA%B0%A4%EB%9F%AD%EC%8B%9C_A24.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "Striker9498",
+      "commonsTitle": "File:삼성 갤럭시 A24.jpg"
     },
     {
       "modelKey": "galaxy-a25",
       "name": "Galaxy A25",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a25.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a25.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Gel_heel_cushion_2017_A25.jpg",
+      "license": "CC0",
+      "author": "Fructibus",
+      "commonsTitle": "File:Gel heel cushion 2017 A25.jpg"
     },
     {
       "modelKey": "galaxy-a34",
       "name": "Galaxy A34",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a34.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a34.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2b/%EC%82%BC%EC%84%B1_%EA%B0%A4%EB%9F%AD%EC%8B%9C_A34.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "Striker9498",
+      "commonsTitle": "File:삼성 갤럭시 A34.jpg"
     },
     {
       "modelKey": "galaxy-a73",
       "name": "Galaxy A73",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-a73.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-a73.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Samsung_Galaxy_A73_5G_%2809-11-2022%29.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "PaulGorduiz106",
+      "commonsTitle": "File:Samsung Galaxy A73 5G (09-11-2022).jpg"
     },
     {
       "modelKey": "vivo-y15",
       "name": "vivo Y15",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y15.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y15.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Relawan_jamaah_haul.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Aswandi12345",
+      "commonsTitle": "File:Relawan jamaah haul.jpg"
     },
     {
       "modelKey": "vivo-y16",
       "name": "vivo Y16",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y16.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y16.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/B%C3%A1nh_quy_b%C6%A1_Danisa.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "AnVuong1222004",
+      "commonsTitle": "File:Bánh quy bơ Danisa.jpg"
     },
     {
       "modelKey": "vivo-y17",
       "name": "vivo Y17",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y17.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y17.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Sri_G.V._Kasthuriswamy_Naidu.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kiruthik1105",
+      "commonsTitle": "File:Sri G.V. Kasthuriswamy Naidu.jpg"
     },
     {
       "modelKey": "vivo-y21",
       "name": "vivo Y21",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y21.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y21.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Chandra_Theertham.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Wiki tamil 100",
+      "commonsTitle": "File:Chandra Theertham.jpg"
     },
     {
       "modelKey": "vivo-y27",
       "name": "vivo Y27",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y27.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y27.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Surau_Latiah_%284%29.jpg",
+      "license": "CC BY 4.0",
+      "author": "Fakhruddin Arrazzi",
+      "commonsTitle": "File:Surau Latiah (4).jpg"
     },
     {
       "modelKey": "vivo-y28",
       "name": "vivo Y28",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y28.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y28.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/03/Chandini.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "CHANDINI.B",
+      "commonsTitle": "File:Chandini.jpg"
     },
     {
       "modelKey": "vivo-y35",
       "name": "vivo Y35",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-y35.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-y35.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Micro_Vickers_hardness_tester_from_EBP_company%2C_China.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hardness-testers",
+      "commonsTitle": "File:Micro Vickers hardness tester from EBP company, China.jpg"
     },
     {
       "modelKey": "redmi-9",
       "name": "Redmi 9",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-9.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-9.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Redmi_10X%284G%29.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "洛微",
+      "commonsTitle": "File:Redmi 10X(4G).jpg"
     },
     {
       "modelKey": "redmi-9a",
       "name": "Redmi 9A",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-9a.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-9a.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/HK_MK_%E6%97%BA%E8%A7%92_Mongkok_%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E5%BA%97_Xiao_Mi_XiaoMi_Poco_Xs_GT_smartphone_June_2022_Px3G_04.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Mx12 MK M616",
+      "commonsTitle": "File:HK MK 旺角 Mongkok 小米手机店 Xiao Mi XiaoMi Poco Xs GT smartphone June 2022 Px3G 04.jpg"
     },
     {
       "modelKey": "redmi-9c",
       "name": "Redmi 9C",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-9c.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-9c.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/Campos_de_Fontihoyuelo.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "YolandaDab",
+      "commonsTitle": "File:Campos de Fontihoyuelo.jpg"
     },
     {
       "modelKey": "redmi-11-prime",
       "name": "Redmi 11 Prime",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-11-prime.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-11-prime.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/HK_TKL_%E8%AA%BF%E6%99%AF%E5%B6%BA_Tiu_Keng_Leng_%E5%BD%A9%E6%98%8E%E5%95%86%E5%A0%B4_Choi_Ming_Shopping_Mall_shop_smartphones_March_2023_Px3.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Manholametam Lunagouwhi",
+      "commonsTitle": "File:HK TKL 調景嶺 Tiu Keng Leng 彩明商場 Choi Ming Shopping Mall shop smartphones March 2023 Px3.jpg"
     },
     {
       "modelKey": "redmi-12c",
       "name": "Redmi 12C",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/redmi-12c.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/redmi-12c.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/HK_%E5%B0%87%E8%BB%8D%E6%BE%B3_TKO_LOHAS_Park_%E6%97%A5%E5%87%BA%E5%BA%B7%E5%9F%8E%E5%95%86%E5%A0%B4_The_Lohas_Shopping_Mall_shop_%E8%B1%90%E6%BE%A4%E9%9B%BB%E5%99%A8_Fortress_Store_smartphones_June_2023_Px3_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "BukingzHu 082",
+      "commonsTitle": "File:HK 將軍澳 TKO LOHAS Park 日出康城商場 The Lohas Shopping Mall shop 豐澤電器 Fortress Store smartphones June 2023 Px3 01.jpg"
     },
     {
       "modelKey": "poco-x3",
       "name": "POCO X3",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/poco-x3.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/poco-x3.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg"
     },
     {
       "modelKey": "poco-x4-pro",
       "name": "POCO X4 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/poco-x4-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/poco-x4-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Renault_460s_Baujahr_1979.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Anderl 1968",
+      "commonsTitle": "File:Renault 460s Baujahr 1979.jpg"
     },
     {
       "modelKey": "poco-m4-pro",
       "name": "POCO M4 Pro",
       "brand": "Xiaomi",
-      "file": "/images/catalog/xiaomi/poco-m4-pro.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/xiaomi/poco-m4-pro.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/HK_MK_Mongkok_Nathan_Road_XiaoMi_Store_smart_phone_Poco_M4_Pro_5G_testing_macro_standard_n_wide_lens_effects_December_2021_RedMi_02.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KongWuood Hangi 1219",
+      "commonsTitle": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Poco M4 Pro 5G testing macro standard n wide lens effects December 2021 RedMi 02.jpg"
     },
     {
       "modelKey": "galaxy-m32",
       "name": "Galaxy M32",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-m32.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-m32.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Footbridge_over_M32.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "RedSquirrel",
+      "commonsTitle": "File:Footbridge over M32.jpg"
     },
     {
       "modelKey": "galaxy-m33",
       "name": "Galaxy M33",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-m33.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-m33.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg"
     },
     {
       "modelKey": "galaxy-m34",
       "name": "Galaxy M34",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-m34.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-m34.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/Krishnarajapura_metro_station_%28Nov_%2723%29.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Sameer2905",
+      "commonsTitle": "File:Krishnarajapura metro station (Nov '23).jpg"
     },
     {
       "modelKey": "galaxy-m54",
       "name": "Galaxy M54",
       "brand": "Samsung",
-      "file": "/images/catalog/samsung/galaxy-m54.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/samsung/galaxy-m54.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Famintos....jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ana Flávia da Silva Oliveira",
+      "commonsTitle": "File:Famintos....jpg"
     },
     {
       "modelKey": "vivo-t1",
       "name": "vivo T1",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-t1.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-t1.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Gandabahali_Yatra_Jatra.jpg",
+      "license": "CC0",
+      "author": "His2ry",
+      "commonsTitle": "File:Gandabahali Yatra Jatra.jpg"
     },
     {
       "modelKey": "vivo-t2",
       "name": "vivo T2",
       "brand": "Vivo",
-      "file": "/images/catalog/vivo/vivo-t2.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/vivo/vivo-t2.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/%E0%A6%AB%E0%A7%81%E0%A6%B2%E0%A6%95%E0%A6%AA%E0%A6%BF%E0%A6%B0_%E0%A6%B8%E0%A7%8D%E0%A6%AF%E0%A7%81%E0%A6%AA_-%E0%A6%9A%E0%A7%81%E0%A6%9A%E0%A7%81%E0%A6%B0%E0%A6%BE_%E0%A6%B9%E0%A7%81%E0%A6%97%E0%A6%B2%E0%A6%BF.jpg",
+      "license": "CC0",
+      "author": "Bbeehati",
+      "commonsTitle": "File:ফুলকপির স্যুপ -চুচুরা হুগলি.jpg"
     },
     {
       "modelKey": "amazon-echo-dot-3-fixture",
       "name": "Amazon Echo Dot (3rd Generation)",
       "brand": "Amazon",
-      "file": "/images/alexa.jpg",
-      "sourceUrl": "",
-      "license": "placeholder — replace with press kit or Wikimedia Commons asset"
+      "file": "/images/catalog/amazon/echo-dot-3.webp",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/67/Echo_Dot_%283rd_Gen%29_01.jpg",
+      "license": "CC0",
+      "author": "Samuel Wiki",
+      "commonsTitle": "File:Echo Dot (3rd Gen) 01.jpg"
     }
   ]
 }
