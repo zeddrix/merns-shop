@@ -52,3 +52,80 @@ export async function completePaymentStep(page: Page): Promise<void> {
   await page.locator('[data-testid="payment-submit"]').click();
   await page.locator('[data-testid="place-order-screen"]').waitFor({ state: 'visible' });
 }
+
+interface ApiLoginResponse {
+  token: string;
+}
+
+interface ApiProductListResponse {
+  products: Array<{
+    _id: string;
+    name: string;
+    image: string;
+    price: number;
+  }>;
+}
+
+interface ApiOrderResponse {
+  _id: string;
+}
+
+export async function createPaidOrderViaApi(
+  page: Page,
+  user: keyof typeof TEST_USERS = 'customer'
+): Promise<string> {
+  const creds = TEST_USERS[user];
+
+  const loginResponse = await page.request.post('/api/users/login', {
+    data: { email: creds.email, password: creds.password }
+  });
+  expect(loginResponse.ok()).toBeTruthy();
+  const { token } = (await loginResponse.json()) as ApiLoginResponse;
+
+  const productsResponse = await page.request.get('/api/products');
+  expect(productsResponse.ok()).toBeTruthy();
+  const { products } = (await productsResponse.json()) as ApiProductListResponse;
+  const product = products[0];
+  expect(product).toBeDefined();
+
+  const orderResponse = await page.request.post('/api/orders', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: {
+      orderItems: [
+        {
+          name: product.name,
+          qty: 1,
+          image: product.image,
+          price: product.price,
+          product: product._id
+        }
+      ],
+      shippingAddress: {
+        address: '123 Test St',
+        city: 'Testville',
+        postalCode: '12345',
+        country: 'United States'
+      },
+      paymentMethod: 'PayPal',
+      itemsPrice: product.price,
+      taxPrice: 0,
+      shippingPrice: 0,
+      totalPrice: product.price
+    }
+  });
+  expect(orderResponse.status()).toBe(201);
+  const order = (await orderResponse.json()) as ApiOrderResponse;
+
+  const payResponse = await page.request.put(`/api/orders/${order._id}/pay`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data: {
+      id: 'e2e-test-payment',
+      status: 'COMPLETED',
+      update_time: new Date().toISOString(),
+      payer: { email_address: creds.email }
+    }
+  });
+  expect(payResponse.ok()).toBeTruthy();
+
+  return order._id;
+}
