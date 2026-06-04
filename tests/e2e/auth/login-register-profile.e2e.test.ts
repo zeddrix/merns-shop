@@ -8,6 +8,20 @@ test.describe('auth login register profile', () => {
     await resetE2eDatabase(context);
   });
 
+  test('logged_in_user_hides_sign_in_and_sign_up_nav', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await page.goto('/');
+    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+    await expect(page.locator('[data-testid="nav-sign-up"]')).toBeHidden();
+  });
+
+  test('nav_sign_up_reaches_register_form', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('[data-testid="nav-sign-up"]').click();
+    await expect(page).toHaveURL(/\/register$/);
+    await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
+  });
+
   test('login_wrong_password_shows_error', async ({ page }) => {
     await page.goto('/login');
     await page.locator('[data-testid="login-email"]').fill(TEST_USERS.customer.email);
@@ -23,14 +37,74 @@ test.describe('auth login register profile', () => {
   });
 
   test('register_validation_requires_matching_passwords', async ({ page }) => {
+    let registerRequested = false;
+    page.on('request', (request) => {
+      if (request.method() === 'POST' && request.url().includes('/api/users')) {
+        registerRequested = true;
+      }
+    });
+
     await page.goto('/register');
     await page.locator('[data-testid="register-name"]').fill('Invalid User');
     await page.locator('[data-testid="register-email"]').fill('invalid@example.com');
     await page.locator('[data-testid="register-password"]').fill('123456');
     await page.locator('[data-testid="register-confirm-password"]').fill('654321');
     await page.locator('[data-testid="register-submit"]').click();
+
+    await expect(page.locator('[data-testid="register-password-mismatch"]')).toBeVisible();
     await expect(page.locator('[data-testid="register-form"]')).toBeVisible();
     await expect(page.locator('[data-testid="nav-login"]')).toBeVisible();
+    expect(registerRequested).toBe(false);
+  });
+
+  test('register_validation_requires_min_password_length', async ({ page }) => {
+    let registerRequested = false;
+    page.on('request', (request) => {
+      if (request.method() === 'POST' && request.url().includes('/api/users')) {
+        registerRequested = true;
+      }
+    });
+
+    await page.goto('/register');
+    await page.locator('[data-testid="register-name"]').fill('Short Password User');
+    await page.locator('[data-testid="register-email"]').fill('short@example.com');
+    await page.locator('[data-testid="register-password"]').fill('12345');
+    await page.locator('[data-testid="register-confirm-password"]').fill('12345');
+    await page.locator('[data-testid="register-submit"]').click();
+
+    await expect(page.locator('[data-testid="register-password-too-short"]')).toBeVisible();
+    await expect(page.locator('[data-testid="register-form"]')).toBeVisible();
+    expect(registerRequested).toBe(false);
+  });
+
+  test('register_duplicate_email_shows_error', async ({ page }) => {
+    await page.goto('/register');
+    await page.locator('[data-testid="register-name"]').fill('Duplicate User');
+    await page.locator('[data-testid="register-email"]').fill(TEST_USERS.customer.email);
+    await page.locator('[data-testid="register-password"]').fill('123456');
+    await page.locator('[data-testid="register-confirm-password"]').fill('123456');
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/api/users') && response.status() === 400
+      ),
+      page.locator('[data-testid="register-submit"]').click()
+    ]);
+    await expect(page.locator('[data-testid="register-error"]')).toBeVisible();
+    await expect(page.locator('[data-testid="nav-login"]')).toBeVisible();
+    await expect(page.locator('[data-testid="nav-sign-up"]')).toBeVisible();
+  });
+
+  test('checkout_step_sign_in_includes_redirect', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await page.goto('/shipping');
+    const signInHref = await page
+      .locator('[data-testid="checkout-step-signin"]')
+      .getAttribute('href');
+    const signUpHref = await page
+      .locator('[data-testid="checkout-step-sign-up"]')
+      .getAttribute('href');
+    expect(signInHref).toContain('redirect=%2Fshipping');
+    expect(signUpHref).toContain('redirect=%2Fshipping');
   });
 
   test('login_does_not_store_userInfo_in_localStorage', async ({ page }) => {
@@ -50,6 +124,26 @@ test.describe('auth login register profile', () => {
     await logout(page);
     await page.goto('/profile');
     await expect(page).toHaveURL(/\/login/);
+  });
+
+  test('register_success_shows_welcome_on_home', async ({ page }) => {
+    const unique = Date.now();
+    await page.goto('/register');
+    await page.locator('[data-testid="register-name"]').fill('Welcome User');
+    await page.locator('[data-testid="register-email"]').fill(`welcome-${unique}@example.com`);
+    await page.locator('[data-testid="register-password"]').fill('123456');
+    await page.locator('[data-testid="register-confirm-password"]').fill('123456');
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/api/users') && response.status() === 201
+      ),
+      page.locator('[data-testid="register-submit"]').click()
+    ]);
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.locator('[data-testid="register-welcome"]')).toContainText(
+      'Welcome, Welcome User'
+    );
+    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
   });
 
   test('register_honors_redirect_query', async ({ page }) => {

@@ -2,6 +2,7 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import request from 'supertest';
 import app from '../../../backend/app.js';
 import { connectTestDb, disconnectTestDb, resetTestDb } from '../helpers/db.js';
+import { AUTH_COOKIE_NAME } from '../../../backend/utils/authCookie.js';
 import { extractAuthTokenFromLoginResponse, loginAgent } from '../helpers/auth.js';
 
 describe('auth integration', () => {
@@ -35,6 +36,19 @@ describe('auth integration', () => {
     expect(res.status).toBe(201);
     expect(res.body.token).toBeUndefined();
     expect(extractAuthTokenFromLoginResponse(res.headers['set-cookie'])).toBeTruthy();
+  });
+
+  it('register_duplicate_email_returns_400', async () => {
+    const res = await request(app).post('/api/users').send({
+      name: 'Duplicate User',
+      email: 'john@gmail.com',
+      password: '123456'
+    });
+    expect(res.status).toBe(400);
+    expect(res.body.message).toMatch(/already exists/i);
+    const setCookie = res.headers['set-cookie'];
+    const cookieHeader = Array.isArray(setCookie) ? setCookie.join(';') : (setCookie ?? '');
+    expect(cookieHeader).not.toContain(`${AUTH_COOKIE_NAME}=`);
   });
 
   it('logs in with cookie session and returns profile', async () => {

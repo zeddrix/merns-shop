@@ -58,6 +58,42 @@ test.describe('checkout cart shipping payment', () => {
     await expect(page.locator('[data-testid="payment-method-paypal"]')).toBeChecked();
   });
 
+  test('checkout_step_sign_up_from_shipping_breadcrumb', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await page.goto('/shipping');
+    await page.locator('[data-testid="checkout-step-sign-up"]').click();
+    await expect(page).toHaveURL(/\/register\?redirect=%2Fshipping/);
+    await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
+  });
+
+  test('checkout_sign_up_honors_cart_redirect', async ({ page }) => {
+    const unique = Date.now();
+    const email = `checkout-signup-${unique}@example.com`;
+
+    await addFirstProductToCart(page);
+    await page.locator('[data-testid="nav-cart"]').click();
+    await page.locator('[data-testid="cart-checkout"]').click();
+
+    await expect(page).toHaveURL(/\/login\?redirect=/);
+    await expect(page.locator('[data-testid="login-checkout-sign-up-hint"]')).toBeVisible();
+    await page.locator('[data-testid="login-register-link"]').click();
+    await expect(page).toHaveURL(/\/register\?redirect=/);
+
+    await page.locator('[data-testid="register-name"]').fill('Checkout Signup User');
+    await page.locator('[data-testid="register-email"]').fill(email);
+    await page.locator('[data-testid="register-password"]').fill('123456');
+    await page.locator('[data-testid="register-confirm-password"]').fill('123456');
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/api/users') && response.status() === 201
+      ),
+      page.locator('[data-testid="register-submit"]').click()
+    ]);
+
+    await expect(page).toHaveURL(/\/shipping/);
+    await expect(page.locator('[data-testid="shipping-heading"]')).toBeVisible();
+  });
+
   test('shipping_requires_all_fields', async ({ page }) => {
     await loginAs(page, 'customer');
     await page.goto('/shipping');
