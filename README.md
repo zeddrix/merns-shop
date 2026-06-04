@@ -54,7 +54,7 @@ nvm use          # required before install if your default is Node 20
 pnpm install     # fails fast if Node < 22
 cp .env.example .env
 cp .env.test.example .env.test
-node scripts/ensure-product-images.mjs
+pnpm catalog:images   # ensures all catalog JPGs under frontend/public/images/catalog/
 pnpm db:seed
 ```
 
@@ -80,7 +80,15 @@ pnpm client    # Vite on :5020
 
 Seeded users: see [`docs/test-users.md`](docs/test-users.md).
 
-Auth uses an **httpOnly cookie** (no JWT in `localStorage`). Product images are static files under [`frontend/public/images/`](frontend/public/images/) — paths like `/images/phone.jpg` in the database.
+Auth uses an **httpOnly cookie** (no JWT in `localStorage`).
+
+### Gadget catalog (offline-first)
+
+- **~170 parent products** with **500+ variants** (Apple, Samsung, Vivo, Xiaomi, Sony) live in [`backend/data/catalog/`](backend/data/catalog/).
+- Each product has nested **variants** (storage, screen size, etc.) with **MSRP `listPrice`** and tiered **second-hand `price`** (see [`backend/data/catalog/pricing.ts`](backend/data/catalog/pricing.ts)).
+- Images are static files under [`frontend/public/images/catalog/`](frontend/public/images/catalog/) (generated on `pnpm install` via `pnpm catalog:images`). See [`frontend/public/images/catalog/ATTRIBUTION.md`](frontend/public/images/catalog/ATTRIBUTION.md).
+- Validate catalog data: `pnpm catalog:validate`
+- Storefront: brand/category filters, savings badges, variant picker on product pages.
 
 ## Quality and tests
 

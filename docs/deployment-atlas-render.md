@@ -88,15 +88,15 @@ pnpm db:seed
 
 ## Part E — Troubleshooting
 
-| Symptom                      | Fix                                                                                                                     |
-| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| Atlas connection timeout     | Check Network Access IP allowlist; verify URI encoding for special chars in password                                    |
-| Render build fails on `pnpm` | Ensure `pnpm-workspace.yaml` committed; Node 22 in Render settings                                                      |
-| Render start fails           | Run from repo root; confirm `dist/backend/server.js` exists after `pnpm build`                                          |
-| Blank page in production     | Confirm `pnpm build` outputs `frontend/dist`; Express serves `frontend/dist`                                            |
-| PayPal buttons missing       | Set `PAYPAL_CLIENT_ID` on Render; check browser console for SDK errors                                                  |
-| 401 on admin routes          | Re-login; verify `JWT_SECRET` unchanged between deploys                                                                 |
-| Broken product images        | Ensure `frontend/public/images` assets exist; run `node scripts/ensure-product-images.mjs`; re-seed DB if paths changed |
+| Symptom                      | Fix                                                                                                                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Atlas connection timeout     | Check Network Access IP allowlist; verify URI encoding for special chars in password                                     |
+| Render build fails on `pnpm` | Ensure `pnpm-workspace.yaml` committed; Node 22 in Render settings                                                       |
+| Render start fails           | Run from repo root; confirm `dist/backend/server.js` exists after `pnpm build`                                           |
+| Blank page in production     | Confirm `pnpm build` outputs `frontend/dist`; Express serves `frontend/dist`                                             |
+| PayPal buttons missing       | Set `PAYPAL_CLIENT_ID` on Render; check browser console for SDK errors                                                   |
+| 401 on admin routes          | Re-login; verify `JWT_SECRET` unchanged between deploys                                                                  |
+| Broken product images        | Run `pnpm catalog:images` then `pnpm catalog:validate`; re-seed with `pnpm db:seed:prod` after deploy if catalog changed |
 
 ---
 
