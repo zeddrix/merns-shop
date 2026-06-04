@@ -10,7 +10,7 @@ import type { IUserDocument } from '../../../backend/models/User.js';
 import type { Types } from 'mongoose';
 
 const makeUser = (id: string, isAdmin = false): IUserDocument =>
-  ({ _id: id, isAdmin }) as IUserDocument;
+  ({ _id: id, isAdmin }) as unknown as IUserDocument;
 
 const makeOrder = (userId: string | Types.ObjectId): IOrderDocument =>
   ({ user: userId }) as IOrderDocument;

@@ -14,14 +14,33 @@ export default defineConfig({
     }
   },
   test: {
-    include: ['tests/unit/**/*.{test,spec}.ts', 'tests/integration/**/*.{test,spec}.ts'],
     setupFiles: ['tests/vitest-setup.ts'],
-    environment: 'node',
-    environmentMatchGlobs: [['tests/unit/frontend/**', 'happy-dom']],
     globals: true,
     testTimeout: 30000,
     hookTimeout: 60000,
     fileParallelism: false,
-    maxWorkers: 1
+    maxWorkers: 1,
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'node',
+          include: [
+            'tests/unit/backend/**/*.{test,spec}.ts',
+            'tests/unit/types/**/*.{test,spec}.ts',
+            'tests/integration/**/*.{test,spec}.ts'
+          ],
+          environment: 'node'
+        }
+      },
+      {
+        extends: true,
+        test: {
+          name: 'happy-dom',
+          include: ['tests/unit/frontend/**/*.{test,spec}.ts'],
+          environment: 'happy-dom'
+        }
+      }
+    ]
   }
 });

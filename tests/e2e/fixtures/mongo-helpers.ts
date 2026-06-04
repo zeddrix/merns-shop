@@ -86,6 +86,8 @@ export async function findUserByEmail(email: string): Promise<MongoUser | null> 
       throw new Error('Mongo connection unavailable');
     }
 
-    return mongoose.connection.db.collection('users').findOne({ email }) as Promise<MongoUser | null>;
+    return mongoose.connection.db
+      .collection('users')
+      .findOne({ email }) as Promise<MongoUser | null>;
   });
 }

@@ -39,9 +39,20 @@ describe('products integration', () => {
   });
 
   it('admin can create update and delete product', async () => {
+    const productPayload = {
+      name: 'Integration Test Product',
+      price: 29.99,
+      image: '/images/sample.jpg',
+      brand: 'Test Brand',
+      category: 'Electronics',
+      description: 'Created during integration test',
+      countInStock: 5
+    };
+
     const created = await request(app)
       .post('/api/products')
-      .set('Authorization', `Bearer ${adminToken}`);
+      .set('Authorization', `Bearer ${adminToken}`)
+      .send(productPayload);
     expect(created.status).toBe(201);
 
     const updated = await request(app)

@@ -50,6 +50,7 @@ export default ts.config(
   },
   {
     ignores: [
+      'dist/**',
       'frontend/dist/**',
       'node_modules/**',
       'test-results/**',

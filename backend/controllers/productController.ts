@@ -1,7 +1,11 @@
 import asyncHandler from 'express-async-handler';
 import type { Request, Response } from 'express';
 import Product from '../models/Product.js';
-import { PRODUCTS_PER_PAGE, buildKeywordFilter, calculateTotalPages } from '../utils/productQuery.js';
+import {
+  PRODUCTS_PER_PAGE,
+  buildKeywordFilter,
+  calculateTotalPages
+} from '../utils/productQuery.js';
 
 const getProducts = asyncHandler(async (req: Request, res: Response) => {
   const page = Number(req.query.pageNumber) || 1;

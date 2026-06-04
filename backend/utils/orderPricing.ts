@@ -21,9 +21,7 @@ export interface OrderPriceBreakdown {
 const roundMoney = (num: number): number => Math.round(num * 100) / 100;
 
 export const calculateOrderPrices = (orderItems: ResolvedOrderItem[]): OrderPriceBreakdown => {
-  const itemsPrice = roundMoney(
-    orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-  );
+  const itemsPrice = roundMoney(orderItems.reduce((acc, item) => acc + item.price * item.qty, 0));
   const shippingPrice = roundMoney(itemsPrice > 100 ? 0 : 100);
   const taxPrice = roundMoney(Number((0.15 * itemsPrice).toFixed(2)));
   const totalPrice = roundMoney(itemsPrice + shippingPrice + taxPrice);

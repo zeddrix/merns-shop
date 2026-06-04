@@ -55,8 +55,8 @@ Journey files assert the **single canonical happy path** across domains. They mu
 
 | Behavior                                     | Canonical owner                                       | Do NOT duplicate in                                                            |
 | -------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Guest reaches order screen after place order | `journey-guest-purchase-paypal-lifecycle.e2e.test.ts`       | `cart-shipping-payment.e2e.test.ts` (keep cart qty / shipping validation only) |
-| Register → profile update → my orders        | `journey-customer-auth-profile-lifecycle.e2e.test.ts`       | `login-register-profile.e2e.test.ts` (keep validation/errors only)             |
+| Guest reaches order screen after place order | `journey-guest-purchase-paypal-lifecycle.e2e.test.ts` | `cart-shipping-payment.e2e.test.ts` (keep cart qty / shipping validation only) |
+| Register → profile update → my orders        | `journey-customer-auth-profile-lifecycle.e2e.test.ts` | `login-register-profile.e2e.test.ts` (keep validation/errors only)             |
 | Admin creates product visible on homepage    | `journey-admin-product-lifecycle.e2e.test.ts`         | `admin-products.e2e.test.ts` (keep edit/delete/validation)                     |
 | Admin opens order list                       | `journey-admin-order-fulfillment.e2e.test.ts`         | `admin-orders.e2e.test.ts` (keep mark-delivered details)                       |
 | 401 on `/api/users/profile` without token    | `api-security-auth.e2e.test.ts`                       | Journey or auth UI files                                                       |

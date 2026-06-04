@@ -1,13 +1,23 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["node", "vitest/globals"]
+    "types": ["node", "vitest/globals"],
+    "paths": {
+      "@types/*": ["../types/*"]
+    }
   },
-  "include": ["./**/*.ts", "../types/**/*.ts"]
+  "include": [
+    "./unit/**/*.ts",
+    "./integration/**/*.ts",
+    "./vitest-setup.ts",
+    "../types/**/*.ts",
+    "../backend/types/**/*.d.ts"
+  ],
+  "exclude": ["./e2e/**", "node_modules"]
 }

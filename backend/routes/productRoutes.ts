@@ -14,11 +14,12 @@ import { productReviewSchema, productInputSchema } from '../validators/schemas.j
 
 const router = express.Router();
 
-router.route('/').get(getProducts).post(protect, admin, validateBody(productInputSchema), createProduct);
-router.get('/top', getTopProducts);
 router
-  .route('/:id/reviews')
-  .post(protect, validateBody(productReviewSchema), createProductReview);
+  .route('/')
+  .get(getProducts)
+  .post(protect, admin, validateBody(productInputSchema), createProduct);
+router.get('/top', getTopProducts);
+router.route('/:id/reviews').post(protect, validateBody(productReviewSchema), createProductReview);
 router
   .route('/:id')
   .get(getProductById)
