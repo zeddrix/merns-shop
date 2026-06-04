@@ -1,7 +1,7 @@
 import type { CatalogParentDraft, CatalogVariantDraft } from './types.js';
 
 export const catalogImage = (brand: string, slug: string): string =>
-  `/images/catalog/${brand.toLowerCase()}/${slug}.jpg`;
+  `/images/catalog/${brand.toLowerCase()}/${slug}.webp`;
 
 export const storageVariants = (
   modelKey: string,

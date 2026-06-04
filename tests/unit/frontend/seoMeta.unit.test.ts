@@ -12,7 +12,7 @@ import type { Product } from '../../../frontend/src/types';
 const sampleProduct: Product = {
   _id: 'prod1',
   name: 'iPhone 15 Pro',
-  image: '/images/catalog/iphone-15-pro.jpg',
+  image: '/images/catalog/iphone-15-pro.webp',
   brand: 'Apple',
   category: 'Phones',
   subcategory: 'Smartphones',

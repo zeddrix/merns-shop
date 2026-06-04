@@ -1,4 +1,5 @@
 import type { CatalogParentDraft } from './types.js';
+import { catalogImage } from './helpers.js';
 
 /** E2E fixture: searchable as "Amazon Echo", always out of stock. */
 export const fixtureOutOfStock: CatalogParentDraft = {
@@ -11,7 +12,7 @@ export const fixtureOutOfStock: CatalogParentDraft = {
   releaseYear: 2018,
   description:
     'Meet Echo Dot - Our most popular smart speaker with a fabric design. Compact smart speaker for small spaces.',
-  image: '/images/alexa.jpg',
+  image: catalogImage('amazon', 'echo-dot-3'),
   rating: 4,
   numReviews: 12,
   variants: [

@@ -9,7 +9,7 @@ import {
 
 describe('productVariants utils', () => {
   const product = {
-    image: '/images/catalog/apple/iphone-15-pro.jpg',
+    image: '/images/catalog/apple/iphone-15-pro.webp',
     variants: [
       {
         sku: 'iphone-15-pro-128gb',
@@ -24,7 +24,7 @@ describe('productVariants utils', () => {
         listPrice: 1099,
         price: 769,
         countInStock: 3,
-        image: '/images/catalog/apple/iphone-15-pro-256.jpg'
+        image: '/images/catalog/apple/iphone-15-pro-256.webp'
       }
     ]
   };

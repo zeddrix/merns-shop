@@ -21,7 +21,7 @@ describe('api contract types', () => {
     const apiProduct: ApiProduct = {
       _id: '507f1f77bcf86cd799439011',
       name: 'iPhone 15 Pro',
-      image: '/images/catalog/apple/iphone-15-pro.jpg',
+      image: '/images/catalog/apple/iphone-15-pro.webp',
       brand: 'Apple',
       category: 'Electronics',
       subcategory: 'Phones',

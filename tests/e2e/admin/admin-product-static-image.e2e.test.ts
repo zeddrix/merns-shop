@@ -10,7 +10,7 @@ test.describe('admin product static image', () => {
 
   test('admin_sets_bundled_image_path_and_storefront_loads_image', async ({ page, request }) => {
     const productName = `Static Image Product ${Date.now()}`;
-    const imagePath = '/images/catalog/apple/iphone-15-pro.jpg';
+    const imagePath = '/images/catalog/apple/iphone-15-pro.webp';
 
     await loginAsAdmin(page);
     await page.goto('/admin/productlist');
