@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { register } from '../features/userSlice';
+import { getRedirectPath } from '../hooks/useRequireAuth';
 
 const RegisterScreen = () => {
   const [name, setName] = useState('');
@@ -21,11 +22,11 @@ const RegisterScreen = () => {
   const userRegister = useAppSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
 
-  const redirect = location.search ? (location.search.split('=')[1] ?? '/') : '/';
+  const redirect = getRedirectPath(location.search);
 
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect.startsWith('/') ? redirect : `/${redirect}`);
+      navigate(redirect);
     }
   }, [navigate, userInfo, redirect]);
 

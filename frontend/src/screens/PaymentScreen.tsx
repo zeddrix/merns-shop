@@ -5,8 +5,10 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { savePaymentMethod } from '../features/cartSlice';
+import { useRequireAuth } from '../hooks/useRequireAuth';
 
 const PaymentScreen = () => {
+  const isAuthenticated = useRequireAuth();
   const cart = useAppSelector((state) => state.cart);
   const { shippingAddress } = cart;
   const navigate = useNavigate();
@@ -16,16 +18,24 @@ const PaymentScreen = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (!isAuthenticated) {
+      return;
+    }
+
     if (!shippingAddress.address) {
       navigate('/shipping');
     }
-  }, [navigate, shippingAddress.address]);
+  }, [isAuthenticated, navigate, shippingAddress.address]);
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
     navigate('/placeorder');
   };
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <FormContainer>

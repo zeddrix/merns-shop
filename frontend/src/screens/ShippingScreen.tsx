@@ -5,8 +5,10 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { saveShippingAddress } from '../features/cartSlice';
+import { useRequireAuth } from '../hooks/useRequireAuth';
 
 const ShippingScreen = () => {
+  const isAuthenticated = useRequireAuth();
   const cart = useAppSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
@@ -23,6 +25,10 @@ const ShippingScreen = () => {
     dispatch(saveShippingAddress({ address, city, postalCode, country }));
     navigate('/payment');
   };
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <FormContainer>

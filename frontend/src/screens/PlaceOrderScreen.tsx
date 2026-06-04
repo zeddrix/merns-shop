@@ -6,24 +6,30 @@ import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder, orderCreateReset } from '../features/orderSlice';
 import { userDetailsReset } from '../features/userSlice';
+import { useRequireAuth } from '../hooks/useRequireAuth';
 
 const addDecimals = (num: number) => {
   return (Math.round(num * 100) / 100).toFixed(2);
 };
 
 const PlaceOrderScreen = () => {
+  const isAuthenticated = useRequireAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const cart = useAppSelector((state) => state.cart);
 
   useEffect(() => {
+    if (!isAuthenticated) {
+      return;
+    }
+
     if (!cart.shippingAddress.address) {
       navigate('/shipping');
     } else if (!cart.paymentMethod) {
       navigate('/payment');
     }
-  }, [navigate, cart.shippingAddress.address, cart.paymentMethod]);
+  }, [navigate, cart.shippingAddress.address, cart.paymentMethod, isAuthenticated]);
 
   const itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
@@ -56,6 +62,10 @@ const PlaceOrderScreen = () => {
       })
     );
   };
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div data-testid="place-order-screen">

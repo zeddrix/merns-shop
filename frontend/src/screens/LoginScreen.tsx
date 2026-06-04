@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { login } from '../features/userSlice';
+import { getRedirectPath } from '../hooks/useRequireAuth';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -18,11 +19,11 @@ const LoginScreen = () => {
   const userLogin = useAppSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  const redirect = location.search ? (location.search.split('=')[1] ?? '/') : '/';
+  const redirect = getRedirectPath(location.search);
 
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect.startsWith('/') ? redirect : `/${redirect}`);
+      navigate(redirect);
     }
   }, [navigate, userInfo, redirect]);
 
