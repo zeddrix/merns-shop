@@ -48,6 +48,6 @@ test.describe('admin users', () => {
   test('non_admin_blocked_from_admin_user_routes', async ({ page }) => {
     await loginAs(page, 'customer');
     await page.goto('/admin/userlist');
-    await expect(page).toHaveURL(/\/login/);
+    await expect(page).toHaveURL(/\/$/);
   });
 });

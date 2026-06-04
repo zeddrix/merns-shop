@@ -12,6 +12,7 @@ interface ProductSliceRootState {
 }
 import { getErrorMessage } from '../utils/getErrorMessage';
 import { logout } from './userSlice';
+import { DEFAULT_NEW_PRODUCT } from '../constants/defaultProduct';
 
 const getAuthConfig = (token: string) => ({
   headers: { Authorization: `Bearer ${token}` }
@@ -163,7 +164,11 @@ export const createProduct = createAsyncThunk(
       const { userLogin } = getState() as ProductSliceRootState;
       const token = userLogin.userInfo?.token;
       if (!token) throw new Error('Not authenticated');
-      const { data } = await axios.post<Product>('/api/products', {}, getAuthConfig(token));
+      const { data } = await axios.post<Product>(
+        '/api/products',
+        DEFAULT_NEW_PRODUCT,
+        getAuthConfig(token)
+      );
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -304,6 +309,8 @@ const productReviewCreateSlice = createSlice({
     builder
       .addCase(createProductReview.pending, (state) => {
         state.loading = true;
+        state.success = false;
+        state.error = undefined;
       })
       .addCase(createProductReview.fulfilled, (state) => {
         state.loading = false;

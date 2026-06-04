@@ -11,6 +11,7 @@ import {
   createProduct,
   productCreateReset
 } from '../features/productSlice';
+import { useRequireAdmin } from '../hooks/useRequireAdmin';
 
 const ProductListScreen = () => {
   const { pageNumber } = useParams<{ pageNumber?: string }>();
@@ -33,13 +34,12 @@ const ProductListScreen = () => {
     product: createdProduct
   } = productCreate;
 
-  const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+  const isAdmin = useRequireAdmin();
 
   useEffect(() => {
     dispatch(productCreateReset());
 
-    if (!userInfo?.isAdmin) {
-      navigate('/login');
+    if (!isAdmin) {
       return;
     }
 
@@ -48,7 +48,7 @@ const ProductListScreen = () => {
     } else {
       dispatch(listProducts({ keyword: '', pageNumber: page }));
     }
-  }, [dispatch, navigate, userInfo, successDelete, successCreate, createdProduct, page]);
+  }, [dispatch, navigate, isAdmin, successDelete, successCreate, createdProduct, page]);
 
   const deleteHandler = (id: string) => {
     if (window.confirm('Are you sure')) {
@@ -59,6 +59,10 @@ const ProductListScreen = () => {
   const createProductHandler = () => {
     dispatch(createProduct());
   };
+
+  if (!isAdmin) {
+    return null;
+  }
 
   return (
     <div data-testid="admin-product-list">

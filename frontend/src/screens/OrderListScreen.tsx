@@ -1,27 +1,29 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listOrders } from '../features/orderSlice';
+import { useRequireAdmin } from '../hooks/useRequireAdmin';
 
 const OrderListScreen = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const orderList = useAppSelector((state) => state.orderList);
   const { loading, error, orders } = orderList;
 
-  const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+  const isAdmin = useRequireAdmin();
 
   useEffect(() => {
-    if (userInfo?.isAdmin) {
+    if (isAdmin) {
       dispatch(listOrders());
-    } else {
-      navigate('/login');
     }
-  }, [dispatch, navigate, userInfo]);
+  }, [dispatch, isAdmin]);
+
+  if (!isAdmin) {
+    return null;
+  }
 
   return (
     <div data-testid="admin-order-list">

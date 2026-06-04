@@ -1,31 +1,33 @@
 import { useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Table, Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listUsers, deleteUser } from '../features/userSlice';
+import { useRequireAdmin } from '../hooks/useRequireAdmin';
 
 const UserListScreen = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
 
   const userList = useAppSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
-  const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+  const isAdmin = useRequireAdmin();
 
   const userDelete = useAppSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
 
   useEffect(() => {
-    if (userInfo?.isAdmin) {
+    if (isAdmin) {
       dispatch(listUsers());
-    } else {
-      navigate('/login');
     }
-  }, [dispatch, location.key, navigate, successDelete, userInfo]);
+  }, [dispatch, location.key, isAdmin, successDelete]);
+
+  if (!isAdmin) {
+    return null;
+  }
 
   const deleteHandler = (id: string) => {
     if (window.confirm('Are you sure')) {

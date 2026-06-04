@@ -47,6 +47,7 @@ test.describe('product reviews', () => {
     await page.locator('[data-testid="review-submit"]').click();
     await expect(page.getByText('Review submitted successfully')).toBeVisible();
 
+    await page.locator('[data-testid="review-rating"]').selectOption('3');
     await page.locator('[data-testid="review-comment"]').fill('Duplicate review attempt');
     await page.locator('[data-testid="review-submit"]').click();
     await expect(page.getByText('Product already reviewed')).toBeVisible();

@@ -21,7 +21,15 @@ test.describe('admin products', () => {
     await page.locator('[data-testid="admin-product-name"]').fill(productName);
     await page.locator('[data-testid="admin-product-price"]').fill('99');
     await page.locator('[data-testid="admin-product-image"]').fill('/images/sample.jpg');
-    await page.locator('[data-testid="admin-product-submit"]').click();
+    await Promise.all([
+      page.waitForResponse(
+        (response) =>
+          response.url().includes(`/api/products/${productId}`) &&
+          response.request().method() === 'PUT' &&
+          response.ok()
+      ),
+      page.locator('[data-testid="admin-product-submit"]').click()
+    ]);
     await page.waitForURL('**/admin/productlist');
 
     const createdProduct = await findProductById(productId as string);
@@ -33,7 +41,15 @@ test.describe('admin products', () => {
 
     await page.goto(`/admin/product/${productId}/edit`);
     await page.locator('[data-testid="admin-product-name"]').fill(updatedName);
-    await page.locator('[data-testid="admin-product-submit"]').click();
+    await Promise.all([
+      page.waitForResponse(
+        (response) =>
+          response.url().includes(`/api/products/${productId}`) &&
+          response.request().method() === 'PUT' &&
+          response.ok()
+      ),
+      page.locator('[data-testid="admin-product-submit"]').click()
+    ]);
     await page.waitForURL('**/admin/productlist');
 
     await page.locator('[data-testid="search-input"]').fill(updatedName);
@@ -59,6 +75,6 @@ test.describe('admin products', () => {
   test('non_admin_blocked_from_admin_product_routes', async ({ page }) => {
     await loginAs(page, 'customer');
     await page.goto('/admin/productlist');
-    await expect(page).toHaveURL(/\/login/);
+    await expect(page).toHaveURL(/\/$/);
   });
 });
