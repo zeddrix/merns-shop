@@ -44,13 +44,41 @@ export const createOrderSchema = z.object({
     country: z.string().min(1)
   }),
   paymentMethod: z.string().min(1),
-  itemsPrice: z.coerce.number().nonnegative(),
-  taxPrice: z.coerce.number().nonnegative(),
-  shippingPrice: z.coerce.number().nonnegative(),
-  totalPrice: z.coerce.number().nonnegative()
+  itemsPrice: z.coerce.number().nonnegative().optional(),
+  taxPrice: z.coerce.number().nonnegative().optional(),
+  shippingPrice: z.coerce.number().nonnegative().optional(),
+  totalPrice: z.coerce.number().nonnegative().optional()
+});
+
+export const payOrderSchema = z.object({
+  id: z.string().min(1),
+  status: z.string().min(1),
+  update_time: z.string().min(1),
+  payer: z.object({
+    email_address: z.string().email()
+  })
+});
+
+export const updateUserAdminSchema = z.object({
+  name: z.string().trim().min(1).optional(),
+  email: z.string().trim().email().optional(),
+  isAdmin: z.boolean().optional()
+});
+
+export const productInputSchema = z.object({
+  name: z.string().trim().min(1),
+  price: z.coerce.number().nonnegative(),
+  image: z.string().min(1),
+  brand: z.string().trim().min(1),
+  category: z.string().trim().min(1),
+  description: z.string().trim().min(1),
+  countInStock: z.coerce.number().int().nonnegative()
 });
 
 export type RegisterUserInput = z.infer<typeof registerUserSchema>;
 export type LoginUserInput = z.infer<typeof loginUserSchema>;
 export type ProductReviewInput = z.infer<typeof productReviewSchema>;
 export type CreateOrderInput = z.infer<typeof createOrderSchema>;
+export type PayOrderInput = z.infer<typeof payOrderSchema>;
+export type UpdateUserAdminInput = z.infer<typeof updateUserAdminSchema>;
+export type ProductInput = z.infer<typeof productInputSchema>;

@@ -9,7 +9,7 @@ import {
 } from '../controllers/orderController.js';
 import { protect, admin } from '../middleware/authMiddleware.js';
 import { validateBody } from '../middleware/validateMiddleware.js';
-import { createOrderSchema } from '../validators/schemas.js';
+import { createOrderSchema, payOrderSchema } from '../validators/schemas.js';
 
 const router = express.Router();
 
@@ -19,7 +19,7 @@ router
   .get(protect, admin, getOrders);
 router.route('/myorders').get(protect, listMyOrders);
 router.route('/:id').get(protect, getOrderById);
-router.route('/:id/pay').put(protect, updateOrderToPaid);
+router.route('/:id/pay').put(protect, validateBody(payOrderSchema), updateOrderToPaid);
 router.route('/:id/deliver').put(protect, admin, updateOrderToDelivered);
 
 export default router;

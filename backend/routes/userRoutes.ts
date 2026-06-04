@@ -14,7 +14,8 @@ import { validateBody } from '../middleware/validateMiddleware.js';
 import {
   loginUserSchema,
   registerUserSchema,
-  updateProfileSchema
+  updateProfileSchema,
+  updateUserAdminSchema
 } from '../validators/schemas.js';
 
 const router = express.Router();
@@ -32,6 +33,6 @@ router
   .route('/:id')
   .delete(protect, admin, deleteUser)
   .get(protect, admin, getUserById)
-  .put(protect, admin, updateUser);
+  .put(protect, admin, validateBody(updateUserAdminSchema), updateUser);
 
 export default router;
