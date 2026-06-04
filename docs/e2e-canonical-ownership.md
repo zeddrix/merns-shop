@@ -7,6 +7,7 @@ This document defines which files own golden-path lifecycle behavior and which f
 | Lifecycle                                 | Owner file                                                               |
 | ----------------------------------------- | ------------------------------------------------------------------------ |
 | Guest purchase (cart → place order)       | `tests/e2e/journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts` |
+| Customer register → profile → my orders   | `tests/e2e/journeys/journey-customer-auth-profile-lifecycle.e2e.test.ts` |
 | Admin product create → catalog visibility | `tests/e2e/journeys/journey-admin-product-lifecycle.e2e.test.ts`         |
 | Admin order fulfillment                   | `tests/e2e/journeys/journey-admin-order-fulfillment.e2e.test.ts`         |
 
@@ -20,7 +21,7 @@ Journey files assert the **single canonical happy path** across domains. They mu
 
 ### Auth & profile
 
-- `tests/e2e/auth/login-register-profile.e2e.test.ts` — login errors, register validation, profile update, my orders link
+- `tests/e2e/auth/login-register-profile.e2e.test.ts` — wrong password, register validation, seeded profile smoke
 
 ### Catalog
 
@@ -54,7 +55,8 @@ Journey files assert the **single canonical happy path** across domains. They mu
 
 | Behavior                                     | Canonical owner                                       | Do NOT duplicate in                                                            |
 | -------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Guest reaches order screen after place order | `journey-guest-purchase-paypal-lifecycle.e2e.test.ts` | `cart-shipping-payment.e2e.test.ts` (keep cart qty / shipping validation only) |
+| Guest reaches order screen after place order | `journey-guest-purchase-paypal-lifecycle.e2e.test.ts`       | `cart-shipping-payment.e2e.test.ts` (keep cart qty / shipping validation only) |
+| Register → profile update → my orders        | `journey-customer-auth-profile-lifecycle.e2e.test.ts`       | `login-register-profile.e2e.test.ts` (keep validation/errors only)             |
 | Admin creates product visible on homepage    | `journey-admin-product-lifecycle.e2e.test.ts`         | `admin-products.e2e.test.ts` (keep edit/delete/validation)                     |
 | Admin opens order list                       | `journey-admin-order-fulfillment.e2e.test.ts`         | `admin-orders.e2e.test.ts` (keep mark-delivered details)                       |
 | 401 on `/api/users/profile` without token    | `api-security-auth.e2e.test.ts`                       | Journey or auth UI files                                                       |

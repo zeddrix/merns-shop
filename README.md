@@ -36,6 +36,11 @@ pnpm test:e2e
 
 PayPal sandbox E2E (opt-in): `PW_RUN_PAYPAL=1 pnpm test:e2e:paypal`
 
+Optional CI PayPal job: set repository variable `ENABLE_PAYPAL_E2E=true` and add secrets
+`PAYPAL_CLIENT_ID`, `PAYPAL_SANDBOX_BUYER_EMAIL`, `PAYPAL_SANDBOX_BUYER_PASSWORD`.
+
+Pre-deploy gate (ISSUE-015): `pnpm verify:full`
+
 ## Deployment
 
 Production uses **MongoDB Atlas M0** and **Render free tier**. Complete modernization and rename the GitHub repo to `merns-shop` before connecting Render — see [`docs/deployment-atlas-render.md`](docs/deployment-atlas-render.md).

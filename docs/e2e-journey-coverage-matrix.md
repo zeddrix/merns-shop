@@ -11,7 +11,7 @@ This matrix tracks **golden-path lifecycles** for Mern's Shop. Each row maps a b
 | MS-01    | Guest catalog browse & search                 | `tests/e2e/journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts` (partial — extends to checkout)       | `tests/e2e/catalog/product-browse-search.e2e.test.ts`   | covered                                             |
 | MS-02    | Guest cart → shipping → payment → place order | `tests/e2e/journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts`                                       | `tests/e2e/checkout/cart-shipping-payment.e2e.test.ts`  | covered                                             |
 | MS-03    | PayPal sandbox paid order (opt-in)            | `tests/e2e/journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts` (extend when sandbox creds available) | `tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts` | partial — sandbox opt-in                            |
-| MS-04    | Customer auth, register, profile              | — (focused owns happy path until journey added)                                                                | `tests/e2e/auth/login-register-profile.e2e.test.ts`     | covered (focused)                                   |
+| MS-04    | Customer auth, register, profile              | `tests/e2e/journeys/journey-customer-auth-profile-lifecycle.e2e.test.ts`                                       | `tests/e2e/auth/login-register-profile.e2e.test.ts`     | covered                                             |
 | MS-05    | Product reviews lifecycle                     | —                                                                                                              | `tests/e2e/catalog/product-reviews.e2e.test.ts`         | covered (focused)                                   |
 | MS-06    | Admin product CRUD → storefront visibility    | `tests/e2e/journeys/journey-admin-product-lifecycle.e2e.test.ts`                                               | `tests/e2e/admin/admin-products.e2e.test.ts`            | covered                                             |
 | MS-07    | Admin order list & fulfillment                | `tests/e2e/journeys/journey-admin-order-fulfillment.e2e.test.ts`                                               | `tests/e2e/admin/admin-orders.e2e.test.ts`              | covered                                             |
@@ -35,6 +35,7 @@ Run in this order when validating journey coverage:
 ```bash
 pnpm quality
 pnpm test:e2e:one -- tests/e2e/smoke/app-boot.e2e.test.ts
+pnpm test:e2e:one -- tests/e2e/journeys/journey-customer-auth-profile-lifecycle.e2e.test.ts
 pnpm test:e2e:one -- tests/e2e/journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts
 pnpm test:e2e:one -- tests/e2e/journeys/journey-admin-product-lifecycle.e2e.test.ts
 pnpm test:e2e:one -- tests/e2e/journeys/journey-admin-order-fulfillment.e2e.test.ts
@@ -53,6 +54,5 @@ pnpm test:e2e:one -- tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts
 | Gap   | Target                                                                              | Notes                                                                                         |
 | ----- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | MS-03 | Extend `journey-guest-purchase-paypal-lifecycle` with real PayPal paid confirmation | Blocked on stable sandbox automation; `paypal-sandbox-payment.e2e.test.ts` is opt-in          |
-| MS-04 | Add `journey-customer-auth-profile-lifecycle.e2e.test.ts`                           | Optional when focused file grows; move register → profile → my orders golden path to journeys |
 
 When a gap is closed, update **Current Status** to `covered` and remove the row from **Open Follow-up Gaps**.
