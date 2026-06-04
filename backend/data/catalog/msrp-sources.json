@@ -1,0 +1,35 @@
+{
+  "description": "Reference MSRP sources used when building catalog listPrice values. Not served to clients.",
+  "sources": [
+    {
+      "brand": "Apple",
+      "reference": "https://www.apple.com/shop/buy-iphone",
+      "notes": "Current and archived iPhone/iPad/Mac pricing"
+    },
+    {
+      "brand": "Samsung",
+      "reference": "https://www.samsung.com/us/smartphones/",
+      "notes": "Galaxy S/Z/A series launch prices"
+    },
+    {
+      "brand": "Sony",
+      "reference": "https://electronics.sony.com/",
+      "notes": "PlayStation, Bravia, audio MSRP"
+    },
+    {
+      "brand": "Vivo",
+      "reference": "https://www.vivo.com/",
+      "notes": "X/V/Y series regional launch pricing"
+    },
+    {
+      "brand": "Xiaomi",
+      "reference": "https://www.mi.com/",
+      "notes": "Mi/Redmi/Poco global pricing"
+    },
+    {
+      "brand": "Historical",
+      "reference": "https://en.wikipedia.org/wiki/List_of_iPhone_models",
+      "notes": "Launch price history for older iPhone generations"
+    }
+  ]
+}

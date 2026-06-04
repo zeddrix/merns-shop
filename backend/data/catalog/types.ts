@@ -1,0 +1,59 @@
+export type PricingCategory =
+  | 'Phones'
+  | 'Tablets'
+  | 'Laptops'
+  | 'Wearables'
+  | 'TVs'
+  | 'Consoles'
+  | 'Audio';
+
+export interface CatalogVariantDraft {
+  skuSuffix: string;
+  label: string;
+  listPrice: number;
+  storageGb?: number;
+  screenInches?: number;
+  ramGb?: number;
+  countInStock?: number;
+  image?: string;
+}
+
+export interface CatalogParentDraft {
+  name: string;
+  modelKey: string;
+  brand: string;
+  category: string;
+  subcategory: string;
+  pricingCategory: PricingCategory;
+  releaseYear: number;
+  description: string;
+  image: string;
+  rating?: number;
+  numReviews?: number;
+  variants: CatalogVariantDraft[];
+}
+
+export interface SeedProduct {
+  name: string;
+  image: string;
+  description: string;
+  brand: string;
+  category: string;
+  subcategory: string;
+  modelKey: string;
+  releaseYear: number;
+  condition: string;
+  rating: number;
+  numReviews: number;
+  variants: Array<{
+    sku: string;
+    label: string;
+    storageGb?: number;
+    screenInches?: number;
+    ramGb?: number;
+    listPrice: number;
+    price: number;
+    countInStock: number;
+    image?: string;
+  }>;
+}
