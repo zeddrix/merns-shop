@@ -41,14 +41,17 @@ export async function openProductByExactName(page: Page, name: string): Promise<
 }
 
 export async function selectVariantAndAddToCart(page: Page): Promise<void> {
-  const selectedCount = await page
-    .locator('input[data-testid^="product-variant-"]:checked')
-    .count();
-  if (selectedCount === 0) {
-    const inStockVariant = page.locator('input[data-testid^="product-variant-"]:not(:disabled)');
-    if ((await inStockVariant.count()) > 0) {
-      await inStockVariant.first().check();
+  const variantPicker = page.locator('[data-testid="product-variant-picker"]');
+  if ((await variantPicker.count()) > 0) {
+    const selectedCount = await page
+      .locator('input[data-testid^="product-variant-"]:checked')
+      .count();
+    if (selectedCount === 0) {
+      const inStockVariant = page.locator('input[data-testid^="product-variant-"]:not(:disabled)');
+      await inStockVariant.first().click();
+      await expect(page.locator('input[data-testid^="product-variant-"]:checked')).toHaveCount(1);
     }
+    await expect(page.locator('[data-testid="product-variant-error"]')).toHaveCount(0);
   }
   await Promise.all([
     page.waitForURL(/\/cart\//),
