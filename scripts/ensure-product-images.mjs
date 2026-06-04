@@ -1,34 +1,73 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
+import {
+  MIN_IMAGE_BYTES,
+  MIN_IMAGE_DIMENSION,
+  validateCatalogImageFile
+} from './catalog-image-quality.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const imagesDir = path.join(__dirname, '../frontend/public/images');
+const catalogDir = path.join(imagesDir, 'catalog');
 
-/** Minimal valid 1x1 JPEG (gray pixel). */
-const minimalJpeg = Buffer.from(
-  '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwAooooA/9k=',
-  'base64'
-);
-
-const filenames = [
-  'airpods.jpg',
-  'phone.jpg',
-  'camera.jpg',
-  'playstation.jpg',
-  'mouse.jpg',
-  'alexa.jpg',
-  'sample.jpg'
+const legacyFiles = [
+  { name: 'airpods.jpg', catalogHint: 'apple/airpods-pro-2.webp', color: '#888888' },
+  { name: 'phone.jpg', catalogHint: 'apple/iphone-15-pro.webp', color: '#666666' },
+  { name: 'camera.jpg', catalogHint: 'sony/ps5.webp', color: '#444444' },
+  { name: 'playstation.jpg', catalogHint: 'sony/ps5.webp', color: '#003087' },
+  { name: 'mouse.jpg', catalogHint: 'apple/macbook-air-m2.webp', color: '#555555' },
+  { name: 'alexa.jpg', catalogHint: 'amazon/echo-dot-3.webp', color: '#333333' },
+  { name: 'sample.jpg', catalogHint: 'apple/iphone-15-pro.webp', color: '#777777' }
 ];
+
+const writeFromCatalog = async (catalogRelative, targetPath) => {
+  const source = path.join(catalogDir, catalogRelative);
+  if (fs.existsSync(source)) {
+    const jpeg = await sharp(source).jpeg({ quality: 85 }).toBuffer();
+    fs.writeFileSync(targetPath, jpeg);
+    return true;
+  }
+  return false;
+};
+
+const writeSolid = async (color, targetPath) => {
+  const jpeg = await sharp({
+    create: {
+      width: MIN_IMAGE_DIMENSION,
+      height: MIN_IMAGE_DIMENSION,
+      channels: 3,
+      background: color
+    }
+  })
+    .jpeg({ quality: 90 })
+    .toBuffer();
+  fs.writeFileSync(targetPath, jpeg);
+};
 
 fs.mkdirSync(imagesDir, { recursive: true });
 
-for (const name of filenames) {
-  const filePath = path.join(imagesDir, name);
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, minimalJpeg);
-    console.log(`Created ${filePath}`);
+let written = 0;
+
+for (const file of legacyFiles) {
+  const filePath = path.join(imagesDir, file.name);
+  let valid = false;
+  if (fs.existsSync(filePath)) {
+    try {
+      const check = await validateCatalogImageFile(filePath);
+      valid = check.ok;
+    } catch {
+      valid = false;
+    }
   }
+  if (valid) continue;
+
+  const fromCatalog = await writeFromCatalog(file.catalogHint, filePath);
+  if (!fromCatalog) {
+    await writeSolid(file.color, filePath);
+  }
+  written += 1;
 }
 
-console.log('Product images ready in frontend/public/images');
+console.log(`Legacy product images ready (${written} written, min ${MIN_IMAGE_BYTES} bytes).`);
