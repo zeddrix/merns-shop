@@ -21,4 +21,12 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="product-add-cart"]')).toBeVisible();
     await expect(page.locator('[data-testid="product-qty"]')).toBeVisible();
   });
+
+  test('homepage_shows_carousel_and_pagination', async ({ page }) => {
+    await expect(page.locator('[data-testid="product-carousel"]')).toBeVisible();
+    await expect(page.locator('[data-testid="pagination"]')).toBeVisible();
+    await page.locator('[data-testid="pagination-page-2"]').click();
+    await expect(page).toHaveURL(/\/page\/2/);
+    await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
+  });
 });

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Table, Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
@@ -9,6 +9,7 @@ import { listUsers, deleteUser } from '../features/userSlice';
 const UserListScreen = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const userList = useAppSelector((state) => state.userList);
   const { loading, error, users } = userList;
@@ -24,7 +25,7 @@ const UserListScreen = () => {
     } else {
       navigate('/login');
     }
-  }, [dispatch, navigate, successDelete, userInfo]);
+  }, [dispatch, location.key, navigate, successDelete, userInfo]);
 
   const deleteHandler = (id: string) => {
     if (window.confirm('Are you sure')) {
