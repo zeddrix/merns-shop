@@ -8,15 +8,7 @@ export async function loginAs(
 ): Promise<void> {
   const creds = TEST_USERS[user];
   await page.goto('/login');
-  await page.locator('[data-testid="login-email"]').fill(creds.email);
-  await page.locator('[data-testid="login-password"]').fill(creds.password);
-  await Promise.all([
-    page.waitForResponse(
-      (response) => response.url().includes('/api/users/login') && response.status() === 200
-    ),
-    page.locator('[data-testid="login-submit"]').click()
-  ]);
-  await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+  await loginWithCredentials(page, creds.email, creds.password);
 }
 
 export async function loginAsAdmin(page: Page): Promise<void> {
@@ -75,9 +67,16 @@ export async function createPaidOrderViaApi(
   user: keyof typeof TEST_USERS = 'customer'
 ): Promise<string> {
   const creds = TEST_USERS[user];
+  return createPaidOrderForCredentials(page, creds.email, creds.password);
+}
 
+export async function createPaidOrderForCredentials(
+  page: Page,
+  email: string,
+  password: string
+): Promise<string> {
   const loginResponse = await page.request.post('/api/users/login', {
-    data: { email: creds.email, password: creds.password }
+    data: { email, password }
   });
   expect(loginResponse.ok()).toBeTruthy();
   const { token } = (await loginResponse.json()) as ApiLoginResponse;
@@ -122,10 +121,26 @@ export async function createPaidOrderViaApi(
       id: 'e2e-test-payment',
       status: 'COMPLETED',
       update_time: new Date().toISOString(),
-      payer: { email_address: creds.email }
+      payer: { email_address: email }
     }
   });
   expect(payResponse.ok()).toBeTruthy();
 
   return order._id;
+}
+
+export async function loginWithCredentials(
+  page: Page,
+  email: string,
+  password: string
+): Promise<void> {
+  await page.locator('[data-testid="login-email"]').fill(email);
+  await page.locator('[data-testid="login-password"]').fill(password);
+  await Promise.all([
+    page.waitForResponse(
+      (response) => response.url().includes('/api/users/login') && response.status() === 200
+    ),
+    page.locator('[data-testid="login-submit"]').click()
+  ]);
+  await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
 }
