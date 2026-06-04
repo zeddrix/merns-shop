@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { loginAs, loginAsAdmin } from '../fixtures/test-helpers';
+import { MOBILE_VIEWPORT } from '../fixtures/viewports';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findProductById } from '../fixtures/mongo-helpers';
 
@@ -101,5 +102,24 @@ test.describe('admin products', () => {
     await loginAs(page, 'customer');
     await page.goto('/admin/productlist');
     await expect(page).toHaveURL(/\/$/);
+  });
+
+  test('admin_product_list_scrollable_table', async ({ page }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await loginAsAdmin(page);
+    await page.goto('/admin/productlist');
+    await expect(page.locator('[data-testid="admin-product-list"]')).toBeVisible();
+
+    await page.locator('[data-testid^="admin-product-edit-"]').first().click();
+    await expect(page.locator('[data-testid="admin-product-edit"]')).toBeVisible();
+
+    const scrollable = await page
+      .locator('[data-testid="admin-product-variants"]')
+      .evaluate((table: HTMLTableElement) => {
+        const wrapper = table.closest('.table-responsive');
+        const target = wrapper ?? table;
+        return target.scrollWidth > target.clientWidth;
+      });
+    expect(scrollable).toBe(true);
   });
 });

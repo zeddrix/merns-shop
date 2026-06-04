@@ -2,12 +2,33 @@ import type { Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { TEST_USERS } from './test-users';
 
+/** Expands the collapsed navbar on small viewports so header links and search are visible. */
+export async function openMobileNavIfNeeded(page: Page): Promise<void> {
+  const toggle = page.locator('[data-testid="navbar-toggle"]');
+  if ((await toggle.count()) > 0 && (await toggle.isVisible())) {
+    const search = page.locator('[data-testid="search-input"]');
+    if (!(await search.isVisible())) {
+      await toggle.click();
+      await expect(search).toBeVisible();
+    }
+  }
+}
+
+/** True when the document does not scroll horizontally (common mobile layout break). */
+export async function assertNoHorizontalOverflow(page: Page): Promise<void> {
+  const overflows = await page.evaluate(() => {
+    const doc = document.documentElement;
+    return doc.scrollWidth > doc.clientWidth + 1;
+  });
+  expect(overflows).toBe(false);
+}
+
 /** Home catalog loaded with carousel, products, and no API error banners. */
 export async function assertHomeCatalogHealthy(page: Page): Promise<void> {
   await expect(page.locator('[data-testid="home-carousel-error"]')).toHaveCount(0);
   await expect(page.locator('[data-testid="home-products-error"]')).toHaveCount(0);
   await expect(page.locator('[data-testid="product-carousel"]')).toBeVisible();
-  await page.locator('[data-testid="product-list"]').waitFor({ state: 'visible' });
+  await page.locator('[data-testid="product-list"]').first().waitFor({ state: 'visible' });
   await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
 }
 
@@ -33,10 +54,14 @@ export async function logout(page: Page): Promise<void> {
 
 /** Search and open a product PDP by exact catalog name (avoids partial matches like Pro vs Pro Max). */
 export async function openProductByExactName(page: Page, name: string): Promise<void> {
+  await openMobileNavIfNeeded(page);
   await page.locator('[data-testid="search-input"]').fill(name);
   await page.locator('[data-testid="search-submit"]').click();
-  await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
-  await page.getByRole('link', { name, exact: true }).first().click();
+  await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
+  await Promise.all([
+    page.waitForURL(/\/product\//),
+    page.getByRole('link', { name, exact: true }).first().click()
+  ]);
   await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
 }
 
@@ -47,16 +72,18 @@ export async function selectVariantAndAddToCart(page: Page): Promise<void> {
       .locator('input[data-testid^="product-variant-"]:checked')
       .count();
     if (selectedCount === 0) {
-      const inStockVariant = page.locator('input[data-testid^="product-variant-"]:not(:disabled)');
-      await inStockVariant.first().click();
-      await expect(page.locator('input[data-testid^="product-variant-"]:checked')).toHaveCount(1);
+      const inStockVariant = page
+        .locator('input[data-testid^="product-variant-"]:not(:disabled)')
+        .first();
+      await inStockVariant.scrollIntoViewIfNeeded();
+      await inStockVariant.check();
+      await expect(inStockVariant).toBeChecked();
     }
     await expect(page.locator('[data-testid="product-variant-error"]')).toHaveCount(0);
   }
-  await Promise.all([
-    page.waitForURL(/\/cart\//),
-    page.locator('[data-testid="product-add-cart"]').click()
-  ]);
+  const addButton = page.locator('[data-testid="product-add-cart"]');
+  await addButton.scrollIntoViewIfNeeded();
+  await Promise.all([page.waitForURL(/\/cart\//), addButton.click()]);
   await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
 }
 
@@ -92,12 +119,16 @@ export async function addFirstProductToCart(page: Page): Promise<void> {
 
 export async function completeShippingStep(page: Page): Promise<void> {
   await page.goto('/shipping');
+  await expect(page.locator('[data-testid="shipping-heading"]')).toBeVisible();
   await page.locator('[data-testid="shipping-address"]').fill('123 Test St');
   await page.locator('[data-testid="shipping-city"]').fill('Testville');
   await page.locator('[data-testid="shipping-postal-code"]').fill('12345');
   await page.locator('[data-testid="shipping-country"]').fill('United States');
-  await page.locator('[data-testid="shipping-submit"]').click();
-  await page.locator('[data-testid="payment-heading"]').waitFor({ state: 'visible' });
+  await Promise.all([
+    page.waitForURL(/\/payment/),
+    page.locator('[data-testid="shipping-submit"]').click()
+  ]);
+  await expect(page.locator('[data-testid="payment-heading"]')).toBeVisible();
 }
 
 export async function completePaymentStep(page: Page): Promise<void> {

@@ -1,3 +1,4 @@
+/** Mobile viewport cart/checkout journeys: tests/e2e/misc/responsive-layout.e2e.test.ts */
 import { test, expect } from '@playwright/test';
 import {
   addFirstProductToCart,
@@ -35,8 +36,7 @@ test.describe('checkout cart shipping payment', () => {
     await addFirstProductToCart(page);
     await page.locator('[data-testid="nav-cart"]').click();
     const item = page.locator('[data-testid^="cart-item-"]').first();
-    const productId = (await item.getAttribute('data-testid'))?.replace('cart-item-', '');
-    await page.locator(`[data-testid="cart-remove-${productId}"]`).click();
+    await item.locator('[data-testid^="cart-remove-"]').click();
     await expect(page.locator('[data-testid="cart-empty"]')).toBeVisible();
   });
 

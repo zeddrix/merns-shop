@@ -4,6 +4,7 @@ import {
   openProductByExactName,
   selectVariantAndAddToCart
 } from '../fixtures/test-helpers';
+import { MOBILE_VIEWPORT } from '../fixtures/viewports';
 
 const IPHONE_15_PRO = 'iPhone 15 Pro';
 
@@ -94,8 +95,8 @@ test.describe('catalog browse and search', () => {
     await selectVariantAndAddToCart(page);
 
     await expect(page.locator('[data-testid^="cart-item-"]')).toHaveCount(2);
-    await expect(page.getByText('128GB')).toBeVisible();
-    await expect(page.getByText('256GB')).toBeVisible();
+    await expect(page.locator('[data-testid^="cart-item-"]').nth(0)).toContainText('128GB');
+    await expect(page.locator('[data-testid^="cart-item-"]').nth(1)).toContainText('256GB');
   });
 
   test('homepage_shows_carousel_and_pagination', async ({ page }) => {
@@ -119,5 +120,23 @@ test.describe('catalog browse and search', () => {
     await page.locator('[data-testid="search-input"]').fill('zzzz-no-match-product-xyz');
     await page.locator('[data-testid="search-submit"]').click();
     await expect(page.locator('[data-testid="search-empty"]')).toBeVisible();
+  });
+
+  test('mobile_search_results_pagination', async ({ page }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+
+    await page.locator('[data-testid="navbar-toggle"]').click();
+    await page.locator('[data-testid="search-input"]').fill('Phone');
+    await page.locator('[data-testid="search-submit"]').click();
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
+
+    const pagination = page.locator('[data-testid="pagination"]');
+    if ((await pagination.count()) > 0) {
+      await page.locator('[data-testid="pagination-page-2"]').click();
+      await expect(page).toHaveURL(/\/page\/2|pageNumber/);
+    }
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
   });
 });
