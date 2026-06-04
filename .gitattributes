@@ -1,0 +1,2 @@
+# Optional: enable Git LFS for catalog images when git-lfs is installed, e.g.:
+# frontend/public/images/catalog/** filter=lfs diff=lfs merge=lfs -text
