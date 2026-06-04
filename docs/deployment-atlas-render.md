@@ -47,8 +47,8 @@ E2E uses sandbox buyer credentials in `.env.test` only (`PAYPAL_SANDBOX_BUYER_EM
 
 1. GitHub → rename repo to **`merns-shop`** (ISSUE-015).
 2. Render → **New Web Service** → connect **`merns-shop`** repo.
-3. **Build command:** `pnpm install && pnpm build`
-4. **Start command:** `pnpm start`
+3. **Build command:** `pnpm install && pnpm build` (compiles frontend to `frontend/dist` and backend to `dist/backend/`)
+4. **Start command:** `pnpm start` (runs `node dist/backend/server.js` from repo root)
 5. **Instance type:** Free
 6. Environment variables:
 
@@ -61,7 +61,7 @@ E2E uses sandbox buyer credentials in `.env.test` only (`PAYPAL_SANDBOX_BUYER_EM
 
 7. Deploy → open `https://<service>.onrender.com`
 8. **Cold start:** free tier sleeps after ~15 min idle; first request may take 30–60s.
-9. **Post-deploy smoke:** homepage, login, admin product list, checkout to order screen.
+9. **Post-deploy smoke:** homepage shows **MERN's Shop**, login, admin product list, checkout to order screen.
 10. **Uploads caveat:** Render free tier has ephemeral disk — `/uploads` files are lost on redeploy. Re-seed or use external storage for production images.
 
 Optional: use [`render.yaml`](../render.yaml) Blueprint at repo root.
@@ -92,6 +92,7 @@ pnpm db:seed
 | ---------------------------- | ------------------------------------------------------------------------------------ |
 | Atlas connection timeout     | Check Network Access IP allowlist; verify URI encoding for special chars in password |
 | Render build fails on `pnpm` | Ensure `pnpm-workspace.yaml` committed; Node 22 in Render settings                   |
+| Render start fails           | Run from repo root; confirm `dist/backend/server.js` exists after `pnpm build`       |
 | Blank page in production     | Confirm `pnpm build` outputs `frontend/dist`; Express serves `frontend/dist`         |
 | PayPal buttons missing       | Set `PAYPAL_CLIENT_ID` on Render; check browser console for SDK errors               |
 | 401 on admin routes          | Re-login; verify `JWT_SECRET` unchanged between deploys                              |
@@ -101,9 +102,9 @@ pnpm db:seed
 
 ## ISSUE-015 — Repo rename checklist
 
-1. All tests green + `pnpm quality` clean — run `pnpm verify:full` for the full gate
+1. On **Node 22**, run the full pre-deploy gate: `pnpm verify:full` (format, quality, unit, integration, build, E2E)
 2. GitHub → Settings → rename **`beamazedd-shop`** → **`merns-shop`**
 3. Local: `git remote set-url origin git@github.com:zeddrix/merns-shop.git`
 4. Optionally rename local folder to `merns-shop`
-5. Render → connect renamed repo → redeploy
-6. Run post-deploy smoke from Part C
+5. Render → connect renamed repo → redeploy (build + `pnpm start` as in Part C)
+6. Post-deploy smoke: homepage header/footer show **MERN's Shop**, login works, admin product list loads, checkout reaches order screen
