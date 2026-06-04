@@ -38,7 +38,8 @@
     "test:e2e:paypal": "PW_WORKERS=1 playwright test tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts",
     "test:e2e:journeys": "PW_WORKERS=1 playwright test tests/e2e/journeys",
     "test:e2e:ui": "playwright test --ui",
-    "verify": "pnpm format:check && pnpm quality:fast && pnpm test:unit && pnpm test:integration && pnpm build"
+    "verify": "pnpm format:check && pnpm quality:fast && pnpm test:unit && pnpm test:integration && pnpm build",
+    "verify:full": "bash scripts/pre-deploy-verify.sh"
   },
   "repository": {
     "type": "git",
