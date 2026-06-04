@@ -9,10 +9,11 @@ import { TEST_USERS } from '../fixtures/test-users';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { completePayPalSandboxPayment } from '../fixtures/paypal-helpers';
 import { findOrderById } from '../fixtures/mongo-helpers';
+import { shouldRunPayPalE2e, payPalSkipReason } from '../fixtures/paypal-env';
 
 test.describe('journey guest purchase lifecycle', () => {
-  test.beforeEach(async () => {
-    await resetE2eDatabase();
+  test.beforeEach(async ({ context }) => {
+    await resetE2eDatabase(context);
   });
 
   test('guest_completes_checkout_after_login_prompt', async ({ page }) => {
@@ -38,10 +39,7 @@ test.describe('journey guest purchase lifecycle', () => {
   });
 
   test('guest_completes_paypal_payment_when_opt_in', async ({ page }) => {
-    test.skip(
-      process.env.PW_RUN_PAYPAL !== '1',
-      'Set PW_RUN_PAYPAL=1 with PayPal sandbox buyer credentials'
-    );
+    test.skip(!shouldRunPayPalE2e(), payPalSkipReason);
 
     await addFirstProductToCart(page);
     await page.locator('[data-testid="nav-cart"]').click();
@@ -49,7 +47,12 @@ test.describe('journey guest purchase lifecycle', () => {
     await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
     await completeShippingStep(page);
     await completePaymentStep(page);
-    await page.locator('[data-testid="place-order-submit"]').click();
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/api/orders') && response.status() === 201
+      ),
+      page.locator('[data-testid="place-order-submit"]').click()
+    ]);
     await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
 
     const orderId = page.url().split('/order/')[1]?.split(/[/?#]/)[0];
