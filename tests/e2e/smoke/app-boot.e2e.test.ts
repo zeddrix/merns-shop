@@ -14,5 +14,12 @@ test.describe('smoke app boot', () => {
 
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
     await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
+
+    const productImage = page.locator('[data-testid^="product-card-"] img').first();
+    await expect(productImage).toHaveAttribute('src', /\/images\//);
+    const loaded = await productImage.evaluate(
+      (img: HTMLImageElement) => img.complete && img.naturalWidth > 0
+    );
+    expect(loaded).toBe(true);
   });
 });

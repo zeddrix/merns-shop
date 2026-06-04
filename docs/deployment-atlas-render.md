@@ -62,7 +62,7 @@ E2E uses sandbox buyer credentials in `.env.test` only (`PAYPAL_SANDBOX_BUYER_EM
 7. Deploy → open `https://<service>.onrender.com`
 8. **Cold start:** free tier sleeps after ~15 min idle; first request may take 30–60s.
 9. **Post-deploy smoke:** homepage shows **MERN's Shop**, login, admin product list, checkout to order screen.
-10. **Uploads caveat:** Render free tier has ephemeral disk — `/uploads` files are lost on redeploy. Re-seed or use external storage for production images.
+10. **Product images:** Bundled under `frontend/public/images` and served from `frontend/dist/images` after `pnpm build` — redeploy-safe (no disk uploads).
 
 Optional: use [`render.yaml`](../render.yaml) Blueprint at repo root.
 
@@ -88,15 +88,15 @@ pnpm db:seed
 
 ## Part E — Troubleshooting
 
-| Symptom                      | Fix                                                                                  |
-| ---------------------------- | ------------------------------------------------------------------------------------ |
-| Atlas connection timeout     | Check Network Access IP allowlist; verify URI encoding for special chars in password |
-| Render build fails on `pnpm` | Ensure `pnpm-workspace.yaml` committed; Node 22 in Render settings                   |
-| Render start fails           | Run from repo root; confirm `dist/backend/server.js` exists after `pnpm build`       |
-| Blank page in production     | Confirm `pnpm build` outputs `frontend/dist`; Express serves `frontend/dist`         |
-| PayPal buttons missing       | Set `PAYPAL_CLIENT_ID` on Render; check browser console for SDK errors               |
-| 401 on admin routes          | Re-login; verify `JWT_SECRET` unchanged between deploys                              |
-| Stale product images         | Re-run seed or upload images again after redeploy                                    |
+| Symptom                      | Fix                                                                                                                     |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Atlas connection timeout     | Check Network Access IP allowlist; verify URI encoding for special chars in password                                    |
+| Render build fails on `pnpm` | Ensure `pnpm-workspace.yaml` committed; Node 22 in Render settings                                                      |
+| Render start fails           | Run from repo root; confirm `dist/backend/server.js` exists after `pnpm build`                                          |
+| Blank page in production     | Confirm `pnpm build` outputs `frontend/dist`; Express serves `frontend/dist`                                            |
+| PayPal buttons missing       | Set `PAYPAL_CLIENT_ID` on Render; check browser console for SDK errors                                                  |
+| 401 on admin routes          | Re-login; verify `JWT_SECRET` unchanged between deploys                                                                 |
+| Broken product images        | Ensure `frontend/public/images` assets exist; run `node scripts/ensure-product-images.mjs`; re-seed DB if paths changed |
 
 ---
 

@@ -46,7 +46,7 @@
 
 ### 6. Test upload and static SPA fallback (where applicable)
 
-- `tests/integration/api/upload-auth.integration.test.ts` — multer upload requires admin auth
+- `tests/integration/api/upload-auth.integration.test.ts` — legacy upload route returns 404
 - `tests/integration/api/spa-fallback.integration.test.ts` — non-API routes serve frontend index in production mode
 
 ### 7. Test data validation across layers

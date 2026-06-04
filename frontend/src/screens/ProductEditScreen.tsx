@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
@@ -19,7 +18,6 @@ const ProductEditScreen = () => {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
-  const [uploading, setUploading] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -45,30 +43,6 @@ const ProductEditScreen = () => {
       setDescription(product.description);
     }
   }, [dispatch, navigate, productId, product, successUpdate]);
-
-  const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const formData = new FormData();
-    formData.append('image', file);
-    setUploading(true);
-
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      };
-
-      const { data } = await axios.post<string>('/api/upload', formData, config);
-
-      setImage(data);
-      setUploading(false);
-    } catch (uploadError) {
-      console.error(uploadError);
-      setUploading(false);
-    }
-  };
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
@@ -133,20 +107,17 @@ const ProductEditScreen = () => {
             </Form.Group>
 
             <Form.Group controlId="image">
-              <Form.Label>Image</Form.Label>
+              <Form.Label>Image path</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter image url"
+                placeholder="/images/phone.jpg"
                 value={image}
                 data-testid="admin-product-image"
                 onChange={(e) => setImage(e.target.value)}
               />
-              <Form.Control
-                type="file"
-                data-testid="admin-product-image-file"
-                onChange={uploadFileHandler}
-              />
-              {uploading && <Loader />}
+              <Form.Text className="text-muted">
+                Use a bundled path under /images/ (see frontend/public/images).
+              </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="brand">
@@ -155,6 +126,7 @@ const ProductEditScreen = () => {
                 type="text"
                 placeholder="Enter brand"
                 value={brand}
+                data-testid="admin-product-brand"
                 onChange={(e) => setBrand(e.target.value)}
               />
             </Form.Group>
@@ -165,6 +137,7 @@ const ProductEditScreen = () => {
                 type="number"
                 placeholder="Enter countInStock"
                 value={countInStock}
+                data-testid="admin-product-count"
                 onChange={(e) => setCountInStock(Number(e.target.value))}
               />
             </Form.Group>
@@ -175,6 +148,7 @@ const ProductEditScreen = () => {
                 type="text"
                 placeholder="Enter category"
                 value={category}
+                data-testid="admin-product-category"
                 onChange={(e) => setCategory(e.target.value)}
               />
             </Form.Group>
@@ -185,6 +159,7 @@ const ProductEditScreen = () => {
                 type="text"
                 placeholder="Enter description"
                 value={description}
+                data-testid="admin-product-description"
                 onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
