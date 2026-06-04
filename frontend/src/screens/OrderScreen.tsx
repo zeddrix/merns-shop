@@ -5,8 +5,9 @@ import {
   PayPalButtons,
   type PayPalButtonsComponentProps
 } from '@paypal/react-paypal-js';
-import { Link, useParams } from 'react-router-dom';
-import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { Row, Col, ListGroup, Card, Button } from 'react-bootstrap';
+import OrderLineItem from '../components/OrderLineItem';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
@@ -122,7 +123,7 @@ const OrderScreen = () => {
       <SeoPrivateMeta canonicalPath={`/order/${displayOrder._id}`} />
       <h1 data-testid="order-heading">Order {displayOrder._id}</h1>
       <Row>
-        <Col md={8}>
+        <Col xs={12} lg={8}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Shipping</h2>
@@ -171,18 +172,8 @@ const OrderScreen = () => {
               ) : (
                 <ListGroup variant="flush">
                   {displayOrder.orderItems.map((item) => (
-                    <ListGroup.Item key={item.product}>
-                      <Row>
-                        <Col md={1}>
-                          <Image src={item.image} alt={item.name} fluid rounded />
-                        </Col>
-                        <Col>
-                          <Link to={`/product/${item.product}`}>{item.name}</Link>
-                        </Col>
-                        <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
-                        </Col>
-                      </Row>
+                    <ListGroup.Item key={`${item.product}-${item.name}`}>
+                      <OrderLineItem item={item} />
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
@@ -249,7 +240,7 @@ const OrderScreen = () => {
                 <ListGroup.Item>
                   <Button
                     type="button"
-                    className="btn-block"
+                    className="w-100 btn-cta"
                     data-testid="order-deliver"
                     onClick={deliverHandler}
                   >

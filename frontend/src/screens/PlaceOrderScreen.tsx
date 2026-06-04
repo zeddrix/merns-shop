@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Button, Row, Col, ListGroup, Card } from 'react-bootstrap';
+import OrderLineItem from '../components/OrderLineItem';
+import { cartLineKey } from '../features/cartSlice';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
@@ -75,7 +77,7 @@ const PlaceOrderScreen = () => {
       <SeoPrivateMeta canonicalPath="/placeorder" />
       <CheckoutSteps step1 step2 step3 step4 redirectPath={redirectPath} />
       <Row>
-        <Col md={8}>
+        <Col xs={12} lg={8}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Shipping</h2>
@@ -99,18 +101,8 @@ const PlaceOrderScreen = () => {
               ) : (
                 <ListGroup variant="flush">
                   {cart.cartItems.map((item) => (
-                    <ListGroup.Item key={item.product}>
-                      <Row>
-                        <Col md={1}>
-                          <Image src={item.image} alt={item.name} fluid rounded />
-                        </Col>
-                        <Col>
-                          <Link to={`/product/${item.product}`}>{item.name}</Link>
-                        </Col>
-                        <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
-                        </Col>
-                      </Row>
+                    <ListGroup.Item key={cartLineKey(item.product, item.variantSku)}>
+                      <OrderLineItem item={item} />
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
@@ -118,7 +110,7 @@ const PlaceOrderScreen = () => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col md={4}>
+        <Col xs={12} lg={4} className="mt-3 mt-lg-0">
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
@@ -154,7 +146,7 @@ const PlaceOrderScreen = () => {
               <ListGroup.Item>
                 <Button
                   type="button"
-                  className="btn-block"
+                  className="w-100 btn-cta"
                   data-testid="place-order-submit"
                   disabled={cart.cartItems.length === 0}
                   onClick={placeOrderHandler}

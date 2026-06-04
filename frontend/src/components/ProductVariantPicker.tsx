@@ -19,8 +19,10 @@ const ProductVariantPicker = ({ variants, selectedSku, onSelect }: ProductVarian
             <Form.Check.Input
               type="radio"
               name="variant"
+              value={variant.sku}
               checked={selectedSku === variant.sku}
               onChange={() => onSelect(variant.sku)}
+              onClick={() => onSelect(variant.sku)}
               disabled={variant.countInStock === 0}
               data-testid={`product-variant-${variant.sku}`}
             />
