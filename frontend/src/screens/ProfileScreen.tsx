@@ -162,7 +162,7 @@ const ProfileScreen = () => {
                       <i className="fas fa-times" style={{ color: 'red' }}></i>
                     )}
                   </td>
-                  <td>
+                  <td data-testid={`my-order-delivered-${order._id}`}>
                     {order.isDelivered && order.deliveredAt ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
