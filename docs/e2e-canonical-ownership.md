@@ -43,6 +43,12 @@ Journey files assert the **single canonical happy path** across domains. They mu
 
 - `tests/e2e/misc/api-security-auth.e2e.test.ts` — 401 without token, non-admin blocked from admin routes
 
+### Responsive layout
+
+- `tests/e2e/misc/responsive-layout.e2e.test.ts` — mobile viewport catalog, nav/search, cart qty/checkout, product add-to-cart, checkout steps overflow
+- `tests/e2e/catalog/product-browse-search.e2e.test.ts` — `mobile_search_results_pagination` only (not full mobile catalog)
+- `tests/e2e/admin/admin-products.e2e.test.ts` — `admin_product_list_scrollable_table` mobile admin edit table
+
 ### Public SEO
 
 - `tests/e2e/misc/public-seo.e2e.test.ts` — robots.txt, sitemap.xml, login/search/admin robots, filter canonical

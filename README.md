@@ -110,6 +110,15 @@ E2E coverage: `tests/e2e/auth/login-register-profile.e2e.test.ts`, `tests/e2e/ch
 
 Canonical URLs, Open Graph, `robots.txt`, dynamic `sitemap.xml`, JSON-LD, and crawler HTML are configured via `VITE_SITE_URL` and `SITE_URL`. See [`docs/seo.md`](docs/seo.md).
 
+## Responsive UI and motion
+
+The storefront uses **Bootstrap 5** breakpoints plus shared CSS tokens in [`frontend/src/index.css`](frontend/src/index.css) for spacing, touch targets, and carousel scaling on phone/tablet/desktop.
+
+- **Cart and checkout** line items use a card layout below `md` and a table-like row at `md+` ([`CartLineItem`](frontend/src/components/CartLineItem.tsx), [`OrderLineItem`](frontend/src/components/OrderLineItem.tsx)).
+- **Motion:** CSS hover/focus on product cards and primary buttons; **Framer Motion** for route transitions and home product-grid stagger. Animations respect `prefers-reduced-motion: reduce` (instant transitions when enabled in OS settings).
+- **Icons:** Font Awesome is bundled via `@fortawesome/fontawesome-free` (no CDN dependency).
+- **E2E:** mobile viewport journeys in [`tests/e2e/misc/responsive-layout.e2e.test.ts`](tests/e2e/misc/responsive-layout.e2e.test.ts).
+
 ## Quality and tests
 
 ```bash
