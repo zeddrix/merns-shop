@@ -78,4 +78,60 @@ describe('orders integration', () => {
     expect(res.status).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
   });
+
+  it('marks order paid and delivered', async () => {
+    const product = await request(app).get(`/api/products/${productId}`);
+
+    const order = await request(app)
+      .post('/api/orders')
+      .set('Authorization', `Bearer ${customerToken}`)
+      .send({
+        orderItems: [
+          {
+            name: product.body.name,
+            qty: 1,
+            image: product.body.image,
+            price: product.body.price,
+            product: productId
+          }
+        ],
+        shippingAddress: {
+          address: '123 St',
+          city: 'City',
+          postalCode: '12345',
+          country: 'US'
+        },
+        paymentMethod: 'PayPal',
+        itemsPrice: product.body.price,
+        taxPrice: 0,
+        shippingPrice: 0,
+        totalPrice: product.body.price
+      });
+
+    expect(order.status).toBe(201);
+    const orderId = order.body._id as string;
+
+    const pay = await request(app)
+      .put(`/api/orders/${orderId}/pay`)
+      .set('Authorization', `Bearer ${customerToken}`)
+      .send({
+        id: 'integration-test-payment',
+        status: 'COMPLETED',
+        update_time: new Date().toISOString(),
+        payer: { email_address: 'john@gmail.com' }
+      });
+    expect(pay.status).toBe(200);
+    expect(pay.body.isPaid).toBe(true);
+
+    const deliver = await request(app)
+      .put(`/api/orders/${orderId}/deliver`)
+      .set('Authorization', `Bearer ${adminToken}`);
+    expect(deliver.status).toBe(200);
+    expect(deliver.body.isDelivered).toBe(true);
+
+    const customerOrder = await request(app)
+      .get(`/api/orders/${orderId}`)
+      .set('Authorization', `Bearer ${customerToken}`);
+    expect(customerOrder.body.isDelivered).toBe(true);
+  });
 });
