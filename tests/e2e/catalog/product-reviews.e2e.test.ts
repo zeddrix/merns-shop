@@ -15,7 +15,6 @@ test.describe('product reviews', () => {
     const productUrl = page.url();
     const productId = productUrl.split('/product/')[1]?.split(/[/?#]/)[0];
     expect(productId).toBeTruthy();
-    await page.locator('[data-testid="product-add-cart"]').click();
     await page.goto(productUrl);
 
     await page.locator('[data-testid="review-form"]').waitFor({ state: 'visible' });

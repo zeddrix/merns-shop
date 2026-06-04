@@ -19,8 +19,20 @@ test.describe('admin products', () => {
     expect(productId).toBeTruthy();
 
     await page.locator('[data-testid="admin-product-name"]').fill(productName);
-    await page.locator('[data-testid="admin-product-price"]').fill('99');
+    await page.locator('[data-testid="admin-product-model-key"]').fill(`e2e-${Date.now()}`);
+    await page.locator('[data-testid="admin-product-subcategory"]').fill('Phones');
+    await page.locator('[data-testid="admin-product-description"]').fill('E2E catalog product');
     await page.locator('[data-testid="admin-product-image"]').fill('/images/sample.jpg');
+    await page.locator('[data-testid="admin-variant-label-0"]').fill('128GB');
+    await page.locator('[data-testid="admin-variant-list-price-0"]').fill('199');
+    await page.locator('[data-testid="admin-variant-price-0"]').fill('149');
+    await page.locator('[data-testid="admin-variant-stock-0"]').fill('3');
+    await page.locator('button:has-text("Add variant")').click();
+    await page.locator('[data-testid="admin-variant-sku-1"]').fill(`e2e-${Date.now()}-256gb`);
+    await page.locator('[data-testid="admin-variant-label-1"]').fill('256GB');
+    await page.locator('[data-testid="admin-variant-list-price-1"]').fill('249');
+    await page.locator('[data-testid="admin-variant-price-1"]').fill('199');
+    await page.locator('[data-testid="admin-variant-stock-1"]').fill('2');
     await Promise.all([
       page.waitForResponse(
         (response) =>
@@ -34,10 +46,15 @@ test.describe('admin products', () => {
 
     const createdProduct = await findProductById(productId as string);
     expect(createdProduct?.name).toBe(productName);
+    expect(createdProduct?.variants.length).toBeGreaterThanOrEqual(1);
 
     await page.locator('[data-testid="search-input"]').fill(productName);
     await page.locator('[data-testid="search-submit"]').click();
     await expect(page.locator(`[data-testid="product-card-${productId}"]`)).toBeVisible();
+    await page.locator(`[data-testid="product-card-${productId}"]`).locator('a').first().click();
+    await expect(page.locator('[data-testid="product-variant-picker"]')).toBeVisible();
+    await expect(page.locator('input[data-testid^="product-variant-"]')).toHaveCount(2);
+    await page.locator('[data-testid="product-go-back"]').click();
 
     await page.goto(`/admin/product/${productId}/edit`);
     await page.locator('[data-testid="admin-product-name"]').fill(updatedName);
@@ -75,7 +92,6 @@ test.describe('admin products', () => {
     await page.locator('[data-testid="admin-create-product"]').click();
     await page.waitForURL(/\/admin\/product\/([^/]+)\/edit/);
     await page.locator('[data-testid="admin-product-name"]').fill('');
-    await page.locator('[data-testid="admin-product-price"]').fill('-1');
     await page.locator('[data-testid="admin-product-submit"]').click();
     await expect(page.locator('[data-testid="admin-product-edit-form"]')).toBeVisible();
     await expect(page).toHaveURL(/\/admin\/product\/.*\/edit/);

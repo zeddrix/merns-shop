@@ -308,11 +308,11 @@ E2E uses **`http://localhost:5020`** as `baseURL` (Vite). UI and `request` API c
 
 `playwright.config.ts` starts or reuses the **same command as `pnpm dev`**: `dev:inner` (API + Vite via `concurrently`). Health check waits for `http://localhost:5020/api/products` so both Vite and the API must be up.
 
-| Command | When to use |
-| ------- | ----------- |
-| `pnpm test:e2e` | CI / clean run: spawns fresh `dev:inner` (`PW_DISABLE_REUSE_SERVER=1`) |
-| `pnpm test:e2e:dev` | Local: reuse an already-running `pnpm dev` on :5020/:5021 |
-| `pnpm dev` then `pnpm test:e2e:dev` | Matches day-to-day dev workflow |
+| Command                             | When to use                                                            |
+| ----------------------------------- | ---------------------------------------------------------------------- |
+| `pnpm test:e2e`                     | CI / clean run: spawns fresh `dev:inner` (`PW_DISABLE_REUSE_SERVER=1`) |
+| `pnpm test:e2e:dev`                 | Local: reuse an already-running `pnpm dev` on :5020/:5021              |
+| `pnpm dev` then `pnpm test:e2e:dev` | Matches day-to-day dev workflow                                        |
 
 Set `PW_DISABLE_REUSE_SERVER=1` to force Playwright to spawn a new stack. Stale processes on 5020/5021 cause flaky auth and API failures.
 
@@ -352,9 +352,9 @@ API security tests in `tests/e2e/misc/api-security-auth.e2e.test.ts` remain isol
 
 Prefer **failing loudly** when seed data or MongoDB is wrong. Only skip when the **feature or environment is unavailable** (missing PayPal sandbox credentials, no local MongoDB).
 
-| File                                                    | Skip condition                                      | How to run                                               |
-| ------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------- |
-| `tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts` | Missing `PAYPAL_SANDBOX_BUYER_*`                    | Configure `.env.test`, run file with `pnpm test:e2e:one` |
+| File                                                                                                                    | Skip condition                                 | How to run                                                                                                                                                                  |
+| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts`                                                                 | Missing `PAYPAL_SANDBOX_BUYER_*`               | Configure `.env.test`, run file with `pnpm test:e2e:one`                                                                                                                    |
 | `tests/e2e/journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts` (`guest_completes_paypal_payment_when_opt_in`) | Missing sandbox creds or `PW_RUN_PAYPAL` unset | `PW_RUN_PAYPAL=1 pnpm test:e2e:one -- tests/e2e/journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts` (canonical PayPal spec: `paypal-sandbox-payment.e2e.test.ts`) |
 
 **Do not use runtime `test.skip` for missing seed rows** — global setup seeds via `pnpm db:seed`; fix `MONGO_URI` or run `pnpm db:seed` manually.

@@ -31,12 +31,60 @@ export async function logout(page: Page): Promise<void> {
   await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
 }
 
-export async function addFirstProductToCart(page: Page): Promise<void> {
-  await page.goto('/');
+/** Search and open a product PDP by exact catalog name (avoids partial matches like Pro vs Pro Max). */
+export async function openProductByExactName(page: Page, name: string): Promise<void> {
+  await page.locator('[data-testid="search-input"]').fill(name);
+  await page.locator('[data-testid="search-submit"]').click();
+  await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
+  await page.getByRole('link', { name, exact: true }).first().click();
+  await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+}
+
+export async function selectVariantAndAddToCart(page: Page): Promise<void> {
+  const selectedCount = await page
+    .locator('input[data-testid^="product-variant-"]:checked')
+    .count();
+  if (selectedCount === 0) {
+    const inStockVariant = page.locator('input[data-testid^="product-variant-"]:not(:disabled)');
+    if ((await inStockVariant.count()) > 0) {
+      await inStockVariant.first().check();
+    }
+  }
+  await Promise.all([
+    page.waitForURL(/\/cart\//),
+    page.locator('[data-testid="product-add-cart"]').click()
+  ]);
+  await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
+}
+
+export interface AddToCartOptions {
+  brand?: string;
+  category?: string;
+  subcategory?: string;
+}
+
+export async function addFirstInStockProductToCart(
+  page: Page,
+  options: AddToCartOptions = {}
+): Promise<void> {
+  const params = new URLSearchParams();
+  if (options.brand) params.set('brand', options.brand);
+  if (options.category) params.set('category', options.category);
+  if (options.subcategory) params.set('subcategory', options.subcategory);
+  const query = params.toString();
+  await page.goto(query ? `/?${query}` : '/');
   await assertHomeCatalogHealthy(page);
-  const firstCard = page.locator('[data-testid^="product-card-"]').first();
-  await firstCard.locator('a').first().click();
-  await page.locator('[data-testid="product-add-cart"]').click();
+  const inStockCard = page
+    .locator('[data-testid^="product-card-"]')
+    .filter({ hasNot: page.locator('text=Out of stock') })
+    .first();
+  await inStockCard.locator('a').first().click();
+  await selectVariantAndAddToCart(page);
+}
+
+/** @deprecated Use addFirstInStockProductToCart */
+export async function addFirstProductToCart(page: Page): Promise<void> {
+  await addFirstInStockProductToCart(page);
 }
 
 export async function completeShippingStep(page: Page): Promise<void> {
@@ -60,7 +108,12 @@ interface ApiProductListResponse {
     _id: string;
     name: string;
     image: string;
-    price: number;
+    variants: Array<{
+      sku: string;
+      label: string;
+      price: number;
+      countInStock: number;
+    }>;
   }>;
 }
 
@@ -89,18 +142,18 @@ export async function createPaidOrderForCredentials(
   const productsResponse = await page.request.get('/api/products');
   expect(productsResponse.ok()).toBeTruthy();
   const { products } = (await productsResponse.json()) as ApiProductListResponse;
-  const product = products[0];
+  const product = products.find((p) => p.variants.some((v) => v.countInStock > 0)) ?? products[0];
   expect(product).toBeDefined();
+  const variant = product.variants.find((v) => v.countInStock > 0) ?? product.variants[0];
+  expect(variant).toBeDefined();
 
   const orderResponse = await page.request.post('/api/orders', {
     data: {
       orderItems: [
         {
-          name: product.name,
+          product: product._id,
           qty: 1,
-          image: product.image,
-          price: product.price,
-          product: product._id
+          variantSku: variant.sku
         }
       ],
       shippingAddress: {
@@ -110,10 +163,10 @@ export async function createPaidOrderForCredentials(
         country: 'United States'
       },
       paymentMethod: 'PayPal',
-      itemsPrice: product.price,
+      itemsPrice: variant.price,
       taxPrice: 0,
       shippingPrice: 0,
-      totalPrice: product.price
+      totalPrice: variant.price
     }
   });
   expect(orderResponse.status()).toBe(201);

@@ -10,7 +10,7 @@ test.describe('admin product static image', () => {
 
   test('admin_sets_bundled_image_path_and_storefront_loads_image', async ({ page, request }) => {
     const productName = `Static Image Product ${Date.now()}`;
-    const imagePath = '/images/phone.jpg';
+    const imagePath = '/images/catalog/apple/iphone-15-pro.jpg';
 
     await loginAsAdmin(page);
     await page.goto('/admin/productlist');
@@ -20,11 +20,13 @@ test.describe('admin product static image', () => {
     expect(productId).toBeTruthy();
 
     await page.locator('[data-testid="admin-product-name"]').fill(productName);
-    await page.locator('[data-testid="admin-product-price"]').fill('42');
     await page.locator('[data-testid="admin-product-image"]').fill(imagePath);
     await page.locator('[data-testid="admin-product-brand"]').fill('Test');
-    await page.locator('[data-testid="admin-product-category"]').fill('Test');
-    await page.locator('[data-testid="admin-product-count"]').fill('5');
+    await page.locator('[data-testid="admin-product-category"]').fill('Electronics');
+    await page.locator('[data-testid="admin-product-subcategory"]').fill('Phones');
+    await page.locator('[data-testid="admin-variant-list-price-0"]').fill('99');
+    await page.locator('[data-testid="admin-variant-price-0"]').fill('42');
+    await page.locator('[data-testid="admin-variant-stock-0"]').fill('5');
     await page.locator('[data-testid="admin-product-description"]').fill('Static image E2E');
     await Promise.all([
       page.waitForResponse(
@@ -46,9 +48,10 @@ test.describe('admin product static image', () => {
     await page.goto(`/product/${productId}`);
     const productImage = page.locator('[data-testid="product-details"] img');
     await expect(productImage).toHaveAttribute('src', imagePath);
-    const loaded = await productImage.evaluate(
-      (img: HTMLImageElement) => img.complete && img.naturalWidth > 0
-    );
-    expect(loaded).toBe(true);
+    await expect
+      .poll(async () =>
+        productImage.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)
+      )
+      .toBe(true);
   });
 });
