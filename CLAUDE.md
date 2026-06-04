@@ -27,8 +27,8 @@ pnpm db:seed
 pnpm dev
 ```
 
-- Frontend (Vite): http://localhost:5173
-- API (Express): http://localhost:5000
+- Frontend (Vite): http://localhost:5020
+- API (Express): http://localhost:5021
 
 ## Testing
 

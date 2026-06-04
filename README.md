@@ -68,14 +68,14 @@ pnpm dev    # auto-selects Node 22 here via nvm; leaves your global Node 20 unch
 
 | Service  | URL                   |
 | -------- | --------------------- |
-| Frontend | http://localhost:5173 |
-| API      | http://localhost:5000 |
+| Frontend | http://localhost:5020 |
+| API      | http://localhost:5021 |
 
 **Alternative — separate terminals:**
 
 ```bash
-pnpm server    # API on :5000 (tsx + nodemon)
-pnpm client    # Vite on :5173
+pnpm server    # API on :5021 (tsx watch)
+pnpm client    # Vite on :5020
 ```
 
 Seeded users: see [`docs/test-users.md`](docs/test-users.md).
@@ -89,10 +89,11 @@ pnpm quality          # format + tsc + eslint
 pnpm quality:fast     # tsc + eslint (CI parity)
 pnpm test:unit
 pnpm test:integration
-pnpm test:e2e         # Playwright starts API + Vite; needs Mongo on :27017
+pnpm test:e2e         # Spawns same stack as `pnpm dev` (ports 5020 + 5021); needs Mongo
+pnpm test:e2e:dev     # Reuse your running `pnpm dev` (no extra server spawn)
 ```
 
-**E2E preflight:** Mongo must be running before `pnpm test:e2e`. Playwright seeds the DB in global setup.
+**E2E preflight:** Mongo must be running before E2E. Playwright seeds the DB in global setup. Tests hit **http://localhost:5020** (UI + proxied `/api/*`), matching manual browsing.
 
 Run a single E2E file:
 

@@ -302,14 +302,21 @@ Each test file should use dedicated users from `tests/e2e/fixtures/test-users.ts
 
 Avoid reusing the same user across parallel tests that mutate profile, orders, or reviews without reset.
 
-### Playwright dev server reuse (ports 5173 + 5000)
+### Playwright dev stack (same as manual `pnpm dev`)
 
-Locally, `playwright.config.ts` may **reuse** existing dev servers when not in CI and `PW_DISABLE_REUSE_SERVER` is unset:
+E2E uses **`http://localhost:5020`** as `baseURL` (Vite). UI and `request` API calls go through that origin and the Vite proxy to the API on **5021** — the same path a human browser uses.
 
-- Frontend (Vite): port **5173** (`pnpm --filter merns-shop-frontend dev`)
-- Backend (Express): port **5000** (`pnpm server`)
+`playwright.config.ts` starts or reuses the **same command as `pnpm dev`**: `dev:inner` (API + Vite via `concurrently`). Health check waits for `http://localhost:5020/api/products` so both Vite and the API must be up.
 
-Prefer a single `pnpm dev` or let Playwright spawn both via `webServer`. Set `PW_DISABLE_REUSE_SERVER=1` to force a clean spawn. Stale processes on 5173/5000 cause flaky auth and API failures.
+| Command | When to use |
+| ------- | ----------- |
+| `pnpm test:e2e` | CI / clean run: spawns fresh `dev:inner` (`PW_DISABLE_REUSE_SERVER=1`) |
+| `pnpm test:e2e:dev` | Local: reuse an already-running `pnpm dev` on :5020/:5021 |
+| `pnpm dev` then `pnpm test:e2e:dev` | Matches day-to-day dev workflow |
+
+Set `PW_DISABLE_REUSE_SERVER=1` to force Playwright to spawn a new stack. Stale processes on 5020/5021 cause flaky auth and API failures.
+
+**Troubleshooting:** If the homepage shows API error banners, ensure Mongo is running (`docker compose up -d mongo`), `.env` exists with `MONGO_URI` and `PORT=5021`, and `pnpm dev` logs the API as still running (not exited immediately).
 
 **Optional env overrides:** `PW_RETRIES` (default `0`), `PW_WORKERS` (default `1`).
 
