@@ -82,6 +82,21 @@ Seeded users: see [`docs/test-users.md`](docs/test-users.md).
 
 Auth uses an **httpOnly cookie** (no JWT in `localStorage`).
 
+### Customer sign-up
+
+New shoppers can create an account at **http://localhost:5020/register** (also linked from **Sign Up** in the header and from the login screen).
+
+| Field            | Requirement                         |
+| ---------------- | ----------------------------------- |
+| Name             | Required                            |
+| Email            | Valid email; must not already exist |
+| Password         | At least 6 characters               |
+| Confirm password | Must match password (client-side)   |
+
+After a successful sign-up, the API sets the same session cookie as login and the app redirects to `/` or to the `redirect` query target (for example `/shipping` when checking out as a guest). New accounts redirected to `/` see a brief **Welcome, {name}** message on the home page (`register-welcome`).
+
+E2E coverage: `tests/e2e/auth/login-register-profile.e2e.test.ts`, `tests/e2e/checkout/cart-shipping-payment.e2e.test.ts`, and `tests/e2e/journeys/journey-customer-auth-profile-lifecycle.e2e.test.ts`.
+
 ### Gadget catalog (offline-first)
 
 - **~170 parent products** with **500+ variants** (Apple, Samsung, Vivo, Xiaomi, Sony) live in [`backend/data/catalog/`](backend/data/catalog/).

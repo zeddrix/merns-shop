@@ -12,6 +12,12 @@ Seeded users for local development, E2E (Playwright), and integration (Vitest + 
 
 Passwords in seed data are bcrypt-hashed. Plain-text passwords below are for **test login only**.
 
+## New users (sign-up)
+
+Tests and local browsing can create **new** accounts via the storefront **`/register`** screen or `POST /api/users` (name, email, password). Those accounts are not in the seed file. Use a **unique email** per run (for example `user-${Date.now()}@example.com`) so registration does not collide with seeded addresses below.
+
+For duplicate-email behavior in tests, use `john@gmail.com` (`customer`) — already seeded.
+
 ## Seeded Users
 
 All seeded accounts use password **`123456`**.
