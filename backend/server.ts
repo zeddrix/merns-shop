@@ -4,7 +4,7 @@ import app from './app.js';
 
 connectDB();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5021;
 
 app.listen(PORT, () => {
   console.log(colors.blue(`Server running in ${process.env.NODE_ENV} on port ${PORT}`));
