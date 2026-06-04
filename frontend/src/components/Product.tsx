@@ -13,7 +13,10 @@ const Product = ({ product }: ProductProps) => {
   const listPriceFrom = product.listPriceFrom ?? product.variants[0]?.listPrice;
 
   return (
-    <Card className="my-3 p-3 rounded h-100" data-testid={`product-card-${product._id}`}>
+    <Card
+      className="my-3 p-3 rounded h-100 product-card"
+      data-testid={`product-card-${product._id}`}
+    >
       <Link to={`/product/${product._id}`}>
         <Card.Img src={product.image} alt={product.name} variant="top" />
       </Link>

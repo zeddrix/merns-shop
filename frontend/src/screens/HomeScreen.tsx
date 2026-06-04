@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
-import { Row, Col } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Product from '../components/Product';
+import StaggerGrid, {
+  StaggerGridItem,
+  staggerItemVariants
+} from '../components/motion/StaggerGrid';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
@@ -76,6 +80,9 @@ const HomeScreen = () => {
     : DEFAULT_META_DESCRIPTION;
   const robots = keyword ? ROBOTS_NOINDEX_FOLLOW : ROBOTS_INDEX_FOLLOW;
   const jsonLd = keyword ? undefined : [buildWebsiteJsonLd(), buildOrganizationJsonLd()];
+  const reducedMotion = usePrefersReducedMotion();
+  const listKey = `${keyword ?? ''}-${page}-${filterQuery}`;
+  const itemVariants = staggerItemVariants(reducedMotion);
 
   return (
     <>
@@ -111,13 +118,17 @@ const HomeScreen = () => {
           {products.length === 0 && keyword ? (
             <Message data-testid="search-empty">No products found for your search</Message>
           ) : null}
-          <Row data-testid="product-list">
+          <StaggerGrid listKey={listKey} className="row g-3" data-testid="product-list">
             {products.map((product) => (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+              <StaggerGridItem
+                key={product._id}
+                className="col-sm-12 col-md-6 col-lg-4 col-xl-3"
+                variants={itemVariants}
+              >
                 <Product product={product} />
-              </Col>
+              </StaggerGridItem>
             ))}
-          </Row>
+          </StaggerGrid>
           <Paginate
             pages={pages ?? 1}
             page={currentPage ?? 1}

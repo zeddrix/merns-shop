@@ -12,7 +12,7 @@ const Message = ({
   'data-testid': testId = 'alert-message'
 }: MessageProps) => {
   return (
-    <Alert variant={variant} data-testid={testId}>
+    <Alert variant={variant} data-testid={testId} className="message-fade-in">
       {children}
     </Alert>
   );

@@ -6,6 +6,7 @@ const Loader = () => {
       animation="border"
       role="status"
       data-testid="page-loader"
+      className="loader-fade-in"
       style={{
         width: '100px',
         height: '100px',
