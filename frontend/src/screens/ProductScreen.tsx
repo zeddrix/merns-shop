@@ -109,10 +109,10 @@ const ProductScreen = () => {
             jsonLd={buildProductJsonLd(product)}
           />
           <Row data-testid="product-details">
-            <Col md={6}>
-              <Image src={displayImage} alt={product.name} fluid />
+            <Col xs={12} lg={6}>
+              <Image src={displayImage} alt={product.name} fluid className="rounded" />
             </Col>
-            <Col md={3}>
+            <Col xs={12} lg={3}>
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>{product.name}</h3>
@@ -138,11 +138,13 @@ const ProductScreen = () => {
                     />
                   </ListGroup.Item>
                 )}
-                <ListGroup.Item>Description: {product.description}</ListGroup.Item>
+                <ListGroup.Item>
+                  <span className="product-description-clamp">{product.description}</span>
+                </ListGroup.Item>
               </ListGroup>
             </Col>
-            <Col md={3}>
-              <Card>
+            <Col xs={12} lg={3}>
+              <Card className="product-buy-card sticky-lg-top">
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     <ProductVariantPicker
@@ -194,7 +196,7 @@ const ProductScreen = () => {
                   <ListGroup.Item>
                     <Button
                       onClick={addToCartHandler}
-                      className="btn-block"
+                      className="w-100 btn-cta"
                       type="button"
                       data-testid="product-add-cart"
                       disabled={
@@ -210,7 +212,7 @@ const ProductScreen = () => {
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
+            <Col xs={12} lg={6}>
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant="flush">

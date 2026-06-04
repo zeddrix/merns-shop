@@ -59,7 +59,7 @@ const CatalogFilters = ({ keyword = '' }: CatalogFiltersProps) => {
   return (
     <div className="mb-4 p-3 border rounded bg-light" data-testid="catalog-filters">
       <Row className="g-2">
-        <Col md={4} lg={2}>
+        <Col xs={12} sm={6} md={4} lg={2}>
           <Form.Group controlId="filter-brand">
             <Form.Label>Brand</Form.Label>
             <Form.Select
@@ -93,7 +93,7 @@ const CatalogFilters = ({ keyword = '' }: CatalogFiltersProps) => {
             </Form.Select>
           </Form.Group>
         </Col>
-        <Col md={4} lg={2}>
+        <Col xs={12} sm={6} md={4} lg={2}>
           <Form.Group controlId="filter-subcategory">
             <Form.Label>Type</Form.Label>
             <Form.Select
@@ -110,7 +110,7 @@ const CatalogFilters = ({ keyword = '' }: CatalogFiltersProps) => {
             </Form.Select>
           </Form.Group>
         </Col>
-        <Col md={4} lg={2}>
+        <Col xs={12} sm={6} md={4} lg={2}>
           <Form.Group controlId="filter-min-price">
             <Form.Label>Min price</Form.Label>
             <Form.Control
@@ -123,7 +123,7 @@ const CatalogFilters = ({ keyword = '' }: CatalogFiltersProps) => {
             />
           </Form.Group>
         </Col>
-        <Col md={4} lg={2}>
+        <Col xs={12} sm={6} md={4} lg={2}>
           <Form.Group controlId="filter-max-price">
             <Form.Label>Max price</Form.Label>
             <Form.Control
@@ -136,7 +136,7 @@ const CatalogFilters = ({ keyword = '' }: CatalogFiltersProps) => {
             />
           </Form.Group>
         </Col>
-        <Col md={4} lg={2}>
+        <Col xs={12} sm={6} md={4} lg={2}>
           <Form.Group controlId="filter-sort">
             <Form.Label>Sort</Form.Label>
             <Form.Select

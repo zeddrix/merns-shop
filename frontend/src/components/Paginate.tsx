@@ -55,7 +55,7 @@ const Paginate = ({
   const nextPath = buildPath(page + 1, isAdmin, keyword, searchQuery);
 
   return (
-    <Pagination data-testid="pagination">
+    <Pagination className="pagination-wrap" size="sm" data-testid="pagination">
       <Pagination.Item disabled={page <= 1} data-testid="pagination-prev">
         {page > 1 ? <Link to={prevPath}>Previous</Link> : <span>Previous</span>}
       </Pagination.Item>

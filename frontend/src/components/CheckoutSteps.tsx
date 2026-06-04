@@ -21,7 +21,7 @@ const CheckoutSteps = ({
   const registerUrl = buildRegisterRedirectUrl(redirectPath);
 
   return (
-    <Nav className="justify-content-center mb-4" data-testid="checkout-steps">
+    <Nav className="justify-content-center mb-4 checkout-steps" data-testid="checkout-steps">
       <Nav.Item>
         {step1 ? (
           <>

@@ -217,80 +217,90 @@ const ProductEditScreen = () => {
             </Form.Group>
 
             <h4 className="mt-3">Variants</h4>
-            <Table striped bordered size="sm" data-testid="admin-product-variants">
-              <thead>
-                <tr>
-                  <th>SKU</th>
-                  <th>Label</th>
-                  <th>List $</th>
-                  <th>Sale $</th>
-                  <th>Stock</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {variants.map((variant, index) => (
-                  <tr key={variant.sku} data-testid={`admin-variant-row-${index}`}>
-                    <td>
-                      <Form.Control
-                        size="sm"
-                        value={variant.sku}
-                        data-testid={`admin-variant-sku-${index}`}
-                        onChange={(e) => updateVariant(index, 'sku', e.target.value)}
-                      />
-                    </td>
-                    <td>
-                      <Form.Control
-                        size="sm"
-                        value={variant.label}
-                        data-testid={`admin-variant-label-${index}`}
-                        onChange={(e) => updateVariant(index, 'label', e.target.value)}
-                      />
-                    </td>
-                    <td>
-                      <Form.Control
-                        size="sm"
-                        type="number"
-                        value={variant.listPrice}
-                        data-testid={`admin-variant-list-price-${index}`}
-                        onChange={(e) => updateVariant(index, 'listPrice', Number(e.target.value))}
-                      />
-                    </td>
-                    <td>
-                      <Form.Control
-                        size="sm"
-                        type="number"
-                        value={variant.price}
-                        data-testid={`admin-variant-price-${index}`}
-                        onChange={(e) => updateVariant(index, 'price', Number(e.target.value))}
-                      />
-                    </td>
-                    <td>
-                      <Form.Control
-                        size="sm"
-                        type="number"
-                        value={variant.countInStock}
-                        data-testid={`admin-variant-stock-${index}`}
-                        onChange={(e) =>
-                          updateVariant(index, 'countInStock', Number(e.target.value))
-                        }
-                      />
-                    </td>
-                    <td>
-                      <Button
-                        variant="light"
-                        size="sm"
-                        type="button"
-                        disabled={variants.length <= 1}
-                        onClick={() => removeVariant(index)}
-                      >
-                        Remove
-                      </Button>
-                    </td>
+            <div className="table-responsive">
+              <Table
+                striped
+                bordered
+                size="sm"
+                className="admin-product-variants-table"
+                data-testid="admin-product-variants"
+              >
+                <thead>
+                  <tr>
+                    <th>SKU</th>
+                    <th>Label</th>
+                    <th>List $</th>
+                    <th>Sale $</th>
+                    <th>Stock</th>
+                    <th></th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {variants.map((variant, index) => (
+                    <tr key={variant.sku} data-testid={`admin-variant-row-${index}`}>
+                      <td>
+                        <Form.Control
+                          size="sm"
+                          value={variant.sku}
+                          data-testid={`admin-variant-sku-${index}`}
+                          onChange={(e) => updateVariant(index, 'sku', e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        <Form.Control
+                          size="sm"
+                          value={variant.label}
+                          data-testid={`admin-variant-label-${index}`}
+                          onChange={(e) => updateVariant(index, 'label', e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        <Form.Control
+                          size="sm"
+                          type="number"
+                          value={variant.listPrice}
+                          data-testid={`admin-variant-list-price-${index}`}
+                          onChange={(e) =>
+                            updateVariant(index, 'listPrice', Number(e.target.value))
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Form.Control
+                          size="sm"
+                          type="number"
+                          value={variant.price}
+                          data-testid={`admin-variant-price-${index}`}
+                          onChange={(e) => updateVariant(index, 'price', Number(e.target.value))}
+                        />
+                      </td>
+                      <td>
+                        <Form.Control
+                          size="sm"
+                          type="number"
+                          value={variant.countInStock}
+                          data-testid={`admin-variant-stock-${index}`}
+                          onChange={(e) =>
+                            updateVariant(index, 'countInStock', Number(e.target.value))
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Button
+                          variant="light"
+                          size="sm"
+                          type="button"
+                          disabled={variants.length <= 1}
+                          onClick={() => removeVariant(index)}
+                        >
+                          Remove
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
             <Button type="button" variant="secondary" className="mb-3" onClick={addVariant}>
               Add variant
             </Button>

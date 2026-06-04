@@ -20,10 +20,10 @@ const Header = () => {
           <Navbar.Brand as={Link} to="/" data-testid="site-brand">
             {DISPLAY_BRAND_NAME}
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" data-testid="navbar-toggle" />
           <Navbar.Collapse id="basic-navbar-nav">
             <SearchBox />
-            <Nav className="me-auto">
+            <Nav className="me-auto nav-categories-wrap">
               <Nav.Link
                 as={Link}
                 to="/?category=Electronics&subcategory=Phones"

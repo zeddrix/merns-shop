@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 interface FormContainerProps {
   children: React.ReactNode;
@@ -6,13 +6,13 @@ interface FormContainerProps {
 
 const FormContainer = ({ children }: FormContainerProps) => {
   return (
-    <Container data-testid="form-container">
-      <Row className="justify-content-md-center">
-        <Col xs={12} md={6}>
+    <div className="form-container-inner" data-testid="form-container">
+      <Row className="justify-content-center">
+        <Col xs={12} md={8} lg={6}>
           {children}
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 

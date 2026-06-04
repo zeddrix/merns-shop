@@ -71,7 +71,7 @@ const ProfileScreen = () => {
     <>
       <SeoPrivateMeta canonicalPath="/profile" />
       <Row data-testid="profile-screen">
-        <Col md={3}>
+        <Col xs={12} md={3} className="mb-3 mb-md-0">
           <h2>User Profile</h2>
           {message && <Message variant="danger">{message}</Message>}
           {success && <Message variant="success">Profile Updated</Message>}
@@ -131,7 +131,7 @@ const ProfileScreen = () => {
             </Form>
           )}
         </Col>
-        <Col md={9}>
+        <Col xs={12} md={9}>
           <h2>My Orders</h2>
           {loadingOrders ? (
             <Loader />
