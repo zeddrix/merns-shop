@@ -54,6 +54,7 @@ nvm use          # required before install if your default is Node 20
 pnpm install     # fails fast if Node < 22
 cp .env.example .env
 cp .env.test.example .env.test
+# Set VITE_SITE_URL and SITE_URL for SEO (see docs/seo.md)
 pnpm catalog:images   # ensures all catalog JPGs under frontend/public/images/catalog/
 pnpm db:seed
 ```
@@ -104,6 +105,10 @@ E2E coverage: `tests/e2e/auth/login-register-profile.e2e.test.ts`, `tests/e2e/ch
 - Images are static files under [`frontend/public/images/catalog/`](frontend/public/images/catalog/) (generated on `pnpm install` via `pnpm catalog:images`). See [`frontend/public/images/catalog/ATTRIBUTION.md`](frontend/public/images/catalog/ATTRIBUTION.md).
 - Validate catalog data: `pnpm catalog:validate`
 - Storefront: brand/category filters, savings badges, variant picker on product pages.
+
+## SEO
+
+Canonical URLs, Open Graph, `robots.txt`, dynamic `sitemap.xml`, JSON-LD, and crawler HTML are configured via `VITE_SITE_URL` and `SITE_URL`. See [`docs/seo.md`](docs/seo.md).
 
 ## Quality and tests
 

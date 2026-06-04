@@ -43,6 +43,12 @@ Journey files assert the **single canonical happy path** across domains. They mu
 
 - `tests/e2e/misc/api-security-auth.e2e.test.ts` — 401 without token, non-admin blocked from admin routes
 
+### Public SEO
+
+- `tests/e2e/misc/public-seo.e2e.test.ts` — robots.txt, sitemap.xml, login/search/admin robots, filter canonical
+- `tests/e2e/smoke/app-boot.e2e.test.ts` — home default title/description shell (not product JSON-LD)
+- `tests/e2e/catalog/product-browse-search.e2e.test.ts` — product page title, description, JSON-LD, image alt
+
 ## Ownership Rules
 
 1. **Golden-path lifecycle assertions** belong in `tests/e2e/journeys/` (one canonical outcome per lifecycle).

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 5020 --strictPort",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && node ../scripts/check-seo-env.mjs && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

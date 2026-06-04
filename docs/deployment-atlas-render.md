@@ -58,6 +58,10 @@ E2E uses sandbox buyer credentials in `.env.test` only (`PAYPAL_SANDBOX_BUYER_EM
 | `JWT_SECRET`       | Strong random secret                  |
 | `MONGO_URI`        | Atlas URI with `/merns-shop` database |
 | `PAYPAL_CLIENT_ID` | Sandbox or live Client ID             |
+| `SITE_URL`         | `https://<your-service>.onrender.com` |
+| `VITE_SITE_URL`    | Same public URL as `SITE_URL`         |
+
+Set `VITE_SITE_URL` at **build time** on Render so canonical and Open Graph URLs are correct. See [`docs/seo.md`](seo.md).
 
 7. Deploy → open `https://<service>.onrender.com`
 8. **Cold start:** free tier sleeps after ~15 min idle; first request may take 30–60s.
