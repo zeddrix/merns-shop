@@ -12,10 +12,33 @@ MERN e-commerce demo — TypeScript, Express 5, Mongoose 9, Vite, React 19, Redu
 
 ### 1. Prerequisites
 
+This repo needs **Node 22 only here** — your other projects can keep Node 20 as the global default.
+
 ```bash
-nvm use          # or: fnm use — must be Node 22+
+cd /path/to/beamazedd-shop
+nvm install      # one-time: installs Node 22 from .nvmrc
+nvm use          # this terminal only (does not change nvm default)
+node -v          # should print v22.x
 docker compose up -d mongo
 ```
+
+Do **not** run `nvm alias default 22` unless you want every new terminal on Node 22. With `nvm use`, only shells where you ran it in this folder use 22.
+
+**Optional (auto-switch when you `cd` here):** add to `~/.zshrc`:
+
+```bash
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path="$(nvm_find_nvmrc 2>/dev/null)"
+  if [ -n "$nvmrc_path" ]; then
+    nvm use --silent
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+```
+
+Then opening this project directory runs `nvm use` automatically; other folders still use your default (e.g. Node 20).
 
 Confirm Mongo is listening:
 
@@ -27,6 +50,7 @@ docker compose ps
 ### 2. Install and configure
 
 ```bash
+nvm use          # required before install if your default is Node 20
 pnpm install     # fails fast if Node < 22
 cp .env.example .env
 cp .env.test.example .env.test
@@ -39,7 +63,7 @@ pnpm db:seed
 **Recommended — API + Vite together:**
 
 ```bash
-pnpm dev
+pnpm dev    # auto-selects Node 22 here via nvm; leaves your global Node 20 unchanged
 ```
 
 | Service  | URL                   |
