@@ -20,6 +20,24 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="product-savings-badge"]').first()).toBeVisible();
     await page.getByRole('link', { name: IPHONE_15_PRO, exact: true }).first().click();
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+    await expect(page).toHaveTitle(/iPhone 15 Pro/);
+    await expect(page.locator('meta[name="description"][content*="Titanium"]')).toHaveAttribute(
+      'content',
+      /Titanium design/i
+    );
+    const jsonLdRaw = await page
+      .locator('script[type="application/ld+json"]')
+      .first()
+      .textContent();
+    expect(jsonLdRaw).toBeTruthy();
+    const jsonLd = JSON.parse(jsonLdRaw ?? '{}') as {
+      '@type': string;
+      name: string;
+      offers: unknown;
+    };
+    expect(jsonLd['@type']).toBe('Product');
+    expect(jsonLd.name).toBe(IPHONE_15_PRO);
+    expect(jsonLd.offers).toBeTruthy();
     await expect(page.locator('[data-testid="product-variant-picker"]')).toBeVisible();
     await page.locator('input[data-testid="product-variant-iphone-15-pro-128gb"]').check();
     await expect(page.locator('[data-testid="product-qty"]')).toBeVisible();
@@ -46,6 +64,7 @@ test.describe('catalog browse and search', () => {
 
     const productImage = page.locator('[data-testid="product-details"] img');
     await expect(productImage).toHaveAttribute('src', /\/images\/catalog\//);
+    await expect(productImage).toHaveAttribute('alt', IPHONE_15_PRO);
     await expect
       .poll(async () =>
         productImage.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)

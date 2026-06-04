@@ -17,7 +17,8 @@
     "./integration/**/*.ts",
     "./vitest-setup.ts",
     "../types/**/*.ts",
-    "../backend/types/**/*.d.ts"
+    "../backend/types/**/*.d.ts",
+    "../frontend/src/vite-env.d.ts"
   ],
   "exclude": ["./e2e/**", "node_modules"]
 }

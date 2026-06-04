@@ -9,6 +9,12 @@ test.describe('smoke app boot', () => {
     await expect(page.locator('[data-testid="home-heading"]')).toBeVisible();
 
     await assertHomeCatalogHealthy(page);
+    await expect(page).toHaveTitle(/Welcome to MERN's Shop/);
+    await expect(page.locator('meta[name="description"]').first()).toHaveAttribute(
+      'content',
+      /Shop phones/i
+    );
+    await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', /favicon\.ico/);
 
     const response = await request.get('/api/products');
     expect(response.ok()).toBeTruthy();
