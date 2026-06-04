@@ -49,7 +49,14 @@ export const createOrder = createAsyncThunk(
     try {
       const { userLogin } = getState() as OrderSliceRootState;
       if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
-      const { data } = await axios.post<Order>('/api/orders', order);
+      const { data } = await axios.post<Order>('/api/orders', {
+        ...order,
+        orderItems: order.orderItems.map((item) => ({
+          product: item.product,
+          qty: item.qty,
+          variantSku: item.variantSku
+        }))
+      });
       dispatch(clearCartItems());
       return data;
     } catch (error) {

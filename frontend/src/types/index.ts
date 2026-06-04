@@ -7,25 +7,47 @@ export interface Review {
   user: string;
 }
 
+export interface ProductVariant {
+  sku: string;
+  label: string;
+  storageGb?: number;
+  screenInches?: number;
+  ramGb?: number;
+  listPrice: number;
+  price: number;
+  countInStock: number;
+  image?: string;
+}
+
 export interface Product {
   _id: string;
   name: string;
   image: string;
   brand: string;
   category: string;
+  subcategory: string;
+  modelKey: string;
+  releaseYear: number;
+  condition: string;
   description: string;
   reviews: Review[];
   rating: number;
   numReviews: number;
-  price: number;
-  countInStock: number;
+  variants: ProductVariant[];
   user: string;
   createdAt?: string;
   updatedAt?: string;
+  priceFrom?: number;
+  listPriceFrom?: number;
+  savingsPercentMax?: number;
+  inStock?: boolean;
+  totalStock?: number;
 }
 
 export interface CartItem {
   product: string;
+  variantSku: string;
+  variantLabel: string;
   name: string;
   image: string;
   price: number;
@@ -61,6 +83,8 @@ export interface OrderItem {
   image: string;
   price: number;
   product: string;
+  variantSku: string;
+  variantLabel: string;
 }
 
 export interface PaymentResult {
@@ -94,6 +118,12 @@ export interface ProductListResponse {
   products: Product[];
   page: number;
   pages: number;
+}
+
+export interface ProductMetaResponse {
+  brands: string[];
+  categories: string[];
+  subcategories: string[];
 }
 
 export interface AsyncState {

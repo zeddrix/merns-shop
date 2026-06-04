@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Product from '../components/Product';
@@ -7,6 +7,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
+import CatalogFilters from '../components/CatalogFilters';
 import Meta from '../components/Meta';
 import { listProducts } from '../features/productSlice';
 
@@ -15,6 +16,7 @@ const HomeScreen = () => {
     keyword?: string;
     pageNumber?: string;
   }>();
+  const [searchParams] = useSearchParams();
   const page = pageNumber ?? '1';
 
   const dispatch = useAppDispatch();
@@ -22,9 +24,28 @@ const HomeScreen = () => {
   const productList = useAppSelector((state) => state.productList);
   const { loading, error, products, page: currentPage, pages } = productList;
 
+  const filterQuery = searchParams.toString();
+  const brand = searchParams.get('brand') ?? '';
+  const category = searchParams.get('category') ?? '';
+  const subcategory = searchParams.get('subcategory') ?? '';
+  const minPrice = searchParams.get('minPrice') ?? '';
+  const maxPrice = searchParams.get('maxPrice') ?? '';
+  const sort = searchParams.get('sort') ?? '';
+
   useEffect(() => {
-    dispatch(listProducts({ keyword: keyword ?? '', pageNumber: page }));
-  }, [dispatch, keyword, page]);
+    dispatch(
+      listProducts({
+        keyword: keyword ?? '',
+        pageNumber: page,
+        brand,
+        category,
+        subcategory,
+        minPrice,
+        maxPrice,
+        sort
+      })
+    );
+  }, [dispatch, keyword, page, brand, category, subcategory, minPrice, maxPrice, sort]);
 
   return (
     <>
@@ -37,6 +58,7 @@ const HomeScreen = () => {
         </Link>
       )}
       <h1 data-testid="home-heading">Latest Products</h1>
+      <CatalogFilters keyword={keyword} />
       {loading ? (
         <Loader />
       ) : error ? (
@@ -55,7 +77,12 @@ const HomeScreen = () => {
               </Col>
             ))}
           </Row>
-          <Paginate pages={pages ?? 1} page={currentPage ?? 1} keyword={keyword ?? ''} />
+          <Paginate
+            pages={pages ?? 1}
+            page={currentPage ?? 1}
+            keyword={keyword ?? ''}
+            searchQuery={filterQuery}
+          />
         </>
       )}
     </>

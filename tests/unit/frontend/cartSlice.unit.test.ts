@@ -1,7 +1,8 @@
 import { describe, expect, it, beforeEach } from 'vitest';
 import cartReducer, {
   removeFromCart,
-  saveShippingAddress
+  saveShippingAddress,
+  cartLineKey
 } from '../../../frontend/src/features/cartSlice';
 
 describe('cartSlice', () => {
@@ -14,7 +15,9 @@ describe('cartSlice', () => {
       cartItems: [
         {
           product: 'abc',
-          name: 'Test',
+          variantSku: 'abc-128gb',
+          variantLabel: '128GB',
+          name: 'Test (128GB)',
           image: '/img.jpg',
           price: 10,
           countInStock: 5,
@@ -24,7 +27,7 @@ describe('cartSlice', () => {
       shippingAddress: {}
     };
 
-    const state = cartReducer(initial, removeFromCart('abc'));
+    const state = cartReducer(initial, removeFromCart(cartLineKey('abc', 'abc-128gb')));
     expect(state.cartItems).toHaveLength(0);
   });
 

@@ -31,16 +31,41 @@ export interface ProductListState {
   error?: string;
 }
 
+export interface ListProductsParams {
+  keyword?: string;
+  pageNumber?: string;
+  brand?: string;
+  category?: string;
+  subcategory?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  sort?: string;
+}
+
 export const listProducts = createAsyncThunk(
   'productList/list',
-  async (
-    { keyword = '', pageNumber = '' }: { keyword?: string; pageNumber?: string },
-    { rejectWithValue }
-  ) => {
+  async (params: ListProductsParams, { rejectWithValue }) => {
+    const {
+      keyword = '',
+      pageNumber = '',
+      brand = '',
+      category = '',
+      subcategory = '',
+      minPrice = '',
+      maxPrice = '',
+      sort = ''
+    } = params;
     try {
-      const { data } = await axios.get<ProductListResponse>(
-        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
-      );
+      const query = new URLSearchParams();
+      if (keyword) query.set('keyword', keyword);
+      if (pageNumber) query.set('pageNumber', pageNumber);
+      if (brand) query.set('brand', brand);
+      if (category) query.set('category', category);
+      if (subcategory) query.set('subcategory', subcategory);
+      if (minPrice) query.set('minPrice', minPrice);
+      if (maxPrice) query.set('maxPrice', maxPrice);
+      if (sort) query.set('sort', sort);
+      const { data } = await axios.get<ProductListResponse>(`/api/products?${query.toString()}`);
       return data;
     } catch (error) {
       return rejectWithValue(getErrorMessage(error));
@@ -84,13 +109,16 @@ const emptyProduct = (): Product => ({
   name: '',
   image: '',
   brand: '',
-  category: '',
+  category: 'Electronics',
+  subcategory: '',
+  modelKey: '',
+  releaseYear: new Date().getFullYear(),
+  condition: 'Like New',
   description: '',
   reviews: [],
   rating: 0,
   numReviews: 0,
-  price: 0,
-  countInStock: 0,
+  variants: [],
   user: ''
 });
 

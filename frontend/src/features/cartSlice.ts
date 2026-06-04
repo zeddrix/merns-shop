@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import type { CartItem, Product, ShippingAddress } from '../types';
+import type { CartItem, Product, ProductVariant, ShippingAddress } from '../types';
 import { getErrorMessage } from '../utils/getErrorMessage';
 
 export interface CartState {
@@ -24,17 +24,39 @@ const initialState: CartState = {
   shippingAddress: shippingAddressFromStorage()
 };
 
+const cartLineKey = (productId: string, variantSku: string) => `${productId}:${variantSku}`;
+
+const resolveVariantFromProduct = (
+  product: Product,
+  variantSku: string
+): ProductVariant | undefined => {
+  if (!variantSku) {
+    return product.variants[0];
+  }
+  return product.variants.find((v) => v.sku === variantSku);
+};
+
 export const addToCart = createAsyncThunk(
   'cart/addToCart',
-  async ({ id, qty }: { id: string; qty: number }, { rejectWithValue }) => {
+  async (
+    { id, qty, variantSku }: { id: string; qty: number; variantSku: string },
+    { rejectWithValue }
+  ) => {
     try {
       const { data } = await axios.get<Product>(`/api/products/${id}`);
+      const variant = resolveVariantFromProduct(data, variantSku);
+      if (!variant) {
+        return rejectWithValue('Invalid product variant');
+      }
+      const image = variant.image ?? data.image;
       return {
         product: data._id,
-        name: data.name,
-        image: data.image,
-        price: data.price,
-        countInStock: data.countInStock,
+        variantSku: variant.sku,
+        variantLabel: variant.label,
+        name: `${data.name} (${variant.label})`,
+        image,
+        price: variant.price,
+        countInStock: variant.countInStock,
         qty
       } satisfies CartItem;
     } catch (error) {
@@ -48,7 +70,9 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     removeFromCart: (state, action: PayloadAction<string>) => {
-      state.cartItems = state.cartItems.filter((x) => x.product !== action.payload);
+      state.cartItems = state.cartItems.filter(
+        (x) => cartLineKey(x.product, x.variantSku) !== action.payload
+      );
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
     saveShippingAddress: (state, action: PayloadAction<ShippingAddress>) => {
@@ -67,9 +91,12 @@ const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addToCart.fulfilled, (state, action) => {
       const item = action.payload;
-      const existItem = state.cartItems.find((x) => x.product === item.product);
+      const key = cartLineKey(item.product, item.variantSku);
+      const existItem = state.cartItems.find((x) => cartLineKey(x.product, x.variantSku) === key);
       if (existItem) {
-        state.cartItems = state.cartItems.map((x) => (x.product === existItem.product ? item : x));
+        state.cartItems = state.cartItems.map((x) =>
+          cartLineKey(x.product, x.variantSku) === key ? item : x
+        );
       } else {
         state.cartItems.push(item);
       }
@@ -80,5 +107,7 @@ const cartSlice = createSlice({
 
 export const { removeFromCart, saveShippingAddress, savePaymentMethod, clearCartItems } =
   cartSlice.actions;
+
+export { cartLineKey };
 
 export default cartSlice.reducer;

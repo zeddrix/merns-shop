@@ -23,6 +23,36 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <SearchBox />
+            <Nav className="me-auto">
+              <Nav.Link
+                as={Link}
+                to="/?category=Electronics&subcategory=Phones"
+                data-testid="nav-category-phones"
+              >
+                Phones
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/?category=Electronics&subcategory=Tablets"
+                data-testid="nav-category-tablets"
+              >
+                Tablets
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/?category=Electronics&subcategory=TVs"
+                data-testid="nav-category-tvs"
+              >
+                TVs
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/?category=Electronics&subcategory=Consoles"
+                data-testid="nav-category-consoles"
+              >
+                Consoles
+              </Nav.Link>
+            </Nav>
             <Nav className="ms-auto">
               <Nav.Link as={Link} to="/cart" data-testid="nav-cart">
                 <i className="fas fa-shopping-cart" /> Cart

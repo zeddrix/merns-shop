@@ -95,7 +95,8 @@ const ProductListScreen = () => {
               <tr>
                 <th>ID</th>
                 <th>NAME</th>
-                <th>PRICE</th>
+                <th>FROM</th>
+                <th>VARIANTS</th>
                 <th>CATEGORY</th>
                 <th>BRAND</th>
                 <th></th>
@@ -106,7 +107,8 @@ const ProductListScreen = () => {
                 <tr key={product._id} data-testid={`admin-product-${product._id}`}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
-                  <td>${product.price}</td>
+                  <td>${product.priceFrom ?? product.variants[0]?.price ?? 0}</td>
+                  <td>{product.variants.length}</td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>
                   <td>

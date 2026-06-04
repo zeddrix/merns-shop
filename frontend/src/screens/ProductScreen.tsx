@@ -1,11 +1,14 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
+import { Row, Col, Image, ListGroup, Card, Button, Form, Badge } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Rating from '../components/Rating';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Meta from '../components/Meta';
+import PriceDisplay from '../components/PriceDisplay';
+import ProductVariantPicker from '../components/ProductVariantPicker';
+import { capQtyOptions } from '../constants/cartLimits';
 import {
   listProductDetails,
   createProductReview,
@@ -16,6 +19,8 @@ const ProductScreen = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
+  const [selectedSku, setSelectedSku] = useState('');
+  const [variantError, setVariantError] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
@@ -33,6 +38,12 @@ const ProductScreen = () => {
     error: errorProductReview
   } = productReviewCreate;
 
+  const selectedVariant = product.variants.find((v) => v.sku === selectedSku);
+  const allVariantsOutOfStock =
+    product.variants.length > 0 && product.variants.every((v) => v.countInStock === 0);
+  const displayImage = selectedVariant?.image ?? product.image;
+  const maxQty = capQtyOptions(selectedVariant?.countInStock ?? 0);
+
   useEffect(() => {
     if (successProductReview) {
       setRating(0);
@@ -41,12 +52,22 @@ const ProductScreen = () => {
     if (id && (!product._id || product._id !== id)) {
       dispatch(listProductDetails(id));
       dispatch(productReviewCreateReset());
+      setSelectedSku('');
+      setQty(1);
     }
   }, [dispatch, id, successProductReview, product._id]);
 
   const addToCartHandler = () => {
+    if (!selectedSku) {
+      setVariantError(true);
+      return;
+    }
+    if (!selectedVariant || selectedVariant.countInStock === 0) {
+      return;
+    }
+    setVariantError(false);
     if (id) {
-      navigate(`/cart/${id}?qty=${qty}`);
+      navigate(`/cart/${id}?qty=${qty}&variantSku=${encodeURIComponent(selectedSku)}`);
     }
   };
 
@@ -76,7 +97,7 @@ const ProductScreen = () => {
           <Meta title={product.name} />
           <Row data-testid="product-details">
             <Col md={6}>
-              <Image src={product.image} alt={product.name} fluid />
+              <Image src={displayImage} alt={product.name} fluid />
             </Col>
             <Col md={3}>
               <ListGroup variant="flush">
@@ -84,9 +105,26 @@ const ProductScreen = () => {
                   <h3>{product.name}</h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
+                  <Badge bg="dark" className="me-1">
+                    {product.brand}
+                  </Badge>
+                  <Badge bg="info" className="me-1">
+                    {product.subcategory}
+                  </Badge>
+                  <Badge bg="secondary">{product.condition}</Badge>
+                </ListGroup.Item>
+                <ListGroup.Item>
                   <Rating value={product.rating} text={`${product.numReviews} reviews`} />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+                {selectedVariant && (
+                  <ListGroup.Item>
+                    <PriceDisplay
+                      price={selectedVariant.price}
+                      listPrice={selectedVariant.listPrice}
+                      size="lg"
+                    />
+                  </ListGroup.Item>
+                )}
                 <ListGroup.Item>Description: {product.description}</ListGroup.Item>
               </ListGroup>
             </Col>
@@ -94,22 +132,32 @@ const ProductScreen = () => {
               <Card>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
-                    <Row>
-                      <Col>Price:</Col>
-                      <Col>
-                        <strong>${product.price}</strong>
-                      </Col>
-                    </Row>
+                    <ProductVariantPicker
+                      variants={product.variants}
+                      selectedSku={selectedSku}
+                      onSelect={(sku) => {
+                        setSelectedSku(sku);
+                        setVariantError(false);
+                        setQty(1);
+                      }}
+                    />
+                    {variantError && (
+                      <Message variant="warning" data-testid="product-variant-error">
+                        Please select an option before adding to cart.
+                      </Message>
+                    )}
                   </ListGroup.Item>
 
-                  <ListGroup.Item>
-                    <Row>
-                      <Col>Status:</Col>
-                      <Col>{product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Col>
-                    </Row>
-                  </ListGroup.Item>
+                  {selectedVariant && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Status:</Col>
+                        <Col>{selectedVariant.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
 
-                  {product.countInStock > 0 && (
+                  {selectedVariant && selectedVariant.countInStock > 0 && maxQty > 0 && (
                     <ListGroup.Item>
                       <Row>
                         <Col>Qty</Col>
@@ -119,7 +167,7 @@ const ProductScreen = () => {
                             data-testid="product-qty"
                             onChange={(e) => setQty(Number(e.target.value))}
                           >
-                            {[...Array(product.countInStock).keys()].map((x) => (
+                            {[...Array(maxQty).keys()].map((x) => (
                               <option key={x + 1} value={x + 1}>
                                 {x + 1}
                               </option>
@@ -136,7 +184,10 @@ const ProductScreen = () => {
                       className="btn-block"
                       type="button"
                       data-testid="product-add-cart"
-                      disabled={product.countInStock === 0}
+                      disabled={
+                        allVariantsOutOfStock ||
+                        (selectedVariant !== undefined && selectedVariant.countInStock === 0)
+                      }
                     >
                       Add To Cart
                     </Button>
