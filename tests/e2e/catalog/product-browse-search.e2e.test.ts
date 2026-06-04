@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
+import { assertHomeCatalogHealthy } from '../fixtures/test-helpers';
 
 test.describe('catalog browse and search', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.locator('[data-testid="product-list"]').waitFor({ state: 'visible' });
+    await assertHomeCatalogHealthy(page);
   });
 
   test('product_browse_search', async ({ page }) => {

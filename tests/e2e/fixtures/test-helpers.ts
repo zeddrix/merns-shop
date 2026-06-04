@@ -2,6 +2,15 @@ import type { Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { TEST_USERS } from './test-users';
 
+/** Home catalog loaded with carousel, products, and no API error banners. */
+export async function assertHomeCatalogHealthy(page: Page): Promise<void> {
+  await expect(page.locator('[data-testid="home-carousel-error"]')).toHaveCount(0);
+  await expect(page.locator('[data-testid="home-products-error"]')).toHaveCount(0);
+  await expect(page.locator('[data-testid="product-carousel"]')).toBeVisible();
+  await page.locator('[data-testid="product-list"]').waitFor({ state: 'visible' });
+  await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
+}
+
 export async function loginAs(
   page: Page,
   user: keyof typeof TEST_USERS = 'customer'
@@ -24,7 +33,7 @@ export async function logout(page: Page): Promise<void> {
 
 export async function addFirstProductToCart(page: Page): Promise<void> {
   await page.goto('/');
-  await page.locator('[data-testid="product-list"]').waitFor({ state: 'visible' });
+  await assertHomeCatalogHealthy(page);
   const firstCard = page.locator('[data-testid^="product-card-"]').first();
   await firstCard.locator('a').first().click();
   await page.locator('[data-testid="product-add-cart"]').click();
