@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
 import { store } from './store/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import './index.css';
 import App from './App';
 
