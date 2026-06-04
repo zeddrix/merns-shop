@@ -4,8 +4,8 @@ import { findProductById } from '../fixtures/mongo-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 
 test.describe('product reviews', () => {
-  test.beforeEach(async () => {
-    await resetE2eDatabase();
+  test.beforeEach(async ({ context }) => {
+    await resetE2eDatabase(context);
   });
 
   test('logged_in_user_can_submit_review', async ({ page }) => {

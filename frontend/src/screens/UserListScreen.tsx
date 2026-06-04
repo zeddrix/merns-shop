@@ -17,7 +17,7 @@ const UserListScreen = () => {
   const isAdmin = useRequireAdmin();
 
   const userDelete = useAppSelector((state) => state.userDelete);
-  const { success: successDelete } = userDelete;
+  const { success: successDelete, error: errorDelete } = userDelete;
 
   useEffect(() => {
     if (isAdmin) {
@@ -38,6 +38,11 @@ const UserListScreen = () => {
   return (
     <div data-testid="admin-user-list">
       <h1>Users</h1>
+      {errorDelete && (
+        <Message variant="danger" data-testid="admin-user-delete-error">
+          {errorDelete}
+        </Message>
+      )}
       {loading ? (
         <Loader />
       ) : error ? (

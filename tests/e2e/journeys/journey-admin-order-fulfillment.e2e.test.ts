@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { loginAs, loginAsAdmin, createPaidOrderViaApi } from '../fixtures/test-helpers';
+import { loginAs, loginAsAdmin, createPaidOrderViaApi, logout } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findOrderById } from '../fixtures/mongo-helpers';
 
 test.describe('journey admin order fulfillment', () => {
-  test.beforeEach(async () => {
-    await resetE2eDatabase();
+  test.beforeEach(async ({ context }) => {
+    await resetE2eDatabase(context);
   });
 
   test('admin_delivers_paid_order_and_customer_sees_delivery', async ({ page }) => {
@@ -24,7 +24,7 @@ test.describe('journey admin order fulfillment', () => {
     ]);
     await expect(page.locator('[data-testid="order-delivered-message"]')).toBeVisible();
 
-    await page.evaluate(() => localStorage.removeItem('userInfo'));
+    await logout(page);
     await loginAs(page, 'customer');
     await page.goto('/profile');
     await expect(page.locator('[data-testid="my-orders-table"]')).toBeVisible();

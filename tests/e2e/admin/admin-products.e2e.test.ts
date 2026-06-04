@@ -4,10 +4,10 @@ import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findProductById } from '../fixtures/mongo-helpers';
 
 test.describe('admin products', () => {
-  test.beforeEach(async () => {
-    await resetE2eDatabase();
+  test.beforeEach(async ({ context }) => {
+    await resetE2eDatabase(context);
   });
-  test('admin_create_edit_delete_product', async ({ page, request }) => {
+  test('admin_create_edit_delete_product', async ({ page }) => {
     const productName = `E2E Product ${Date.now()}`;
     const updatedName = `${productName} Updated`;
 
@@ -56,13 +56,10 @@ test.describe('admin products', () => {
     await page.locator('[data-testid="search-submit"]').click();
     await expect(page.locator(`[data-testid="product-card-${productId}"]`)).toBeVisible();
 
-    const login = await request.post('http://localhost:5000/api/users/login', {
+    await page.request.post('/api/users/login', {
       data: { email: 'admin@gmail.com', password: '123456' }
     });
-    const { token } = (await login.json()) as { token: string };
-    const deleted = await request.delete(`http://localhost:5000/api/products/${productId}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const deleted = await page.request.delete(`/api/products/${productId}`);
     expect(deleted.ok()).toBeTruthy();
 
     await page.goto(`/search/${encodeURIComponent(updatedName)}`);
@@ -70,6 +67,18 @@ test.describe('admin products', () => {
 
     const deletedProduct = await findProductById(productId as string);
     expect(deletedProduct).toBeNull();
+  });
+
+  test('product_edit_validation_shows_errors', async ({ page }) => {
+    await loginAsAdmin(page);
+    await page.goto('/admin/productlist');
+    await page.locator('[data-testid="admin-create-product"]').click();
+    await page.waitForURL(/\/admin\/product\/([^/]+)\/edit/);
+    await page.locator('[data-testid="admin-product-name"]').fill('');
+    await page.locator('[data-testid="admin-product-price"]').fill('-1');
+    await page.locator('[data-testid="admin-product-submit"]').click();
+    await expect(page.locator('[data-testid="admin-product-edit-form"]')).toBeVisible();
+    await expect(page).toHaveURL(/\/admin\/product\/.*\/edit/);
   });
 
   test('non_admin_blocked_from_admin_product_routes', async ({ page }) => {

@@ -12,4 +12,10 @@ test.describe('checkout auth guard', () => {
     await expect(page).toHaveURL(/\/login\?redirect=/);
     await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
   });
+
+  test('profile_requires_login', async ({ page }) => {
+    await page.goto('/profile');
+    await expect(page).toHaveURL(/\/login\?redirect=/);
+    await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
+  });
 });

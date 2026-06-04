@@ -14,11 +14,17 @@ test.describe('api security auth', () => {
       data: { email: 'john@gmail.com', password: '123456' }
     });
     expect(login.ok()).toBeTruthy();
-    const body = (await login.json()) as { token: string };
 
-    const users = await request.get('http://localhost:5000/api/users', {
-      headers: { Authorization: `Bearer ${body.token}` }
-    });
+    const users = await request.get('http://localhost:5000/api/users');
     expect(users.status()).toBe(401);
+  });
+
+  test('admin_nav_hidden_for_customer', async ({ page }) => {
+    await page.goto('/login');
+    await page.locator('[data-testid="login-email"]').fill('john@gmail.com');
+    await page.locator('[data-testid="login-password"]').fill('123456');
+    await page.locator('[data-testid="login-submit"]').click();
+    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+    await expect(page.locator('[data-testid="nav-admin-products"]')).toHaveCount(0);
   });
 });

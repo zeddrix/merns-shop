@@ -40,6 +40,24 @@ test.describe('checkout cart shipping payment', () => {
     await expect(page.locator('[data-testid="cart-empty"]')).toBeVisible();
   });
 
+  test('empty_cart_checkout_blocked', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await page.goto('/cart');
+    await expect(page.locator('[data-testid="cart-empty"]')).toBeVisible();
+    await expect(page.locator('[data-testid="cart-checkout"]')).toHaveCount(0);
+  });
+
+  test('payment_paypal_selected_persists', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstProductToCart(page);
+    await completeShippingStep(page);
+    await page.locator('[data-testid="payment-method-paypal"]').check();
+    await page.locator('[data-testid="payment-submit"]').click();
+    await expect(page.locator('[data-testid="place-order-screen"]')).toBeVisible();
+    await page.goto('/payment');
+    await expect(page.locator('[data-testid="payment-method-paypal"]')).toBeChecked();
+  });
+
   test('shipping_requires_all_fields', async ({ page }) => {
     await loginAs(page, 'customer');
     await page.goto('/shipping');

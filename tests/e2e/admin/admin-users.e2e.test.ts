@@ -4,8 +4,8 @@ import { resetE2eDatabase } from '../fixtures/reset-db';
 import { TEST_USERS } from '../fixtures/test-users';
 
 test.describe('admin users', () => {
-  test.beforeEach(async () => {
-    await resetE2eDatabase();
+  test.beforeEach(async ({ context }) => {
+    await resetE2eDatabase(context);
   });
 
   test('admin_lists_and_edits_user', async ({ page }) => {
@@ -43,6 +43,16 @@ test.describe('admin users', () => {
     await janeRow.locator('[data-testid^="admin-user-delete-"]').click();
 
     await expect(page.locator('tr', { hasText: TEST_USERS.jane.email })).toHaveCount(0);
+  });
+
+  test('admin_cannot_delete_self', async ({ page }) => {
+    await loginAsAdmin(page);
+    await page.goto('/admin/userlist');
+    const adminRow = page.locator('tr', { hasText: TEST_USERS.admin.email });
+    page.once('dialog', (dialog) => dialog.accept());
+    await adminRow.locator('[data-testid^="admin-user-delete-"]').click();
+    await expect(page.getByText('Admin cannot delete their own account')).toBeVisible();
+    await expect(adminRow).toBeVisible();
   });
 
   test('non_admin_blocked_from_admin_user_routes', async ({ page }) => {

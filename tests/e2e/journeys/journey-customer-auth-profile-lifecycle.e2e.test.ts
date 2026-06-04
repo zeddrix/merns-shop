@@ -8,8 +8,8 @@ import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findUserByEmail } from '../fixtures/mongo-helpers';
 
 test.describe('journey customer auth profile lifecycle', () => {
-  test.beforeEach(async () => {
-    await resetE2eDatabase();
+  test.beforeEach(async ({ context }) => {
+    await resetE2eDatabase(context);
   });
 
   test('customer_registers_logs_in_updates_profile_and_sees_orders', async ({ page }) => {

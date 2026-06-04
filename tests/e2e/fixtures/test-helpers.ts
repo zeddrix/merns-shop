@@ -16,8 +16,9 @@ export async function loginAsAdmin(page: Page): Promise<void> {
 }
 
 export async function logout(page: Page): Promise<void> {
-  await page.evaluate(() => localStorage.removeItem('userInfo'));
-  await page.goto('/login');
+  await page.locator('#username').click();
+  await page.locator('[data-testid="nav-logout"]').click();
+  await page.waitForURL(/\/login/);
   await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
 }
 
@@ -43,10 +44,6 @@ export async function completePaymentStep(page: Page): Promise<void> {
   await page.locator('[data-testid="payment-method-paypal"]').check();
   await page.locator('[data-testid="payment-submit"]').click();
   await page.locator('[data-testid="place-order-screen"]').waitFor({ state: 'visible' });
-}
-
-interface ApiLoginResponse {
-  token: string;
 }
 
 interface ApiProductListResponse {
@@ -79,7 +76,6 @@ export async function createPaidOrderForCredentials(
     data: { email, password }
   });
   expect(loginResponse.ok()).toBeTruthy();
-  const { token } = (await loginResponse.json()) as ApiLoginResponse;
 
   const productsResponse = await page.request.get('/api/products');
   expect(productsResponse.ok()).toBeTruthy();
@@ -88,7 +84,6 @@ export async function createPaidOrderForCredentials(
   expect(product).toBeDefined();
 
   const orderResponse = await page.request.post('/api/orders', {
-    headers: { Authorization: `Bearer ${token}` },
     data: {
       orderItems: [
         {
@@ -116,7 +111,6 @@ export async function createPaidOrderForCredentials(
   const order = (await orderResponse.json()) as ApiOrderResponse;
 
   const payResponse = await page.request.put(`/api/orders/${order._id}/pay`, {
-    headers: { Authorization: `Bearer ${token}` },
     data: {
       id: 'e2e-test-payment',
       status: 'COMPLETED',
@@ -125,6 +119,8 @@ export async function createPaidOrderForCredentials(
     }
   });
   expect(payResponse.ok()).toBeTruthy();
+
+  await page.context().clearCookies();
 
   return order._id;
 }

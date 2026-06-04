@@ -1,4 +1,6 @@
-export async function resetE2eDatabase(): Promise<void> {
+import type { BrowserContext } from '@playwright/test';
+
+export async function resetE2eDatabase(context?: BrowserContext): Promise<void> {
   const { execSync } = await import('node:child_process');
   execSync('pnpm db:seed', {
     stdio: 'pipe',
@@ -8,4 +10,8 @@ export async function resetE2eDatabase(): Promise<void> {
       MONGO_URI: process.env.MONGO_URI ?? 'mongodb://127.0.0.1:27017/merns-shop'
     }
   });
+
+  if (context) {
+    await context.clearCookies();
+  }
 }

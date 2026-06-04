@@ -4,8 +4,8 @@ import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findOrderById } from '../fixtures/mongo-helpers';
 
 test.describe('admin orders', () => {
-  test.beforeEach(async () => {
-    await resetE2eDatabase();
+  test.beforeEach(async ({ context }) => {
+    await resetE2eDatabase(context);
   });
 
   test('admin_views_order_list', async ({ page }) => {
