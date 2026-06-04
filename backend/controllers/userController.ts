@@ -109,6 +109,16 @@ const getAllUsers = asyncHandler(async (_req: Request, res: Response) => {
 });
 
 const deleteUser = asyncHandler(async (req: Request, res: Response) => {
+  if (!req.user) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+
+  if (String(req.user._id) === String(req.params.id)) {
+    res.status(400);
+    throw new Error('Admin cannot delete their own account');
+  }
+
   const user = await User.findById(req.params.id);
 
   if (user) {

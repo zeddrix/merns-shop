@@ -41,4 +41,17 @@ describe('users admin integration', () => {
     expect(res.status).toBe(200);
     expect(res.body._id).toBe(userId);
   });
+
+  it('admin_cannot_delete_own_account', async () => {
+    const users = await request(app).get('/api/users').set('Authorization', `Bearer ${adminToken}`);
+    const adminUser = users.body.find(
+      (user: { email: string }) => user.email === 'admin@gmail.com'
+    );
+
+    const res = await request(app)
+      .delete(`/api/users/${adminUser._id}`)
+      .set('Authorization', `Bearer ${adminToken}`);
+
+    expect(res.status).toBe(400);
+  });
 });
