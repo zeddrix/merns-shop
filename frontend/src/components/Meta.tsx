@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { DEFAULT_META_TITLE } from '../constants/brand';
 
 interface MetaProps {
   title?: string;
@@ -7,7 +8,7 @@ interface MetaProps {
 }
 
 const Meta = ({
-  title = "Welcome to Mern's Shop",
+  title = DEFAULT_META_TITLE,
   description = 'We sell the best products for the cheapest price',
   keywords = 'electronics, buy electronics, cheap electronics'
 }: MetaProps) => {

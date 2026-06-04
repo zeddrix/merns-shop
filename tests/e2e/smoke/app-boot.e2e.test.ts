@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('smoke app boot', () => {
   test('smoke_app_and_api_boot', async ({ page, request }) => {
     await page.goto('/');
-    await expect(page.locator('[data-testid="site-brand"]')).toHaveText("Mern's Shop");
+    await expect(page.locator('[data-testid="site-brand"]')).toHaveText("MERN's Shop");
     await expect(page.locator('[data-testid="home-heading"]')).toBeVisible();
 
     const response = await request.get('/api/products');

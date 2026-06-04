@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { logout } from '../features/userSlice';
 import SearchBox from './SearchBox';
+import { DISPLAY_BRAND_NAME } from '../constants/brand';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <Navbar.Brand as={Link} to="/" data-testid="site-brand">
-            Mern&apos;s Shop
+            {DISPLAY_BRAND_NAME}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
