@@ -40,7 +40,9 @@ const HomeScreen = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <Message variant="danger" data-testid="home-products-error">
+          {error}
+        </Message>
       ) : (
         <>
           {products.length === 0 && keyword ? (

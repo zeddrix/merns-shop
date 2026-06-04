@@ -19,7 +19,9 @@ const ProductCarousel = () => {
   return loading ? (
     <Loader />
   ) : error ? (
-    <Message variant="danger">{error}</Message>
+    <Message variant="danger" data-testid="home-carousel-error">
+      {error}
+    </Message>
   ) : (
     <Carousel pause="hover" className="bg-dark" data-testid="product-carousel">
       {products.map((product) => (
