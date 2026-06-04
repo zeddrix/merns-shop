@@ -1,8 +1,3 @@
-# Catalog image attribution
-
-Product images in this directory are placeholder assets generated for offline development and seeding. For production marketing, replace with:
-
-- Manufacturer press kits (Apple Newsroom, Samsung Newsroom, Sony Press Centre, etc.)
-- Wikimedia Commons media licensed for reuse with attribution
-
-List each replacement image source in `catalog-image-manifest.json` when updating assets.
+version https://git-lfs.github.com/spec/v1
+oid sha256:8a86ace3789f42bb47760859e4f9acfa3ac0b59fc6fe271d2a58973737fb82f2
+size 875

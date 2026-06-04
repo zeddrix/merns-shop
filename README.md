@@ -7,6 +7,7 @@ MERN e-commerce demo — TypeScript, Express 5, Mongoose 9, Vite, React 19, Redu
 - **Node.js 22+** (use `nvm use` — see [`.nvmrc`](.nvmrc))
 - **pnpm 9+**
 - **Docker** (local MongoDB only)
+- **Git LFS** (catalog product photos — required for clone/commit)
 
 ## Quick start (local development)
 
@@ -40,6 +41,16 @@ load-nvmrc
 
 Then opening this project directory runs `nvm use` automatically; other folders still use your default (e.g. Node 20).
 
+**Git LFS (catalog images):**
+
+```bash
+brew install git-lfs    # macOS; or apt install git-lfs on Linux
+git lfs install
+git lfs pull            # after clone or pull when catalog images change
+```
+
+Catalog photos under `frontend/public/images/catalog/` are stored with Git LFS. Commits that touch those files fail if `git-lfs` is not installed.
+
 Confirm Mongo is listening:
 
 ```bash
@@ -51,11 +62,11 @@ docker compose ps
 
 ```bash
 nvm use          # required before install if your default is Node 20
-pnpm install     # fails fast if Node < 22
+pnpm install     # fails fast if Node < 22; validates catalog WebP assets (or fetches if manifest URLs set)
 cp .env.example .env
 cp .env.test.example .env.test
 # Set VITE_SITE_URL and SITE_URL for SEO (see docs/seo.md)
-pnpm catalog:images   # ensures all catalog JPGs under frontend/public/images/catalog/
+pnpm catalog:validate   # all catalog WebP paths exist and meet size thresholds
 pnpm db:seed
 ```
 
@@ -102,7 +113,8 @@ E2E coverage: `tests/e2e/auth/login-register-profile.e2e.test.ts`, `tests/e2e/ch
 
 - **~170 parent products** with **500+ variants** (Apple, Samsung, Vivo, Xiaomi, Sony) live in [`backend/data/catalog/`](backend/data/catalog/).
 - Each product has nested **variants** (storage, screen size, etc.) with **MSRP `listPrice`** and tiered **second-hand `price`** (see [`backend/data/catalog/pricing.ts`](backend/data/catalog/pricing.ts)).
-- Images are static files under [`frontend/public/images/catalog/`](frontend/public/images/catalog/) (generated on `pnpm install` via `pnpm catalog:images`). See [`frontend/public/images/catalog/ATTRIBUTION.md`](frontend/public/images/catalog/ATTRIBUTION.md).
+- Images are **WebP** files under [`frontend/public/images/catalog/`](frontend/public/images/catalog/) (Git LFS). Sources and licenses are listed in [`catalog-image-manifest.json`](catalog-image-manifest.json). See [`frontend/public/images/catalog/ATTRIBUTION.md`](frontend/public/images/catalog/ATTRIBUTION.md).
+- Refresh images: `pnpm catalog:sources` (Wikimedia Commons URLs) then `pnpm catalog:images` (download + convert).
 - Validate catalog data: `pnpm catalog:validate`
 - Storefront: brand/category filters, savings badges, variant picker on product pages.
 

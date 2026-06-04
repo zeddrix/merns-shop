@@ -66,7 +66,7 @@ Set `VITE_SITE_URL` at **build time** on Render so canonical and Open Graph URLs
 7. Deploy → open `https://<service>.onrender.com`
 8. **Cold start:** free tier sleeps after ~15 min idle; first request may take 30–60s.
 9. **Post-deploy smoke:** homepage shows **MERN's Shop**, login, admin product list, checkout to order screen.
-10. **Product images:** Bundled under `frontend/public/images` and served from `frontend/dist/images` after `pnpm build` — redeploy-safe (no disk uploads).
+10. **Product images:** Catalog WebP files live under `frontend/public/images/catalog/` (**Git LFS**). CI and Render build use `actions/checkout` with `lfs: true` locally run `git lfs pull` after clone. Bundled into `frontend/dist/images` after `pnpm build`.
 
 Optional: use [`render.yaml`](../render.yaml) Blueprint at repo root.
 
@@ -92,15 +92,15 @@ pnpm db:seed
 
 ## Part E — Troubleshooting
 
-| Symptom                      | Fix                                                                                                                      |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Atlas connection timeout     | Check Network Access IP allowlist; verify URI encoding for special chars in password                                     |
-| Render build fails on `pnpm` | Ensure `pnpm-workspace.yaml` committed; Node 22 in Render settings                                                       |
-| Render start fails           | Run from repo root; confirm `dist/backend/server.js` exists after `pnpm build`                                           |
-| Blank page in production     | Confirm `pnpm build` outputs `frontend/dist`; Express serves `frontend/dist`                                             |
-| PayPal buttons missing       | Set `PAYPAL_CLIENT_ID` on Render; check browser console for SDK errors                                                   |
-| 401 on admin routes          | Re-login; verify `JWT_SECRET` unchanged between deploys                                                                  |
-| Broken product images        | Run `pnpm catalog:images` then `pnpm catalog:validate`; re-seed with `pnpm db:seed:prod` after deploy if catalog changed |
+| Symptom                      | Fix                                                                                                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Atlas connection timeout     | Check Network Access IP allowlist; verify URI encoding for special chars in password                                                                                |
+| Render build fails on `pnpm` | Ensure `pnpm-workspace.yaml` committed; Node 22 in Render settings                                                                                                  |
+| Render start fails           | Run from repo root; confirm `dist/backend/server.js` exists after `pnpm build`                                                                                      |
+| Blank page in production     | Confirm `pnpm build` outputs `frontend/dist`; Express serves `frontend/dist`                                                                                        |
+| PayPal buttons missing       | Set `PAYPAL_CLIENT_ID` on Render; check browser console for SDK errors                                                                                              |
+| 401 on admin routes          | Re-login; verify `JWT_SECRET` unchanged between deploys                                                                                                             |
+| Broken product images        | `git lfs pull`; `pnpm catalog:validate`; if missing run `pnpm catalog:sources` + `pnpm catalog:images`; re-seed with `pnpm db:seed:prod` after catalog path changes |
 
 ---
 
