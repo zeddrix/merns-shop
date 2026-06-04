@@ -1,0 +1,47 @@
+# Mern's Shop — Developer Guide
+
+## Quality gate (mandatory)
+
+Before commits or PRs, run:
+
+```bash
+pnpm quality
+```
+
+This runs Prettier formatting, TypeScript (`tsc --noEmit`), and ESLint.
+
+For CI-equivalent checks without auto-format:
+
+```bash
+pnpm format:check && pnpm quality:fast
+```
+
+## Development
+
+```bash
+docker compose up -d mongo
+pnpm install
+cp .env.example .env
+cp .env.test.example .env.test
+pnpm db:seed
+pnpm dev
+```
+
+- Frontend (Vite): http://localhost:5173
+- API (Express): http://localhost:5000
+
+## Testing
+
+```bash
+pnpm test:unit
+pnpm test:integration
+pnpm test:e2e:one -- tests/e2e/smoke/app-boot.e2e.test.ts
+```
+
+See `docs/e2e-testing-rules.md`, `docs/unit-testing-rules.md`, and `docs/integration-testing-rules.md`.
+
+## Deployment
+
+Production uses **MongoDB Atlas M0 + Render free**. See [`docs/deployment-atlas-render.md`](docs/deployment-atlas-render.md).
+
+Complete modernization and rename the GitHub repo to `merns-shop` before connecting Render.

@@ -5,17 +5,32 @@ node_modules
 node_modules/
 /.pnp
 .pnp.js
+package-lock.json
+frontend/package-lock.json
+.pnpm-store
 
 # testing
 /coverage
+test-results
+playwright-report
 
 # production
 /frontend/build
+/frontend/dist
+/dist
+
+# TypeScript
+*.tsbuildinfo
+
+# uploads (runtime); keep folder via .gitkeep
+/uploads/*
+!/uploads/.gitkeep
 
 # misc
 .DS_Store
 .env
 .env.local
+.env.test
 .env.development.local
 .env.test.local
 .env.production.local
