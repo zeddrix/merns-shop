@@ -24,7 +24,8 @@ test.describe('PayPal sandbox payment', () => {
     await addFirstProductToCart(page);
     await page.goto('/cart');
     await page.locator('[data-testid="cart-checkout"]').click();
-    await expect(page).toHaveURL(/\/login\?redirect=/);
+    await expect(page).toHaveURL(/auth=login/);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
     await completeShippingStep(page);
     await completePaymentStep(page);

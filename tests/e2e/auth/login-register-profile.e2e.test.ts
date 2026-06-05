@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { loginAs, logout } from '../fixtures/test-helpers';
+import { loginAs, logout, openAuthModal, openMobileNavIfNeeded } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { TEST_USERS } from '../fixtures/test-users';
 
@@ -17,13 +17,15 @@ test.describe('auth login register profile', () => {
 
   test('nav_sign_up_reaches_register_form', async ({ page }) => {
     await page.goto('/');
+    await openMobileNavIfNeeded(page);
     await page.locator('[data-testid="nav-sign-up"]').click();
-    await expect(page).toHaveURL(/\/register$/);
+    await expect(page).toHaveURL(/\?auth=register/);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
   });
 
   test('login_wrong_password_shows_error', async ({ page }) => {
-    await page.goto('/login');
+    await openAuthModal(page, 'login');
     await page.locator('[data-testid="login-email"]').fill(TEST_USERS.customer.email);
     await page.locator('[data-testid="login-password"]').fill('wrong-password');
     await Promise.all([
@@ -33,7 +35,25 @@ test.describe('auth login register profile', () => {
       page.locator('[data-testid="login-submit"]').click()
     ]);
     await expect(page.locator('[data-testid="login-form"]')).toBeVisible();
+    await expect(page.locator('[data-testid="alert-message"]')).toBeVisible();
     await expect(page.locator('[data-testid="nav-login"]')).toBeVisible();
+  });
+
+  test('login_invalid_email_shows_field_error', async ({ page }) => {
+    let loginRequested = false;
+    page.on('request', (request) => {
+      if (request.method() === 'POST' && request.url().includes('/api/users/login')) {
+        loginRequested = true;
+      }
+    });
+
+    await openAuthModal(page, 'login');
+    await page.locator('[data-testid="login-email"]').fill('not-an-email');
+    await page.locator('[data-testid="login-password"]').fill('secret');
+    await page.locator('[data-testid="login-submit"]').click();
+
+    await expect(page.locator('[data-testid="login-email-error"]')).toBeVisible();
+    expect(loginRequested).toBe(false);
   });
 
   test('register_validation_requires_matching_passwords', async ({ page }) => {
@@ -44,7 +64,7 @@ test.describe('auth login register profile', () => {
       }
     });
 
-    await page.goto('/register');
+    await openAuthModal(page, 'register');
     await page.locator('[data-testid="register-name"]').fill('Invalid User');
     await page.locator('[data-testid="register-email"]').fill('invalid@example.com');
     await page.locator('[data-testid="register-password"]').fill('123456');
@@ -65,7 +85,7 @@ test.describe('auth login register profile', () => {
       }
     });
 
-    await page.goto('/register');
+    await openAuthModal(page, 'register');
     await page.locator('[data-testid="register-name"]').fill('Short Password User');
     await page.locator('[data-testid="register-email"]').fill('short@example.com');
     await page.locator('[data-testid="register-password"]').fill('12345');
@@ -78,7 +98,7 @@ test.describe('auth login register profile', () => {
   });
 
   test('register_duplicate_email_shows_error', async ({ page }) => {
-    await page.goto('/register');
+    await openAuthModal(page, 'register');
     await page.locator('[data-testid="register-name"]').fill('Duplicate User');
     await page.locator('[data-testid="register-email"]').fill(TEST_USERS.customer.email);
     await page.locator('[data-testid="register-password"]').fill('123456');
@@ -103,7 +123,9 @@ test.describe('auth login register profile', () => {
     const signUpHref = await page
       .locator('[data-testid="checkout-step-sign-up"]')
       .getAttribute('href');
+    expect(signInHref).toContain('auth=login');
     expect(signInHref).toContain('redirect=%2Fshipping');
+    expect(signUpHref).toContain('auth=register');
     expect(signUpHref).toContain('redirect=%2Fshipping');
   });
 
@@ -123,12 +145,13 @@ test.describe('auth login register profile', () => {
     await loginAs(page, 'customer');
     await logout(page);
     await page.goto('/profile');
-    await expect(page).toHaveURL(/\/login/);
+    await expect(page).toHaveURL(/\/profile\?auth=login/);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
   });
 
   test('register_success_shows_welcome_on_home', async ({ page }) => {
     const unique = Date.now();
-    await page.goto('/register');
+    await openAuthModal(page, 'register');
     await page.locator('[data-testid="register-name"]').fill('Welcome User');
     await page.locator('[data-testid="register-email"]').fill(`welcome-${unique}@example.com`);
     await page.locator('[data-testid="register-password"]').fill('123456');
@@ -148,7 +171,8 @@ test.describe('auth login register profile', () => {
 
   test('register_honors_redirect_query', async ({ page }) => {
     const unique = Date.now();
-    await page.goto(`/register?redirect=${encodeURIComponent('/shipping')}`);
+    await page.goto(`/?auth=register&redirect=${encodeURIComponent('/shipping')}`);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await page.locator('[data-testid="register-name"]').fill('Redirect User');
     await page.locator('[data-testid="register-email"]').fill(`redirect-${unique}@example.com`);
     await page.locator('[data-testid="register-password"]').fill('123456');
@@ -169,6 +193,7 @@ test.describe('auth login register profile', () => {
     await expect(page.locator('[data-testid="my-orders-table"]')).toBeVisible();
 
     await logout(page);
+    await openAuthModal(page, 'login');
     await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
   });
 });

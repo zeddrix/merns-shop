@@ -71,8 +71,9 @@ test.describe('smoke app boot', () => {
     await expect(page.locator('[data-testid="search-overlay"]')).toHaveCount(0);
   });
 
-  test('global_links_not_default_blue', async ({ page }) => {
-    await page.goto('/login');
+  test('auth_modal_register_link_not_default_blue', async ({ page }) => {
+    await page.goto('/?auth=login');
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     const registerLink = page.locator('[data-testid="login-register-link"]');
     await expect(registerLink).toBeVisible();
     const color = await registerLink.evaluate((el) => getComputedStyle(el).color);

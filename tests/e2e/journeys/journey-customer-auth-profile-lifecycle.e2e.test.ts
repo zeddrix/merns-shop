@@ -2,7 +2,8 @@ import { test, expect } from '@playwright/test';
 import {
   logout,
   loginWithCredentials,
-  createPaidOrderForCredentials
+  createPaidOrderForCredentials,
+  openAuthModal
 } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findUserByEmail } from '../fixtures/mongo-helpers';
@@ -17,7 +18,8 @@ test.describe('journey customer auth profile lifecycle', () => {
     const email = `journey-user-${unique}@example.com`;
     const password = '123456';
 
-    await page.goto('/register');
+    await page.goto('/?auth=register');
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await page.locator('[data-testid="register-name"]').fill('Journey Customer');
     await page.locator('[data-testid="register-email"]').fill(email);
     await page.locator('[data-testid="register-password"]').fill(password);
@@ -32,6 +34,7 @@ test.describe('journey customer auth profile lifecycle', () => {
     const orderId = await createPaidOrderForCredentials(page, email, password);
 
     await logout(page);
+    await openAuthModal(page, 'login');
     await loginWithCredentials(page, email, password);
 
     await page.goto('/profile');

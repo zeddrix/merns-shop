@@ -66,12 +66,21 @@ export async function assertHomeCatalogHealthy(page: Page): Promise<void> {
   await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
 }
 
+export async function openAuthModal(
+  page: Page,
+  mode: 'login' | 'register' = 'login'
+): Promise<void> {
+  await openMobileNavIfNeeded(page);
+  await page.goto(`/?auth=${mode}`);
+  await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+}
+
 export async function loginAs(
   page: Page,
   user: keyof typeof TEST_USERS = 'customer'
 ): Promise<void> {
   const creds = TEST_USERS[user];
-  await page.goto('/login');
+  await openAuthModal(page, 'login');
   await loginWithCredentials(page, creds.email, creds.password);
 }
 
@@ -82,8 +91,9 @@ export async function loginAsAdmin(page: Page): Promise<void> {
 export async function logout(page: Page): Promise<void> {
   await page.locator('#username').click();
   await page.locator('[data-testid="nav-logout"]').click();
-  await page.waitForURL(/\/login/);
-  await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
+  await page.waitForURL(/\/$/);
+  await expect(page.locator('[data-testid="nav-login"]')).toBeVisible();
+  await expect(page.locator('[data-testid="auth-modal"]')).toHaveCount(0);
 }
 
 export async function searchProducts(page: Page, keyword: string): Promise<void> {
@@ -97,7 +107,7 @@ export async function openProductByExactName(
   name: string,
   searchKeyword?: string
 ): Promise<void> {
-  if (!page.url().includes('localhost:5020') || page.url().includes('/login')) {
+  if (!page.url().includes('localhost:5020') || page.url().includes('auth=login')) {
     await page.goto('/');
   }
   await fillSearchAndSubmit(page, searchKeyword ?? name);

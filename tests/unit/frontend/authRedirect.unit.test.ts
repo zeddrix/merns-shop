@@ -23,13 +23,13 @@ describe('authRedirect', () => {
     expect(getRedirectPath('?redirect=%2Fshipping')).toBe('/shipping');
   });
 
-  it('buildLoginRedirectUrl encodes redirect path', () => {
-    expect(buildLoginRedirectUrl('/shipping')).toBe('/login?redirect=%2Fshipping');
-    expect(buildLoginRedirectUrl('shipping')).toBe('/login?redirect=%2Fshipping');
+  it('buildLoginRedirectUrl encodes redirect path via auth modal query', () => {
+    expect(buildLoginRedirectUrl('/shipping')).toBe('/?auth=login&redirect=%2Fshipping');
+    expect(buildLoginRedirectUrl('shipping')).toBe('/?auth=login&redirect=%2Fshipping');
   });
 
-  it('buildRegisterRedirectUrl encodes redirect path', () => {
-    expect(buildRegisterRedirectUrl('/payment')).toBe('/register?redirect=%2Fpayment');
+  it('buildRegisterRedirectUrl encodes redirect path via auth modal query', () => {
+    expect(buildRegisterRedirectUrl('/payment')).toBe('/?auth=register&redirect=%2Fpayment');
   });
 
   it('isRegisterWelcomeState validates location state', () => {

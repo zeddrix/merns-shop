@@ -21,7 +21,8 @@ test.describe('checkout cart shipping payment', () => {
     await selectAppOption(page, lineTestId, '2');
     await page.locator('[data-testid="cart-checkout"]').click();
 
-    await expect(page).toHaveURL(/\/login\?redirect=/);
+    await expect(page).toHaveURL(/auth=login/);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
     await expect(page).toHaveURL(/\/shipping/);
 
@@ -63,9 +64,12 @@ test.describe('checkout cart shipping payment', () => {
   test('checkout_step_sign_up_from_shipping_breadcrumb', async ({ page }) => {
     await loginAs(page, 'customer');
     await page.goto('/shipping');
-    await page.locator('[data-testid="checkout-step-sign-up"]').click();
-    await expect(page).toHaveURL(/\/register\?redirect=%2Fshipping/);
-    await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
+    await expect(page.locator('[data-testid="shipping-heading"]')).toBeVisible();
+    const signUpHref = await page
+      .locator('[data-testid="checkout-step-sign-up"]')
+      .getAttribute('href');
+    expect(signUpHref).toContain('auth=register');
+    expect(signUpHref).toContain('redirect=%2Fshipping');
   });
 
   test('checkout_sign_up_honors_cart_redirect', async ({ page }) => {
@@ -76,10 +80,11 @@ test.describe('checkout cart shipping payment', () => {
     await page.goto('/cart');
     await page.locator('[data-testid="cart-checkout"]').click();
 
-    await expect(page).toHaveURL(/\/login\?redirect=/);
+    await expect(page).toHaveURL(/auth=login/);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await expect(page.locator('[data-testid="login-checkout-sign-up-hint"]')).toBeVisible();
     await page.locator('[data-testid="login-register-link"]').click();
-    await expect(page).toHaveURL(/\/register\?redirect=/);
+    await expect(page).toHaveURL(/auth=register/);
 
     await page.locator('[data-testid="register-name"]').fill('Checkout Signup User');
     await page.locator('[data-testid="register-email"]').fill(email);

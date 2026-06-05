@@ -13,7 +13,8 @@ test.describe('public seo', () => {
     expect(response.ok()).toBeTruthy();
     const body = await response.text();
     expect(body).toContain('Disallow: /admin');
-    expect(body).toContain('Disallow: /login');
+    expect(body).not.toContain('Disallow: /login');
+    expect(body).not.toContain('Disallow: /register');
     expect(body).toMatch(/Sitemap: https?:\/\//);
   });
 
@@ -30,13 +31,10 @@ test.describe('public seo', () => {
     expect(xml).toContain(`/product/${iphone?._id}</loc>`);
   });
 
-  test('login_noindex', async ({ page }) => {
-    await page.goto('/login');
-    await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
-      'content',
-      'noindex,nofollow'
-    );
+  test('auth_modal_does_not_force_home_noindex', async ({ page }) => {
+    await page.goto('/?auth=login');
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index,follow');
   });
 
   test('search_results_meta', async ({ page }) => {

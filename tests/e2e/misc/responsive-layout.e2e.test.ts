@@ -92,6 +92,18 @@ test.describe('responsive layout', () => {
     await assertNoHorizontalOverflow(page);
   });
 
+  test('mobile_auth_modal_opens_and_closes', async ({ page }) => {
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await page.locator('[data-testid="navbar-toggle"]').click();
+    await page.locator('[data-testid="nav-login"]').click();
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await assertNoHorizontalOverflow(page);
+    await page.locator('[data-testid="auth-modal-close"]').click();
+    await expect(page.locator('[data-testid="auth-modal"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="nav-login"]')).toBeVisible();
+  });
+
   test('mobile_checkout_steps_shipping_visible', async ({ page }) => {
     await loginAs(page, 'customer');
     await addFirstInStockProductToCart(page);

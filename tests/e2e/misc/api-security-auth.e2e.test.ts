@@ -21,7 +21,8 @@ test.describe('api security auth', () => {
   });
 
   test('admin_nav_hidden_for_customer', async ({ page }) => {
-    await page.goto('/login');
+    await page.goto('/?auth=login');
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await page.locator('[data-testid="login-email"]').fill('john@gmail.com');
     await page.locator('[data-testid="login-password"]').fill('123456');
     await page.locator('[data-testid="login-submit"]').click();

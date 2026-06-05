@@ -39,7 +39,7 @@ describe('seoHtml utilities', () => {
   it('buildRobotsTxt includes disallow rules and sitemap', () => {
     const robots = buildRobotsTxt();
     expect(robots).toContain('Disallow: /admin');
-    expect(robots).toContain('Disallow: /login');
+    expect(robots).not.toContain('Disallow: /login');
     expect(robots).toMatch(/Sitemap: https?:\/\//);
   });
 
