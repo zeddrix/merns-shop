@@ -28,13 +28,15 @@ export async function resetTestDb(): Promise<void> {
     { default: Product },
     { default: Order },
     { default: users },
-    { default: products }
+    { default: buildSeedProducts },
+    { insertSeedOrders }
   ] = await Promise.all([
     import('../../../backend/models/User.js'),
     import('../../../backend/models/Product.js'),
     import('../../../backend/models/Order.js'),
     import('../../../backend/data/users.js'),
-    import('../../../backend/data/products.js')
+    import('../../../backend/data/catalog/index.js'),
+    import('../../../backend/data/seed-orders.js')
   ]);
 
   await Order.deleteMany();
@@ -47,6 +49,10 @@ export async function resetTestDb(): Promise<void> {
     throw new Error('Seed failed: no admin user created');
   }
 
-  const sampleProducts = products.map((product) => ({ ...product, user: adminUser }));
-  await Product.insertMany(sampleProducts);
+  const sampleProducts = buildSeedProducts({
+    reviewerUserId: adminUser
+  }).map((product) => ({ ...product, user: adminUser }));
+
+  const insertedProducts = await Product.insertMany(sampleProducts);
+  await insertSeedOrders(createdUsers, insertedProducts);
 }

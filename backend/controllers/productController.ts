@@ -8,6 +8,7 @@ import {
   calculateTotalPages
 } from '../utils/productQuery.js';
 import { enrichProductForList } from '../utils/productVariants.js';
+import { userCanReviewProduct } from '../utils/reviewEligibility.js';
 
 const toListProduct = (product: {
   toObject?: () => Record<string, unknown>;
@@ -49,7 +50,21 @@ const getProductById = asyncHandler(async (req: Request, res: Response) => {
   const product = await Product.findById(req.params.id);
 
   if (product) {
-    res.json(toListProduct(product));
+    const payload = toListProduct(product) as ReturnType<typeof toListProduct> & {
+      canReview?: boolean;
+      hasReviewed?: boolean;
+    };
+
+    if (req.user) {
+      const hasReviewed = product.reviews.some(
+        (r) => r.user.toString() === req.user!._id.toString()
+      );
+      const canReview = !hasReviewed && (await userCanReviewProduct(req.user._id, product._id));
+      payload.canReview = canReview;
+      payload.hasReviewed = hasReviewed;
+    }
+
+    res.json(payload);
   } else {
     res.status(404);
     throw new Error('Product not found');
@@ -149,6 +164,12 @@ const createProductReview = asyncHandler(async (req: Request, res: Response) => 
     if (alreadyReviewed) {
       res.status(400);
       throw new Error('Product already reviewed');
+    }
+
+    const canReview = await userCanReviewProduct(req.user._id, product._id);
+    if (!canReview) {
+      res.status(403);
+      throw new Error('Only customers who have received this product can leave a review');
     }
 
     const review = {

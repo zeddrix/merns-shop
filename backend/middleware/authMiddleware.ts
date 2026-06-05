@@ -47,6 +47,25 @@ const protect = asyncHandler(async (req: Request, res: Response, next: NextFunct
   }
 });
 
+const optionalAuth = asyncHandler(async (req: Request, _res: Response, next: NextFunction) => {
+  const token = extractToken(req);
+  if (!token) {
+    next();
+    return;
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
+    const user = await User.findById(decoded.id).select('-password');
+    if (user) {
+      req.user = user;
+    }
+  } catch {
+    // ignore invalid token for optional auth
+  }
+  next();
+});
+
 const admin = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   if (req.user && req.user.isAdmin) {
     next();
@@ -56,4 +75,4 @@ const admin = asyncHandler(async (req: Request, res: Response, next: NextFunctio
   }
 });
 
-export { protect, admin };
+export { protect, admin, optionalAuth };

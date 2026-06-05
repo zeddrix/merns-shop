@@ -9,7 +9,7 @@ import {
   updateProduct
 } from '../controllers/productController.js';
 import { getProductMeta } from '../controllers/productMetaController.js';
-import { admin, protect } from '../middleware/authMiddleware.js';
+import { admin, optionalAuth, protect } from '../middleware/authMiddleware.js';
 import { validateBody } from '../middleware/validateMiddleware.js';
 import { productReviewSchema, productInputSchema } from '../validators/schemas.js';
 
@@ -24,7 +24,7 @@ router.get('/meta', getProductMeta);
 router.route('/:id/reviews').post(protect, validateBody(productReviewSchema), createProductReview);
 router
   .route('/:id')
-  .get(getProductById)
+  .get(optionalAuth, getProductById)
   .delete(protect, admin, deleteProduct)
   .put(protect, admin, validateBody(productInputSchema), updateProduct);
 

@@ -50,6 +50,8 @@ export interface ApiProduct {
   savingsPercentMax?: number;
   inStock?: boolean;
   totalStock?: number;
+  canReview?: boolean;
+  hasReviewed?: boolean;
 }
 
 export interface ApiOrderItem {
