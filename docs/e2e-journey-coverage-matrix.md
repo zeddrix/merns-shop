@@ -47,10 +47,11 @@ pnpm test:e2e:journeys
 pnpm test:e2e
 ```
 
-PayPal sandbox (auto-runs when `.env.test` has `PAYPAL_CLIENT_ID` + sandbox buyer creds):
+PayPal sandbox (auto-runs in `@paypal` project when `.env.test` has `PAYPAL_CLIENT_ID` + sandbox buyer creds):
 
 ```bash
 pnpm test:e2e:paypal
+PW_RUN_PAYPAL=1 pnpm test:e2e   # includes journey PayPal opt-in test
 ```
 
 ## Open Follow-up Gaps

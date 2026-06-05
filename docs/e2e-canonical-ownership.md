@@ -31,7 +31,7 @@ Journey files assert the **single canonical happy path** across domains. They mu
 ### Checkout
 
 - `tests/e2e/checkout/cart-shipping-payment.e2e.test.ts` — cart quantity changes, remove item, shipping validation, payment method selection
-- `tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts` — **opt-in** real PayPal sandbox; not a duplicate of guest journey unless journey adds paid confirmation
+- `tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts` — **opt-in** real PayPal sandbox (`@paypal` project); waits for `paypal-buttons-ready` before checkout
 
 ### Admin
 
@@ -62,6 +62,8 @@ Journey files assert the **single canonical happy path** across domains. They mu
 3. When a focused file adds a happy-path assertion that duplicates a journey, **move** that assertion to the journey and keep only the edge branch in the focused file.
 4. **Integration tests** own Express handler contracts (`tests/integration/api/*.integration.test.ts`); E2E focused specs own browser UX for the same edge, not duplicate supertest coverage.
 5. **Unit tests** own pure controller/middleware logic with mocks (`tests/unit/backend/*.unit.test.ts`); do not re-test the same branch in E2E unless it is user-visible.
+
+6. **PayPal paid-order E2E** runs in the serial `@paypal` Playwright project (after the main `chromium` project). Journey opt-in PayPal (`PW_RUN_PAYPAL=1`) complements the focused sandbox spec; both assert `paypal-buttons-ready` and `order-paid-message`.
 
 ## De-duplication Examples
 

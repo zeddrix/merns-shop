@@ -158,22 +158,23 @@ Add to `.env.test`:
 - `PAYPAL_SANDBOX_BUYER_EMAIL`
 - `PAYPAL_SANDBOX_BUYER_PASSWORD`
 
-PayPal specs run automatically when `.env.test` has real (non-placeholder) sandbox credentials. Otherwise they are skipped with an explicit message.
+PayPal specs run automatically when `.env.test` has real (non-placeholder) sandbox credentials. Otherwise they are skipped with an explicit message. PayPal-tagged tests run in a serial **`paypal` Playwright project** after the main suite (see `docs/e2e-testing-rules.md`).
 
 ```bash
-pnpm test:e2e:paypal
+pnpm test:e2e:paypal          # canonical PayPal spec only (isolated)
+PW_RUN_PAYPAL=1 pnpm test:e2e # full suite + journey PayPal opt-in test
 ```
 
-`pnpm verify:full` runs PayPal E2E when those variables are set in `.env.test`.
+`pnpm verify:full` runs the full E2E suite once (including the PayPal project when creds are set).
 
 **CI PayPal job:** set repository variable `ENABLE_PAYPAL_E2E=true` and secrets `PAYPAL_CLIENT_ID`, `PAYPAL_SANDBOX_BUYER_EMAIL`, `PAYPAL_SANDBOX_BUYER_PASSWORD`.
 
 ### Verification gates
 
-| Command            | What it runs                                        |
-| ------------------ | --------------------------------------------------- |
-| `pnpm verify`      | format, quality, unit, integration, build           |
-| `pnpm verify:full` | above + full E2E (+ PayPal if creds in `.env.test`) |
+| Command            | What it runs                                                     |
+| ------------------ | ---------------------------------------------------------------- |
+| `pnpm verify`      | format, quality, unit, integration, build                        |
+| `pnpm verify:full` | above + full E2E (PayPal project once when creds in `.env.test`) |
 
 ## Deployment
 

@@ -38,7 +38,7 @@ When checking checkout, order, or admin list pages, verify ALL relevant elements
 
 - Checkout steps (`checkout-step-signin`, `checkout-step-shipping`, `checkout-step-payment`, `checkout-step-place-order`)
 - Cart line items and totals when applicable (`cart-item-*`, `cart-checkout`)
-- Order screen heading and payment state (`order-screen`, `order-heading`, PayPal buttons when unpaid)
+- Order screen heading and payment state (`order-screen`, `order-heading`, `paypal-buttons-ready` when unpaid and SDK loaded)
 - Admin order/product rows when testing fulfillment (`admin-order-*`, `admin-product-*`)
 
 **Minimum for catalog verification:**
@@ -318,7 +318,19 @@ Set `PW_DISABLE_REUSE_SERVER=1` to force Playwright to spawn a new stack. Stale 
 
 **Troubleshooting:** If the homepage shows API error banners, ensure Mongo is running (`docker compose up -d mongo`), `.env` exists with `MONGO_URI` and `PORT=5021`, and `pnpm dev` logs the API as still running (not exited immediately).
 
-**Optional env overrides:** `PW_RETRIES` (default `0`), `PW_WORKERS` (default `1`).
+**Optional env overrides:** `PW_RETRIES` (default `0`), `PW_WORKERS` (default `1`), `PW_PAYPAL_RETRIES` (default `1` for `@paypal` project), `PW_PAYPAL_ONLY=1` (isolated PayPal project run via `pnpm test:e2e:paypal`).
+
+### PayPal serial project (`@paypal`)
+
+Tests tagged `@paypal` run in a dedicated Playwright **`paypal` project** (workers=1, fullyParallel=false, default `PW_PAYPAL_RETRIES=1`). This avoids back-to-back PayPal sandbox checkouts flaking when the canonical spec and journey opt-in test run in one session.
+
+| Run                             | Behavior                                                                          |
+| ------------------------------- | --------------------------------------------------------------------------------- |
+| `pnpm test:e2e`                 | `chromium` project (excludes `@paypal`), then `paypal` project when creds present |
+| `pnpm test:e2e:paypal`          | `PW_PAYPAL_ONLY=1` — PayPal project only (no full suite first)                    |
+| `PW_RUN_PAYPAL=1 pnpm test:e2e` | Full suite + journey `guest_completes_paypal_payment_when_opt_in`                 |
+
+**Order screen readiness:** unpaid orders expose `[data-testid="paypal-buttons-ready"]` after the PayPal SDK `onInit` fires. E2E helpers wait for this before clicking the smart button (iframe CSS classes are fallback only).
 
 ### Global setup and MongoDB seed
 
@@ -328,6 +340,8 @@ Set `PW_DISABLE_REUSE_SERVER=1` to force Playwright to spawn a new stack. Stale 
 2. Runs `pnpm db:seed` (users, products from `backend/data/`)
 
 Requires `MONGO_URI` in `.env.test`. JWT and PayPal client placeholders are set when missing.
+
+When sandbox credentials are present in `.env.test`, global setup also verifies `GET http://localhost:5020/api/config/paypal` returns a real client ID on the **running** API (reuse `pnpm dev` with `PAYPAL_CLIENT_ID` in `.env`, or let Playwright spawn the stack with `PW_DISABLE_REUSE_SERVER=1`).
 
 ### Real PayPal sandbox checkout (opt-in)
 
@@ -341,6 +355,8 @@ PAYPAL_SANDBOX_BUYER_PASSWORD=your-sandbox-buyer-password
 ```
 
 ```bash
+pnpm test:e2e:paypal
+# or single file:
 pnpm test:e2e:one -- tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts
 ```
 
@@ -352,10 +368,10 @@ API security tests in `tests/e2e/misc/api-security-auth.e2e.test.ts` remain isol
 
 Prefer **failing loudly** when seed data or MongoDB is wrong. Only skip when the **feature or environment is unavailable** (missing PayPal sandbox credentials, no local MongoDB).
 
-| File                                                                                                                    | Skip condition                       | How to run                                                                                                                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts`                                                                 | Missing `PAYPAL_SANDBOX_BUYER_*`     | Configure `.env.test`, run file with `pnpm test:e2e:one`                                                                                                                            |
-| `tests/e2e/journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts` (`guest_completes_paypal_payment_when_opt_in`) | Missing sandbox creds in `.env.test` | Runs automatically when `PAYPAL_CLIENT_ID`, `PAYPAL_SANDBOX_BUYER_EMAIL`, and `PAYPAL_SANDBOX_BUYER_PASSWORD` are set (canonical PayPal spec: `paypal-sandbox-payment.e2e.test.ts`) |
+| File                                                                                                                    | Skip condition                                 | How to run                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts`                                                                 | Missing `PAYPAL_SANDBOX_BUYER_*`               | Configure `.env.test`, run `pnpm test:e2e:paypal`                                                                        |
+| `tests/e2e/journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts` (`guest_completes_paypal_payment_when_opt_in`) | Missing sandbox creds or `PW_RUN_PAYPAL` unset | `PW_RUN_PAYPAL=1 pnpm test:e2e` (canonical PayPal spec: `paypal-sandbox-payment.e2e.test.ts`; runs in `@paypal` project) |
 
 **Do not use runtime `test.skip` for missing seed rows** — global setup seeds via `pnpm db:seed`; fix `MONGO_URI` or run `pnpm db:seed` manually.
 
