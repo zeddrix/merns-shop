@@ -5,6 +5,7 @@ import {
   assertNoHorizontalOverflow,
   completeShippingStep,
   loginAs,
+  selectAppOption,
   selectVariantAndAddToCart
 } from '../fixtures/test-helpers';
 import { MOBILE_VIEWPORT } from '../fixtures/viewports';
@@ -49,15 +50,25 @@ test.describe('responsive layout', () => {
     await assertNoHorizontalOverflow(page);
   });
 
+  test('mobile_nav_cart_goes_to_page', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstInStockProductToCart(page);
+    await page.locator('[data-testid="nav-cart"]').click();
+    await expect(page).toHaveURL(/\/cart/);
+    await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
+  });
+
   test('mobile_cart_qty_and_checkout', async ({ page }) => {
     await loginAs(page, 'customer');
     await addFirstInStockProductToCart(page);
+    await page.locator('[data-testid="nav-cart"]').click();
     await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
     await assertNoHorizontalOverflow(page);
 
     const qtySelect = page.locator('[data-testid^="cart-qty-"]').first();
-    await qtySelect.selectOption('2');
-    await expect(qtySelect).toHaveValue('2');
+    const qtyTestId = (await qtySelect.getAttribute('data-testid'))?.replace('-trigger', '') ?? '';
+    await selectAppOption(page, qtyTestId, '2');
+    await expect(qtySelect).toContainText('2');
     await expect(page.locator('[data-testid="cart-checkout"]')).toBeVisible();
 
     await page.locator('[data-testid="cart-checkout"]').click();
@@ -75,6 +86,8 @@ test.describe('responsive layout', () => {
       .first()
       .click();
     await selectVariantAndAddToCart(page);
+    await page.locator('[data-testid="nav-cart"]').click();
+    await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
     await expect(page.locator('[data-testid^="cart-item-"]').first()).toBeVisible();
     await assertNoHorizontalOverflow(page);
   });

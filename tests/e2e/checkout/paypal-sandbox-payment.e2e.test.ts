@@ -22,7 +22,7 @@ test.describe('PayPal sandbox payment', () => {
 
   test('paypal_sandbox_payment_marks_order_paid', async ({ page }) => {
     await addFirstProductToCart(page);
-    await page.locator('[data-testid="nav-cart"]').click();
+    await page.goto('/cart');
     await page.locator('[data-testid="cart-checkout"]').click();
     await expect(page).toHaveURL(/\/login\?redirect=/);
     await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);

@@ -3,15 +3,49 @@ import { expect } from '@playwright/test';
 import { TEST_USERS } from './test-users';
 
 /** Expands the collapsed navbar on small viewports so header links and search are visible. */
+export const isProductDetailsApiResponse = (response: {
+  url: () => string;
+  request: () => { method: () => string };
+  status: () => number;
+}): boolean =>
+  /\/api\/products\/[a-f0-9]{24}$/i.test(response.url()) &&
+  response.request().method() === 'GET' &&
+  response.status() === 200;
+
+/** Clicks a custom AppSelect trigger then an option (replaces native selectOption). */
+export async function selectAppOption(page: Page, testId: string, value: string): Promise<void> {
+  await page.locator(`[data-testid="${testId}-trigger"]`).click();
+  await page.locator(`[data-testid="${testId}-option-${value}"]`).click();
+}
+
 export async function openMobileNavIfNeeded(page: Page): Promise<void> {
   const toggle = page.locator('[data-testid="navbar-toggle"]');
   if ((await toggle.count()) > 0 && (await toggle.isVisible())) {
-    const search = page.locator('[data-testid="search-input"]');
+    const search = page.locator('[data-testid="search-input"]:visible').first();
     if (!(await search.isVisible())) {
       await toggle.click();
       await expect(search).toBeVisible();
     }
   }
+}
+
+/** Opens the desktop search overlay or mobile nav search when the input is not visible. */
+export async function openSearchIfNeeded(page: Page): Promise<void> {
+  await openMobileNavIfNeeded(page);
+  const visibleSearch = page.locator('[data-testid="search-input"]:visible').first();
+  if ((await visibleSearch.count()) === 0 || !(await visibleSearch.isVisible())) {
+    const openBtn = page.locator('[data-testid="nav-search-open"]');
+    if ((await openBtn.count()) > 0 && (await openBtn.isVisible())) {
+      await openBtn.click();
+      await expect(page.locator('[data-testid="search-overlay"]')).toBeVisible();
+    }
+  }
+}
+
+export async function fillSearchAndSubmit(page: Page, keyword: string): Promise<void> {
+  await openSearchIfNeeded(page);
+  await page.locator('[data-testid="search-input"]:visible').first().fill(keyword);
+  await page.locator('[data-testid="search-submit"]:visible').first().click();
 }
 
 /** True when the document does not scroll horizontally (common mobile layout break). */
@@ -52,16 +86,28 @@ export async function logout(page: Page): Promise<void> {
   await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
 }
 
-/** Search and open a product PDP by exact catalog name (avoids partial matches like Pro vs Pro Max). */
-export async function openProductByExactName(page: Page, name: string): Promise<void> {
-  await openMobileNavIfNeeded(page);
-  await page.locator('[data-testid="search-input"]').fill(name);
-  await page.locator('[data-testid="search-submit"]').click();
+export async function searchProducts(page: Page, keyword: string): Promise<void> {
+  await fillSearchAndSubmit(page, keyword);
   await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
+}
+
+/** Search and open a product PDP by exact catalog name (avoids partial matches like Pro vs Pro Max). */
+export async function openProductByExactName(
+  page: Page,
+  name: string,
+  searchKeyword?: string
+): Promise<void> {
+  if (!page.url().includes('localhost:5020') || page.url().includes('/login')) {
+    await page.goto('/');
+  }
+  await fillSearchAndSubmit(page, searchKeyword ?? name);
+  await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
+  const detailsResponse = page.waitForResponse(isProductDetailsApiResponse);
   await Promise.all([
     page.waitForURL(/\/product\//),
     page.getByRole('link', { name, exact: true }).first().click()
   ]);
+  await detailsResponse;
   await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
 }
 
@@ -100,14 +146,16 @@ export async function selectVariantAndAddToCart(page: Page): Promise<void> {
       }
       await expect(inStockVariant).toBeChecked();
     }
-    await expect(page.locator('[data-testid="product-variant-error"]')).toHaveCount(0);
     await expect(page.locator('[data-testid="product-qty"]')).toBeVisible();
   }
   const addButton = page.locator('[data-testid="product-add-cart"]');
   await addButton.scrollIntoViewIfNeeded();
   await expect(addButton).toBeEnabled();
-  await Promise.all([page.waitForURL(/\/cart\//), addButton.click()]);
-  await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
+  const productUrl = page.url();
+  await addButton.click();
+  await expect(page).toHaveURL(productUrl);
+  await expect(page.locator('[data-testid="product-add-cart-added"]')).toBeVisible();
+  await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
 }
 
 export interface AddToCartOptions {

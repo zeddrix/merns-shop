@@ -18,7 +18,7 @@ test.describe('journey guest purchase lifecycle', () => {
 
   test('guest_completes_checkout_after_login_prompt', async ({ page }) => {
     await addFirstProductToCart(page);
-    await page.locator('[data-testid="nav-cart"]').click();
+    await page.goto('/cart');
     await page.locator('[data-testid="cart-checkout"]').click();
 
     await expect(page).toHaveURL(/\/login\?redirect=shipping/);
@@ -46,7 +46,7 @@ test.describe('journey guest purchase lifecycle', () => {
     test.setTimeout(240_000);
 
     await addFirstProductToCart(page);
-    await page.locator('[data-testid="nav-cart"]').click();
+    await page.goto('/cart');
     await page.locator('[data-testid="cart-checkout"]').click();
     await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
     await completeShippingStep(page);

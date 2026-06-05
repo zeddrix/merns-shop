@@ -109,4 +109,21 @@ describe('products integration', () => {
     expect(res.status).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
   });
+
+  it('returns embedded reviews on seeded product detail', async () => {
+    const list = await request(app).get('/api/products?keyword=iPhone%2015%20Pro');
+    expect(list.status).toBe(200);
+    const iphone15Pro = list.body.products.find(
+      (p: { name: string }) => p.name === 'iPhone 15 Pro'
+    );
+    expect(iphone15Pro).toBeDefined();
+
+    const productId = iphone15Pro._id as string;
+    const detail = await request(app).get(`/api/products/${productId}`);
+    expect(detail.status).toBe(200);
+    expect(Array.isArray(detail.body.reviews)).toBe(true);
+    expect(detail.body.reviews.length).toBeGreaterThan(0);
+    expect(detail.body.reviews[0].name).toBeDefined();
+    expect(detail.body.reviews[0].rating).toBeGreaterThanOrEqual(1);
+  });
 });

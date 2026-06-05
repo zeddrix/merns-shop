@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { loginAs, loginAsAdmin } from '../fixtures/test-helpers';
+import { fillSearchAndSubmit, loginAs, loginAsAdmin } from '../fixtures/test-helpers';
 import { MOBILE_VIEWPORT } from '../fixtures/viewports';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findProductById } from '../fixtures/mongo-helpers';
@@ -49,8 +49,7 @@ test.describe('admin products', () => {
     expect(createdProduct?.name).toBe(productName);
     expect(createdProduct?.variants.length).toBeGreaterThanOrEqual(1);
 
-    await page.locator('[data-testid="search-input"]').fill(productName);
-    await page.locator('[data-testid="search-submit"]').click();
+    await fillSearchAndSubmit(page, productName);
     await expect(page.locator(`[data-testid="product-card-${productId}"]`)).toBeVisible();
     await page.locator(`[data-testid="product-card-${productId}"]`).locator('a').first().click();
     await expect(page.locator('[data-testid="product-variant-picker"]')).toBeVisible();
@@ -70,8 +69,7 @@ test.describe('admin products', () => {
     ]);
     await page.waitForURL('**/admin/productlist');
 
-    await page.locator('[data-testid="search-input"]').fill(updatedName);
-    await page.locator('[data-testid="search-submit"]').click();
+    await fillSearchAndSubmit(page, updatedName);
     await expect(page.locator(`[data-testid="product-card-${productId}"]`)).toBeVisible();
 
     await page.request.post('/api/users/login', {

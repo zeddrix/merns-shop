@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { assertHomeCatalogHealthy, loginAsAdmin } from '../fixtures/test-helpers';
+import {
+  assertHomeCatalogHealthy,
+  fillSearchAndSubmit,
+  loginAsAdmin
+} from '../fixtures/test-helpers';
 
 const IPHONE_15_PRO = 'iPhone 15 Pro';
 
@@ -38,8 +42,7 @@ test.describe('public seo', () => {
   test('search_results_meta', async ({ page }) => {
     await page.goto('/');
     await assertHomeCatalogHealthy(page);
-    await page.locator('[data-testid="search-input"]').fill(IPHONE_15_PRO);
-    await page.locator('[data-testid="search-submit"]').click();
+    await fillSearchAndSubmit(page, IPHONE_15_PRO);
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
     await expect(page).toHaveTitle(/iPhone 15 Pro/);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');

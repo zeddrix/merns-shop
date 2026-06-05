@@ -1,33 +1,46 @@
 import { test, expect } from '@playwright/test';
-import { loginAs } from '../fixtures/test-helpers';
+import {
+  fillSearchAndSubmit,
+  loginAs,
+  openProductByExactName,
+  selectAppOption
+} from '../fixtures/test-helpers';
 import { findProductById } from '../fixtures/mongo-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
+
+const IPHONE_15_PRO = 'iPhone 15 Pro';
+const IPAD_AIR_M2 = 'iPad Air (M2)';
 
 test.describe('product reviews', () => {
   test.beforeEach(async ({ context }) => {
     await resetE2eDatabase(context);
   });
 
+  test('eligible_customer_sees_review_form', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await openProductByExactName(page, IPHONE_15_PRO);
+    await expect(page.locator('[data-testid="review-form"]')).toBeVisible();
+  });
+
   test('logged_in_user_can_submit_review', async ({ page }) => {
     await loginAs(page, 'customer');
-    await page.goto('/');
-    await page.locator('[data-testid^="product-card-"]').first().locator('a').first().click();
-    const productUrl = page.url();
-    const productId = productUrl.split('/product/')[1]?.split(/[/?#]/)[0];
+    await openProductByExactName(page, IPHONE_15_PRO);
+    const productId = page.url().split('/product/')[1]?.split(/[/?#]/)[0];
     expect(productId).toBeTruthy();
-    await page.goto(productUrl);
 
     await page.locator('[data-testid="review-form"]').waitFor({ state: 'visible' });
-    await page.locator('[data-testid="review-rating"]').selectOption('5');
+    await selectAppOption(page, 'review-rating', '5');
+    await expect(page.locator('[data-testid="review-rating-trigger"]')).toContainText('Excellent');
     await page.locator('[data-testid="review-comment"]').fill('Great product from E2E test');
-    await Promise.all([
-      page.waitForResponse(
-        (response) => response.url().includes('/reviews') && response.status() === 201
-      ),
-      page.locator('[data-testid="review-submit"]').click()
-    ]);
+    const reviewResponse = page.waitForResponse(
+      (response) => response.url().includes('/reviews') && response.request().method() === 'POST'
+    );
+    await page.locator('[data-testid="review-submit"]').click();
+    const response = await reviewResponse;
+    expect(response.status()).toBe(201);
 
     await expect(page.getByText('Review submitted successfully')).toBeVisible();
+    await expect(page.getByText('Great product from E2E test')).toBeVisible();
 
     const dbProduct = await findProductById(productId as string);
     expect(
@@ -35,20 +48,43 @@ test.describe('product reviews', () => {
     ).toBe(true);
   });
 
+  test('guest_no_write_review_section', async ({ page }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+    await expect(page.locator('[data-testid="review-form"]')).toHaveCount(0);
+    await expect(page.getByText(/sign in to write a review/i)).toHaveCount(0);
+  });
+
+  test('seeded_reviews_visible_on_pdp', async ({ page }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+    await expect(page.locator('[data-testid="review-item"]').first()).toBeVisible();
+  });
+
+  test('zero_review_product_shows_empty_state', async ({ page }) => {
+    await page.goto('/');
+    await fillSearchAndSubmit(page, 'Amazon Echo');
+    await page.locator('[data-testid^="product-card-"]').first().locator('a').first().click();
+    await expect(page.getByText('No Reviews')).toBeVisible();
+    await expect(page.locator('[data-testid="review-item"]')).toHaveCount(0);
+  });
+
   test('duplicate_review_shows_error', async ({ page }) => {
     await loginAs(page, 'customer');
-    await page.goto('/');
-    await page.locator('[data-testid^="product-card-"]').first().locator('a').first().click();
+    await openProductByExactName(page, IPAD_AIR_M2, 'iPad Air');
+    const productId = page.url().split('/product/')[1]?.split(/[/?#]/)[0];
+    expect(productId).toBeTruthy();
 
     await page.locator('[data-testid="review-form"]').waitFor({ state: 'visible' });
-    await page.locator('[data-testid="review-rating"]').selectOption('4');
+    await selectAppOption(page, 'review-rating', '4');
     await page.locator('[data-testid="review-comment"]').fill('First review');
     await page.locator('[data-testid="review-submit"]').click();
     await expect(page.getByText('Review submitted successfully')).toBeVisible();
+    await expect(page.locator('[data-testid="review-form"]')).toHaveCount(0);
 
-    await page.locator('[data-testid="review-rating"]').selectOption('3');
-    await page.locator('[data-testid="review-comment"]').fill('Duplicate review attempt');
-    await page.locator('[data-testid="review-submit"]').click();
-    await expect(page.getByText('Product already reviewed')).toBeVisible();
+    const duplicate = await page.request.post(`/api/products/${productId}/reviews`, {
+      data: { rating: 3, comment: 'Duplicate review attempt' }
+    });
+    expect(duplicate.status()).toBe(400);
+    const body = (await duplicate.json()) as { message?: string };
+    expect(body.message).toContain('already reviewed');
   });
 });

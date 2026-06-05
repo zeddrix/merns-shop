@@ -5,18 +5,20 @@ import {
   completeShippingStep,
   completePaymentStep,
   loginWithCredentials,
-  loginAs
+  loginAs,
+  selectAppOption
 } from '../fixtures/test-helpers';
 import { TEST_USERS } from '../fixtures/test-users';
 
 test.describe('checkout cart shipping payment', () => {
   test('cart_qty_shipping_payment_persisted', async ({ page }) => {
     await addFirstProductToCart(page);
-    await page.locator('[data-testid="nav-cart"]').click();
+    await page.goto('/cart');
     await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
 
     const qtySelect = page.locator('[data-testid^="cart-qty-"]').first();
-    await qtySelect.selectOption('2');
+    const lineTestId = (await qtySelect.getAttribute('data-testid'))?.replace('-trigger', '') ?? '';
+    await selectAppOption(page, lineTestId, '2');
     await page.locator('[data-testid="cart-checkout"]').click();
 
     await expect(page).toHaveURL(/\/login\?redirect=/);
@@ -34,7 +36,7 @@ test.describe('checkout cart shipping payment', () => {
   test('cart_remove_item_updates_total', async ({ page }) => {
     await loginAs(page, 'customer');
     await addFirstProductToCart(page);
-    await page.locator('[data-testid="nav-cart"]').click();
+    await page.goto('/cart');
     const item = page.locator('[data-testid^="cart-item-"]').first();
     await item.locator('[data-testid^="cart-remove-"]').click();
     await expect(page.locator('[data-testid="cart-empty"]')).toBeVisible();
@@ -71,7 +73,7 @@ test.describe('checkout cart shipping payment', () => {
     const email = `checkout-signup-${unique}@example.com`;
 
     await addFirstProductToCart(page);
-    await page.locator('[data-testid="nav-cart"]').click();
+    await page.goto('/cart');
     await page.locator('[data-testid="cart-checkout"]').click();
 
     await expect(page).toHaveURL(/\/login\?redirect=/);

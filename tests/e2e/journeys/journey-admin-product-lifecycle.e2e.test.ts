@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { loginAsAdmin } from '../fixtures/test-helpers';
+import { fillSearchAndSubmit, loginAsAdmin } from '../fixtures/test-helpers';
 
 test.describe('journey admin product lifecycle', () => {
   test('admin_creates_product_visible_on_homepage', async ({ page }) => {
@@ -23,8 +23,7 @@ test.describe('journey admin product lifecycle', () => {
     await page.waitForURL('**/admin/productlist');
 
     await page.goto('/');
-    await page.locator('[data-testid="search-input"]').fill(productName);
-    await page.locator('[data-testid="search-submit"]').click();
+    await fillSearchAndSubmit(page, productName);
     await expect(page.getByText(productName)).toBeVisible();
     await page.getByText(productName).click();
     await expect(page.locator('[data-testid="product-variant-picker"]')).toBeVisible();

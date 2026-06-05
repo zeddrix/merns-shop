@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { assertHomeCatalogHealthy } from '../fixtures/test-helpers';
+import {
+  assertHomeCatalogHealthy,
+  fillSearchAndSubmit,
+  selectAppOption
+} from '../fixtures/test-helpers';
 
 const parsePriceFrom = async (card: ReturnType<import('@playwright/test').Page['locator']>) => {
   const text = await card.locator('[data-testid="product-price-display"]').innerText();
@@ -14,16 +18,15 @@ test.describe('catalog filters and savings', () => {
   });
 
   test('filter_brand_apple_shows_iphones', async ({ page }) => {
-    await page.locator('[data-testid="filter-brand"]').selectOption('Apple');
-    await page.locator('[data-testid="filter-subcategory"]').selectOption('Phones');
+    await selectAppOption(page, 'filter-brand', 'Apple');
+    await selectAppOption(page, 'filter-subcategory', 'Phones');
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
     await expect(page.locator('[data-testid^="product-card-"]').first()).toContainText('iPhone');
     await expect(page.locator('[data-testid="product-savings-badge"]').first()).toBeVisible();
   });
 
   test('search_iphone_finds_multiple_parents', async ({ page }) => {
-    await page.locator('[data-testid="search-input"]').fill('iPhone');
-    await page.locator('[data-testid="search-submit"]').click();
+    await fillSearchAndSubmit(page, 'iPhone');
     await expect(page.locator('[data-testid^="product-card-"]')).toHaveCount(12);
     await page.locator('[data-testid="pagination-next"]').click();
     await expect(page).toHaveURL(/\/search\/iPhone\/page\/2/);
@@ -42,7 +45,7 @@ test.describe('catalog filters and savings', () => {
   });
 
   test('sort_price_low_to_high', async ({ page }) => {
-    await page.locator('[data-testid="filter-sort"]').selectOption('price-asc');
+    await selectAppOption(page, 'filter-sort', 'price-asc');
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
     const first = page.locator('[data-testid^="product-card-"]').first();
     const second = page.locator('[data-testid^="product-card-"]').nth(1);

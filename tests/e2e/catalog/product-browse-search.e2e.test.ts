@@ -2,6 +2,8 @@ import { test, expect } from '@playwright/test';
 import {
   assertHomeCatalogHealthy,
   openProductByExactName,
+  fillSearchAndSubmit,
+  searchProducts,
   selectProductVariant,
   selectVariantAndAddToCart
 } from '../fixtures/test-helpers';
@@ -16,9 +18,7 @@ test.describe('catalog browse and search', () => {
   });
 
   test('product_browse_search', async ({ page }) => {
-    await page.locator('[data-testid="search-input"]').fill(IPHONE_15_PRO);
-    await page.locator('[data-testid="search-submit"]').click();
-    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
+    await searchProducts(page, IPHONE_15_PRO);
     await expect(page.locator('[data-testid="product-savings-badge"]').first()).toBeVisible();
     await page.getByRole('link', { name: IPHONE_15_PRO, exact: true }).first().click();
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
@@ -41,24 +41,31 @@ test.describe('catalog browse and search', () => {
     expect(jsonLd.name).toBe(IPHONE_15_PRO);
     expect(jsonLd.offers).toBeTruthy();
     await expect(page.locator('[data-testid="product-variant-picker"]')).toBeVisible();
-    await page.locator('input[data-testid="product-variant-iphone-15-pro-128gb"]').check();
+    await expect(
+      page.locator('input[data-testid^="product-variant-"]:checked:not(:disabled)')
+    ).toHaveCount(1);
+    await expect(page.locator('[data-testid="product-qty"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-variant-details"]')).toBeVisible();
+  });
+
+  test('default_variant_preselected_on_product_load', async ({ page }) => {
+    await openProductByExactName(page, 'iPad Air (M2)', 'iPad Air');
+
+    await expect(page.locator('[data-testid="product-variant-error"]')).toHaveCount(0);
+    await expect(
+      page.locator('input[data-testid^="product-variant-"]:checked:not(:disabled)')
+    ).toHaveCount(1);
     await expect(page.locator('[data-testid="product-qty"]')).toBeVisible();
   });
 
-  test('variant_required_before_add_to_cart', async ({ page }) => {
+  test('add_to_cart_stays_on_pdp_with_success_state', async ({ page }) => {
     await openProductByExactName(page, IPHONE_15_PRO);
+    const productUrl = page.url();
 
     await page.locator('[data-testid="product-add-cart"]').click();
-    await expect(page.locator('[data-testid="product-variant-error"]')).toBeVisible();
-    await expect(page).not.toHaveURL(/\/cart\//);
-
-    await selectProductVariant(page, 'iphone-15-pro-256gb');
-    await Promise.all([
-      page.waitForURL(/\/cart\//),
-      page.locator('[data-testid="product-add-cart"]').click()
-    ]);
-    await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
-    await expect(page.locator('[data-testid^="cart-item-"]').first()).toContainText('256GB');
+    await expect(page).toHaveURL(productUrl);
+    await expect(page.locator('[data-testid="product-add-cart-added"]')).toBeVisible();
+    await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
   });
 
   test('product_image_loads_offline', async ({ page }) => {
@@ -78,24 +85,24 @@ test.describe('catalog browse and search', () => {
     await openProductByExactName(page, IPHONE_15_PRO);
     await page.locator('input[data-testid="product-variant-iphone-15-pro-256gb"]').check();
 
-    const qtySelect = page.locator('[data-testid="product-qty"]');
-    const options = qtySelect.locator('option');
-    await expect(options).toHaveCount(10);
-    await expect(options.last()).toHaveText('10');
+    await page.locator('[data-testid="product-qty-trigger"]').click();
+    await expect(page.locator('[data-testid="product-qty-option-10"]')).toBeVisible();
+    await expect(page.locator('[data-testid^="product-qty-option-"]')).toHaveCount(10);
   });
 
   test('cart_supports_two_variants_same_product', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
     await openProductByExactName(page, IPHONE_15_PRO);
     await selectProductVariant(page, 'iphone-15-pro-128gb');
     await selectVariantAndAddToCart(page);
 
-    await openProductByExactName(page, IPHONE_15_PRO);
     await selectProductVariant(page, 'iphone-15-pro-256gb');
     await selectVariantAndAddToCart(page);
 
-    await expect(page.locator('[data-testid^="cart-item-"]')).toHaveCount(2);
-    await expect(page.locator('[data-testid^="cart-item-"]').nth(0)).toContainText('128GB');
-    await expect(page.locator('[data-testid^="cart-item-"]').nth(1)).toContainText('256GB');
+    await page.locator('[data-testid="nav-cart"]').click();
+    await expect(page.locator('[data-testid="cart-popover"]')).toBeVisible();
+    await expect(page.locator('[data-testid="cart-popover"]')).toContainText('128GB');
+    await expect(page.locator('[data-testid="cart-popover"]')).toContainText('256GB');
   });
 
   test('homepage_shows_carousel_and_pagination', async ({ page }) => {
@@ -106,18 +113,27 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
   });
 
-  test('out_of_stock_disables_add_to_cart', async ({ page }) => {
-    await page.locator('[data-testid="search-input"]').fill('Amazon Echo');
-    await page.locator('[data-testid="search-submit"]').click();
+  test('all_variants_oos_no_default', async ({ page }) => {
+    await searchProducts(page, 'Amazon Echo');
     await page.locator('[data-testid^="product-card-"]').first().locator('a').first().click();
     await expect(page.locator('[data-testid="product-variant-picker"]')).toBeVisible();
     await expect(page.locator('input[data-testid^="product-variant-"]')).toHaveCount(2);
+    await expect(page.locator('input[data-testid^="product-variant-"]:checked')).toHaveCount(0);
     await expect(page.locator('[data-testid="product-add-cart"]')).toBeDisabled();
   });
 
+  test('out_of_stock_disables_add_to_cart', async ({ page }) => {
+    await searchProducts(page, 'Amazon Echo');
+    await page.locator('[data-testid^="product-card-"]').first().locator('a').first().click();
+    await expect(page.locator('[data-testid="product-variant-picker"]')).toBeVisible();
+    await expect(page.locator('input[data-testid^="product-variant-"]')).toHaveCount(2);
+    await expect(page.locator('input[data-testid^="product-variant-"]:checked')).toHaveCount(0);
+    await expect(page.locator('[data-testid="product-add-cart"]')).toBeDisabled();
+    await expect(page.getByText('No Reviews')).toBeVisible();
+  });
+
   test('search_no_results_shows_empty_state', async ({ page }) => {
-    await page.locator('[data-testid="search-input"]').fill('zzzz-no-match-product-xyz');
-    await page.locator('[data-testid="search-submit"]').click();
+    await fillSearchAndSubmit(page, 'zzzz-no-match-product-xyz');
     await expect(page.locator('[data-testid="search-empty"]')).toBeVisible();
   });
 
@@ -127,8 +143,7 @@ test.describe('catalog browse and search', () => {
     await assertHomeCatalogHealthy(page);
 
     await page.locator('[data-testid="navbar-toggle"]').click();
-    await page.locator('[data-testid="search-input"]').fill('Phone');
-    await page.locator('[data-testid="search-submit"]').click();
+    await searchProducts(page, 'Phone');
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
 
     const pagination = page.locator('[data-testid="pagination"]');
