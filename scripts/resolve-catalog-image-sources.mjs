@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
+import { auditManifestEntry, pickRelevantCommonsCandidate } from './catalog-image-relevance.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
@@ -12,6 +13,7 @@ const reportPath = path.join(root, 'catalog-image-resolve-report.json');
 const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
 const RATE_MS = 2000;
 const MAX_RETRIES = 6;
+const reaudit = process.argv.includes('--reaudit');
 
 const saveManifest = (manifest) => {
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
@@ -43,24 +45,6 @@ const licenseAllowed = (licenseShort) => {
   if (!licenseShort) return false;
   const normalized = licenseShort.toLowerCase();
   return ALLOWED_LICENSES.some((allowed) => normalized.includes(allowed));
-};
-
-const scoreCandidate = (title, meta) => {
-  const lower = title.toLowerCase();
-  let score = 0;
-  if (/\.(jpg|jpeg|png|webp)$/i.test(lower)) score += 3;
-  if (lower.includes('product') || lower.includes('smartphone') || lower.includes('phone')) {
-    score += 2;
-  }
-  if (lower.includes('logo') || lower.includes('icon') || lower.includes('diagram')) {
-    score -= 4;
-  }
-  if (lower.includes('svg')) score -= 5;
-  const width = meta?.width ?? 0;
-  const height = meta?.height ?? 0;
-  if (width >= 400 && height >= 400) score += 3;
-  if (width >= 800) score += 2;
-  return score;
 };
 
 const commonsSearch = async (searchTerm) => {
@@ -104,32 +88,22 @@ const commonsSearch = async (searchTerm) => {
           width: info.width,
           height: info.height,
           license: ext.LicenseShortName?.value ?? '',
-          author: ext.Artist?.value ?? ext.Credit?.value ?? '',
-          score: scoreCandidate(page.title, info)
+          author: ext.Artist?.value ?? ext.Credit?.value ?? ''
         };
-      })
-      .sort((a, b) => b.score - a.score);
+      });
   }
   throw new Error('Commons API rate limit exceeded after retries');
 };
 
-const pickCandidate = (candidates) => {
-  for (const candidate of candidates) {
-    if (candidate.score < 0) continue;
-    if (!licenseAllowed(candidate.license)) continue;
-    return candidate;
-  }
-  return candidates.find((c) => c.score >= 2 && c.url);
-};
-
 const buildSearchQueries = (product) => {
   const queries = [
+    `${product.brand} ${product.name} smartphone`,
     `${product.brand} ${product.name}`,
-    product.name,
-    `${product.name} ${product.brand}`
+    `${product.name} ${product.brand}`,
+    product.name
   ];
   if (product.brand === 'Apple' && product.name.startsWith('iPhone')) {
-    queries.push(`Apple ${product.name.replace('iPhone', 'iPhone ')}`);
+    queries.push(`Apple ${product.name}`);
   }
   return [...new Set(queries.map((q) => q.trim()))];
 };
@@ -144,28 +118,44 @@ async function main() {
 
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
   const overrides = loadOverrides();
-  const report = { resolved: [], failed: [], overridden: [] };
+  const report = { resolved: [], failed: [], overridden: [], reaudited: [] };
+
+  if (reaudit) {
+    for (const entry of manifest.entries) {
+      const audited = auditManifestEntry(entry, manifest.entries);
+      if (!audited.ok && !overrides[entry.modelKey]?.sourceUrl) {
+        entry.sourceUrl = '';
+        entry.license = '';
+        entry.author = '';
+        entry.commonsTitle = '';
+        entry.sourceType = '';
+        report.reaudited.push(entry.modelKey);
+      }
+    }
+  }
 
   for (const entry of manifest.entries) {
-    if (entry.sourceUrl) {
-      report.resolved.push({ modelKey: entry.modelKey, title: entry.commonsTitle, skipped: true });
-      continue;
-    }
-
     const override = overrides[entry.modelKey];
     if (override?.sourceUrl) {
       entry.sourceUrl = override.sourceUrl;
       entry.license = override.license ?? entry.license;
       entry.author = override.author ?? entry.author;
       entry.commonsTitle = override.commonsTitle ?? entry.commonsTitle;
+      entry.sourceType = override.sourceType ?? 'override';
       report.overridden.push(entry.modelKey);
+      continue;
+    }
+
+    if (entry.sourceUrl) {
+      report.resolved.push({ modelKey: entry.modelKey, title: entry.commonsTitle, skipped: true });
       continue;
     }
 
     let picked = null;
     for (const query of buildSearchQueries(entry)) {
       const candidates = await commonsSearch(query);
-      picked = pickCandidate(candidates);
+      const licensed = candidates.filter((candidate) => licenseAllowed(candidate.license));
+      picked = pickRelevantCommonsCandidate(licensed, entry);
       if (picked) break;
       await sleep(RATE_MS);
     }
@@ -175,6 +165,7 @@ async function main() {
       entry.license = picked.license.replace(/<[^>]+>/g, '').trim();
       entry.author = picked.author.replace(/<[^>]+>/g, '').trim();
       entry.commonsTitle = picked.title;
+      entry.sourceType = 'wikimedia';
       report.resolved.push({
         modelKey: entry.modelKey,
         title: picked.title,
@@ -195,7 +186,7 @@ async function main() {
   fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
 
   console.log(
-    `Resolved ${report.resolved.length}, overrides ${report.overridden.length}, failed ${report.failed.length}.`
+    `Resolved ${report.resolved.length}, overrides ${report.overridden.length}, reaudited ${report.reaudited.length}, failed ${report.failed.length}.`
   );
   console.log(`Report: ${reportPath}`);
   if (report.failed.length > 0) {

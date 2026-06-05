@@ -1,0 +1,96 @@
+/** Curated Apple CDN asset paths (without base URL or query). */
+export const APPLE_CDN_ASSETS = {
+  'iphone-15-pro': 'iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium',
+  'iphone-15-pro-max': 'iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium',
+  'iphone-15': 'iphone-15-finish-select-202309-6-1inch-pink',
+  'iphone-15-plus': 'iphone-15-finish-select-202309-6-7inch-pink',
+  'iphone-16': 'iphone-16-finish-select-202409-6-1inch-ultramarine',
+  'iphone-16-plus': 'iphone-16-finish-select-202409-6-7inch-ultramarine',
+  'iphone-16-pro': 'iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium',
+  'iphone-16-pro-max': 'iphone-16-pro-finish-select-202409-6-9inch-naturaltitanium',
+  'iphone-16e': 'iphone-16e-finish-select-202502-6-1inch-white',
+  'iphone-17': 'iphone-17-finish-select-202509-6-1inch-lavender',
+  'iphone-17-air': 'iphone-17-air-finish-select-202509-6-1inch-skyblue',
+  'iphone-17-pro': 'iphone-17-pro-finish-select-202509-6-3inch-silver',
+  'iphone-17-pro-max': 'iphone-17-pro-finish-select-202509-6-9inch-silver',
+  'iphone-14-pro': 'iphone-14-pro-finish-select-202209-6-1inch-deeppurple',
+  'iphone-14-pro-max': 'iphone-14-pro-finish-select-202209-6-7inch-deeppurple',
+  'iphone-14': 'iphone-14-finish-select-202209-6-1inch-purple',
+  'iphone-14-plus': 'iphone-14-finish-select-202209-6-7inch-purple',
+  'iphone-13-pro': 'iphone-13-pro-finish-select-202109-6-1inch-graphite',
+  'iphone-13-pro-max': 'iphone-13-pro-finish-select-202109-6-7inch-graphite',
+  'iphone-13': 'iphone-13-finish-select-202109-6-1inch-pink',
+  'iphone-13-mini': 'iphone-13-mini-finish-select-202109-5-4inch-pink',
+  'iphone-12-pro': 'iphone-12-pro-finish-select-202010-6-1inch-graphite',
+  'iphone-12-pro-max': 'iphone-12-pro-finish-select-202010-6-7inch-graphite',
+  'iphone-12': 'iphone-12-finish-select-202010-6-1inch-purple',
+  'iphone-12-mini': 'iphone-12-mini-finish-select-202010-5-4inch-purple',
+  'iphone-11-pro': 'iphone-11-pro-finish-select-201909-5-8inch-midnightgreen',
+  'iphone-11-pro-max': 'iphone-11-pro-finish-select-201909-6-5inch-midnightgreen',
+  'iphone-11': 'iphone-11-finish-select-201909-6-1inch-purple',
+  'iphone-se-2': 'iphone-se-select-202004-4-7inch-black',
+  'iphone-se-3': 'iphone-se-select-202203-4-7inch-midnight',
+  'iphone-xr': 'iphone-xr-select-201809-6-1inch-black',
+  'ipad-air-m2': 'ipad-air-select-wifi-blue-202203',
+  'ipad-air-5': 'ipad-air-select-wifi-blue-202203',
+  'ipad-air-4': 'ipad-air-select-wifi-skyblue-202009',
+  'ipad-a16': 'ipad-11th-gen-select-wifi-blue-202410',
+  'ipad-pro-13-m4': 'ipad-pro-13-select-wifi-spaceblack-202405',
+  'ipad-pro-11-m4': 'ipad-pro-11-select-wifi-spaceblack-202405',
+  'ipad-pro-129-m1': 'ipad-pro-12-9-select-wifi-spacegray-202104',
+  'ipad-pro-11-m1': 'ipad-pro-11-select-wifi-spacegray-202104',
+  'ipad-10': 'ipad-10th-gen-select-wifi-blue-202210',
+  'ipad-9': 'ipad-9th-gen-select-wifi-spacegray-202109',
+  'ipad-mini-6': 'ipad-mini-select-202109',
+  'ipad-mini-a17': 'ipad-mini-select-wifi-blue-202410',
+  'macbook-air-m3-13': 'macbook-air-midnight-config-20220606',
+  'macbook-air-m3-15': 'macbook-air-15-midnight-config-20230606',
+  'macbook-air-m2': 'macbook-air-midnight-config-20220606',
+  'macbook-air-m1': 'macbook-air-gold-config-202011',
+  'macbook-pro-14-m4-pro': 'macbook-pro-14-m4-pro-spaceblack-config-202410',
+  'macbook-pro-16-m4-max': 'macbook-pro-16-m4-max-spaceblack-config-202410',
+  'macbook-pro-14-m3-pro': 'macbook-pro-14-m3-pro-spaceblack-config-202310',
+  'macbook-pro-16-m3-max': 'macbook-pro-16-m3-max-spaceblack-config-202310',
+  'macbook-pro-14-m1-pro': 'macbook-pro-14-m1-pro-silver-config-202110',
+  'macbook-pro-16-m1-pro': 'macbook-pro-16-m1-pro-silver-config-202110',
+  'imac-m4': 'imac-24-blue-config-202410',
+  'imac-m1': 'imac-24-blue-config-202105',
+  'mac-mini-m2-pro': 'mac-mini-hero-202301',
+  'mac-mini-m1': 'mac-mini-hero-202011',
+  'mac-studio-m2-max': 'mac-studio-select-202306',
+  'mac-studio-m2-ultra': 'mac-studio-select-202306',
+  'airpods-4': 'airpods-4-hero-202409',
+  'airpods-pro-2': 'airpods-pro-2-hero-202209',
+  'airpods-pro-1': 'airpods-pro-select-201910',
+  'airpods-3': 'airpods-3rd-gen-hero-202110',
+  'airpods-2': 'airpods-2nd-gen-hero-201903',
+  'airpods-max': 'airpods-max-select-skyblue-202011',
+  'watch-series-10': 'watch-s10-digitalmat-gallery-1-202409',
+  'watch-series-9': 'watch-s9-digitalmat-gallery-3-202309',
+  'watch-series-8': 'watch-s8-digitalmat-gallery-1-202209',
+  'watch-series-7': 'watch-series7-digitalmat-gallery-1-202109',
+  'watch-series-6': 'watch-series6-digitalmat-gallery-1-202009',
+  'watch-se-2': 'watch-se-digitalmat-gallery-1-202209',
+  'watch-ultra-2': 'watch-ultra-2-digitalmat-gallery-1-202309',
+  'watch-ultra-1': 'watch-ultra-digitalmat-gallery-1-202209'
+};
+
+/** Fallback to another model's harvested official URL when CDN asset is unavailable. */
+export const APPLE_OFFICIAL_SIBLING = {
+  'iphone-se-2': 'iphone-11',
+  'iphone-se-3': 'iphone-13',
+  'iphone-xr': 'iphone-11'
+};
+
+/** @param {string} modelKey */
+export function appleAssetCandidates(modelKey) {
+  const curated = APPLE_CDN_ASSETS[modelKey];
+  if (curated) return [curated];
+  return [
+    `${modelKey}-finish-select-naturaltitanium`,
+    `${modelKey}-finish-select`,
+    `${modelKey}-select`,
+    `${modelKey}-hero`,
+    modelKey
+  ];
+}

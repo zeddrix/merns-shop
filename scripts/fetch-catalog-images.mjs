@@ -12,6 +12,8 @@ const manifestPath = path.join(root, 'catalog-image-manifest.json');
 const shouldFetch = process.argv.includes('--fetch');
 const shouldForce = process.argv.includes('--force');
 const useWebp = process.argv.includes('--webp') || shouldFetch;
+const onlyArg = process.argv.find((arg) => arg.startsWith('--only='));
+const onlyModelKey = onlyArg?.split('=')[1]?.trim() ?? '';
 const CONCURRENCY = 1;
 const DOWNLOAD_DELAY_MS = 400;
 const MAX_DOWNLOAD_RETRIES = 6;
@@ -60,6 +62,14 @@ async function main() {
 
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
   const failures = [];
+  let entries = manifest.entries;
+  if (onlyModelKey) {
+    entries = entries.filter((entry) => entry.modelKey === onlyModelKey);
+    if (entries.length === 0) {
+      console.error(`No manifest entry found for modelKey: ${onlyModelKey}`);
+      process.exit(1);
+    }
+  }
 
   const processEntry = async (entry) => {
     const relative = entry.file.replace(/^\//, '');
@@ -109,15 +119,15 @@ async function main() {
   let downloaded = 0;
   let skipped = 0;
 
-  for (let i = 0; i < manifest.entries.length; i += CONCURRENCY) {
-    const batch = manifest.entries.slice(i, i + CONCURRENCY);
+  for (let i = 0; i < entries.length; i += CONCURRENCY) {
+    const batch = entries.slice(i, i + CONCURRENCY);
     const results = await Promise.all(batch.map((entry) => processEntry(entry)));
     for (const result of results) {
       if (result.status === 'downloaded') downloaded += 1;
       if (result.status === 'skipped') skipped += 1;
     }
     if ((i / CONCURRENCY) % 25 === 0 && i > 0) {
-      console.log(`Progress: ${i}/${manifest.entries.length}…`);
+      console.log(`Progress: ${i}/${entries.length}…`);
     }
   }
 

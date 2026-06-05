@@ -21,8 +21,11 @@ const entries = buildSeedProducts().map((product) => {
     modelKey: product.modelKey,
     name: product.name,
     brand: product.brand,
+    subcategory: product.subcategory,
     file: product.image,
     sourceUrl: prior?.sourceUrl ?? '',
+    sourceType: prior?.sourceType ?? '',
+    sourcePageUrl: prior?.sourcePageUrl ?? '',
     license: prior?.license ?? '',
     author: prior?.author ?? '',
     commonsTitle: prior?.commonsTitle ?? ''

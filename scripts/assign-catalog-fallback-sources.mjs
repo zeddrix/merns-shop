@@ -24,77 +24,21 @@ const fromSibling = (modelKey) => {
   };
 };
 
-const staticFallback = (sourceUrl, license, author, commonsTitle) => ({
-  sourceUrl,
-  license,
-  author,
-  commonsTitle
-});
-
-/** Category fallbacks (Openverse / Wikimedia, CC-licensed). */
-const SAMSUNG_TV = staticFallback(
-  'https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg',
-  'CC BY-SA 2.0',
-  'Ervins Strauhmanis',
-  'Samsung Smart TV (Flickr)'
-);
-
-const SONY_TV = staticFallback(
-  'https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg',
-  'CC BY 2.0',
-  'Marcin Wichary',
-  'Sony Bravia television (Flickr)'
-);
-
-const XIAOMI_WEARABLE = staticFallback(
-  'https://live.staticflickr.com/5779/29729617883_5b6a2c7e2e_b.jpg',
-  'Public domain',
-  'MIUI',
-  'Xiaomi Mi Band (Flickr)'
-);
-
-const GENERIC_EARBUDS = staticFallback(
-  'https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg',
-  'CC BY 2.0',
-  'Mpow',
-  'Wireless earbuds product photo (Flickr)'
-);
-
-const VIVO_PHONE = staticFallback(
-  'https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg',
-  'CC BY-SA 4.0',
-  'TechInsider',
-  'File:Vivo X50 Pro.jpg'
-);
-
 const fallbackMap = {
-  'macbook-pro-16-m3-max': () => fromSibling('macbook-pro-16-m4-max'),
-  'samsung-q60a': () => SAMSUNG_TV,
-  'samsung-q80b': () => SAMSUNG_TV,
-  'samsung-s90c': () => SAMSUNG_TV,
-  'samsung-s95d': () => SAMSUNG_TV,
-  'samsung-qn900c': () => SAMSUNG_TV,
-  'samsung-cu7000': () => SAMSUNG_TV,
-  'sony-x80j': () => SONY_TV,
-  'sony-x90j': () => SONY_TV,
-  'sony-a80j': () => SONY_TV,
-  'sony-a95l': () => SONY_TV,
-  'sony-xr8': () => SONY_TV,
-  'sony-x85k': () => SONY_TV,
-  'sony-wh1000xm4': () => fromSibling('sony-wf1000xm4'),
-  'sony-wh1000xm5': () => fromSibling('sony-wf1000xm4'),
-  'sony-wh1000xm6': () => fromSibling('sony-wf1000xm4'),
-  'sony-wf1000xm5': () => fromSibling('sony-wf1000xm4'),
-  'xiaomi-watch-s1': () => XIAOMI_WEARABLE,
-  'redmi-buds-4-pro': () => GENERIC_EARBUDS,
-  'xiaomi-buds-5-pro': () => GENERIC_EARBUDS,
-  'vivo-x51': () => VIVO_PHONE
+  'macbook-pro-16-m3-max': () => fromSibling('macbook-pro-16-m4-max')
 };
 
 const overrides = {};
 
 for (const entry of manifest.entries) {
   if (entry.sourceUrl) continue;
+  if (['Apple', 'Samsung', 'Sony', 'Vivo', 'Xiaomi', 'Amazon'].includes(entry.brand)) {
+    console.error(
+      `Missing official source for ${entry.modelKey} — run pnpm catalog:harvest:official or catalog:harvest:wave4`
+    );
+    process.exitCode = 1;
+    continue;
+  }
   const resolver = fallbackMap[entry.modelKey];
   if (!resolver) {
     console.error(`No fallback for ${entry.modelKey}`);
