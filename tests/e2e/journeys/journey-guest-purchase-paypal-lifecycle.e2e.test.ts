@@ -40,10 +40,7 @@ test.describe('journey guest purchase lifecycle', () => {
   });
 
   test('guest_completes_paypal_payment_when_opt_in', async ({ page }) => {
-    test.skip(
-      !shouldRunPayPalE2e() || process.env.PW_RUN_PAYPAL !== '1',
-      `${payPalSkipReason} (journey PayPal is opt-in via PW_RUN_PAYPAL=1; canonical spec: paypal-sandbox-payment.e2e.test.ts)`
-    );
+    test.skip(!shouldRunPayPalE2e(), payPalSkipReason);
     test.setTimeout(240_000);
 
     await addFirstProductToCart(page);

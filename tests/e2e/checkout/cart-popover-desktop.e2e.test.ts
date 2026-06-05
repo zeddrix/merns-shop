@@ -13,5 +13,9 @@ test.describe('desktop cart popover', () => {
     await expect(page.locator('[data-testid="cart-popover"]')).toBeVisible();
     await expect(page.locator('[data-testid="cart-popover-checkout"]')).toBeVisible();
     await expect(page.locator('[data-testid="cart-popover"]')).toContainText('iPhone 15 Pro');
+
+    await page.locator('[data-testid="cart-popover"] a').first().click();
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-add-cart"]')).toBeVisible();
   });
 });

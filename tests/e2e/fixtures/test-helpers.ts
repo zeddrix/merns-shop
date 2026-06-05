@@ -244,6 +244,23 @@ export async function createPaidOrderViaApi(
   return createPaidOrderForCredentials(page, creds.email, creds.password);
 }
 
+const AUTH_COOKIE_NAME = 'merns_shop_auth';
+
+function extractAuthTokenFromLoginResponse(setCookieHeader: string | string[] | undefined): string {
+  const cookieHeader = Array.isArray(setCookieHeader)
+    ? setCookieHeader.join(';')
+    : (setCookieHeader ?? '');
+  const match = cookieHeader.match(new RegExp(`${AUTH_COOKIE_NAME}=([^;]+)`));
+  if (!match?.[1]) {
+    throw new Error('Auth cookie missing from login response');
+  }
+  return match[1];
+}
+
+function authHeadersFromToken(token: string): { Authorization: string } {
+  return { Authorization: `Bearer ${token}` };
+}
+
 export async function createPaidOrderForCredentials(
   page: Page,
   email: string,
@@ -253,6 +270,8 @@ export async function createPaidOrderForCredentials(
     data: { email, password }
   });
   expect(loginResponse.ok()).toBeTruthy();
+  const authToken = extractAuthTokenFromLoginResponse(loginResponse.headers()['set-cookie']);
+  const authHeaders = authHeadersFromToken(authToken);
 
   const productsResponse = await page.request.get('/api/products');
   expect(productsResponse.ok()).toBeTruthy();
@@ -263,6 +282,7 @@ export async function createPaidOrderForCredentials(
   expect(variant).toBeDefined();
 
   const orderResponse = await page.request.post('/api/orders', {
+    headers: authHeaders,
     data: {
       orderItems: [
         {
@@ -288,6 +308,7 @@ export async function createPaidOrderForCredentials(
   const order = (await orderResponse.json()) as ApiOrderResponse;
 
   const payResponse = await page.request.put(`/api/orders/${order._id}/pay`, {
+    headers: authHeaders,
     data: {
       id: 'e2e-test-payment',
       status: 'COMPLETED',

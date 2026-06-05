@@ -1,9 +1,11 @@
 import type { BrowserContext } from '@playwright/test';
+import path from 'node:path';
 
 export async function resetE2eDatabase(context?: BrowserContext): Promise<void> {
   const { execSync } = await import('node:child_process');
-  execSync('pnpm db:seed', {
+  execSync('bash scripts/run-with-project-node.sh run db:seed:inner', {
     stdio: 'pipe',
+    cwd: path.resolve(process.cwd()),
     env: {
       ...process.env,
       NODE_ENV: 'development',

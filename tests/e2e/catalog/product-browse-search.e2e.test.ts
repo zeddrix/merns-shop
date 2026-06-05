@@ -169,6 +169,41 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="search-empty"]')).toBeVisible();
   });
 
+  test('stale_product_id_shows_not_found_recovery', async ({ page }) => {
+    await page.goto('/product/000000000000000000000000');
+    await expect(page.locator('[data-testid="product-not-found"]')).toBeVisible();
+    await page.locator('[data-testid="product-go-back"]').click();
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.locator('[data-testid="home-heading"]')).toBeVisible();
+  });
+
+  test('cart_prunes_stale_items_on_reload', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem(
+        'cartItems',
+        JSON.stringify([
+          {
+            product: '000000000000000000000000',
+            variantSku: 'stale-128gb',
+            variantLabel: '128GB',
+            name: 'Stale Product (128GB)',
+            image: '/images/sample.jpg',
+            price: 99,
+            countInStock: 1,
+            qty: 1
+          }
+        ])
+      );
+    });
+
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await expect.poll(async () => page.locator('[data-testid="nav-cart-count"]').count()).toBe(0);
+    await expect(page.locator('[data-testid="cart-stale-pruned-notice"]')).toBeVisible();
+    await page.locator('[data-testid="cart-stale-pruned-dismiss"]').click();
+    await expect(page.locator('[data-testid="cart-stale-pruned-notice"]')).toHaveCount(0);
+  });
+
   test('mobile_search_results_pagination', async ({ page }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     await page.goto('/');
