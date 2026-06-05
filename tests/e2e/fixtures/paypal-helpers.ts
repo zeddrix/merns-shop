@@ -2,6 +2,8 @@ import { expect, type Frame, type Page } from '@playwright/test';
 
 const PAYPAL_POPUP_TIMEOUT_MS = 60_000;
 const PAYPAL_CONFIRM_TIMEOUT_MS = 120_000;
+const MAX_PAYPAL_BUTTON_ATTEMPTS = 3;
+const PAYPAL_CHECKOUT_START_TIMEOUT_MS = 20_000;
 
 function requirePayPalBuyerCredentials(): { email: string; password: string } {
   const email = process.env.PAYPAL_SANDBOX_BUYER_EMAIL;
@@ -39,37 +41,106 @@ async function assertPayPalClientConfigured(page: Page): Promise<void> {
   }
 }
 
-async function clickPayPalSmartButton(page: Page): Promise<void> {
-  const host = page.locator('[data-testid="paypal-buttons"]');
-  await host.waitFor({ state: 'visible', timeout: 30000 });
-  const visiblePayPalIframe = host
-    .locator('iframe.prerender-frame.visible, iframe.visible')
-    .first();
-  await visiblePayPalIframe.waitFor({ state: 'visible', timeout: PAYPAL_POPUP_TIMEOUT_MS });
+async function isPayPalHostVisible(page: Page): Promise<boolean> {
+  return page
+    .locator('[data-testid="paypal-buttons"], [data-testid="paypal-buttons-ready"]')
+    .first()
+    .isVisible()
+    .catch(() => false);
+}
 
-  const smartButtonFrame = host
-    .frameLocator('iframe.prerender-frame.visible, iframe.visible')
-    .first();
+async function waitForPayPalHostMounted(page: Page): Promise<boolean> {
+  const config = await page.request.get('/api/config/paypal');
+  const clientId = await config.text();
+  if (!config.ok() || clientId.trim().length < 10) {
+    return false;
+  }
+
+  return page
+    .locator('[data-testid="paypal-buttons"], [data-testid="paypal-buttons-ready"]')
+    .first()
+    .isVisible()
+    .catch(() => false);
+}
+
+async function isPayPalSdkReady(page: Page): Promise<boolean> {
+  if (!(await waitForPayPalHostMounted(page))) {
+    return false;
+  }
+
+  if (
+    await page
+      .locator('[data-testid="paypal-buttons-ready"]')
+      .isVisible()
+      .catch(() => false)
+  ) {
+    return true;
+  }
+
+  const host = page.locator('[data-testid="paypal-buttons"]');
+  const iframe = host.locator('iframe.prerender-frame.visible, iframe.visible').first();
+  return iframe.isVisible().catch(() => false);
+}
+
+function smartButtonFrameLocator(page: Page) {
+  const host = page.locator('[data-testid="paypal-buttons-ready"], [data-testid="paypal-buttons"]');
+  return host.first().frameLocator('iframe.prerender-frame.visible, iframe.visible').first();
+}
+
+async function clickPayPalLinkInSmartButton(page: Page): Promise<void> {
+  const host = page.locator('[data-testid="paypal-buttons-ready"], [data-testid="paypal-buttons"]');
+  await host.first().waitFor({ state: 'visible', timeout: 15000 });
+  await host
+    .first()
+    .locator('iframe.prerender-frame.visible, iframe.visible')
+    .first()
+    .waitFor({ state: 'visible', timeout: 15_000 });
+
+  const smartButtonFrame = smartButtonFrameLocator(page);
   const paypalLink = smartButtonFrame.getByRole('link', { name: 'PayPal' });
   const debitLink = smartButtonFrame.getByRole('link', { name: /Debit or Credit Card/i });
 
-  const deadline = Date.now() + PAYPAL_POPUP_TIMEOUT_MS;
+  const deadline = Date.now() + 15_000;
   while (Date.now() < deadline) {
     if (await paypalLink.isVisible().catch(() => false)) {
+      const popupPromise = page
+        .context()
+        .waitForEvent('page', { timeout: PAYPAL_CHECKOUT_START_TIMEOUT_MS })
+        .catch(() => null);
       await paypalLink.click();
+      const popup = await popupPromise;
+      if (popup) {
+        await popup.waitForLoadState('domcontentloaded');
+      }
       return;
     }
     if (await debitLink.isVisible().catch(() => false)) {
+      const popupPromise = page
+        .context()
+        .waitForEvent('page', { timeout: PAYPAL_CHECKOUT_START_TIMEOUT_MS })
+        .catch(() => null);
       await paypalLink.click({ force: true }).catch(async () => {
         await debitLink.click();
       });
+      const popup = await popupPromise;
+      if (popup) {
+        await popup.waitForLoadState('domcontentloaded');
+      }
       return;
     }
     await page.waitForTimeout(500);
   }
 
+  const popupPromise = page
+    .context()
+    .waitForEvent('page', { timeout: PAYPAL_CHECKOUT_START_TIMEOUT_MS })
+    .catch(() => null);
   await paypalLink.waitFor({ state: 'visible', timeout: 5000 });
   await paypalLink.click();
+  const popup = await popupPromise;
+  if (popup) {
+    await popup.waitForLoadState('domcontentloaded');
+  }
 }
 
 async function findLoginFrame(page: Page): Promise<Frame | null> {
@@ -82,10 +153,20 @@ async function findLoginFrame(page: Page): Promise<Frame | null> {
   return null;
 }
 
+async function findPayPalHostedFrame(page: Page): Promise<Frame | null> {
+  for (const frame of page.frames()) {
+    if (/paypal\.com/i.test(frame.url())) {
+      return frame;
+    }
+  }
+  return null;
+}
+
 async function resolvePayPalCheckoutSurface(
-  page: Page
+  page: Page,
+  timeoutMs = PAYPAL_POPUP_TIMEOUT_MS
 ): Promise<{ surface: LoginSurface; popup: Page | null }> {
-  const deadline = Date.now() + PAYPAL_POPUP_TIMEOUT_MS;
+  const deadline = Date.now() + timeoutMs;
 
   while (Date.now() < deadline) {
     const popupPages = page
@@ -115,6 +196,11 @@ async function resolvePayPalCheckoutSurface(
     const loginFrame = await findLoginFrame(page);
     if (loginFrame) {
       return { surface: loginFrame, popup: null };
+    }
+
+    const paypalFrame = await findPayPalHostedFrame(page);
+    if (paypalFrame) {
+      return { surface: paypalFrame, popup: null };
     }
 
     await page.waitForTimeout(500);
@@ -172,46 +258,66 @@ async function completePayPalLogin(
   await clickPayPalConfirm(surface);
 }
 
-async function waitForPayPalButtonsReady(page: Page): Promise<void> {
-  for (let attempt = 0; attempt < 2; attempt += 1) {
+async function stabilizeClickAndOpenCheckout(
+  page: Page
+): Promise<{ surface: LoginSurface; popup: Page | null }> {
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= MAX_PAYPAL_BUTTON_ATTEMPTS; attempt += 1) {
     try {
-      await expect
-        .poll(
-          async () => {
-            const config = await page.request.get('/api/config/paypal');
-            const clientId = await config.text();
-            if (!config.ok() || clientId.trim().length < 10) {
-              return false;
-            }
-            const host = page.locator('[data-testid="paypal-buttons"]');
-            if (!(await host.isVisible().catch(() => false))) {
-              return false;
-            }
-            const iframe = host.locator('iframe.prerender-frame.visible, iframe.visible').first();
-            return iframe.isVisible().catch(() => false);
-          },
-          { timeout: 60000 }
-        )
-        .toBe(true);
-      return;
-    } catch {
-      if (attempt === 0) {
-        await page.reload();
+      await expect.poll(() => waitForPayPalHostMounted(page), { timeout: 60_000 }).toBe(true);
+      await expect.poll(() => isPayPalSdkReady(page), { timeout: 60_000 }).toBe(true);
+      await clickPayPalLinkInSmartButton(page);
+      return await resolvePayPalCheckoutSurface(page, PAYPAL_CHECKOUT_START_TIMEOUT_MS);
+    } catch (error) {
+      lastError = error;
+      if (attempt < MAX_PAYPAL_BUTTON_ATTEMPTS) {
+        await page.reload({ waitUntil: 'domcontentloaded' });
         await page.locator('[data-testid="order-screen"]').waitFor({ state: 'visible' });
       }
     }
   }
 
-  throw new Error('PayPal buttons did not become ready on the order screen');
+  const buttonsHostVisible = await isPayPalHostVisible(page);
+  const buttonsReadyVisible = await page
+    .locator('[data-testid="paypal-buttons-ready"]')
+    .isVisible()
+    .catch(() => false);
+
+  throw new Error(
+    `PayPal checkout did not start after ${MAX_PAYPAL_BUTTON_ATTEMPTS} attempts ` +
+      `(paypal-buttons visible: ${buttonsHostVisible}, paypal-buttons-ready visible: ${buttonsReadyVisible}). ` +
+      `Last error: ${lastError instanceof Error ? lastError.message : String(lastError)}`
+  );
+}
+
+export async function waitForPayPalButtonsReady(page: Page): Promise<void> {
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= MAX_PAYPAL_BUTTON_ATTEMPTS; attempt += 1) {
+    try {
+      await expect.poll(() => waitForPayPalHostMounted(page), { timeout: 60_000 }).toBe(true);
+      await expect.poll(() => isPayPalSdkReady(page), { timeout: 60_000 }).toBe(true);
+      return;
+    } catch (error) {
+      lastError = error;
+      if (attempt < MAX_PAYPAL_BUTTON_ATTEMPTS) {
+        await page.reload({ waitUntil: 'domcontentloaded' });
+        await page.locator('[data-testid="order-screen"]').waitFor({ state: 'visible' });
+      }
+    }
+  }
+
+  throw new Error(
+    `PayPal buttons did not become ready after ${MAX_PAYPAL_BUTTON_ATTEMPTS} attempts: ` +
+      `${lastError instanceof Error ? lastError.message : String(lastError)}`
+  );
 }
 
 export async function completePayPalSandboxPayment(page: Page): Promise<void> {
   const { email, password } = requirePayPalBuyerCredentials();
   await assertPayPalClientConfigured(page);
-  await waitForPayPalButtonsReady(page);
-
-  await clickPayPalSmartButton(page);
-  const { surface, popup } = await resolvePayPalCheckoutSurface(page);
+  const { surface, popup } = await stabilizeClickAndOpenCheckout(page);
   await completePayPalLogin(surface, email, password);
 
   if (popup) {

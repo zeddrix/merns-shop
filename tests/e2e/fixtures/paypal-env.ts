@@ -2,7 +2,8 @@ const PLACEHOLDER_VALUES = new Set([
   'your-paypal-sandbox-client-id',
   'your-paypal-sandbox-buyer-email',
   'your-paypal-sandbox-buyer-password',
-  'e2e-placeholder-paypal-client-id'
+  'e2e-placeholder-paypal-client-id',
+  'ci-placeholder-paypal-client-id'
 ]);
 
 function isRealCredential(value: string | undefined): boolean {

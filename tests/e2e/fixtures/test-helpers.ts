@@ -218,6 +218,30 @@ export async function completePaymentStep(page: Page): Promise<void> {
   await page.locator('[data-testid="place-order-screen"]').waitFor({ state: 'visible' });
 }
 
+/** Guest checkout from cart through place order to unpaid order screen. Returns order id. */
+export async function guestCheckoutPlaceUnpaidOrder(page: Page): Promise<string> {
+  await addFirstProductToCart(page);
+  await page.goto('/cart');
+  await page.locator('[data-testid="cart-checkout"]').click();
+  await expect(page).toHaveURL(/auth=login/);
+  await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+  await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
+  await completeShippingStep(page);
+  await completePaymentStep(page);
+
+  await Promise.all([
+    page.waitForResponse(
+      (response) => response.url().includes('/api/orders') && response.status() === 201
+    ),
+    page.locator('[data-testid="place-order-submit"]').click()
+  ]);
+
+  await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
+  const orderId = page.url().split('/order/')[1]?.split(/[/?#]/)[0];
+  expect(orderId).toBeTruthy();
+  return orderId as string;
+}
+
 interface ApiProductListResponse {
   products: Array<{
     _id: string;

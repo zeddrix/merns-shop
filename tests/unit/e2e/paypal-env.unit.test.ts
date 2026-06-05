@@ -21,6 +21,15 @@ describe('paypal-env', () => {
     expect(shouldRunPayPalE2e()).toBe(false);
   });
 
+  it('returns false when only CI placeholder client ID is set', () => {
+    process.env.PAYPAL_CLIENT_ID = 'ci-placeholder-paypal-client-id';
+    process.env.PAYPAL_SANDBOX_BUYER_EMAIL = 'buyer@personal.example.com';
+    process.env.PAYPAL_SANDBOX_BUYER_PASSWORD = 'sandbox-secret';
+
+    expect(hasPayPalSandboxCreds()).toBe(false);
+    expect(shouldRunPayPalE2e()).toBe(false);
+  });
+
   it('returns true when all sandbox credentials are real', () => {
     process.env.PAYPAL_CLIENT_ID = 'Abcd1234-live-client-id';
     process.env.PAYPAL_SANDBOX_BUYER_EMAIL = 'buyer@personal.example.com';
