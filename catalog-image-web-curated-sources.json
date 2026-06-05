@@ -31,18 +31,6 @@
       "license": "CC BY-SA 4.0",
       "author": "Hajoon0102"
     },
-    "galaxy-m33": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
-      "commonsTitle": "File:Samsung Galaxy M32.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Blue Mango Juice"
-    },
-    "galaxy-m34": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
-      "commonsTitle": "File:Samsung Galaxy M32.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Blue Mango Juice"
-    },
     "galaxy-m54": {
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Samsung_Galaxy_A24_2023.jpg",
       "commonsTitle": "File:Samsung Galaxy A24 2023.jpg",
@@ -55,21 +43,9 @@
       "license": "CC BY-SA 4.0",
       "author": "Hajoon0102"
     },
-    "ps5-slim": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/PlayStation_5_Slim.png",
-      "commonsTitle": "File:PlayStation 5 Slim.png",
-      "license": "CC BY-SA 4.0",
-      "author": "Wfrmsf"
-    },
     "ps4-slim": {
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/PlayStation_4_Slim.png",
       "commonsTitle": "File:PlayStation 4 Slim.png",
-      "license": "CC BY-SA 4.0",
-      "author": "Evan-Amos"
-    },
-    "ps4-pro": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8b/PlayStation_4_Pro.png",
-      "commonsTitle": "File:PlayStation 4 Pro.png",
       "license": "CC BY-SA 4.0",
       "author": "Evan-Amos"
     },
@@ -97,12 +73,6 @@
       "license": "CC BY-SA 4.0",
       "author": "Hajoon0102"
     },
-    "iphone-13-pro-max": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Back_view_of_iPhone_13_Pro_Max_Gold.jpg",
-      "commonsTitle": "File:Back view of iPhone 13 Pro Max Gold.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Hajoon0102"
-    },
     "vivo-t1": {
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Vivo_V20_back.jpg",
       "commonsTitle": "File:Vivo V20 back.jpg",
@@ -125,7 +95,6 @@
   "files": {
     "iphone-12": "File:Back view of iPhone 12 white.jpg",
     "iphone-12-mini": "File:IPhone 12 mini.jpg",
-    "iphone-12-pro": "File:IPhone 12 Pro Max - 3.jpg",
     "iphone-12-pro-max": "File:IPhone 12 Pro Max - 3.jpg",
     "iphone-13-mini": "File:IPhone 13 mini.jpg",
     "iphone-11-pro": "File:2019-12-22 IPhone 11 Pro.jpg",
@@ -151,15 +120,9 @@
     "galaxy-tab-s10-plus": "File:Samsung Galaxy Tab S9.png",
     "galaxy-z-flip6": "File:Samsung Galaxy Z Flip 6.jpg",
     "galaxy-a52": "File:Back of the Samsung Galaxy A53 5G.jpg",
-    "galaxy-m34": "File:Samsung Galaxy M32.jpg",
     "galaxy-m54": "File:Samsung Galaxy A24 2023.jpg",
     "ps5": "File:PlayStation 5 and DualSense (2).jpg",
-    "ps5-slim": "File:PlayStation 5 Slim.png",
     "ps4-slim": "File:PlayStation 4 Slim.png",
-    "ps4-pro": "File:PlayStation 4 Pro.png",
-    "sony-wh1000xm4": "File:Sony WH-1000XM4.jpg",
-    "sony-wh1000xm5": "File:Sony WH-1000XM5.jpg",
-    "sony-wh1000xm6": "File:Sony WH-1000XM5.jpg",
     "sony-wf1000xm5": "File:Sony WF-1000XM5.jpg",
     "sony-linkbuds-s": "File:Sony LinkBuds S.jpg",
     "sony-x80j": "File:Sony Bravia X80J.jpg",
@@ -184,7 +147,6 @@
     "redmi-note-9-pro": "File:Redmi note 9 pro black.jpg",
     "redmi-note-10-pro": "File:Xiaomi Redmi Note 10 Pro (Global) front.jpg",
     "redmi-note-12-pro": "File:Redmi Note 12 Pro back.jpg",
-    "redmi-note-13-pro": "File:Redmi Note 13 Pro back.jpg",
-    "galaxy-m33": "File:Samsung Galaxy M32.jpg"
+    "redmi-note-13-pro": "File:Redmi Note 13 Pro back.jpg"
   }
 }

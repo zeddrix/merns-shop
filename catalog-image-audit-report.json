@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-06-05T10:02:31.478Z",
-  "total": 222,
-  "passed": 222,
+  "total": 212,
+  "passed": 212,
   "failed": 0,
   "failures": [],
   "results": [
@@ -2445,9 +2445,7 @@
       "commonsTitle": "File:Echo Dot (3rd Gen) 01.jpg",
       "ok": true,
       "score": 4,
-      "reasons": [
-        "brand not found in source metadata"
-      ]
+      "reasons": ["brand not found in source metadata"]
     }
   ]
 }

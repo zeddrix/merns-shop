@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-05T10:34:44.795Z",
-  "note": "Official CDN URLs merged from catalog-image-official-sources.json. Run pnpm catalog:sources:official then pnpm catalog:images.",
+  "generatedAt": "2026-06-05T11:40:51.096Z",
+  "note": "Run pnpm catalog:sources then pnpm catalog:images to populate WebP assets from Wikimedia Commons.",
   "entries": [
     {
       "modelKey": "iphone-11",
@@ -68,19 +68,6 @@
       "commonsTitle": "File:Back view of iPhone 12 white.jpg"
     },
     {
-      "modelKey": "iphone-12-pro",
-      "name": "iPhone 12 Pro",
-      "brand": "Apple",
-      "subcategory": "Phones",
-      "file": "/images/catalog/apple/iphone-12-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/IPhone_12_Pro_Max_-_3.jpg",
-      "sourceType": "wikimedia-agent-visual",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_12_Pro_Max_-_3.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Kuebi",
-      "commonsTitle": "File:IPhone 12 Pro Max - 3.jpg"
-    },
-    {
       "modelKey": "iphone-12-pro-max",
       "name": "iPhone 12 Pro Max",
       "brand": "Apple",
@@ -131,19 +118,6 @@
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
-    },
-    {
-      "modelKey": "iphone-13-pro-max",
-      "name": "iPhone 13 Pro Max",
-      "brand": "Apple",
-      "subcategory": "Phones",
-      "file": "/images/catalog/apple/iphone-13-pro-max.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Iphone_13_pro_max.jpg",
-      "sourceType": "wikimedia-agent-visual",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIphone_13_pro_max.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Kuebi",
-      "commonsTitle": "File:Iphone 13 pro max.jpg"
     },
     {
       "modelKey": "iphone-14",
@@ -2018,50 +1992,11 @@
       "commonsTitle": "File:PlayStation 4 Slim video game console.jpg"
     },
     {
-      "modelKey": "ps4-pro",
-      "name": "PlayStation 4 Pro",
-      "brand": "Sony",
-      "subcategory": "Consoles",
-      "file": "/images/catalog/sony/ps4-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/PlayStation_4_Slim_video_game_console.jpg",
-      "sourceType": "wikimedia-agent-visual",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_4_Slim_video_game_console.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Evan-Amos",
-      "commonsTitle": "File:PlayStation 4 Slim video game console.jpg"
-    },
-    {
       "modelKey": "ps5",
       "name": "PlayStation 5",
       "brand": "Sony",
       "subcategory": "Consoles",
       "file": "/images/catalog/sony/ps5.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
-      "sourceType": "wikimedia-agent-visual",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_5_and_DualSense_with_transparent_background.png",
-      "license": "CC BY-SA 4.0",
-      "author": "Kuebi",
-      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png"
-    },
-    {
-      "modelKey": "ps5-slim",
-      "name": "PlayStation 5 Slim",
-      "brand": "Sony",
-      "subcategory": "Consoles",
-      "file": "/images/catalog/sony/ps5-slim.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
-      "sourceType": "wikimedia-agent-visual",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_5_and_DualSense_with_transparent_background.png",
-      "license": "CC BY-SA 4.0",
-      "author": "Kuebi",
-      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png"
-    },
-    {
-      "modelKey": "ps5-pro",
-      "name": "PlayStation 5 Pro",
-      "brand": "Sony",
-      "subcategory": "Consoles",
-      "file": "/images/catalog/sony/ps5-pro.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
       "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_5_and_DualSense_with_transparent_background.png",
@@ -2133,45 +2068,6 @@
       "license": "CC BY 2.0",
       "author": "Marcin Wichary",
       "commonsTitle": "Sony Bravia television (Flickr)"
-    },
-    {
-      "modelKey": "sony-wh1000xm4",
-      "name": "Sony WH-1000XM4",
-      "brand": "Sony",
-      "subcategory": "Audio",
-      "file": "/images/catalog/sony/sony-wh1000xm4.webp",
-      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
-      "sourceType": "wikimedia-agent-visual",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_headphones_lifestyle_(Flickr_fallback)",
-      "license": "CC BY-SA 2.0",
-      "author": "Ervins Strauhmanis",
-      "commonsTitle": "Sony headphones lifestyle (Flickr fallback)"
-    },
-    {
-      "modelKey": "sony-wh1000xm5",
-      "name": "Sony WH-1000XM5",
-      "brand": "Sony",
-      "subcategory": "Audio",
-      "file": "/images/catalog/sony/sony-wh1000xm5.webp",
-      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
-      "sourceType": "wikimedia-agent-visual",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_headphones_lifestyle_(Flickr_fallback)",
-      "license": "CC BY-SA 2.0",
-      "author": "Ervins Strauhmanis",
-      "commonsTitle": "Sony headphones lifestyle (Flickr fallback)"
-    },
-    {
-      "modelKey": "sony-wh1000xm6",
-      "name": "Sony WH-1000XM6",
-      "brand": "Sony",
-      "subcategory": "Audio",
-      "file": "/images/catalog/sony/sony-wh1000xm6.webp",
-      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
-      "sourceType": "wikimedia-agent-visual",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_headphones_lifestyle_(Flickr_fallback)",
-      "license": "CC BY-SA 2.0",
-      "author": "Ervins Strauhmanis",
-      "commonsTitle": "Sony headphones lifestyle (Flickr fallback)"
     },
     {
       "modelKey": "sony-wf1000xm4",
@@ -2803,32 +2699,6 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-m32.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
-      "sourceType": "wikimedia-hand-curated",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_M32.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Blue Mango Juice",
-      "commonsTitle": "File:Samsung Galaxy M32.jpg"
-    },
-    {
-      "modelKey": "galaxy-m33",
-      "name": "Galaxy M33",
-      "brand": "Samsung",
-      "subcategory": "Phones",
-      "file": "/images/catalog/samsung/galaxy-m33.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
-      "sourceType": "wikimedia-hand-curated",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_M32.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Blue Mango Juice",
-      "commonsTitle": "File:Samsung Galaxy M32.jpg"
-    },
-    {
-      "modelKey": "galaxy-m34",
-      "name": "Galaxy M34",
-      "brand": "Samsung",
-      "subcategory": "Phones",
-      "file": "/images/catalog/samsung/galaxy-m34.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
       "sourceType": "wikimedia-hand-curated",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_M32.jpg",

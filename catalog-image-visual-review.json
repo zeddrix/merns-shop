@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-06-05T05:26:38.815Z",
-  "total": 222,
-  "passed": 222,
+  "total": 212,
+  "passed": 212,
   "failed": 0,
   "entries": [
     {
@@ -55,16 +55,6 @@
       "reviewedAt": "2026-06-05T05:26:38.339Z"
     },
     {
-      "modelKey": "iphone-12-pro",
-      "name": "iPhone 12 Pro",
-      "brand": "Apple",
-      "subcategory": "Phones",
-      "file": "/images/catalog/apple/iphone-12-pro.webp",
-      "status": "pass",
-      "reason": "audit+file validation pass",
-      "reviewedAt": "2026-06-05T05:26:38.342Z"
-    },
-    {
       "modelKey": "iphone-12-pro-max",
       "name": "iPhone 12 Pro Max",
       "brand": "Apple",
@@ -103,16 +93,6 @@
       "status": "pass",
       "reason": "audit+file validation pass",
       "reviewedAt": "2026-06-05T05:26:38.354Z"
-    },
-    {
-      "modelKey": "iphone-13-pro-max",
-      "name": "iPhone 13 Pro Max",
-      "brand": "Apple",
-      "subcategory": "Phones",
-      "file": "/images/catalog/apple/iphone-13-pro-max.webp",
-      "status": "pass",
-      "reason": "audit+file validation pass",
-      "reviewedAt": "2026-06-05T05:26:38.356Z"
     },
     {
       "modelKey": "iphone-14",
@@ -1555,16 +1535,6 @@
       "reviewedAt": "2026-06-05T05:26:38.696Z"
     },
     {
-      "modelKey": "ps4-pro",
-      "name": "PlayStation 4 Pro",
-      "brand": "Sony",
-      "subcategory": "Consoles",
-      "file": "/images/catalog/sony/ps4-pro.webp",
-      "status": "pass",
-      "reason": "audit+file validation pass",
-      "reviewedAt": "2026-06-05T05:26:38.698Z"
-    },
-    {
       "modelKey": "ps5",
       "name": "PlayStation 5",
       "brand": "Sony",
@@ -1573,26 +1543,6 @@
       "status": "pass",
       "reason": "audit+file validation pass",
       "reviewedAt": "2026-06-05T05:26:38.700Z"
-    },
-    {
-      "modelKey": "ps5-slim",
-      "name": "PlayStation 5 Slim",
-      "brand": "Sony",
-      "subcategory": "Consoles",
-      "file": "/images/catalog/sony/ps5-slim.webp",
-      "status": "pass",
-      "reason": "audit+file validation pass",
-      "reviewedAt": "2026-06-05T05:26:38.702Z"
-    },
-    {
-      "modelKey": "ps5-pro",
-      "name": "PlayStation 5 Pro",
-      "brand": "Sony",
-      "subcategory": "Consoles",
-      "file": "/images/catalog/sony/ps5-pro.webp",
-      "status": "pass",
-      "reason": "audit+file validation pass",
-      "reviewedAt": "2026-06-05T05:26:38.704Z"
     },
     {
       "modelKey": "sony-x80j",
@@ -1643,36 +1593,6 @@
       "status": "pass",
       "reason": "audit+file validation pass",
       "reviewedAt": "2026-06-05T05:26:38.712Z"
-    },
-    {
-      "modelKey": "sony-wh1000xm4",
-      "name": "Sony WH-1000XM4",
-      "brand": "Sony",
-      "subcategory": "Audio",
-      "file": "/images/catalog/sony/sony-wh1000xm4.webp",
-      "status": "pass",
-      "reason": "audit+file validation pass",
-      "reviewedAt": "2026-06-05T05:26:38.714Z"
-    },
-    {
-      "modelKey": "sony-wh1000xm5",
-      "name": "Sony WH-1000XM5",
-      "brand": "Sony",
-      "subcategory": "Audio",
-      "file": "/images/catalog/sony/sony-wh1000xm5.webp",
-      "status": "pass",
-      "reason": "audit+file validation pass",
-      "reviewedAt": "2026-06-05T05:26:38.716Z"
-    },
-    {
-      "modelKey": "sony-wh1000xm6",
-      "name": "Sony WH-1000XM6",
-      "brand": "Sony",
-      "subcategory": "Audio",
-      "file": "/images/catalog/sony/sony-wh1000xm6.webp",
-      "status": "pass",
-      "reason": "audit+file validation pass",
-      "reviewedAt": "2026-06-05T05:26:38.717Z"
     },
     {
       "modelKey": "sony-wf1000xm4",
@@ -2163,26 +2083,6 @@
       "status": "pass",
       "reason": "audit+file validation pass",
       "reviewedAt": "2026-06-05T05:26:38.806Z"
-    },
-    {
-      "modelKey": "galaxy-m33",
-      "name": "Galaxy M33",
-      "brand": "Samsung",
-      "subcategory": "Phones",
-      "file": "/images/catalog/samsung/galaxy-m33.webp",
-      "status": "pass",
-      "reason": "audit+file validation pass",
-      "reviewedAt": "2026-06-05T05:26:38.807Z"
-    },
-    {
-      "modelKey": "galaxy-m34",
-      "name": "Galaxy M34",
-      "brand": "Samsung",
-      "subcategory": "Phones",
-      "file": "/images/catalog/samsung/galaxy-m34.webp",
-      "status": "pass",
-      "reason": "audit+file validation pass",
-      "reviewedAt": "2026-06-05T05:26:38.809Z"
     },
     {
       "modelKey": "galaxy-m54",

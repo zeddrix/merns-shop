@@ -1,8 +1,8 @@
 {
-  "description": "Agent visual review of all 222 catalog images (12 batches, grid + individual inspection)",
-  "total": 222,
+  "description": "Agent visual review of catalog images (12 batches, grid + individual inspection). 10 severe SKUs pruned to 212 parents.",
+  "total": 212,
   "totalBatches": 12,
-  "reviewed": 222,
+  "reviewed": 212,
   "passed": 89,
   "weak": 78,
   "failed": 55,

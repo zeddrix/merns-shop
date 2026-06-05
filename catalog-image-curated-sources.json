@@ -35,20 +35,6 @@
       "commonsTitle": "File:Samsung Galaxy M32.jpg",
       "sourceType": "wikimedia"
     },
-    "galaxy-m33": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Hajoon0102",
-      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
-      "sourceType": "wikimedia-sibling"
-    },
-    "galaxy-m34": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Blue Mango Juice",
-      "commonsTitle": "File:Samsung Galaxy M32.jpg",
-      "sourceType": "wikimedia-sibling"
-    },
     "galaxy-m54": {
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
       "license": "CC BY-SA 4.0",
@@ -798,27 +784,6 @@
       "commonsTitle": "Sony Bravia television (Flickr)",
       "sourceType": "licensed-fallback"
     },
-    "sony-wh1000xm4": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "KKPCW（Kyu3）",
-      "commonsTitle": "File:Sony WF-1000XM4.jpg",
-      "sourceType": "licensed-fallback"
-    },
-    "sony-wh1000xm5": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "KKPCW（Kyu3）",
-      "commonsTitle": "File:Sony WF-1000XM4.jpg",
-      "sourceType": "licensed-fallback"
-    },
-    "sony-wh1000xm6": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "KKPCW（Kyu3）",
-      "commonsTitle": "File:Sony WF-1000XM4.jpg",
-      "sourceType": "licensed-fallback"
-    },
     "sony-wf1000xm4": {
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
       "license": "CC BY-SA 4.0",
@@ -854,21 +819,7 @@
       "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png",
       "sourceType": "wikimedia-sibling"
     },
-    "ps4-pro": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
-      "license": "CC BY-SA 4.0",
-      "author": "Kuebi",
-      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png",
-      "sourceType": "wikimedia-sibling"
-    },
     "ps5": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
-      "license": "CC BY-SA 4.0",
-      "author": "Kuebi",
-      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png",
-      "sourceType": "wikimedia-sibling"
-    },
-    "ps5-slim": {
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
       "license": "CC BY-SA 4.0",
       "author": "Kuebi",
