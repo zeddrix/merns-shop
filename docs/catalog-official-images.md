@@ -30,11 +30,11 @@ pnpm catalog:visual-review                  # writes catalog-image-visual-review
 
 ## Audit and review artifacts
 
-| File | Purpose |
-|------|---------|
-| `catalog-image-audit-report.json` | Metadata relevance failures |
-| `catalog-image-visual-review.json` | Per-product pass/fail after file + audit checks |
-| `catalog-image-curated-sources.json` | Licensed URL map for hard-to-harvest models |
+| File                                 | Purpose                                         |
+| ------------------------------------ | ----------------------------------------------- |
+| `catalog-image-audit-report.json`    | Metadata relevance failures                     |
+| `catalog-image-visual-review.json`   | Per-product pass/fail after file + audit checks |
+| `catalog-image-curated-sources.json` | Licensed URL map for hard-to-harvest models     |
 
 ## CDN patterns
 
@@ -42,7 +42,7 @@ pnpm catalog:visual-review                  # writes catalog-image-visual-review
 | ------- | --------------------------------- |
 | Apple   | `store.storeimages.cdn-apple.com` |
 | Samsung | `images.samsung.com`              |
-| Sony    | `electronics.sony.com`          |
+| Sony    | `electronics.sony.com`            |
 
 ## Attribution
 
