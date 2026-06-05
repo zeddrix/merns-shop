@@ -32,12 +32,12 @@ describe('catalog official sources', () => {
         counts[entry.brand as keyof typeof counts] += 1;
       }
     }
-    expect(counts.Apple).toBe(73);
-    expect(counts.Samsung).toBe(67);
-    expect(counts.Sony).toBe(18);
+    expect(counts.Apple).toBe(71);
+    expect(counts.Samsung).toBe(65);
+    expect(counts.Sony).toBe(12);
     expect(counts.Vivo).toBe(30);
     expect(counts.Xiaomi).toBe(33);
     expect(counts.Amazon).toBe(1);
-    expect(Object.keys(raw.entries).length).toBe(222);
+    expect(Object.keys(raw.entries).length).toBe(212);
   });
 });

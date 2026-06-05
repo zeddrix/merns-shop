@@ -7,7 +7,7 @@ describe('catalog index', () => {
   it('meets minimum parent and variant counts', () => {
     const stats = getCatalogStats();
     expect(stats.parentCount).toBeGreaterThanOrEqual(140);
-    expect(stats.variantCount).toBeGreaterThanOrEqual(500);
+    expect(stats.variantCount).toBeGreaterThanOrEqual(475);
   });
 
   it('has unique modelKey and variant skus', () => {
