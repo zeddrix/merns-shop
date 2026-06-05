@@ -1,0 +1,190 @@
+{
+  "description": "Hand-picked Wikimedia Commons files from Google Images / Commons category research.",
+  "direct": {
+    "iphone-12": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Back_view_of_iPhone_12_white.jpg",
+      "commonsTitle": "File:Back view of iPhone 12 white.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi"
+    },
+    "iphone-13-mini": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/IPhone_13_mini.jpg",
+      "commonsTitle": "File:IPhone 13 mini.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi"
+    },
+    "galaxy-tab-s7": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Samsung_Galaxy_Tab_S7.jpg",
+      "commonsTitle": "File:Samsung Galaxy Tab S7.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Juan Pablo Olano"
+    },
+    "galaxy-tab-s9-ultra": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Tab_S9.png",
+      "commonsTitle": "File:Samsung Galaxy Tab S9.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102"
+    },
+    "galaxy-tab-s10-plus": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Tab_S9.png",
+      "commonsTitle": "File:Samsung Galaxy Tab S9.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102"
+    },
+    "galaxy-m33": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
+      "commonsTitle": "File:Samsung Galaxy M32.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Blue Mango Juice"
+    },
+    "galaxy-m34": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
+      "commonsTitle": "File:Samsung Galaxy M32.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Blue Mango Juice"
+    },
+    "galaxy-m54": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Samsung_Galaxy_A24_2023.jpg",
+      "commonsTitle": "File:Samsung Galaxy A24 2023.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102"
+    },
+    "galaxy-a52": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
+      "commonsTitle": "File:Back of the Samsung Galaxy A53 5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102"
+    },
+    "ps5-slim": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/PlayStation_5_Slim.png",
+      "commonsTitle": "File:PlayStation 5 Slim.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Wfrmsf"
+    },
+    "ps4-slim": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/PlayStation_4_Slim.png",
+      "commonsTitle": "File:PlayStation 4 Slim.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Evan-Amos"
+    },
+    "ps4-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8b/PlayStation_4_Pro.png",
+      "commonsTitle": "File:PlayStation 4 Pro.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Evan-Amos"
+    },
+    "poco-x3": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/POCO_X3_Pro_running_LineageOS_18.jpg",
+      "commonsTitle": "File:POCO X3 Pro running LineageOS 18.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Фосса"
+    },
+    "poco-f3": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/POCO_F3.jpg",
+      "commonsTitle": "File:POCO F3.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider"
+    },
+    "poco-f4": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Back_of_POCO_F4.png",
+      "commonsTitle": "File:Back of POCO F4.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102"
+    },
+    "poco-x4-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/POCO_X4_Pro_5G_back.jpg",
+      "commonsTitle": "File:POCO X4 Pro 5G back.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102"
+    },
+    "iphone-13-pro-max": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Back_view_of_iPhone_13_Pro_Max_Gold.jpg",
+      "commonsTitle": "File:Back view of iPhone 13 Pro Max Gold.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102"
+    },
+    "vivo-t1": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Vivo_V20_back.jpg",
+      "commonsTitle": "File:Vivo V20 back.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102"
+    },
+    "vivo-t2": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Vivo_V21_back.jpg",
+      "commonsTitle": "File:Vivo V21 back.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102"
+    },
+    "sony-wf1000xm4": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Sony_WF-1000XM4.jpg",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Raimond Spekking"
+    }
+  },
+  "files": {
+    "iphone-12": "File:Back view of iPhone 12 white.jpg",
+    "iphone-12-mini": "File:IPhone 12 mini.jpg",
+    "iphone-12-pro": "File:IPhone 12 Pro Max - 3.jpg",
+    "iphone-12-pro-max": "File:IPhone 12 Pro Max - 3.jpg",
+    "iphone-13-mini": "File:IPhone 13 mini.jpg",
+    "iphone-11-pro": "File:2019-12-22 IPhone 11 Pro.jpg",
+    "iphone-11-pro-max": "File:Back view of iPhone 11 Pro Max white.jpg",
+    "iphone-se-3": "File:IPhone 11 all color.jpg",
+    "ipad-air-4": "File:IPad Air 4th generation - 2.jpg",
+    "ipad-pro-129-m1": "File:IPad Pro 12.9-inch (5th generation).png",
+    "ipad-9": "File:IPad 10.2‑inch.png",
+    "ipad-10": "File:About iPad (10th generation).jpg",
+    "macbook-air-m3-15": "File:MacBook Air M1.png",
+    "macbook-pro-16-m1-pro": "File:Apple Macbook Pro 14\" 2021 - Keyboard.png",
+    "macbook-pro-14-m3-pro": "File:Apple MacBook Pro (M3).jpg",
+    "macbook-pro-16-m3-max": "File:Apple MacBook Pro (M3).jpg",
+    "imac-m1": "File:IMac 24 inch 2021.png",
+    "imac-m4": "File:IMac 24 inch 2024.png",
+    "airpods-2": "File:AirPods 2.jpg",
+    "airpods-3": "File:AirPods 3.jpg",
+    "airpods-pro-1": "File:AirPods Pro.jpg",
+    "airpods-pro-2": "File:Airpods Pro 2 in dunkelblau.jpg",
+    "airpods-4": "File:Apple AirPods Max 2.jpg",
+    "galaxy-tab-s7": "File:Samsung Galaxy Tab S7.jpg",
+    "galaxy-tab-s9-ultra": "File:Samsung Galaxy Tab S9.png",
+    "galaxy-tab-s10-plus": "File:Samsung Galaxy Tab S9.png",
+    "galaxy-z-flip6": "File:Samsung Galaxy Z Flip 6.jpg",
+    "galaxy-a52": "File:Back of the Samsung Galaxy A53 5G.jpg",
+    "galaxy-m34": "File:Samsung Galaxy M32.jpg",
+    "galaxy-m54": "File:Samsung Galaxy A24 2023.jpg",
+    "ps5": "File:PlayStation 5 and DualSense (2).jpg",
+    "ps5-slim": "File:PlayStation 5 Slim.png",
+    "ps4-slim": "File:PlayStation 4 Slim.png",
+    "ps4-pro": "File:PlayStation 4 Pro.png",
+    "sony-wh1000xm4": "File:Sony WH-1000XM4.jpg",
+    "sony-wh1000xm5": "File:Sony WH-1000XM5.jpg",
+    "sony-wh1000xm6": "File:Sony WH-1000XM5.jpg",
+    "sony-wf1000xm5": "File:Sony WF-1000XM5.jpg",
+    "sony-linkbuds-s": "File:Sony LinkBuds S.jpg",
+    "sony-x80j": "File:Sony Bravia X80J.jpg",
+    "sony-x90j": "File:Sony Bravia X90J.jpg",
+    "sony-a80j": "File:Sony Bravia A80J.jpg",
+    "sony-a95l": "File:Sony Bravia A95L.jpg",
+    "sony-x85k": "File:Sony Bravia X85K.jpg",
+    "sony-xr8": "File:Sony Bravia XR8.jpg",
+    "redmi-note-11-pro": "File:Redmi Note 11 Pro back.jpg",
+    "poco-f5": "File:Back of POCO F4.png",
+    "poco-f6": "File:POCO X4 Pro 5G back.jpg",
+    "poco-x3": "File:POCO X3 Pro running LineageOS 18.jpg",
+    "xiaomi-watch-s1": "File:Xiaomi Watch S1.jpg",
+    "redmi-buds-4-pro": "File:Redmi Buds 4 Pro.jpg",
+    "xiaomi-buds-5-pro": "File:Xiaomi Buds 5 Pro.jpg",
+    "vivo-t2": "File:Vivo T2.jpg",
+    "mi-10": "File:Xiaomi MI 9 frontpanel.jpg",
+    "mi-10-pro": "File:Xiaomi MI 9 frontpanel.jpg",
+    "mi-11": "File:Xiaomi 13.jpg",
+    "mi-12": "File:Xiaomi 13.jpg",
+    "poco-f3": "File:POCO F3.jpg",
+    "redmi-note-9-pro": "File:Redmi note 9 pro black.jpg",
+    "redmi-note-10-pro": "File:Xiaomi Redmi Note 10 Pro (Global) front.jpg",
+    "redmi-note-12-pro": "File:Redmi Note 12 Pro back.jpg",
+    "redmi-note-13-pro": "File:Redmi Note 13 Pro back.jpg",
+    "galaxy-m33": "File:Samsung Galaxy M32.jpg"
+  }
+}

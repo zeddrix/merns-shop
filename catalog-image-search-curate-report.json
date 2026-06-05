@@ -1,0 +1,762 @@
+{
+  "updated": [
+    {
+      "modelKey": "iphone-11",
+      "via": "curated-file",
+      "title": "File:IPhone 11 all color.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "iphone-11-pro",
+      "via": "Category:iPhone_11_Pro",
+      "title": "File:APPLE IPHONE 11 PRO ET PRO MAX.png",
+      "score": 18
+    },
+    {
+      "modelKey": "iphone-11-pro-max",
+      "via": "commons:File:iPhone_11_Pro_Max.png",
+      "title": "File:APPLE IPHONE 11 PRO ET PRO MAX.png",
+      "score": 22
+    },
+    {
+      "modelKey": "iphone-12-mini",
+      "via": "commons:iPhone 12 mini smartphone",
+      "title": "File:IPhone 12 Mini - 2.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "iphone-12",
+      "via": "Category:iPhone_12",
+      "title": "File:Hartono Mall Yogyakarta - Gerai IPhone 1.jpg",
+      "score": 6
+    },
+    {
+      "modelKey": "iphone-12-pro",
+      "via": "openverse:iPhone 12 Pro smartphone",
+      "title": "Apple iPhone 12 Pro",
+      "score": 18
+    },
+    {
+      "modelKey": "iphone-12-pro-max",
+      "via": "openverse:Apple iPhone 12 Pro Max",
+      "title": "IPhone 12 Pro Max",
+      "score": 18
+    },
+    {
+      "modelKey": "iphone-13-mini",
+      "via": "commons:iPhone 13 mini smartphone",
+      "title": "File:IPhone 4 Mini-SIM Extracted.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "iphone-13",
+      "via": "curated-file",
+      "title": "File:IPhone 13.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "iphone-13-pro",
+      "via": "Category:iPhone_13_Pro",
+      "title": "File:Apple iPhone 13 Pro and 13 Pro Max.jpg",
+      "score": 18
+    },
+    {
+      "modelKey": "iphone-13-pro-max",
+      "via": "openverse:Apple iPhone 13 Pro Max",
+      "title": "Mapillary (SatsukaNSS YT) 2025-08-30 11H59M42S031 (543482888828453 at 4mR612zg8WkPwlt7930FQZ with Apple iPhone 13 Pro Max)",
+      "score": 22
+    },
+    {
+      "modelKey": "iphone-16e",
+      "via": "openverse:Apple iPhone 16e",
+      "title": "IPhone 16e 2025",
+      "score": 10
+    },
+    {
+      "modelKey": "iphone-17",
+      "via": "curated-file",
+      "title": "File:Sage iPhone 17.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "iphone-17-air",
+      "via": "curated-file",
+      "title": "File:IPhone 17, Air, 17 Pro, and Pro max.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "ipad-9",
+      "via": "commons:iPad (9th generation) tablet",
+      "title": "File:IPad 10.2‑inch.png",
+      "score": 6
+    },
+    {
+      "modelKey": "ipad-10",
+      "via": "Category:iPad_(10th_generation)",
+      "title": "File:About iPad (10th generation).jpg",
+      "score": 18
+    },
+    {
+      "modelKey": "ipad-air-4",
+      "via": "openverse:iPad Air (4th generation) tablet",
+      "title": "IPad Air 2020 (51012790753)",
+      "score": 10
+    },
+    {
+      "modelKey": "ipad-a16",
+      "via": "commons:ipad a16 tablet",
+      "title": "File:IPad (A16) backside (Pink).jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "macbook-air-m1",
+      "via": "commons:Apple MacBook Air (M1)",
+      "title": "File:MacBook Air M1.png",
+      "score": 14
+    },
+    {
+      "modelKey": "macbook-pro-14-m1-pro",
+      "via": "commons:Apple MacBook Pro 14\" (M1 Pro)",
+      "title": "File:Apple Macbook Pro 14\" 2021 - Keyboard.png",
+      "score": 18
+    },
+    {
+      "modelKey": "airpods-2",
+      "via": "commons:Apple AirPods (2nd generation)",
+      "title": "File:Airpods Pro 2 in dunkelblau.jpg",
+      "score": 6
+    },
+    {
+      "modelKey": "airpods-pro-2",
+      "via": "commons:Apple AirPods Pro (2nd generation)",
+      "title": "File:Airpods Pro 2 in dunkelblau.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "airpods-4",
+      "via": "commons:AirPods 4 headphones",
+      "title": "File:Apple AirPods Max 2.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "watch-series-6",
+      "via": "commons:Apple Watch Series 6 watch",
+      "title": "File:IPhone 11 Pro & Apple Watch Series 5.jpg",
+      "score": 20
+    },
+    {
+      "modelKey": "watch-series-7",
+      "via": "commons:Apple Watch Series 7 watch",
+      "title": "File:Apple Watch Series 7; January 2022 (02).jpg",
+      "score": 18
+    },
+    {
+      "modelKey": "watch-ultra-2",
+      "via": "openverse:Apple Watch Ultra 2 watch",
+      "title": "Apple Watch Ultra 2",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-s20",
+      "via": "commons:File:Galaxy_S20.png",
+      "title": "File:Pixel Samsung Galaxy S20 Ultra 5G A028 - 20220620 211703.png",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-s20-plus",
+      "via": "Category:Samsung_Galaxy_S20+",
+      "title": "File:Back of a Samsung Galaxy S20 Plus 5G.jpg",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-s20-ultra",
+      "via": "openverse:Samsung Galaxy S20 Ultra",
+      "title": "Samsung galaxy s20 ultra",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-s21",
+      "via": "openverse:Galaxy S21 smartphone",
+      "title": "The Galaxy S21 Design",
+      "score": 10
+    },
+    {
+      "modelKey": "galaxy-s21-plus",
+      "via": "commons:Galaxy S21+",
+      "title": "File:SAMSUNG Galaxy S21 Plus Rear Side.jpg",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-s21-ultra",
+      "via": "Category:Samsung_Galaxy_S21_Ultra",
+      "title": "File:GalaxyS21 Ultra.png",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-s22",
+      "via": "openverse:Samsung Galaxy S22",
+      "title": "IPhone SE3 & SAMSUNG Galaxy S22 Ultra.jpg (2)",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-s22-plus",
+      "via": "openverse:Samsung Galaxy S22+",
+      "title": "IPhone SE3 & SAMSUNG Galaxy S22 Ultra.jpg (2)",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-s22-ultra",
+      "via": "commons:Galaxy S22 Ultra back",
+      "title": "File:IPhone SE3 & SAMSUNG Galaxy S22 Ultra.jpg (2).jpg",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-s23",
+      "via": "Category:Samsung_Galaxy_S23",
+      "title": "File:Back of the Samsung Galaxy S23.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-s23-plus",
+      "via": "openverse:Galaxy S23+ smartphone",
+      "title": "Samsung Galaxy S23 Ultra, 512 GB, Lavender 20230416 HOF00358 RAW-Export",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-s23-ultra",
+      "via": "openverse:Galaxy S23 Ultra smartphone",
+      "title": "Samsung Galaxy S23 Ultra, 512 GB, Lavender 20230416 HOF00358 RAW-Export",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-s24-plus",
+      "via": "commons:File:Galaxy_S24+.png",
+      "title": "File:Samsung Galaxy S24 (webtekno) 001.png",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-s25",
+      "via": "Category:Samsung_Galaxy_S25",
+      "title": "File:第一手！Samsung Galaxy S25系列拿到了：5个升级！S Pen不支持蓝牙了.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-s25-plus",
+      "via": "openverse:Galaxy S25+ smartphone",
+      "title": "Samsung Galaxy S25 Ultra smartphone - bottom view",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-z-fold3",
+      "via": "openverse:Galaxy Z Fold3 smartphone",
+      "title": "Samsung_Galaxy_Z_Fold3_5G_002",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-z-flip3",
+      "via": "commons:File:Galaxy_Z_Flip3.jpg",
+      "title": "File:Samsung Galaxy Z Flip3 5G.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-z-fold4",
+      "via": "commons:Galaxy Z Fold4 smartphone",
+      "title": "File:Front of the Samsung Galaxy Z Fold 4.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "galaxy-z-flip4",
+      "via": "commons:Galaxy Z Flip4 smartphone",
+      "title": "File:Samsung Galaxy Z Flip 4.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "galaxy-z-fold6",
+      "via": "commons:Galaxy Z Fold6 smartphone",
+      "title": "File:Samsung Galaxy Z Fold6.png",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a51",
+      "via": "openverse:Samsung Galaxy A51",
+      "title": "Samsung Galaxy A51 front",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a53",
+      "via": "commons:Galaxy A53 smartphone",
+      "title": "File:Back of the Samsung Galaxy A53 5G.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a54",
+      "via": "commons:Galaxy A54 smartphone",
+      "title": "File:HeiYu taking smartphone selfies with Samsung Galaxy A54 5G in front of 1F public toilet 20240204b.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a55",
+      "via": "commons:Galaxy A55 smartphone",
+      "title": "File:Samsung Galaxy A55 5G 2024.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a35",
+      "via": "openverse:Samsung Galaxy A35",
+      "title": "Samsung Galaxy A35 5G Phone (Back)",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-tab-s8",
+      "via": "Category:Samsung_Galaxy_Tab_S8",
+      "title": "File:Samsung Galaxy Tab S8 Ultra - Front-facing Cameras.jpg",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-tab-s9",
+      "via": "curated-file",
+      "title": "File:Samsung Galaxy Tab S9.png",
+      "score": 18
+    },
+    {
+      "modelKey": "mi-10",
+      "via": "commons:Mi 10 smartphone",
+      "title": "File:HK MK 旺角 Mongkok 小米手机店 Xiao Mi XiaoMi 11 Lite 5G NE smartphone June 2022 X11 09.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "mi-10-pro",
+      "via": "commons:Mi 10 Pro phone",
+      "title": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Poco M4 Pro 5G testing macro standard n wide lens effects December 2021 RedMi 10.jpg",
+      "score": 22
+    },
+    {
+      "modelKey": "mi-11",
+      "via": "commons:Mi 11 phone",
+      "title": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Mi 11 Lite testing macro standard n wide lens effects December 2021 RedMi 02.jpg",
+      "score": 16
+    },
+    {
+      "modelKey": "mi-12",
+      "via": "commons:Mi 12 phone",
+      "title": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Mi 11 Lite testing macro standard n wide lens effects December 2021 RedMi 02.jpg",
+      "score": 12
+    },
+    {
+      "modelKey": "xiaomi-13",
+      "via": "curated-file",
+      "title": "File:Xiaomi 13.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "xiaomi-14",
+      "via": "commons:Xiaomi 14 phone",
+      "title": "File:Redmi Note 7 Phone by Xiaomi.jpg",
+      "score": 12
+    },
+    {
+      "modelKey": "xiaomi-15",
+      "via": "commons:Xiaomi 15 phone",
+      "title": "File:Xiaomi 12 Lite front.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "redmi-note-9-pro",
+      "via": "commons:Redmi Note 9 Pro phone",
+      "title": "File:Redmi note 9 pro black.jpg",
+      "score": 16
+    },
+    {
+      "modelKey": "redmi-note-10-pro",
+      "via": "commons:Redmi Note 10 Pro phone",
+      "title": "File:Xiaomi Redmi Note 10 Pro (Global) front.jpg",
+      "score": 24
+    },
+    {
+      "modelKey": "redmi-note-12-pro",
+      "via": "commons:File:Redmi_Note_12_Pro.jpg",
+      "title": "File:Redmi Note 10 Pro back with in-box cover.jpg",
+      "score": 16
+    },
+    {
+      "modelKey": "redmi-note-13-pro",
+      "via": "commons:Redmi Note 13 Pro phone",
+      "title": "File:Redmi Note 10 Pro left.jpg",
+      "score": 16
+    },
+    {
+      "modelKey": "poco-f3",
+      "via": "commons:POCO F3 phone",
+      "title": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Poco M4 Pro 5G testing macro standard n wide lens effects December 2021 RedMi 10.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "poco-f4",
+      "via": "commons:POCO F4 phone",
+      "title": "File:Back of POCO F4.png",
+      "score": 10
+    },
+    {
+      "modelKey": "xiaomi-watch-2",
+      "via": "openverse:Xiaomi Watch 2 watch",
+      "title": "Xiaomi Watch Pro 2",
+      "score": 14
+    },
+    {
+      "modelKey": "ps4-slim",
+      "via": "commons:PlayStation 4 Slim front",
+      "title": "File:Sony Playstation 2 SCPH-5001 V9 - Caixa Original (frente) Original box (front) (18857576203).jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "ps4-pro",
+      "via": "Category:PlayStation_5",
+      "title": "File:AMD@7nm@Zen2 RDNA APU@Oberon@PlayStation5@CXD90060GG 100-000000189 WM33440U00089 S DSC02245-DSC02246.jpg",
+      "score": 6
+    },
+    {
+      "modelKey": "sony-wf1000xm4",
+      "via": "commons:Sony WF-1000XM4 headphones",
+      "title": "File:Sony WF-1000XM4.jpg",
+      "score": 16
+    },
+    {
+      "modelKey": "galaxy-note-20",
+      "via": "Category:Samsung_Galaxy_Note_20",
+      "title": "File:Samsung Galaxy Note 20 front (cropped).png",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-note-20-ultra",
+      "via": "openverse:Samsung Galaxy Note 20 Ultra",
+      "title": "Samsung Galaxy Note 9 (SM-N960F) and Samsung Galaxy Note 20 Ultra 5G (SM-N986B) in Poland, May 2021",
+      "score": 22
+    },
+    {
+      "modelKey": "galaxy-s10",
+      "via": "openverse:Galaxy S10 smartphone",
+      "title": "Lanzamiento Samsung Galaxy S10 Iquique",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-s10-plus",
+      "via": "commons:Galaxy S10+",
+      "title": "File:Größenvergleich Samsung Galaxy S10 und S20 Ultra 5G.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "mi-9",
+      "via": "commons:Mi 9 phone",
+      "title": "File:Xiaomi MI 9 frontpanel.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "redmi-note-8-pro",
+      "via": "commons:Redmi Note 8 Pro phone",
+      "title": "File:Redmi Note 10 Pro front.jpg",
+      "score": 16
+    },
+    {
+      "modelKey": "redmi-10",
+      "via": "commons:Redmi 10 phone",
+      "title": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Redmi 10 testing macro standard n wide lens effects December 2021 RedMi 13.jpg",
+      "score": 16
+    },
+    {
+      "modelKey": "redmi-13",
+      "via": "commons:Redmi 13 phone",
+      "title": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Redmi 10 testing macro standard n wide lens effects December 2021 RedMi 13.jpg",
+      "score": 16
+    },
+    {
+      "modelKey": "iphone-se-2",
+      "via": "Category:iPhone_SE_(2nd_generation)",
+      "title": "File:Apple iPhone SE 2nd Generation 2020, Samsung Galaxy A04s 2022 and Samsung Galaxy A56 5G 2025.jpg",
+      "score": 22
+    },
+    {
+      "modelKey": "iphone-se-3",
+      "via": "openverse:iPhone SE (3rd generation) back",
+      "title": "Back of the iPhone SE (3rd generation)",
+      "score": 18
+    },
+    {
+      "modelKey": "iphone-xr",
+      "via": "openverse:iPhone XR smartphone",
+      "title": "IPhone 11 all color",
+      "score": 6
+    },
+    {
+      "modelKey": "galaxy-buds2",
+      "via": "openverse:Samsung Galaxy Buds2 earbuds",
+      "title": "Samsung Galaxy Buds2 Pro (Graphite)",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-buds2-pro",
+      "via": "commons:Samsung Galaxy Buds2 Pro back",
+      "title": "File:Samsung Galaxy A34 5G 20231122 HOF01928 RAW-Export cens.png",
+      "score": 14
+    },
+    {
+      "modelKey": "sony-wf-c500",
+      "via": "commons:Sony WF-C500 headphones",
+      "title": "File:Sony in-ear headphone WF-C500.jpg",
+      "score": 16
+    },
+    {
+      "modelKey": "macbook-pro-14-m4-pro",
+      "via": "commons:Apple MacBook Pro 14\" (M4 Pro)",
+      "title": "File:Review zu Apple Hardware mit Apple M4-CPUs (Geekerwan) 14.png",
+      "score": 12
+    },
+    {
+      "modelKey": "macbook-pro-16-m4-max",
+      "via": "commons:Apple MacBook Pro 16\" (M4 Max)",
+      "title": "File:Review zu Apple Hardware mit Apple M4-CPUs (Geekerwan) 16.png",
+      "score": 12
+    },
+    {
+      "modelKey": "galaxy-a12",
+      "via": "Category:Samsung_Galaxy_A12",
+      "title": "File:Close angled view of a Samsung Galaxy A12's Camera.png",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a13",
+      "via": "openverse:Galaxy A13 smartphone",
+      "title": "A Short Comparison Between Apple iPhone 12 Pro and Samsung Galaxy Note 20+",
+      "score": 10
+    },
+    {
+      "modelKey": "galaxy-a14",
+      "via": "commons:File:Galaxy_A14.jpg",
+      "title": "File:Samsung Galaxy A14 5G.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a23",
+      "via": "Category:Samsung_Galaxy_A23",
+      "title": "File:Back of the Samsung Galaxy A23.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a24",
+      "via": "Category:Samsung_Galaxy_A24",
+      "title": "File:Samsung Galaxy A24 2023.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a25",
+      "via": "openverse:Samsung Galaxy A25",
+      "title": "Samsung Galaxy A25 5G 2024",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a34",
+      "via": "openverse:Galaxy A34 smartphone",
+      "title": "Samsung Galaxy A34 5G 20231122 HOF02013-HDR RAW-Export cens",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-a73",
+      "via": "openverse:Samsung Galaxy A73",
+      "title": "Samsung Galaxy A73 5G (09-11-2022)",
+      "score": 14
+    },
+    {
+      "modelKey": "redmi-9a",
+      "via": "commons:Redmi 9A phone",
+      "title": "File:HK MK 旺角 Mongkok 小米手机店 Xiao Mi XiaoMi Poco Xs GT smartphone June 2022 Px3G 04.jpg",
+      "score": 12
+    },
+    {
+      "modelKey": "redmi-9c",
+      "via": "commons:Redmi 9C phone",
+      "title": "File:Redmi mobile back cover.jpg",
+      "score": 8
+    },
+    {
+      "modelKey": "redmi-12c",
+      "via": "commons:Redmi 12C phone",
+      "title": "File:Redmi 12C back.jpg",
+      "score": 12
+    },
+    {
+      "modelKey": "poco-x4-pro",
+      "via": "commons:POCO X4 Pro phone",
+      "title": "File:POCO X4 Pro 5G back.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-m33",
+      "via": "commons:Galaxy M33 product photo",
+      "title": "File:M33 X-7- Heaviest Stellar Black Hole Discovered in Nearby Galaxy (2007-m33x7 - m33x7).jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "vivo-t1",
+      "via": "commons:vivo T1 phone",
+      "title": "File:Vivo phone T1 (backcase).jpg",
+      "score": 12
+    }
+  ],
+  "skipped": [],
+  "failed": [
+    {
+      "modelKey": "ipad-pro-129-m1",
+      "name": "iPad Pro 12.9\" (5th generation)"
+    },
+    {
+      "modelKey": "macbook-air-m3-15",
+      "name": "MacBook Air 15\" (M3)",
+      "reasons": ["brand not found in source metadata"]
+    },
+    {
+      "modelKey": "macbook-pro-16-m1-pro",
+      "name": "MacBook Pro 16\" (M1 Pro)"
+    },
+    {
+      "modelKey": "macbook-pro-14-m3-pro",
+      "name": "MacBook Pro 14\" (M3 Pro)"
+    },
+    {
+      "modelKey": "macbook-pro-16-m3-max",
+      "name": "MacBook Pro 16\" (M3 Max)"
+    },
+    {
+      "modelKey": "imac-m1",
+      "name": "iMac 24\" (M1)"
+    },
+    {
+      "modelKey": "imac-m4",
+      "name": "iMac 24\" (M4)"
+    },
+    {
+      "modelKey": "airpods-3",
+      "name": "AirPods (3rd generation)"
+    },
+    {
+      "modelKey": "airpods-pro-1",
+      "name": "AirPods Pro (1st generation)"
+    },
+    {
+      "modelKey": "galaxy-z-flip6",
+      "name": "Galaxy Z Flip6"
+    },
+    {
+      "modelKey": "galaxy-a52",
+      "name": "Galaxy A52",
+      "reasons": ["brand not found in source metadata"]
+    },
+    {
+      "modelKey": "galaxy-tab-s7",
+      "name": "Galaxy Tab S7"
+    },
+    {
+      "modelKey": "galaxy-tab-s9-ultra",
+      "name": "Galaxy Tab S9 Ultra"
+    },
+    {
+      "modelKey": "galaxy-tab-s10-plus",
+      "name": "Galaxy Tab S10+"
+    },
+    {
+      "modelKey": "redmi-note-11-pro",
+      "name": "Redmi Note 11 Pro"
+    },
+    {
+      "modelKey": "poco-f5",
+      "name": "POCO F5"
+    },
+    {
+      "modelKey": "poco-f6",
+      "name": "POCO F6"
+    },
+    {
+      "modelKey": "xiaomi-watch-s1",
+      "name": "Xiaomi Watch S1"
+    },
+    {
+      "modelKey": "redmi-buds-4-pro",
+      "name": "Redmi Buds 4 Pro"
+    },
+    {
+      "modelKey": "xiaomi-buds-5-pro",
+      "name": "Xiaomi Buds 5 Pro"
+    },
+    {
+      "modelKey": "ps5",
+      "name": "PlayStation 5"
+    },
+    {
+      "modelKey": "ps5-slim",
+      "name": "PlayStation 5 Slim"
+    },
+    {
+      "modelKey": "sony-x80j",
+      "name": "Sony Bravia X80J"
+    },
+    {
+      "modelKey": "sony-x90j",
+      "name": "Sony Bravia X90J"
+    },
+    {
+      "modelKey": "sony-a80j",
+      "name": "Sony Bravia A80J OLED"
+    },
+    {
+      "modelKey": "sony-a95l",
+      "name": "Sony Bravia A95L QD-OLED"
+    },
+    {
+      "modelKey": "sony-xr8",
+      "name": "Sony Bravia XR8 Mini LED",
+      "reasons": ["brand not found in source metadata"]
+    },
+    {
+      "modelKey": "sony-wh1000xm4",
+      "name": "Sony WH-1000XM4"
+    },
+    {
+      "modelKey": "sony-wh1000xm5",
+      "name": "Sony WH-1000XM5"
+    },
+    {
+      "modelKey": "sony-wh1000xm6",
+      "name": "Sony WH-1000XM6"
+    },
+    {
+      "modelKey": "sony-wf1000xm5",
+      "name": "Sony WF-1000XM5"
+    },
+    {
+      "modelKey": "sony-linkbuds-s",
+      "name": "Sony LinkBuds S"
+    },
+    {
+      "modelKey": "sony-x85k",
+      "name": "Sony X85K LED TV"
+    },
+    {
+      "modelKey": "poco-x3",
+      "name": "POCO X3",
+      "reasons": [
+        "duplicate sourceUrl shared with mi-10, mi-10-pro, mi-11, mi-12, xiaomi-13, xiaomi-14, xiaomi-15, redmi-note-9-pro, redmi-note-10-pro, redmi-note-11-pro, redmi-note-12-pro, redmi-note-13-pro, poco-f3, poco-f4, poco-f5, poco-f6, mi-9, redmi-note-8-pro, redmi-10, redmi-12, redmi-13, redmi-9, redmi-9a, redmi-9c, redmi-12c"
+      ]
+    },
+    {
+      "modelKey": "galaxy-m34",
+      "name": "Galaxy M34"
+    },
+    {
+      "modelKey": "galaxy-m54",
+      "name": "Galaxy M54"
+    },
+    {
+      "modelKey": "vivo-t2",
+      "name": "vivo T2"
+    }
+  ],
+  "generatedAt": "2026-06-05T06:02:34.276Z"
+}

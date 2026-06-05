@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-05T05:20:42.945Z",
-  "note": "Run pnpm catalog:sources then pnpm catalog:images to populate WebP assets from Wikimedia Commons.",
+  "generatedAt": "2026-06-05T10:34:44.795Z",
+  "note": "Official CDN URLs merged from catalog-image-official-sources.json. Run pnpm catalog:sources:official then pnpm catalog:images.",
   "entries": [
     {
       "modelKey": "iphone-11",
@@ -8,12 +8,12 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-11.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-11/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/09/IPhone_11_all_color.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_11_all_color.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Dllu",
+      "commonsTitle": "File:IPhone 11 all color.jpg"
     },
     {
       "modelKey": "iphone-11-pro",
@@ -21,12 +21,12 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-11-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-11-pro/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a4/2019-12-22_IPhone_11_Pro.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3A2019-12-22_IPhone_11_Pro.jpg",
+      "license": "CC BY 2.0",
+      "author": "Shinji",
+      "commonsTitle": "File:2019-12-22 IPhone 11 Pro.jpg"
     },
     {
       "modelKey": "iphone-11-pro-max",
@@ -34,12 +34,12 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-11-pro-max.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-11-pro-max/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Back_view_of_iPhone_11_Pro_Max_white.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_view_of_iPhone_11_Pro_Max_white.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:Back view of iPhone 11 Pro Max white.jpg"
     },
     {
       "modelKey": "iphone-12-mini",
@@ -47,12 +47,12 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-12-mini.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-12-mini/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/IPhone_12_mini.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_12_mini.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ssu",
+      "commonsTitle": "File:IPhone 12 mini.jpg"
     },
     {
       "modelKey": "iphone-12",
@@ -60,12 +60,12 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-12.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-12/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Back_view_of_iPhone_12_white.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_view_of_iPhone_12_white.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:Back view of iPhone 12 white.jpg"
     },
     {
       "modelKey": "iphone-12-pro",
@@ -73,12 +73,12 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-12-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-12-pro/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/IPhone_12_Pro_Max_-_3.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_12_Pro_Max_-_3.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:IPhone 12 Pro Max - 3.jpg"
     },
     {
       "modelKey": "iphone-12-pro-max",
@@ -86,12 +86,12 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-12-pro-max.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-12-pro-max/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/IPhone_12_Pro_Max_-_3.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_12_Pro_Max_-_3.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:IPhone 12 Pro Max - 3.jpg"
     },
     {
       "modelKey": "iphone-13-mini",
@@ -99,12 +99,12 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-13-mini.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-13-mini/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/IPhone_13_mini.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_13_mini.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:IPhone 13 mini.jpg"
     },
     {
       "modelKey": "iphone-13",
@@ -112,9 +112,9 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-13.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-13/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/IPhone_13.jpg",
+      "sourceType": "wikimedia-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_13.jpg",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -125,9 +125,9 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-13-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-13-pro/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Apple_iPhone_13_Pro_and_13_Pro_Max.jpg",
+      "sourceType": "wikimedia-category",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AApple_iPhone_13_Pro_and_13_Pro_Max.jpg",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -138,12 +138,12 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-13-pro-max.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-13-pro-max/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Iphone_13_pro_max.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIphone_13_pro_max.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:Iphone 13 pro max.jpg"
     },
     {
       "modelKey": "iphone-14",
@@ -153,7 +153,7 @@
       "file": "/images/catalog/apple/iphone-14.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-purple?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-14/",
+      "sourcePageUrl": "https://www.apple.com/iphone/14/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -166,7 +166,7 @@
       "file": "/images/catalog/apple/iphone-14-plus.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-7inch-purple?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-14-plus/",
+      "sourcePageUrl": "https://www.apple.com/iphone/14/plus/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -179,7 +179,7 @@
       "file": "/images/catalog/apple/iphone-14-pro.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-14-pro/",
+      "sourcePageUrl": "https://www.apple.com/iphone/14/pro/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -192,7 +192,7 @@
       "file": "/images/catalog/apple/iphone-14-pro-max.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-deeppurple?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-14-pro-max/",
+      "sourcePageUrl": "https://www.apple.com/iphone/14/pro/max/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -205,7 +205,7 @@
       "file": "/images/catalog/apple/iphone-15.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-pink?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-15/",
+      "sourcePageUrl": "https://www.apple.com/iphone/15/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -218,7 +218,7 @@
       "file": "/images/catalog/apple/iphone-15-plus.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-7inch-pink?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-15-plus/",
+      "sourcePageUrl": "https://www.apple.com/iphone/15/plus/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -231,7 +231,7 @@
       "file": "/images/catalog/apple/iphone-15-pro.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-15-pro/",
+      "sourcePageUrl": "https://www.apple.com/iphone/15/pro/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -244,7 +244,7 @@
       "file": "/images/catalog/apple/iphone-15-pro-max.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-15-pro-max/",
+      "sourcePageUrl": "https://www.apple.com/iphone/15/pro/max/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -257,7 +257,7 @@
       "file": "/images/catalog/apple/iphone-16.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-16/",
+      "sourcePageUrl": "https://www.apple.com/iphone/16/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -270,7 +270,7 @@
       "file": "/images/catalog/apple/iphone-16-plus.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-7inch-ultramarine?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-16-plus/",
+      "sourcePageUrl": "https://www.apple.com/iphone/16/plus/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -283,7 +283,7 @@
       "file": "/images/catalog/apple/iphone-16-pro.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-16-pro/",
+      "sourcePageUrl": "https://www.apple.com/iphone/16/pro/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -296,7 +296,7 @@
       "file": "/images/catalog/apple/iphone-16-pro-max.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-9inch-naturaltitanium?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-16-pro-max/",
+      "sourcePageUrl": "https://www.apple.com/iphone/16/pro/max/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -307,9 +307,9 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-16e.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-16e/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/IPhone_16e_2025.jpg",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_16e_2025",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -320,9 +320,9 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-17.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-17/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Sage_iPhone_17.jpg",
+      "sourceType": "wikimedia-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASage_iPhone_17.jpg",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -333,9 +333,9 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-17-air.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-17-air/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/IPhone_17%2C_Air%2C_17_Pro%2C_and_Pro_max.jpg",
+      "sourceType": "wikimedia-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_17%2C_Air%2C_17_Pro%2C_and_Pro_max.jpg",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -348,7 +348,7 @@
       "file": "/images/catalog/apple/iphone-17-pro.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-17-pro-finish-select-202509-6-3inch-silver?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-17-pro/",
+      "sourcePageUrl": "https://www.apple.com/iphone/17/pro/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -361,7 +361,7 @@
       "file": "/images/catalog/apple/iphone-17-pro-max.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-17-pro-finish-select-202509-6-9inch-silver?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/iphone-17-pro-max/",
+      "sourcePageUrl": "https://www.apple.com/iphone/17/pro/max/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -372,12 +372,12 @@
       "brand": "Apple",
       "subcategory": "Tablets",
       "file": "/images/catalog/apple/ipad-9.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/ipad-9/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/IPad_10.2%E2%80%91inch.png",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPad_10.2%E2%80%91inch.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Piscopro",
+      "commonsTitle": "File:IPad 10.2‑inch.png"
     },
     {
       "modelKey": "ipad-10",
@@ -385,12 +385,12 @@
       "brand": "Apple",
       "subcategory": "Tablets",
       "file": "/images/catalog/apple/ipad-10.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/ipad-10/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/About_iPad_%2810th_generation%29.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AAbout_iPad_(10th_generation).jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "メイド理世",
+      "commonsTitle": "File:About iPad (10th generation).jpg"
     },
     {
       "modelKey": "ipad-air-4",
@@ -398,12 +398,12 @@
       "brand": "Apple",
       "subcategory": "Tablets",
       "file": "/images/catalog/apple/ipad-air-4.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/ipad-air-4/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/IPad_Air_4th_generation_-_2.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPad_Air_4th_generation_-_2.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:IPad Air 4th generation - 2.jpg"
     },
     {
       "modelKey": "ipad-air-5",
@@ -413,7 +413,7 @@
       "file": "/images/catalog/apple/ipad-air-5.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-select-wifi-blue-202203?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/ipad-air-5/",
+      "sourcePageUrl": "https://www.apple.com/ipad/air/5/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -426,7 +426,7 @@
       "file": "/images/catalog/apple/ipad-air-m2.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-select-wifi-blue-202203?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/ipad-air-m2/",
+      "sourcePageUrl": "https://www.apple.com/ipad/air/m2/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -439,7 +439,7 @@
       "file": "/images/catalog/apple/ipad-mini-6.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-mini-select-202109?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/ipad-mini-6/",
+      "sourcePageUrl": "https://www.apple.com/ipad/mini/6/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -452,7 +452,7 @@
       "file": "/images/catalog/apple/ipad-mini-a17.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-mini-select-wifi-blue-202410?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/ipad-mini-a17/",
+      "sourcePageUrl": "https://www.apple.com/ipad/mini/a17/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -465,7 +465,7 @@
       "file": "/images/catalog/apple/ipad-pro-11-m1.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-select-wifi-spacegray-202104?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/ipad-pro-11-m1/",
+      "sourcePageUrl": "https://www.apple.com/ipad/pro/11/m1/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -476,12 +476,12 @@
       "brand": "Apple",
       "subcategory": "Tablets",
       "file": "/images/catalog/apple/ipad-pro-129-m1.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/ipad-pro-129-m1/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/IPad_Pro_12.9-inch_%285th_generation%29.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPad_Pro_12.9-inch_(5th_generation).png",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:IPad Pro 12.9-inch (5th generation).png"
     },
     {
       "modelKey": "ipad-pro-11-m4",
@@ -491,7 +491,7 @@
       "file": "/images/catalog/apple/ipad-pro-11-m4.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-select-wifi-spaceblack-202405?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/ipad-pro-11-m4/",
+      "sourcePageUrl": "https://www.apple.com/ipad/pro/11/m4/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -504,7 +504,7 @@
       "file": "/images/catalog/apple/ipad-pro-13-m4.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-13-select-wifi-spaceblack-202405?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/ipad-pro-13-m4/",
+      "sourcePageUrl": "https://www.apple.com/ipad/pro/13/m4/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -515,9 +515,9 @@
       "brand": "Apple",
       "subcategory": "Tablets",
       "file": "/images/catalog/apple/ipad-a16.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/ipad-a16/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/IPad_%28A16%29_backside_%28Pink%29.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPad_(A16)_backside_(Pink).jpg",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -528,9 +528,9 @@
       "brand": "Apple",
       "subcategory": "Laptops",
       "file": "/images/catalog/apple/macbook-air-m1.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/macbook-air-m1/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/MacBook_Air_M1.png",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AMacBook_Air_M1.png",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -543,7 +543,7 @@
       "file": "/images/catalog/apple/macbook-air-m2.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-midnight-config-20220606?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/macbook-air-m2/",
+      "sourcePageUrl": "https://www.apple.com/macbook/air/m2/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -556,7 +556,7 @@
       "file": "/images/catalog/apple/macbook-air-m3-13.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-midnight-config-20220606?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/macbook-air-m3-13/",
+      "sourcePageUrl": "https://www.apple.com/macbook/air/m3/13/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -567,12 +567,12 @@
       "brand": "Apple",
       "subcategory": "Laptops",
       "file": "/images/catalog/apple/macbook-air-m3-15.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/macbook-air-m3-15/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/MacBook_Air_M1.png",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AMacBook_Air_M1.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Padgriffin",
+      "commonsTitle": "File:MacBook Air M1.png"
     },
     {
       "modelKey": "macbook-pro-14-m1-pro",
@@ -580,9 +580,9 @@
       "brand": "Apple",
       "subcategory": "Laptops",
       "file": "/images/catalog/apple/macbook-pro-14-m1-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/macbook-pro-14-m1-pro/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Apple_Macbook_Pro_14%22_2021_-_Keyboard.png",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AApple_Macbook_Pro_14%22_2021_-_Keyboard.png",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -593,12 +593,12 @@
       "brand": "Apple",
       "subcategory": "Laptops",
       "file": "/images/catalog/apple/macbook-pro-16-m1-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/macbook-pro-16-m1-pro/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Apple_Macbook_Pro_14%22_2021_-_Keyboard.png",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AApple_Macbook_Pro_14%22_2021_-_Keyboard.png",
+      "license": "CC BY 3.0",
+      "author": "Gyasi Linje",
+      "commonsTitle": "File:Apple Macbook Pro 14\" 2021 - Keyboard.png"
     },
     {
       "modelKey": "macbook-pro-14-m3-pro",
@@ -606,12 +606,12 @@
       "brand": "Apple",
       "subcategory": "Laptops",
       "file": "/images/catalog/apple/macbook-pro-14-m3-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/macbook-pro-14-m3-pro/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Apple_MacBook_Pro_%28M3%29.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AApple_MacBook_Pro_(M3).jpg",
+      "license": "CC0",
+      "author": "Xkalponik",
+      "commonsTitle": "File:Apple MacBook Pro (M3).jpg"
     },
     {
       "modelKey": "macbook-pro-16-m3-max",
@@ -619,12 +619,12 @@
       "brand": "Apple",
       "subcategory": "Laptops",
       "file": "/images/catalog/apple/macbook-pro-16-m3-max.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/macbook-pro-16-m3-max/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Apple_MacBook_Pro_%28M3%29.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AApple_MacBook_Pro_(M3).jpg",
+      "license": "CC0",
+      "author": "Xkalponik",
+      "commonsTitle": "File:Apple MacBook Pro (M3).jpg"
     },
     {
       "modelKey": "imac-m1",
@@ -632,12 +632,12 @@
       "brand": "Apple",
       "subcategory": "Desktops",
       "file": "/images/catalog/apple/imac-m1.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/imac-m1/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/M1_iMac_Green_model.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AM1_iMac_Green_model.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:M1 iMac Green model.jpg"
     },
     {
       "modelKey": "imac-m4",
@@ -645,12 +645,12 @@
       "brand": "Apple",
       "subcategory": "Desktops",
       "file": "/images/catalog/apple/imac-m4.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/imac-m4/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/IMac_M4_2024.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIMac_M4_2024.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:IMac M4 2024.jpg"
     },
     {
       "modelKey": "mac-mini-m1",
@@ -660,7 +660,7 @@
       "file": "/images/catalog/apple/mac-mini-m1.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mac-mini-hero-202011?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/mac-mini-m1/",
+      "sourcePageUrl": "https://www.apple.com/mac/mini/m1/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -673,7 +673,7 @@
       "file": "/images/catalog/apple/mac-mini-m2-pro.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mac-mini-hero-202301?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/mac-mini-m2-pro/",
+      "sourcePageUrl": "https://www.apple.com/mac/mini/m2/pro/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -686,7 +686,7 @@
       "file": "/images/catalog/apple/mac-studio-m2-max.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mac-studio-select-202306?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/mac-studio-m2-max/",
+      "sourcePageUrl": "https://www.apple.com/mac/studio/m2/max/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -699,7 +699,7 @@
       "file": "/images/catalog/apple/mac-studio-m2-ultra.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mac-studio-select-202306?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/mac-studio-m2-ultra/",
+      "sourcePageUrl": "https://www.apple.com/mac/studio/m2/ultra/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -710,9 +710,9 @@
       "brand": "Apple",
       "subcategory": "Audio",
       "file": "/images/catalog/apple/airpods-2.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/airpods-2/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Airpods_Pro_2_in_dunkelblau.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AAirpods_Pro_2_in_dunkelblau.jpg",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -723,12 +723,12 @@
       "brand": "Apple",
       "subcategory": "Audio",
       "file": "/images/catalog/apple/airpods-3.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/airpods-3/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/AirPods_3.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AAirPods_3.jpg",
+      "license": "CC0",
+      "author": "Yovt",
+      "commonsTitle": "File:AirPods 3.jpg"
     },
     {
       "modelKey": "airpods-pro-1",
@@ -736,12 +736,12 @@
       "brand": "Apple",
       "subcategory": "Audio",
       "file": "/images/catalog/apple/airpods-pro-1.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/airpods-pro-1/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/AirPods_Pro.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AAirPods_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ssu",
+      "commonsTitle": "File:AirPods Pro.jpg"
     },
     {
       "modelKey": "airpods-pro-2",
@@ -749,12 +749,12 @@
       "brand": "Apple",
       "subcategory": "Audio",
       "file": "/images/catalog/apple/airpods-pro-2.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/airpods-pro-2/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Airpods_Pro_2_in_dunkelblau.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AAirpods_Pro_2_in_dunkelblau.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Burkhard Mücke",
+      "commonsTitle": "File:Airpods Pro 2 in dunkelblau.jpg"
     },
     {
       "modelKey": "airpods-4",
@@ -762,12 +762,12 @@
       "brand": "Apple",
       "subcategory": "Audio",
       "file": "/images/catalog/apple/airpods-4.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/airpods-4/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirPods_Max_2.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AApple_AirPods_Max_2.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "SimonWaldherr",
+      "commonsTitle": "File:Apple AirPods Max 2.jpg"
     },
     {
       "modelKey": "airpods-max",
@@ -777,7 +777,7 @@
       "file": "/images/catalog/apple/airpods-max.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-skyblue-202011?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/airpods-max/",
+      "sourcePageUrl": "https://www.apple.com/airpods/max/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -788,9 +788,9 @@
       "brand": "Apple",
       "subcategory": "Wearables",
       "file": "/images/catalog/apple/watch-series-6.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/watch-series-6/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/IPhone_11_Pro_%26_Apple_Watch_Series_5.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_11_Pro_%26_Apple_Watch_Series_5.jpg",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -801,9 +801,9 @@
       "brand": "Apple",
       "subcategory": "Wearables",
       "file": "/images/catalog/apple/watch-series-7.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/watch-series-7/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Apple_Watch_Series_7%3B_January_2022_%2802%29.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AApple_Watch_Series_7%3B_January_2022_(02).jpg",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -816,7 +816,7 @@
       "file": "/images/catalog/apple/watch-series-8.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s8-digitalmat-gallery-1-202209?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/watch-series-8/",
+      "sourcePageUrl": "https://www.apple.com/watch/series/8/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -829,7 +829,7 @@
       "file": "/images/catalog/apple/watch-series-9.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-3-202309?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/watch-series-9/",
+      "sourcePageUrl": "https://www.apple.com/watch/series/9/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -842,7 +842,7 @@
       "file": "/images/catalog/apple/watch-series-10.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s10-digitalmat-gallery-1-202409?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/watch-series-10/",
+      "sourcePageUrl": "https://www.apple.com/watch/series/10/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -855,7 +855,7 @@
       "file": "/images/catalog/apple/watch-se-2.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-se-digitalmat-gallery-1-202209?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/watch-se-2/",
+      "sourcePageUrl": "https://www.apple.com/watch/se/2/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -868,7 +868,7 @@
       "file": "/images/catalog/apple/watch-ultra-1.webp",
       "sourceUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-ultra-digitalmat-gallery-1-202209?wid=1200&hei=1200&fmt=png-alpha&qlt=80",
       "sourceType": "official",
-      "sourcePageUrl": "https://www.apple.com/watch-ultra-1/",
+      "sourcePageUrl": "https://www.apple.com/watch/ultra/1/",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -879,9 +879,9 @@
       "brand": "Apple",
       "subcategory": "Wearables",
       "file": "/images/catalog/apple/watch-ultra-2.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/watch-ultra-2/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/Apple_Watch_Ultra_2.jpg",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AApple_Watch_Ultra_2",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -892,9 +892,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s20.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Pixel_Samsung_Galaxy_S20_Ultra_5G_A028_-_20220620_211703.png",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APixel_Samsung_Galaxy_S20_Ultra_5G_A028_-_20220620_211703.png",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -905,9 +905,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s20-plus.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/46/Back_of_a_Samsung_Galaxy_S20_Plus_5G.jpg",
+      "sourceType": "wikimedia-category",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_a_Samsung_Galaxy_S20_Plus_5G.jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -918,12 +918,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s20-ultra.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Gr%C3%B6%C3%9Fenvergleich_Samsung_Galaxy_S10_und_S20_Ultra_5G.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AGr%C3%B6%C3%9Fenvergleich_Samsung_Galaxy_S10_und_S20_Ultra_5G.jpg",
+      "license": "CC BY 4.0",
+      "author": "PantheraLeo1359531",
+      "commonsTitle": "File:Größenvergleich Samsung Galaxy S10 und S20 Ultra 5G.jpg"
     },
     {
       "modelKey": "galaxy-s21",
@@ -931,12 +931,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s21.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/Samsung_Galaxy_S21_Front.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_S21_Front.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "X-SHLIED",
+      "commonsTitle": "File:Samsung Galaxy S21 Front.jpg"
     },
     {
       "modelKey": "galaxy-s21-plus",
@@ -944,9 +944,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s21-plus.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/SAMSUNG_Galaxy_S21_Plus_Rear_Side.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASAMSUNG_Galaxy_S21_Plus_Rear_Side.jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -957,9 +957,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s21-ultra.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/26/GalaxyS21_Ultra.png",
+      "sourceType": "wikimedia-category",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AGalaxyS21_Ultra.png",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -970,12 +970,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s22.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Back_of_the_Samsung_Galaxy_S22.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_S22.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy S22.jpg"
     },
     {
       "modelKey": "galaxy-s22-plus",
@@ -983,12 +983,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s22-plus.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Back_of_the_Samsung_Galaxy_S22.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_S22.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy S22.jpg"
     },
     {
       "modelKey": "galaxy-s22-ultra",
@@ -996,9 +996,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s22-ultra.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/IPhone_SE3_%26_SAMSUNG_Galaxy_S22_Ultra.jpg_%282%29.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_SE3_%26_SAMSUNG_Galaxy_S22_Ultra.jpg_(2).jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1009,12 +1009,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s23.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Back_of_the_Samsung_Galaxy_S23.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_S23.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy S23.jpg"
     },
     {
       "modelKey": "galaxy-s23-plus",
@@ -1022,9 +1022,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s23-plus.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Galaxy_S23.png",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AGalaxy_S23.png",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1035,9 +1035,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s23-ultra.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Samsung_Galaxy_S23_Ultra%2C_512_GB%2C_Lavender_20230416_HOF00358_RAW-Export.png",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_S23_Ultra%2C_512_GB%2C_Lavender_20230416_HOF00358_RAW-Export",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1061,9 +1061,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s24-plus.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Samsung_Galaxy_S24_%28webtekno%29_001.png",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_S24_(webtekno)_001.png",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1087,9 +1087,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s25.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/%E7%AC%AC%E4%B8%80%E6%89%8B%EF%BC%81Samsung_Galaxy_S25%E7%B3%BB%E5%88%97%E6%8B%BF%E5%88%B0%E4%BA%86%EF%BC%9A5%E4%B8%AA%E5%8D%87%E7%BA%A7%EF%BC%81S_Pen%E4%B8%8D%E6%94%AF%E6%8C%81%E8%93%9D%E7%89%99%E4%BA%86.jpg",
+      "sourceType": "wikimedia-category",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3A%E7%AC%AC%E4%B8%80%E6%89%8B%EF%BC%81Samsung_Galaxy_S25%E7%B3%BB%E5%88%97%E6%8B%BF%E5%88%B0%E4%BA%86%EF%BC%9A5%E4%B8%AA%E5%8D%87%E7%BA%A7%EF%BC%81S_Pen%E4%B8%8D%E6%94%AF%E6%8C%81%E8%93%9D%E7%89%99%E4%BA%86.jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1100,9 +1100,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s25-plus.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Samsung_Galaxy_S25_Ultra_smartphone_-_bottom_view.jpg",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_S25_Ultra_smartphone_-_bottom_view",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1113,12 +1113,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s25-ultra.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/assets/us/smartphones/galaxy-s25-ultra/images/S25U-Oscars-content-thumbnail-1-now-brief-pc.jpg",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/smartphones/galaxy-s25-ultra/",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A53_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A53 5G.jpg"
     },
     {
       "modelKey": "galaxy-z-fold3",
@@ -1126,12 +1126,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-z-fold3.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Samsung_Galaxy_Z_Fold3_5G.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Z_Fold3_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Jakub CA",
+      "commonsTitle": "File:Samsung Galaxy Z Fold3 5G.jpg"
     },
     {
       "modelKey": "galaxy-z-flip3",
@@ -1139,9 +1139,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-z-flip3.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Samsung_Galaxy_Z_Flip3_5G.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Z_Flip3_5G.jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1152,9 +1152,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-z-fold4.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Front_of_the_Samsung_Galaxy_Z_Fold_4.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AFront_of_the_Samsung_Galaxy_Z_Fold_4.jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1165,9 +1165,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-z-flip4.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Samsung_Galaxy_Z_Flip_4.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Z_Flip_4.jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1204,9 +1204,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-z-fold6.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Samsung_Galaxy_Z_Fold6.png",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Z_Fold6.png",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1217,12 +1217,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-z-flip6.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Samsung_Galaxy_Z_Flip_6.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Z_Flip_6.jpg",
+      "license": "CC BY 4.0",
+      "author": "Miyako Fujimiya",
+      "commonsTitle": "File:Samsung Galaxy Z Flip 6.jpg"
     },
     {
       "modelKey": "galaxy-a51",
@@ -1230,9 +1230,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a51.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/52/Samsung_Galaxy_A51_front.png",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_A51_front",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1243,12 +1243,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a52.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A53_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A53 5G.jpg"
     },
     {
       "modelKey": "galaxy-a53",
@@ -1256,9 +1256,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a53.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A53_5G.jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1270,11 +1270,11 @@
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a54.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg"
     },
     {
       "modelKey": "galaxy-a55",
@@ -1282,9 +1282,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a55.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Samsung_Galaxy_A55_5G_2024.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_A55_5G_2024.jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1295,9 +1295,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a35.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Samsung_Galaxy_A35_5G_Phone_%28Back%29.jpg",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_A35_5G_Phone_(Back)",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -1308,12 +1308,12 @@
       "brand": "Samsung",
       "subcategory": "Tablets",
       "file": "/images/catalog/samsung/galaxy-tab-s7.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Samsung_Galaxy_Tab_S6_Lite.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Tab_S6_Lite.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Tab_S9.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Tab_S9.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Samsung Galaxy Tab S9.png"
     },
     {
       "modelKey": "galaxy-tab-s8",
@@ -1321,12 +1321,12 @@
       "brand": "Samsung",
       "subcategory": "Tablets",
       "file": "/images/catalog/samsung/galaxy-tab-s8.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Samsung_Galaxy_Tab_S6_Lite.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Tab_S6_Lite.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Tab_S9.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Tab_S9.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Samsung Galaxy Tab S9.png"
     },
     {
       "modelKey": "galaxy-tab-s9",
@@ -1334,12 +1334,12 @@
       "brand": "Samsung",
       "subcategory": "Tablets",
       "file": "/images/catalog/samsung/galaxy-tab-s9.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Samsung_Galaxy_Tab_S6_Lite.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Tab_S6_Lite.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Tab_S9.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Tab_S9.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Samsung Galaxy Tab S9.png"
     },
     {
       "modelKey": "galaxy-tab-s9-ultra",
@@ -1347,12 +1347,12 @@
       "brand": "Samsung",
       "subcategory": "Tablets",
       "file": "/images/catalog/samsung/galaxy-tab-s9-ultra.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Samsung_Galaxy_Tab_S6_Lite.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Tab_S6_Lite.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Tab_S9.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Tab_S9.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Samsung Galaxy Tab S9.png"
     },
     {
       "modelKey": "galaxy-tab-s10-plus",
@@ -1360,12 +1360,12 @@
       "brand": "Samsung",
       "subcategory": "Tablets",
       "file": "/images/catalog/samsung/galaxy-tab-s10-plus.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Samsung_Galaxy_Tab_S6_Lite.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Tab_S6_Lite.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Tab_S9.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Tab_S9.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Samsung Galaxy Tab S9.png"
     },
     {
       "modelKey": "galaxy-watch3",
@@ -1373,12 +1373,12 @@
       "brand": "Samsung",
       "subcategory": "Wearables",
       "file": "/images/catalog/samsung/galaxy-watch3.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/assets/us/watches/galaxy-watch8-classic/images/TryGalaxy-black-mo.jpg",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/watches/galaxy-watch3/",
-      "license": "Official brand marketing asset",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Samsung_Galaxy_Watch_3.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Watch_3.jpg",
+      "license": "CC BY-SA 4.0",
       "author": "Samsung",
-      "commonsTitle": ""
+      "commonsTitle": "File:Samsung Galaxy Watch 3.jpg"
     },
     {
       "modelKey": "galaxy-watch4",
@@ -1386,12 +1386,12 @@
       "brand": "Samsung",
       "subcategory": "Wearables",
       "file": "/images/catalog/samsung/galaxy-watch4.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/p6pim/us/sm-l300nzeaxaa/gallery/us-galaxy-watch7-l300-sm-l300nzeaxaa-552310579?$product-details-thumbnail-jpg$",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/watches/galaxy-watch4/",
-      "license": "Official brand marketing asset",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Watch_4.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Watch_4.jpg",
+      "license": "CC BY-SA 4.0",
       "author": "Samsung",
-      "commonsTitle": ""
+      "commonsTitle": "File:Samsung Galaxy Watch 4.jpg"
     },
     {
       "modelKey": "galaxy-watch5-pro",
@@ -1399,12 +1399,12 @@
       "brand": "Samsung",
       "subcategory": "Wearables",
       "file": "/images/catalog/samsung/galaxy-watch5-pro.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/assets/us/watches/galaxy-watch-ultra/images/galaxy-watch-ultra-2025-kv-pc.jpg",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/watches/galaxy-watch5-pro/",
-      "license": "Official brand marketing asset",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Watch_4.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Watch_4.jpg",
+      "license": "CC BY-SA 4.0",
       "author": "Samsung",
-      "commonsTitle": ""
+      "commonsTitle": "File:Samsung Galaxy Watch 4.jpg"
     },
     {
       "modelKey": "galaxy-watch6",
@@ -1412,12 +1412,12 @@
       "brand": "Samsung",
       "subcategory": "Wearables",
       "file": "/images/catalog/samsung/galaxy-watch6.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/p6pim/us/sm-l300nzeaxaa/gallery/us-galaxy-watch7-l300-sm-l300nzeaxaa-552310579?$product-details-thumbnail-jpg$",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/watches/galaxy-watch6/",
-      "license": "Official brand marketing asset",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Watch_4.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Watch_4.jpg",
+      "license": "CC BY-SA 4.0",
       "author": "Samsung",
-      "commonsTitle": ""
+      "commonsTitle": "File:Samsung Galaxy Watch 4.jpg"
     },
     {
       "modelKey": "galaxy-watch7",
@@ -1425,12 +1425,12 @@
       "brand": "Samsung",
       "subcategory": "Wearables",
       "file": "/images/catalog/samsung/galaxy-watch7.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/assets/us/watches/galaxy-watch7/11052024/Watch7-Highlights-FT12-01-Health-Insights-Stillframe-DM-900x600.jpg?$720_N_JPG$",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/watches/galaxy-watch7/",
-      "license": "Official brand marketing asset",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Watch_4.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Watch_4.jpg",
+      "license": "CC BY-SA 4.0",
       "author": "Samsung",
-      "commonsTitle": ""
+      "commonsTitle": "File:Samsung Galaxy Watch 4.jpg"
     },
     {
       "modelKey": "galaxy-watch-ultra",
@@ -1438,12 +1438,12 @@
       "brand": "Samsung",
       "subcategory": "Wearables",
       "file": "/images/catalog/samsung/galaxy-watch-ultra.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/assets/us/watches/galaxy-watch-ultra/images/galaxy-watch-ultra-2025-kv-pc.jpg",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/watches/galaxy-watch-ultra/",
-      "license": "Official brand marketing asset",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Watch_4.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Watch_4.jpg",
+      "license": "CC BY-SA 4.0",
       "author": "Samsung",
-      "commonsTitle": ""
+      "commonsTitle": "File:Samsung Galaxy Watch 4.jpg"
     },
     {
       "modelKey": "samsung-q60a",
@@ -1451,12 +1451,12 @@
       "brand": "Samsung",
       "subcategory": "TVs",
       "file": "/images/catalog/samsung/samsung-q60a.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/p6pim/us/mrn75r95hafxza/gallery/us-microrgb-r95h-mrn75r95hafxza-552540009?$PD_GALLERY_PNG$",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/?search=q60a",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Samsung_Smart_TV_(Flickr)",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "samsung-q80b",
@@ -1464,12 +1464,12 @@
       "brand": "Samsung",
       "subcategory": "TVs",
       "file": "/images/catalog/samsung/samsung-q80b.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/p6pim/us/mrn75r95hafxza/gallery/us-microrgb-r95h-mrn75r95hafxza-552540009?$PD_GALLERY_PNG$",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/?search=q80b",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Samsung_Smart_TV_(Flickr)",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "samsung-s90c",
@@ -1477,12 +1477,12 @@
       "brand": "Samsung",
       "subcategory": "TVs",
       "file": "/images/catalog/samsung/samsung-s90c.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/p6pim/us/mrn75r95hafxza/gallery/us-microrgb-r95h-mrn75r95hafxza-552540009?$PD_GALLERY_PNG$",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/?search=s90c",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Samsung_Smart_TV_(Flickr)",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "samsung-s95d",
@@ -1490,12 +1490,12 @@
       "brand": "Samsung",
       "subcategory": "TVs",
       "file": "/images/catalog/samsung/samsung-s95d.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/p6pim/us/mrn75r95hafxza/gallery/us-microrgb-r95h-mrn75r95hafxza-552540009?$PD_GALLERY_PNG$",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/?search=s95d",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Samsung_Smart_TV_(Flickr)",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "samsung-qn900c",
@@ -1503,12 +1503,12 @@
       "brand": "Samsung",
       "subcategory": "TVs",
       "file": "/images/catalog/samsung/samsung-qn900c.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/p6pim/us/mrn75r95hafxza/gallery/us-microrgb-r95h-mrn75r95hafxza-552540009?$PD_GALLERY_PNG$",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/?search=qn900c",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Samsung_Smart_TV_(Flickr)",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "vivo-x50-pro",
@@ -1517,8 +1517,8 @@
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-x50-pro.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_X50_Pro.jpg",
       "license": "CC BY-SA 4.0",
       "author": "TechInsider",
       "commonsTitle": "File:Vivo X50 Pro.jpg"
@@ -1529,12 +1529,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-x60-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Vivo_V20_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V20_back.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V20 back.jpg"
     },
     {
       "modelKey": "vivo-x70-pro-plus",
@@ -1542,12 +1542,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-x70-pro-plus.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Vivo_v20_se.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_v20_se.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo v20 se.jpg"
     },
     {
       "modelKey": "vivo-x80-pro",
@@ -1555,12 +1555,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-x80-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Vivo_2.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_2.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo 2.jpg"
     },
     {
       "modelKey": "vivo-x90-pro",
@@ -1568,12 +1568,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-x90-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Vivo_V21_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V21_back.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V21 back.jpg"
     },
     {
       "modelKey": "vivo-x100-pro",
@@ -1581,12 +1581,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-x100-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Vivo_V20_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V20_back.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V20 back.jpg"
     },
     {
       "modelKey": "vivo-x200-pro",
@@ -1594,12 +1594,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-x200-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Vivo_X200_Pro_blue.png",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_X200_Pro_blue.png",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Vivo",
+      "commonsTitle": "File:Vivo X200 Pro blue.png"
     },
     {
       "modelKey": "vivo-v21",
@@ -1607,12 +1607,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-v21.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Vivo_V21_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V21_back.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V21 back.jpg"
     },
     {
       "modelKey": "vivo-v23",
@@ -1620,12 +1620,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-v23.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Vivo_V23e_5G_%2809-11-2022%29.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V23e_5G_(09-11-2022).jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V23e 5G (09-11-2022).jpg"
     },
     {
       "modelKey": "vivo-v25",
@@ -1633,12 +1633,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-v25.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Vivo_v20_se.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_v20_se.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo v20 se.jpg"
     },
     {
       "modelKey": "vivo-v27",
@@ -1646,12 +1646,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-v27.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Vivo_V20_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V20_back.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V20 back.jpg"
     },
     {
       "modelKey": "vivo-v29",
@@ -1659,12 +1659,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-v29.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Vivo_v20_se.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_v20_se.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo v20 se.jpg"
     },
     {
       "modelKey": "vivo-v40",
@@ -1672,12 +1672,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-v40.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/VIVO_Y200i_%28November_1%2C_2024%29.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:VIVO_Y200i_(November_1,_2024).jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:VIVO Y200i (November 1, 2024).jpg"
     },
     {
       "modelKey": "vivo-v50",
@@ -1685,12 +1685,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-v50.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Vivo_2.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_2.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo 2.jpg"
     },
     {
       "modelKey": "vivo-y20",
@@ -1698,12 +1698,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y20.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/VIVO_Y200i_%28November_1%2C_2024%29.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:VIVO_Y200i_(November_1,_2024).jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:VIVO Y200i (November 1, 2024).jpg"
     },
     {
       "modelKey": "vivo-y33s",
@@ -1711,12 +1711,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y33s.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Vivo_V23e_5G_%2809-11-2022%29.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V23e_5G_(09-11-2022).jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V23e 5G (09-11-2022).jpg"
     },
     {
       "modelKey": "vivo-y36",
@@ -1724,12 +1724,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y36.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Vivo_V20_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V20_back.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V20 back.jpg"
     },
     {
       "modelKey": "vivo-y100",
@@ -1737,12 +1737,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y100.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/03/VIVO_Y100%EF%BC%882024%E5%B9%B42%E6%9C%8820%E6%97%A5%EF%BC%89.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:VIVO_Y100%EF%BC%882024%E5%B9%B42%E6%9C%8820%E6%97%A5%EF%BC%89.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:VIVO Y100（2024年2月20日）.jpg"
     },
     {
       "modelKey": "mi-10",
@@ -1750,12 +1750,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/mi-10.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Xiaomi_Mi_10_Ultra_back.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AXiaomi_Mi_10_Ultra_back.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "30000lightyears",
+      "commonsTitle": "File:Xiaomi Mi 10 Ultra back.jpg"
     },
     {
       "modelKey": "mi-10-pro",
@@ -1763,12 +1763,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/mi-10-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Xiaomi_Mi_Note_Pro.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AXiaomi_Mi_Note_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Michaeeas",
+      "commonsTitle": "File:Xiaomi Mi Note Pro.jpg"
     },
     {
       "modelKey": "mi-11",
@@ -1776,12 +1776,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/mi-11.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Xiaomi_Mi_11_Ultra_back.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AXiaomi_Mi_11_Ultra_back.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Badudoy",
+      "commonsTitle": "File:Xiaomi Mi 11 Ultra back.jpg"
     },
     {
       "modelKey": "mi-12",
@@ -1789,12 +1789,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/mi-12.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/The_back_of_Redmi_K40.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_back_of_Redmi_K40.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:The back of Redmi K40.jpg"
     },
     {
       "modelKey": "xiaomi-13",
@@ -1802,9 +1802,9 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/xiaomi-13.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Xiaomi_13.jpg",
+      "sourceType": "wikimedia-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AXiaomi_13.jpg",
       "license": "Official brand marketing asset",
       "author": "Xiaomi",
       "commonsTitle": ""
@@ -1815,9 +1815,9 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/xiaomi-14.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Redmi_Note_7_Phone_by_Xiaomi.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ARedmi_Note_7_Phone_by_Xiaomi.jpg",
       "license": "Official brand marketing asset",
       "author": "Xiaomi",
       "commonsTitle": ""
@@ -1828,9 +1828,9 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/xiaomi-15.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Xiaomi_12_Lite_front.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AXiaomi_12_Lite_front.jpg",
       "license": "Official brand marketing asset",
       "author": "Xiaomi",
       "commonsTitle": ""
@@ -1841,12 +1841,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-note-9-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Redmi_note_9_pro_black.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ARedmi_note_9_pro_black.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ashtang775",
+      "commonsTitle": "File:Redmi note 9 pro black.jpg"
     },
     {
       "modelKey": "redmi-note-10-pro",
@@ -1854,12 +1854,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-note-10-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Xiaomi_Redmi_Note_10_Pro_%28Global%29_front.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AXiaomi_Redmi_Note_10_Pro_(Global)_front.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Petar Milošević",
+      "commonsTitle": "File:Xiaomi Redmi Note 10 Pro (Global) front.jpg"
     },
     {
       "modelKey": "redmi-note-11-pro",
@@ -1867,12 +1867,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-note-11-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Redmi_Note_11_Pro_back.jpg",
+      "sourceType": "wikimedia-web-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ARedmi_Note_11_Pro_back.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Maksdroider",
+      "commonsTitle": "File:Redmi Note 11 Pro back.jpg"
     },
     {
       "modelKey": "redmi-note-12-pro",
@@ -1880,9 +1880,9 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-note-12-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Redmi_Note_10_Pro_back_with_in-box_cover.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ARedmi_Note_10_Pro_back_with_in-box_cover.jpg",
       "license": "Official brand marketing asset",
       "author": "Xiaomi",
       "commonsTitle": ""
@@ -1893,9 +1893,9 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-note-13-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/Redmi_Note_10_Pro_left.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ARedmi_Note_10_Pro_left.jpg",
       "license": "Official brand marketing asset",
       "author": "Xiaomi",
       "commonsTitle": ""
@@ -1906,12 +1906,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/poco-f3.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/The_back_of_Redmi_K40.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_back_of_Redmi_K40.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:The back of Redmi K40.jpg"
     },
     {
       "modelKey": "poco-f4",
@@ -1919,12 +1919,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/poco-f4.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Back_of_POCO_F4.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_POCO_F4.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of POCO F4.png"
     },
     {
       "modelKey": "poco-f5",
@@ -1932,12 +1932,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/poco-f5.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/76/The_Back_of_Redmi_K60.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_Back_of_Redmi_K60.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "洛微",
+      "commonsTitle": "File:The Back of Redmi K60.jpg"
     },
     {
       "modelKey": "poco-f6",
@@ -1945,9 +1945,9 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/poco-f6.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Back_of_POCO_M4_Pro.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APOCO_X4_Pro_5G_back.jpg",
       "license": "Official brand marketing asset",
       "author": "Xiaomi",
       "commonsTitle": ""
@@ -1971,12 +1971,12 @@
       "brand": "Xiaomi",
       "subcategory": "Wearables",
       "file": "/images/catalog/xiaomi/xiaomi-watch-2.webp",
-      "sourceUrl": "https://live.staticflickr.com/5779/29729617883_5b6a2c7e2e_b.jpg",
-      "sourceType": "licensed-fallback",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Xiaomi_Mi_Band_(Flickr)",
-      "license": "Public domain",
-      "author": "MIUI",
-      "commonsTitle": "Xiaomi Mi Band (Flickr)"
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Xiaomi_Watch_Pro_2.jpg",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AXiaomi_Watch_Pro_2",
+      "license": "Official brand marketing asset",
+      "author": "Xiaomi",
+      "commonsTitle": ""
     },
     {
       "modelKey": "redmi-buds-4-pro",
@@ -2010,12 +2010,12 @@
       "brand": "Sony",
       "subcategory": "Consoles",
       "file": "/images/catalog/sony/ps4-slim.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_5_and_DualSense_with_transparent_background.png",
-      "license": "Official brand marketing asset",
-      "author": "Sony",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/PlayStation_4_Slim_video_game_console.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_4_Slim_video_game_console.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Evan-Amos",
+      "commonsTitle": "File:PlayStation 4 Slim video game console.jpg"
     },
     {
       "modelKey": "ps4-pro",
@@ -2023,12 +2023,12 @@
       "brand": "Sony",
       "subcategory": "Consoles",
       "file": "/images/catalog/sony/ps4-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_5_and_DualSense_with_transparent_background.png",
-      "license": "Official brand marketing asset",
-      "author": "Sony",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/PlayStation_4_Slim_video_game_console.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_4_Slim_video_game_console.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Evan-Amos",
+      "commonsTitle": "File:PlayStation 4 Slim video game console.jpg"
     },
     {
       "modelKey": "ps5",
@@ -2037,11 +2037,11 @@
       "subcategory": "Consoles",
       "file": "/images/catalog/sony/ps5.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
-      "sourceType": "wikimedia-sibling",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_5_and_DualSense_with_transparent_background.png",
-      "license": "Official brand marketing asset",
-      "author": "Sony",
-      "commonsTitle": ""
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png"
     },
     {
       "modelKey": "ps5-slim",
@@ -2050,11 +2050,11 @@
       "subcategory": "Consoles",
       "file": "/images/catalog/sony/ps5-slim.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
-      "sourceType": "wikimedia-sibling",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_5_and_DualSense_with_transparent_background.png",
-      "license": "Official brand marketing asset",
-      "author": "Sony",
-      "commonsTitle": ""
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png"
     },
     {
       "modelKey": "ps5-pro",
@@ -2062,12 +2062,12 @@
       "brand": "Sony",
       "subcategory": "Consoles",
       "file": "/images/catalog/sony/ps5-pro.webp",
-      "sourceUrl": "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.playstation.com/en-us/ps5/",
-      "license": "Official brand marketing asset",
-      "author": "Sony",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APlayStation_5_and_DualSense_with_transparent_background.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png"
     },
     {
       "modelKey": "sony-x80j",
@@ -2076,7 +2076,7 @@
       "subcategory": "TVs",
       "file": "/images/catalog/sony/sony-x80j.webp",
       "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
-      "sourceType": "licensed-fallback",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_Bravia_television_(Flickr)",
       "license": "CC BY 2.0",
       "author": "Marcin Wichary",
@@ -2089,7 +2089,7 @@
       "subcategory": "TVs",
       "file": "/images/catalog/sony/sony-x90j.webp",
       "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
-      "sourceType": "licensed-fallback",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_Bravia_television_(Flickr)",
       "license": "CC BY 2.0",
       "author": "Marcin Wichary",
@@ -2102,7 +2102,7 @@
       "subcategory": "TVs",
       "file": "/images/catalog/sony/sony-a80j.webp",
       "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
-      "sourceType": "licensed-fallback",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_Bravia_television_(Flickr)",
       "license": "CC BY 2.0",
       "author": "Marcin Wichary",
@@ -2115,7 +2115,7 @@
       "subcategory": "TVs",
       "file": "/images/catalog/sony/sony-a95l.webp",
       "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
-      "sourceType": "licensed-fallback",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_Bravia_television_(Flickr)",
       "license": "CC BY 2.0",
       "author": "Marcin Wichary",
@@ -2128,7 +2128,7 @@
       "subcategory": "TVs",
       "file": "/images/catalog/sony/sony-xr8.webp",
       "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
-      "sourceType": "licensed-fallback",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_Bravia_television_(Flickr)",
       "license": "CC BY 2.0",
       "author": "Marcin Wichary",
@@ -2140,12 +2140,12 @@
       "brand": "Sony",
       "subcategory": "Audio",
       "file": "/images/catalog/sony/sony-wh1000xm4.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
-      "sourceType": "licensed-fallback",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASony_WF-1000XM4.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "KKPCW（Kyu3）",
-      "commonsTitle": "File:Sony WF-1000XM4.jpg"
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_headphones_lifestyle_(Flickr_fallback)",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Sony headphones lifestyle (Flickr fallback)"
     },
     {
       "modelKey": "sony-wh1000xm5",
@@ -2153,12 +2153,12 @@
       "brand": "Sony",
       "subcategory": "Audio",
       "file": "/images/catalog/sony/sony-wh1000xm5.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
-      "sourceType": "licensed-fallback",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASony_WF-1000XM4.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "KKPCW（Kyu3）",
-      "commonsTitle": "File:Sony WF-1000XM4.jpg"
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_headphones_lifestyle_(Flickr_fallback)",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Sony headphones lifestyle (Flickr fallback)"
     },
     {
       "modelKey": "sony-wh1000xm6",
@@ -2166,12 +2166,12 @@
       "brand": "Sony",
       "subcategory": "Audio",
       "file": "/images/catalog/sony/sony-wh1000xm6.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
-      "sourceType": "licensed-fallback",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASony_WF-1000XM4.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "KKPCW（Kyu3）",
-      "commonsTitle": "File:Sony WF-1000XM4.jpg"
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_headphones_lifestyle_(Flickr_fallback)",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Sony headphones lifestyle (Flickr fallback)"
     },
     {
       "modelKey": "sony-wf1000xm4",
@@ -2179,12 +2179,12 @@
       "brand": "Sony",
       "subcategory": "Audio",
       "file": "/images/catalog/sony/sony-wf1000xm4.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
-      "sourceType": "licensed-fallback",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASony_WF-1000XM4.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "KKPCW（Kyu3）",
-      "commonsTitle": "File:Sony WF-1000XM4.jpg"
+      "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_WF-1000XM4_wireless_earbuds_(Flickr)",
+      "license": "CC BY 2.0",
+      "author": "Mpow",
+      "commonsTitle": "Sony WF-1000XM4 wireless earbuds (Flickr)"
     },
     {
       "modelKey": "sony-wf1000xm5",
@@ -2192,12 +2192,12 @@
       "brand": "Sony",
       "subcategory": "Audio",
       "file": "/images/catalog/sony/sony-wf1000xm5.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
-      "sourceType": "licensed-fallback",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASony_WF-1000XM4.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "KKPCW（Kyu3）",
-      "commonsTitle": "File:Sony WF-1000XM4.jpg"
+      "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_WF-1000XM5_wireless_earbuds_(Flickr)",
+      "license": "CC BY 2.0",
+      "author": "Mpow",
+      "commonsTitle": "Sony WF-1000XM5 wireless earbuds (Flickr)"
     },
     {
       "modelKey": "sony-linkbuds-s",
@@ -2205,12 +2205,12 @@
       "brand": "Sony",
       "subcategory": "Audio",
       "file": "/images/catalog/sony/sony-linkbuds-s.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
-      "sourceType": "licensed-fallback",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASony_WF-1000XM4.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "KKPCW（Kyu3）",
-      "commonsTitle": "File:Sony WF-1000XM4.jpg"
+      "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_LinkBuds_S_wireless_earbuds_(Flickr)",
+      "license": "CC BY 2.0",
+      "author": "Mpow",
+      "commonsTitle": "Sony LinkBuds S wireless earbuds (Flickr)"
     },
     {
       "modelKey": "galaxy-note-20",
@@ -2218,9 +2218,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-note-20.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Samsung_Galaxy_Note_20_front_%28cropped%29.png",
+      "sourceType": "wikimedia-category",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Note_20_front_(cropped).png",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -2231,9 +2231,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-note-20-ultra.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Samsung_Galaxy_Note_9_%28SM-N960F%29_and_Samsung_Galaxy_Note_20_Ultra_5G_%28SM-N986B%29_in_Poland%2C_May_2021.jpg",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Note_9_(SM-N960F)_and_Samsung_Galaxy_Note_20_Ultra_5G_(SM-N986B)_in_Poland%2C_May_2021",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -2244,12 +2244,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s10.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Gr%C3%B6%C3%9Fenvergleich_Samsung_Galaxy_S10_und_S20_Ultra_5G.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AGr%C3%B6%C3%9Fenvergleich_Samsung_Galaxy_S10_und_S20_Ultra_5G.jpg",
+      "license": "CC BY 4.0",
+      "author": "PantheraLeo1359531",
+      "commonsTitle": "File:Größenvergleich Samsung Galaxy S10 und S20 Ultra 5G.jpg"
     },
     {
       "modelKey": "galaxy-s10-plus",
@@ -2257,12 +2257,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-s10-plus.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Gr%C3%B6%C3%9Fenvergleich_Samsung_Galaxy_S10_und_S20_Ultra_5G.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AGr%C3%B6%C3%9Fenvergleich_Samsung_Galaxy_S10_und_S20_Ultra_5G.jpg",
+      "license": "CC BY 4.0",
+      "author": "PantheraLeo1359531",
+      "commonsTitle": "File:Größenvergleich Samsung Galaxy S10 und S20 Ultra 5G.jpg"
     },
     {
       "modelKey": "vivo-x51",
@@ -2271,8 +2271,8 @@
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-x51.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_X50_Pro.jpg",
       "license": "CC BY-SA 4.0",
       "author": "TechInsider",
       "commonsTitle": "File:Vivo X50 Pro.jpg"
@@ -2283,12 +2283,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-x30-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Vivo_V20_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V20_back.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V20 back.jpg"
     },
     {
       "modelKey": "vivo-s1-pro",
@@ -2296,12 +2296,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-s1-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Vivo_V7.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V7.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V7.jpg"
     },
     {
       "modelKey": "mi-9",
@@ -2309,9 +2309,9 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/mi-9.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Xiaomi_MI_9_frontpanel.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AXiaomi_MI_9_frontpanel.jpg",
       "license": "Official brand marketing asset",
       "author": "Xiaomi",
       "commonsTitle": ""
@@ -2322,9 +2322,9 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-note-8-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Redmi_Note_10_Pro_front.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ARedmi_Note_10_Pro_front.jpg",
       "license": "Official brand marketing asset",
       "author": "Xiaomi",
       "commonsTitle": ""
@@ -2335,12 +2335,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-10.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Redmi_Note_10_Pro_Back.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ARedmi_Note_10_Pro_Back.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Maksdroider",
+      "commonsTitle": "File:Redmi Note 10 Pro Back.jpg"
     },
     {
       "modelKey": "redmi-12",
@@ -2348,12 +2348,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-12.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Xiaomi_Redmi_A1%2B._About_phone_menu.jpg",
       "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Ameiall Leissa",
-      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg"
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AXiaomi_Redmi_A1%2B._About_phone_menu.jpg",
+      "license": "CC BY-SA 3.0",
+      "author": "Сергей Михель",
+      "commonsTitle": "File:Xiaomi Redmi A1+. About phone menu.jpg"
     },
     {
       "modelKey": "redmi-13",
@@ -2361,12 +2361,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-13.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/The_back_of_Redmi_K40.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_back_of_Redmi_K40.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:The back of Redmi K40.jpg"
     },
     {
       "modelKey": "iphone-se-2",
@@ -2374,9 +2374,9 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-se-2.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-se-2/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Apple_iPhone_SE_2nd_Generation_2020%2C_Samsung_Galaxy_A04s_2022_and_Samsung_Galaxy_A56_5G_2025.jpg",
+      "sourceType": "wikimedia-category",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AApple_iPhone_SE_2nd_Generation_2020%2C_Samsung_Galaxy_A04s_2022_and_Samsung_Galaxy_A56_5G_2025.jpg",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -2387,12 +2387,12 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-se-3.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-se-3/",
-      "license": "Official brand marketing asset",
-      "author": "Apple",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Back_of_the_iPhone_SE_%283rd_generation%29.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_iPhone_SE_(3rd_generation).jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the iPhone SE (3rd generation).jpg"
     },
     {
       "modelKey": "iphone-xr",
@@ -2400,9 +2400,9 @@
       "brand": "Apple",
       "subcategory": "Phones",
       "file": "/images/catalog/apple/iphone-xr.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/iphone-xr/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/Back_view_of_iPhone_XR_white.jpg",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AIPhone_11_all_color",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -2413,12 +2413,12 @@
       "brand": "Samsung",
       "subcategory": "TVs",
       "file": "/images/catalog/samsung/samsung-cu7000.webp",
-      "sourceUrl": "https://images.samsung.com/is/image/samsung/p6pim/us/mrn75r95hafxza/gallery/us-microrgb-r95h-mrn75r95hafxza-552540009?$PD_GALLERY_PNG$",
-      "sourceType": "official",
-      "sourcePageUrl": "https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/?search=cu7000",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Samsung_Smart_TV_(Flickr)",
+      "license": "CC BY-SA 2.0",
+      "author": "Ervins Strauhmanis",
+      "commonsTitle": "Samsung Smart TV (Flickr)"
     },
     {
       "modelKey": "sony-x85k",
@@ -2427,7 +2427,7 @@
       "subcategory": "TVs",
       "file": "/images/catalog/sony/sony-x85k.webp",
       "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
-      "sourceType": "licensed-fallback",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/Sony_Bravia_television_(Flickr)",
       "license": "CC BY 2.0",
       "author": "Marcin Wichary",
@@ -2439,12 +2439,12 @@
       "brand": "Samsung",
       "subcategory": "Audio",
       "file": "/images/catalog/samsung/galaxy-buds2.webp",
-      "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
-      "sourceType": "licensed-fallback",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Wireless_earbuds_product_photo_(Flickr)",
-      "license": "CC BY 2.0",
-      "author": "Mpow",
-      "commonsTitle": "Wireless earbuds product photo (Flickr)"
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Watch_4.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_Watch_4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Samsung",
+      "commonsTitle": "File:Samsung Galaxy Watch 4.jpg"
     },
     {
       "modelKey": "galaxy-buds2-pro",
@@ -2453,11 +2453,11 @@
       "subcategory": "Audio",
       "file": "/images/catalog/samsung/galaxy-buds2-pro.webp",
       "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
-      "sourceType": "licensed-fallback",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Wireless_earbuds_product_photo_(Flickr)",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/Samsung_Galaxy_Buds2_Pro_earbuds_(Flickr)",
       "license": "CC BY 2.0",
       "author": "Mpow",
-      "commonsTitle": "Wireless earbuds product photo (Flickr)"
+      "commonsTitle": "Samsung Galaxy Buds2 Pro earbuds (Flickr)"
     },
     {
       "modelKey": "sony-wf-c500",
@@ -2465,12 +2465,12 @@
       "brand": "Sony",
       "subcategory": "Audio",
       "file": "/images/catalog/sony/sony-wf-c500.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
-      "sourceType": "licensed-fallback",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASony_WF-1000XM4.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "KKPCW（Kyu3）",
-      "commonsTitle": "File:Sony WF-1000XM4.jpg"
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Sony_in-ear_headphone_WF-C500.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASony_in-ear_headphone_WF-C500.jpg",
+      "license": "Official brand marketing asset",
+      "author": "Sony",
+      "commonsTitle": ""
     },
     {
       "modelKey": "macbook-pro-14-m4-pro",
@@ -2478,9 +2478,9 @@
       "brand": "Apple",
       "subcategory": "Laptops",
       "file": "/images/catalog/apple/macbook-pro-14-m4-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/macbook-pro-14-m4-pro/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Review_zu_Apple_Hardware_mit_Apple_M4-CPUs_%28Geekerwan%29_14.png",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AReview_zu_Apple_Hardware_mit_Apple_M4-CPUs_(Geekerwan)_14.png",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -2491,9 +2491,9 @@
       "brand": "Apple",
       "subcategory": "Laptops",
       "file": "/images/catalog/apple/macbook-pro-16-m4-max.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Apple_iPhone_13_Pro_on_MacBook_Pro_05.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://www.apple.com/macbook-pro-16-m4-max/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Review_zu_Apple_Hardware_mit_Apple_M4-CPUs_%28Geekerwan%29_16.png",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AReview_zu_Apple_Hardware_mit_Apple_M4-CPUs_(Geekerwan)_16.png",
       "license": "Official brand marketing asset",
       "author": "Apple",
       "commonsTitle": ""
@@ -2504,9 +2504,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a12.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/Close_angled_view_of_a_Samsung_Galaxy_A12%27s_Camera.png",
+      "sourceType": "wikimedia-category",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AClose_angled_view_of_a_Samsung_Galaxy_A12's_Camera.png",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -2517,12 +2517,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a13.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e1/20251110_180926_Samsung_Galaxy_A13_Back.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3A20251110_180926_Samsung_Galaxy_A13_Back.jpg",
+      "license": "CC0",
+      "author": "Saimmx",
+      "commonsTitle": "File:20251110 180926 Samsung Galaxy A13 Back.jpg"
     },
     {
       "modelKey": "galaxy-a14",
@@ -2530,9 +2530,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a14.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Samsung_Galaxy_A14_5G.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_A14_5G.jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -2543,9 +2543,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a23.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Back_of_the_Samsung_Galaxy_A23.jpg",
+      "sourceType": "wikimedia-category",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A23.jpg",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -2556,12 +2556,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a24.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Samsung_Galaxy_A24_2023.jpg",
+      "sourceType": "wikimedia",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_A24_2023.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Captainmorlypogi1959",
+      "commonsTitle": "File:Samsung Galaxy A24 2023.jpg"
     },
     {
       "modelKey": "galaxy-a25",
@@ -2569,9 +2569,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a25.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Samsung_Galaxy_A25_5G_2024.jpg",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_A25_5G_2024",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -2582,9 +2582,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a34.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Samsung_Galaxy_A34_5G_20231122_HOF02013-HDR_RAW-Export_cens.png",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_A34_5G_20231122_HOF02013-HDR_RAW-Export_cens",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -2595,9 +2595,9 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-a73.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Samsung_Galaxy_A73_5G_%2809-11-2022%29.jpg",
+      "sourceType": "openverse-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_A73_5G_(09-11-2022)",
       "license": "Official brand marketing asset",
       "author": "Samsung",
       "commonsTitle": ""
@@ -2608,12 +2608,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y15.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Vivo_V7.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V7.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V7.jpg"
     },
     {
       "modelKey": "vivo-y16",
@@ -2621,12 +2621,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y16.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Vivo_v20_se.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_v20_se.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo v20 se.jpg"
     },
     {
       "modelKey": "vivo-y17",
@@ -2634,12 +2634,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y17.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Vivo_2.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_2.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo 2.jpg"
     },
     {
       "modelKey": "vivo-y21",
@@ -2647,12 +2647,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y21.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Vivo_V20_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V20_back.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V20 back.jpg"
     },
     {
       "modelKey": "vivo-y27",
@@ -2660,12 +2660,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y27.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Vivo_V21_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V21_back.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V21 back.jpg"
     },
     {
       "modelKey": "vivo-y28",
@@ -2673,12 +2673,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y28.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Vivo_v20_se.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_v20_se.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo v20 se.jpg"
     },
     {
       "modelKey": "vivo-y35",
@@ -2686,12 +2686,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-y35.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Vivo_2.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_2.jpg",
       "license": "CC BY-SA 4.0",
-      "author": "TechInsider",
-      "commonsTitle": "File:Vivo X50 Pro.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo 2.jpg"
     },
     {
       "modelKey": "redmi-9",
@@ -2699,12 +2699,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-9.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Xiaomi_Redmi_Note_4_Front.jpg",
       "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Ameiall Leissa",
-      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg"
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AXiaomi_Redmi_Note_4_Front.jpg",
+      "license": "CC0",
+      "author": "Dqwyy",
+      "commonsTitle": "File:Xiaomi Redmi Note 4 Front.jpg"
     },
     {
       "modelKey": "redmi-9a",
@@ -2712,12 +2712,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-9a.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/The_back_of_Redmi_K40.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_back_of_Redmi_K40.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:The back of Redmi K40.jpg"
     },
     {
       "modelKey": "redmi-9c",
@@ -2725,12 +2725,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-9c.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/The_back_of_Redmi_K40.jpg",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_back_of_Redmi_K40.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:The back of Redmi K40.jpg"
     },
     {
       "modelKey": "redmi-11-prime",
@@ -2738,12 +2738,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-11-prime.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/HK_TKL_%E8%AA%BF%E6%99%AF%E5%B6%BA_Tiu_Keng_Leng_%E5%BD%A9%E6%98%8E%E5%95%86%E5%A0%B4_Choi_Ming_Shopping_Mall_shop_smartphones_March_2023_Px3.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_TKL_%E8%AA%BF%E6%99%AF%E5%B6%BA_Tiu_Keng_Leng_%E5%BD%A9%E6%98%8E%E5%95%86%E5%A0%B4_Choi_Ming_Shopping_Mall_shop_smartphones_March_2023_Px3.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Back_of_POCO_F4.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_POCO_F4.png",
       "license": "CC BY-SA 4.0",
-      "author": "Manholametam Lunagouwhi",
-      "commonsTitle": "File:HK TKL 調景嶺 Tiu Keng Leng 彩明商場 Choi Ming Shopping Mall shop smartphones March 2023 Px3.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of POCO F4.png"
     },
     {
       "modelKey": "redmi-12c",
@@ -2751,9 +2751,9 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/redmi-12c.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/11/Redmi_12C_back.jpg",
+      "sourceType": "wikimedia-search",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ARedmi_12C_back.jpg",
       "license": "Official brand marketing asset",
       "author": "Xiaomi",
       "commonsTitle": ""
@@ -2765,11 +2765,11 @@
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/poco-x3.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/POCO_X3_Pro_running_LineageOS_18.jpg",
-      "sourceType": "wikimedia-sibling",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APOCO_X3_Pro_running_LineageOS_18.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "license": "CC BY-SA 4.0",
+      "author": "Фосса",
+      "commonsTitle": "File:POCO X3 Pro running LineageOS 18.jpg"
     },
     {
       "modelKey": "poco-x4-pro",
@@ -2777,12 +2777,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/poco-x4-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/POCO_X3_Pro_running_LineageOS_18.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3APOCO_X3_Pro_running_LineageOS_18.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Xiaomi",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Back_of_POCO_F4.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_POCO_F4.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of POCO F4.png"
     },
     {
       "modelKey": "poco-m4-pro",
@@ -2790,12 +2790,12 @@
       "brand": "Xiaomi",
       "subcategory": "Phones",
       "file": "/images/catalog/xiaomi/poco-m4-pro.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/HK_MK_Mongkok_Nathan_Road_XiaoMi_Store_smart_phone_Poco_M4_Pro_5G_testing_macro_standard_n_wide_lens_effects_December_2021_RedMi_02.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AHK_MK_Mongkok_Nathan_Road_XiaoMi_Store_smart_phone_Poco_M4_Pro_5G_testing_macro_standard_n_wide_lens_effects_December_2021_RedMi_02.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Back_of_POCO_F4.png",
+      "sourceType": "wikimedia-agent-visual",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_POCO_F4.png",
       "license": "CC BY-SA 4.0",
-      "author": "KongWuood Hangi 1219",
-      "commonsTitle": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Poco M4 Pro 5G testing macro standard n wide lens effects December 2021 RedMi 02.jpg"
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of POCO F4.png"
     },
     {
       "modelKey": "galaxy-m32",
@@ -2804,8 +2804,8 @@
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-m32.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
-      "sourceType": "wikimedia",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_M32.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_M32.jpg",
       "license": "CC BY-SA 4.0",
       "author": "Blue Mango Juice",
       "commonsTitle": "File:Samsung Galaxy M32.jpg"
@@ -2816,12 +2816,12 @@
       "brand": "Samsung",
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-m33.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_M32.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Blue Mango Juice",
+      "commonsTitle": "File:Samsung Galaxy M32.jpg"
     },
     {
       "modelKey": "galaxy-m34",
@@ -2830,11 +2830,11 @@
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-m34.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_M32.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_M32.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Blue Mango Juice",
+      "commonsTitle": "File:Samsung Galaxy M32.jpg"
     },
     {
       "modelKey": "galaxy-m54",
@@ -2843,11 +2843,11 @@
       "subcategory": "Phones",
       "file": "/images/catalog/samsung/galaxy-m54.webp",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "sourceType": "wikimedia-sibling",
+      "sourceType": "wikimedia-agent-visual",
       "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Samsung",
-      "commonsTitle": ""
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg"
     },
     {
       "modelKey": "vivo-t1",
@@ -2855,12 +2855,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-t1.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Vivo",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Vivo_V20_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V20_back.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V20 back.jpg"
     },
     {
       "modelKey": "vivo-t2",
@@ -2868,12 +2868,12 @@
       "brand": "Vivo",
       "subcategory": "Phones",
       "file": "/images/catalog/vivo/vivo-t2.webp",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
-      "sourceType": "wikimedia-sibling",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3AVivo_X50_Pro.jpg",
-      "license": "Official brand marketing asset",
-      "author": "Vivo",
-      "commonsTitle": ""
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Vivo_V21_back.jpg",
+      "sourceType": "wikimedia-hand-curated",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Vivo_V21_back.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Vivo V21 back.jpg"
     },
     {
       "modelKey": "amazon-echo-dot-3-fixture",

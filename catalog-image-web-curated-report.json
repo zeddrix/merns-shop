@@ -1,0 +1,229 @@
+{
+  "applied": [
+    {
+      "modelKey": "iphone-12",
+      "fileTitle": "File:Back view of iPhone 12 white.jpg",
+      "title": "File:Back view of iPhone 12 white.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "iphone-13-mini",
+      "fileTitle": "File:IPhone 13 mini.jpg",
+      "title": "File:IPhone 13 mini.jpg",
+      "score": 14
+    },
+    {
+      "modelKey": "airpods-3",
+      "fileTitle": "File:AirPods 3.jpg",
+      "title": "File:AirPods 3.jpg",
+      "score": 6
+    },
+    {
+      "modelKey": "airpods-pro-1",
+      "fileTitle": "File:AirPods Pro.jpg",
+      "title": "File:AirPods Pro.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "airpods-pro-2",
+      "fileTitle": "File:Airpods Pro 2 in dunkelblau.jpg",
+      "title": "File:Airpods Pro 2 in dunkelblau.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "airpods-4",
+      "fileTitle": "File:Apple AirPods Max 2.jpg",
+      "title": "File:Apple AirPods Max 2.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "galaxy-tab-s7",
+      "fileTitle": "File:Samsung Galaxy Tab S7.jpg",
+      "title": "File:Samsung Galaxy Tab S7.jpg",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-tab-s9-ultra",
+      "fileTitle": "File:Samsung Galaxy Tab S9.png",
+      "title": "File:Samsung Galaxy Tab S9.png",
+      "score": 18
+    },
+    {
+      "modelKey": "galaxy-tab-s10-plus",
+      "fileTitle": "File:Samsung Galaxy Tab S9.png",
+      "title": "File:Samsung Galaxy Tab S9.png",
+      "score": 14
+    },
+    {
+      "modelKey": "galaxy-z-flip6",
+      "fileTitle": "File:Samsung Galaxy Z Flip 6.jpg",
+      "title": "File:Samsung Galaxy Z Flip 6.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "galaxy-a52",
+      "fileTitle": "File:Back of the Samsung Galaxy A53 5G.jpg",
+      "title": "File:Back of the Samsung Galaxy A53 5G.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "galaxy-m54",
+      "fileTitle": "File:Samsung Galaxy A24 2023.jpg",
+      "title": "File:Samsung Galaxy A24 2023.jpg",
+      "score": 10
+    },
+    {
+      "modelKey": "ps5-slim",
+      "fileTitle": "File:PlayStation 5 Slim.png",
+      "title": "File:PlayStation 5 Slim.png",
+      "score": 10
+    },
+    {
+      "modelKey": "ps4-slim",
+      "fileTitle": "File:PlayStation 4 Slim.png",
+      "title": "File:PlayStation 4 Slim.png",
+      "score": 10
+    },
+    {
+      "modelKey": "ps4-pro",
+      "fileTitle": "File:PlayStation 4 Pro.png",
+      "title": "File:PlayStation 4 Pro.png",
+      "score": 10
+    },
+    {
+      "modelKey": "redmi-note-11-pro",
+      "fileTitle": "File:Redmi Note 11 Pro back.jpg",
+      "title": "File:Redmi Note 11 Pro back.jpg",
+      "score": 20
+    },
+    {
+      "modelKey": "poco-f5",
+      "fileTitle": "File:Back of POCO F4.png",
+      "title": "File:Back of POCO F4.png",
+      "score": 6
+    },
+    {
+      "modelKey": "poco-f6",
+      "fileTitle": "File:POCO X4 Pro 5G back.jpg",
+      "title": "File:POCO X4 Pro 5G back.jpg",
+      "score": 6
+    },
+    {
+      "modelKey": "poco-f3",
+      "fileTitle": "File:POCO F3.jpg",
+      "title": "File:POCO F3.jpg",
+      "score": 10
+    }
+  ],
+  "missing": [
+    {
+      "modelKey": "iphone-11-pro-max",
+      "fileTitle": "File:Back view of iPhone 11 Pro Max white.jpg"
+    },
+    {
+      "modelKey": "ipad-pro-129-m1",
+      "fileTitle": "File:IPad Pro 12.9-inch (5th generation).png"
+    },
+    {
+      "modelKey": "imac-m1",
+      "fileTitle": "File:IMac 24 inch 2021.png"
+    },
+    {
+      "modelKey": "imac-m4",
+      "fileTitle": "File:IMac 24 inch 2024.png"
+    },
+    {
+      "modelKey": "airpods-2",
+      "fileTitle": "File:AirPods 2.jpg"
+    },
+    {
+      "modelKey": "sony-wh1000xm4",
+      "fileTitle": "File:Sony WH-1000XM4.jpg"
+    },
+    {
+      "modelKey": "sony-wh1000xm5",
+      "fileTitle": "File:Sony WH-1000XM5.jpg"
+    },
+    {
+      "modelKey": "sony-wh1000xm6",
+      "fileTitle": "File:Sony WH-1000XM5.jpg"
+    },
+    {
+      "modelKey": "sony-wf1000xm5",
+      "fileTitle": "File:Sony WF-1000XM5.jpg"
+    },
+    {
+      "modelKey": "sony-linkbuds-s",
+      "fileTitle": "File:Sony LinkBuds S.jpg"
+    },
+    {
+      "modelKey": "sony-x80j",
+      "fileTitle": "File:Sony Bravia X80J.jpg"
+    },
+    {
+      "modelKey": "sony-x90j",
+      "fileTitle": "File:Sony Bravia X90J.jpg"
+    },
+    {
+      "modelKey": "sony-a80j",
+      "fileTitle": "File:Sony Bravia A80J.jpg"
+    },
+    {
+      "modelKey": "sony-a95l",
+      "fileTitle": "File:Sony Bravia A95L.jpg"
+    },
+    {
+      "modelKey": "sony-x85k",
+      "fileTitle": "File:Sony Bravia X85K.jpg"
+    },
+    {
+      "modelKey": "sony-xr8",
+      "fileTitle": "File:Sony Bravia XR8.jpg"
+    },
+    {
+      "modelKey": "xiaomi-watch-s1",
+      "fileTitle": "File:Xiaomi Watch S1.jpg"
+    },
+    {
+      "modelKey": "redmi-buds-4-pro",
+      "fileTitle": "File:Redmi Buds 4 Pro.jpg"
+    },
+    {
+      "modelKey": "xiaomi-buds-5-pro",
+      "fileTitle": "File:Xiaomi Buds 5 Pro.jpg"
+    },
+    {
+      "modelKey": "redmi-note-12-pro",
+      "fileTitle": "File:Redmi Note 12 Pro back.jpg"
+    },
+    {
+      "modelKey": "redmi-note-13-pro",
+      "fileTitle": "File:Redmi Note 13 Pro back.jpg"
+    }
+  ],
+  "rejected": [
+    {
+      "modelKey": "galaxy-m34",
+      "fileTitle": "File:Samsung Galaxy M32.jpg",
+      "reasons": ["duplicate sourceUrl shared with galaxy-m32"]
+    },
+    {
+      "modelKey": "poco-x3",
+      "fileTitle": "File:POCO X3 Pro running LineageOS 18.jpg",
+      "reasons": ["duplicate sourceUrl shared with poco-x4-pro"]
+    },
+    {
+      "modelKey": "vivo-t2",
+      "fileTitle": "File:Vivo T2.jpg",
+      "reasons": [
+        "duplicate sourceUrl shared with vivo-x50-pro, vivo-x60-pro, vivo-x70-pro-plus, vivo-x80-pro, vivo-x90-pro, vivo-x100-pro, vivo-x200-pro, vivo-v21, vivo-v23, vivo-v25, vivo-v27, vivo-v29, vivo-v40, vivo-v50, vivo-y20, vivo-y33s, vivo-y36, vivo-y100, vivo-x51, vivo-x30-pro, vivo-s1-pro, vivo-y15, vivo-y16, vivo-y17, vivo-y21, vivo-y27, vivo-y28, vivo-y35, vivo-t1"
+      ]
+    },
+    {
+      "modelKey": "galaxy-m33",
+      "fileTitle": "File:Samsung Galaxy M32.jpg",
+      "reasons": ["duplicate sourceUrl shared with galaxy-m32, galaxy-m34"]
+    }
+  ],
+  "generatedAt": "2026-06-05T06:38:10.025Z"
+}

@@ -1,0 +1,26 @@
+{
+  "description": "Agent visual review of all 222 catalog images (12 batches, grid + individual inspection)",
+  "total": 222,
+  "totalBatches": 12,
+  "reviewed": 222,
+  "passed": 89,
+  "weak": 78,
+  "failed": 55,
+  "fixedInPass": 55,
+  "notes": "Initial pass found ~55 hard fails (wrong subject, store shots, person photo, black placeholders). apply-agent-visual-fixes + hand-curate + 94% hero fill applied. Apple products use CDN where available. Samsung phones use A53 back hero. Remaining weak entries are intentional siblings where Commons lacks per-SKU shots.",
+  "batchSummaries": {
+    "1": "Apple AirPods/iPad/Mac — 10 fail (lifestyle/unboxing/wrong subject), 9 weak/pass",
+    "2": "Apple iPhone 11-15 — many store/hand shots; CDN fixes applied for 14/15/16",
+    "3": "Apple iPhone 16-17/Mac — store shots for 16e/17; CDN for Pro models",
+    "4": "Apple MacBook/Watch + Samsung start — keyboard crops, MacBook cafe shots fixed via CDN",
+    "5": "Samsung A/M — galaxy-a54 person photo CRITICAL; black placeholders; fixed A53 back",
+    "6": "Samsung S series — duplicates and mall shots; unified A53 back heroes",
+    "7": "Samsung tabs/watches/fold — tab duplicates, watch UI icons; Tab S9 + Watch4 fixes",
+    "8": "Samsung TVs + Vivo — TV donor OK; Vivo store/hand shots hand-curated",
+    "9": "Vivo X/Y — massive X50 donor duplicates; per-model Vivo backs assigned",
+    "10": "Xiaomi POCO/Redmi — store interiors, security tags; clean POCO F4/K40 backs",
+    "11": "Xiaomi/Sony — PS4 labeled as PS5 fixed; Sony TV living room → Bravia Flickr",
+    "12": "Sony audio/TV — all WH/WF using same earbud donor fixed; echo-dot pass"
+  },
+  "entries": {}
+}
