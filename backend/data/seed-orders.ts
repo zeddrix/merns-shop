@@ -133,3 +133,59 @@ export const insertSeedOrders = async (
     await Order.insertMany(orders);
   }
 };
+
+const userHasDeliveredOrderForProduct = async (
+  userId: Types.ObjectId,
+  productId: Types.ObjectId
+): Promise<boolean> => {
+  const existing = await Order.findOne({
+    user: userId,
+    isDelivered: true,
+    'orderItems.product': productId
+  });
+  return Boolean(existing);
+};
+
+export const insertMissingSeedOrders = async (
+  users: SeedOrderUser[],
+  products: SeedOrderProduct[]
+): Promise<void> => {
+  const john = users.find((u) => u.email === 'john@gmail.com');
+  if (!john) {
+    return;
+  }
+
+  const byModelKey = new Map(products.map((p) => [p.modelKey, p]));
+  const reviewTargets = E2E_REVIEW_PRODUCT_MODEL_KEYS.map((key) => byModelKey.get(key)).filter(
+    (p): p is SeedOrderProduct => Boolean(p)
+  );
+
+  const baseAddress = {
+    address: '123 Seed Street',
+    city: 'San Francisco',
+    postalCode: '94102',
+    country: 'United States'
+  };
+
+  for (const product of reviewTargets) {
+    const alreadyOrdered = await userHasDeliveredOrderForProduct(john._id, product._id);
+    if (alreadyOrdered) {
+      continue;
+    }
+
+    const item = buildOrderItem(product);
+    await Order.create({
+      user: john._id,
+      orderItems: [item],
+      shippingAddress: baseAddress,
+      paymentMethod: 'PayPal',
+      taxPrice: 0,
+      shippingPrice: 0,
+      totalPrice: item.price,
+      isPaid: true,
+      paidAt: new Date(),
+      isDelivered: true,
+      deliveredAt: new Date()
+    });
+  }
+};

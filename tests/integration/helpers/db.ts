@@ -23,36 +23,6 @@ export async function disconnectTestDb(): Promise<void> {
 export async function resetTestDb(): Promise<void> {
   await connectTestDb();
 
-  const [
-    { default: User },
-    { default: Product },
-    { default: Order },
-    { default: users },
-    { default: buildSeedProducts },
-    { insertSeedOrders }
-  ] = await Promise.all([
-    import('../../../backend/models/User.js'),
-    import('../../../backend/models/Product.js'),
-    import('../../../backend/models/Order.js'),
-    import('../../../backend/data/users.js'),
-    import('../../../backend/data/catalog/index.js'),
-    import('../../../backend/data/seed-orders.js')
-  ]);
-
-  await Order.deleteMany();
-  await Product.deleteMany();
-  await User.deleteMany();
-
-  const createdUsers = await User.insertMany(users);
-  const adminUser = createdUsers[0]?._id;
-  if (!adminUser) {
-    throw new Error('Seed failed: no admin user created');
-  }
-
-  const sampleProducts = buildSeedProducts({
-    reviewerUserId: adminUser
-  }).map((product) => ({ ...product, user: adminUser }));
-
-  const insertedProducts = await Product.insertMany(sampleProducts);
-  await insertSeedOrders(createdUsers, insertedProducts);
+  const { importSeedData } = await import('../../../backend/utils/importSeedData.js');
+  await importSeedData();
 }

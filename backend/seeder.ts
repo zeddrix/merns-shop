@@ -1,48 +1,27 @@
 import dotenv from 'dotenv';
-import users from './data/users.js';
-import buildSeedProducts from './data/catalog/index.js';
-import { insertSeedOrders } from './data/seed-orders.js';
-import User from './models/User.js';
-import Product from './models/Product.js';
-import Order from './models/Order.js';
 import connectDB from './config/db.js';
+import { destroySeedData, importSeedData } from './utils/importSeedData.js';
 
 dotenv.config();
 
 connectDB();
 
-const importData = async (): Promise<void> => {
+const runImport = async (): Promise<void> => {
   try {
-    await Order.deleteMany();
-    await Product.deleteMany();
-    await User.deleteMany();
-
-    const createdUsers = await User.insertMany(users);
-
-    const adminUser = createdUsers[0]._id;
-    const sampleProducts = buildSeedProducts({
-      reviewerUserId: adminUser
-    }).map((product) => ({ ...product, user: adminUser }));
-
-    const insertedProducts = await Product.insertMany(sampleProducts);
-    await insertSeedOrders(createdUsers, insertedProducts);
-
+    await importSeedData();
     console.log('Data imported...');
-    process.exit();
+    process.exit(0);
   } catch (error) {
     console.error(error);
     process.exit(1);
   }
 };
 
-const deleteData = async (): Promise<void> => {
+const runDestroy = async (): Promise<void> => {
   try {
-    await Order.deleteMany();
-    await Product.deleteMany();
-    await User.deleteMany();
-
+    await destroySeedData();
     console.log('Data destroyed...');
-    process.exit();
+    process.exit(0);
   } catch (error) {
     console.error(error);
     process.exit(1);
@@ -50,7 +29,7 @@ const deleteData = async (): Promise<void> => {
 };
 
 if (process.argv[2] === '-i') {
-  importData();
+  void runImport();
 } else if (process.argv[2] === '-d') {
-  deleteData();
+  void runDestroy();
 }
