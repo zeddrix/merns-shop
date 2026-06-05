@@ -17,8 +17,10 @@ const Product = ({ product }: ProductProps) => {
       className="my-3 p-3 rounded h-100 product-card"
       data-testid={`product-card-${product._id}`}
     >
-      <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} alt={product.name} variant="top" />
+      <Link to={`/product/${product._id}`} className="product-card__link">
+        <div className="product-card__media" data-testid="catalog-card-media">
+          <img src={product.image} alt={product.name} loading="lazy" />
+        </div>
       </Link>
 
       <Card.Body className="d-flex flex-column">
