@@ -10,7 +10,8 @@
     "allowJs": true,
     "types": ["node", "vitest/globals"],
     "paths": {
-      "@types/*": ["../types/*"]
+      "@types/*": ["../types/*"],
+      "@shared/*": ["../shared/*"]
     }
   },
   "include": [
@@ -18,6 +19,7 @@
     "./integration/**/*.ts",
     "./vitest-setup.ts",
     "../types/**/*.ts",
+    "../shared/**/*.ts",
     "../backend/types/**/*.d.ts",
     "../frontend/src/vite-env.d.ts",
     "../scripts/is-polluted-official-url.mjs",

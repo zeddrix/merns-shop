@@ -10,7 +10,8 @@ dotenv.config({ path: path.join(__dirname, '.env'), override: false });
 export default defineConfig({
   resolve: {
     alias: {
-      '@types': path.resolve(__dirname, './types')
+      '@types': path.resolve(__dirname, './types'),
+      '@shared': path.resolve(__dirname, './shared')
     }
   },
   test: {
@@ -31,6 +32,7 @@ export default defineConfig({
             'tests/unit/e2e/**/*.{test,spec}.ts',
             'tests/unit/smoke/**/*.{test,spec}.ts',
             'tests/unit/types/**/*.{test,spec}.ts',
+            'tests/unit/shared/**/*.{test,spec}.ts',
             'tests/integration/**/*.{test,spec}.ts'
           ],
           environment: 'node'

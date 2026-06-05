@@ -3,7 +3,8 @@
   "compilerOptions": {
     "noEmit": false,
     "composite": false,
-    "outDir": "../dist/backend",
-    "rootDir": "."
-  }
+    "outDir": "../dist",
+    "rootDir": ".."
+  },
+  "include": ["./**/*.ts", "../shared/**/*.ts"]
 }
