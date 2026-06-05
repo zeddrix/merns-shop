@@ -5,6 +5,19 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
+run_command() {
+  if [ "${1:-}" = "exec" ]; then
+    shift
+    exec "$@"
+  fi
+  exec pnpm "$@"
+}
+
+CURRENT_MAJOR="$(node -p "process.versions.node.split('.')[0]")"
+if [ "$CURRENT_MAJOR" -ge 22 ]; then
+  run_command "$@"
+fi
+
 export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
 if [ ! -s "$NVM_DIR/nvm.sh" ]; then
   echo "nvm is required for this project (Node 22 from .nvmrc)."
@@ -28,4 +41,4 @@ if [ "$MAJOR" -lt 22 ]; then
   exit 1
 fi
 
-exec pnpm "$@"
+run_command "$@"

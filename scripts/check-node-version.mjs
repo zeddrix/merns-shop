@@ -1,4 +1,6 @@
-const major = Number(process.versions.node.split('.')[0]);
+const major = process.env.NODE_TEST_MAJOR
+  ? Number(process.env.NODE_TEST_MAJOR)
+  : Number(process.versions.node.split('.')[0]);
 
 if (major < 22) {
   console.error(

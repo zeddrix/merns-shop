@@ -4,9 +4,9 @@ set -euo pipefail
 echo "Running pre-deploy verification (ISSUE-015 gate)..."
 pnpm format:check
 pnpm quality:fast
-pnpm test:unit
-pnpm test:integration
-pnpm build
+pnpm test:unit:inner
+pnpm test:integration:inner
+pnpm build:inner
 PW_DISABLE_REUSE_SERVER=1 pnpm test:e2e
 
 if [[ -f .env.test ]] && grep -qE '^PAYPAL_SANDBOX_BUYER_EMAIL=.+' .env.test && grep -qE '^PAYPAL_SANDBOX_BUYER_PASSWORD=.+' .env.test && grep -qE '^PAYPAL_CLIENT_ID=.+' .env.test; then
