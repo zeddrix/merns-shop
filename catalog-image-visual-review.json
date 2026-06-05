@@ -1,0 +1,2228 @@
+{
+  "generatedAt": "2026-06-05T05:26:38.815Z",
+  "total": 222,
+  "passed": 222,
+  "failed": 0,
+  "entries": [
+    {
+      "modelKey": "iphone-11",
+      "name": "iPhone 11",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-11.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.331Z"
+    },
+    {
+      "modelKey": "iphone-11-pro",
+      "name": "iPhone 11 Pro",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-11-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.334Z"
+    },
+    {
+      "modelKey": "iphone-11-pro-max",
+      "name": "iPhone 11 Pro Max",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-11-pro-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.335Z"
+    },
+    {
+      "modelKey": "iphone-12-mini",
+      "name": "iPhone 12 mini",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-12-mini.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.337Z"
+    },
+    {
+      "modelKey": "iphone-12",
+      "name": "iPhone 12",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-12.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.339Z"
+    },
+    {
+      "modelKey": "iphone-12-pro",
+      "name": "iPhone 12 Pro",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-12-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.342Z"
+    },
+    {
+      "modelKey": "iphone-12-pro-max",
+      "name": "iPhone 12 Pro Max",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-12-pro-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.344Z"
+    },
+    {
+      "modelKey": "iphone-13-mini",
+      "name": "iPhone 13 mini",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-13-mini.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.349Z"
+    },
+    {
+      "modelKey": "iphone-13",
+      "name": "iPhone 13",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-13.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.353Z"
+    },
+    {
+      "modelKey": "iphone-13-pro",
+      "name": "iPhone 13 Pro",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-13-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.354Z"
+    },
+    {
+      "modelKey": "iphone-13-pro-max",
+      "name": "iPhone 13 Pro Max",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-13-pro-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.356Z"
+    },
+    {
+      "modelKey": "iphone-14",
+      "name": "iPhone 14",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-14.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.357Z"
+    },
+    {
+      "modelKey": "iphone-14-plus",
+      "name": "iPhone 14 Plus",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-14-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.358Z"
+    },
+    {
+      "modelKey": "iphone-14-pro",
+      "name": "iPhone 14 Pro",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-14-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.363Z"
+    },
+    {
+      "modelKey": "iphone-14-pro-max",
+      "name": "iPhone 14 Pro Max",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-14-pro-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.368Z"
+    },
+    {
+      "modelKey": "iphone-15",
+      "name": "iPhone 15",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-15.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.373Z"
+    },
+    {
+      "modelKey": "iphone-15-plus",
+      "name": "iPhone 15 Plus",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-15-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.379Z"
+    },
+    {
+      "modelKey": "iphone-15-pro",
+      "name": "iPhone 15 Pro",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-15-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.383Z"
+    },
+    {
+      "modelKey": "iphone-15-pro-max",
+      "name": "iPhone 15 Pro Max",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-15-pro-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.389Z"
+    },
+    {
+      "modelKey": "iphone-16",
+      "name": "iPhone 16",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-16.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.396Z"
+    },
+    {
+      "modelKey": "iphone-16-plus",
+      "name": "iPhone 16 Plus",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-16-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.404Z"
+    },
+    {
+      "modelKey": "iphone-16-pro",
+      "name": "iPhone 16 Pro",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-16-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.409Z"
+    },
+    {
+      "modelKey": "iphone-16-pro-max",
+      "name": "iPhone 16 Pro Max",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-16-pro-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.414Z"
+    },
+    {
+      "modelKey": "iphone-16e",
+      "name": "iPhone 16e",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-16e.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.419Z"
+    },
+    {
+      "modelKey": "iphone-17",
+      "name": "iPhone 17",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-17.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.425Z"
+    },
+    {
+      "modelKey": "iphone-17-air",
+      "name": "iPhone 17 Air",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-17-air.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.430Z"
+    },
+    {
+      "modelKey": "iphone-17-pro",
+      "name": "iPhone 17 Pro",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-17-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.432Z"
+    },
+    {
+      "modelKey": "iphone-17-pro-max",
+      "name": "iPhone 17 Pro Max",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-17-pro-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.434Z"
+    },
+    {
+      "modelKey": "ipad-9",
+      "name": "iPad (9th generation)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-9.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.435Z"
+    },
+    {
+      "modelKey": "ipad-10",
+      "name": "iPad (10th generation)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-10.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.437Z"
+    },
+    {
+      "modelKey": "ipad-air-4",
+      "name": "iPad Air (4th generation)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-air-4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.440Z"
+    },
+    {
+      "modelKey": "ipad-air-5",
+      "name": "iPad Air (5th generation)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-air-5.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.443Z"
+    },
+    {
+      "modelKey": "ipad-air-m2",
+      "name": "iPad Air (M2)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-air-m2.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.447Z"
+    },
+    {
+      "modelKey": "ipad-mini-6",
+      "name": "iPad mini (6th generation)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-mini-6.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.450Z"
+    },
+    {
+      "modelKey": "ipad-mini-a17",
+      "name": "iPad mini (A17 Pro)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-mini-a17.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.452Z"
+    },
+    {
+      "modelKey": "ipad-pro-11-m1",
+      "name": "iPad Pro 11\" (3rd generation)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-pro-11-m1.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.455Z"
+    },
+    {
+      "modelKey": "ipad-pro-129-m1",
+      "name": "iPad Pro 12.9\" (5th generation)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-pro-129-m1.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.458Z"
+    },
+    {
+      "modelKey": "ipad-pro-11-m4",
+      "name": "iPad Pro 11\" (M4)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-pro-11-m4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.461Z"
+    },
+    {
+      "modelKey": "ipad-pro-13-m4",
+      "name": "iPad Pro 13\" (M4)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-pro-13-m4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.463Z"
+    },
+    {
+      "modelKey": "ipad-a16",
+      "name": "iPad (A16)",
+      "brand": "Apple",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/apple/ipad-a16.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.465Z"
+    },
+    {
+      "modelKey": "macbook-air-m1",
+      "name": "MacBook Air (M1)",
+      "brand": "Apple",
+      "subcategory": "Laptops",
+      "file": "/images/catalog/apple/macbook-air-m1.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.467Z"
+    },
+    {
+      "modelKey": "macbook-air-m2",
+      "name": "MacBook Air (M2)",
+      "brand": "Apple",
+      "subcategory": "Laptops",
+      "file": "/images/catalog/apple/macbook-air-m2.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.469Z"
+    },
+    {
+      "modelKey": "macbook-air-m3-13",
+      "name": "MacBook Air 13\" (M3)",
+      "brand": "Apple",
+      "subcategory": "Laptops",
+      "file": "/images/catalog/apple/macbook-air-m3-13.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.470Z"
+    },
+    {
+      "modelKey": "macbook-air-m3-15",
+      "name": "MacBook Air 15\" (M3)",
+      "brand": "Apple",
+      "subcategory": "Laptops",
+      "file": "/images/catalog/apple/macbook-air-m3-15.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.475Z"
+    },
+    {
+      "modelKey": "macbook-pro-14-m1-pro",
+      "name": "MacBook Pro 14\" (M1 Pro)",
+      "brand": "Apple",
+      "subcategory": "Laptops",
+      "file": "/images/catalog/apple/macbook-pro-14-m1-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.477Z"
+    },
+    {
+      "modelKey": "macbook-pro-16-m1-pro",
+      "name": "MacBook Pro 16\" (M1 Pro)",
+      "brand": "Apple",
+      "subcategory": "Laptops",
+      "file": "/images/catalog/apple/macbook-pro-16-m1-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.479Z"
+    },
+    {
+      "modelKey": "macbook-pro-14-m3-pro",
+      "name": "MacBook Pro 14\" (M3 Pro)",
+      "brand": "Apple",
+      "subcategory": "Laptops",
+      "file": "/images/catalog/apple/macbook-pro-14-m3-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.481Z"
+    },
+    {
+      "modelKey": "macbook-pro-16-m3-max",
+      "name": "MacBook Pro 16\" (M3 Max)",
+      "brand": "Apple",
+      "subcategory": "Laptops",
+      "file": "/images/catalog/apple/macbook-pro-16-m3-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.483Z"
+    },
+    {
+      "modelKey": "imac-m1",
+      "name": "iMac 24\" (M1)",
+      "brand": "Apple",
+      "subcategory": "Desktops",
+      "file": "/images/catalog/apple/imac-m1.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.485Z"
+    },
+    {
+      "modelKey": "imac-m4",
+      "name": "iMac 24\" (M4)",
+      "brand": "Apple",
+      "subcategory": "Desktops",
+      "file": "/images/catalog/apple/imac-m4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.486Z"
+    },
+    {
+      "modelKey": "mac-mini-m1",
+      "name": "Mac mini (M1)",
+      "brand": "Apple",
+      "subcategory": "Desktops",
+      "file": "/images/catalog/apple/mac-mini-m1.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.488Z"
+    },
+    {
+      "modelKey": "mac-mini-m2-pro",
+      "name": "Mac mini (M2 Pro)",
+      "brand": "Apple",
+      "subcategory": "Desktops",
+      "file": "/images/catalog/apple/mac-mini-m2-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.493Z"
+    },
+    {
+      "modelKey": "mac-studio-m2-max",
+      "name": "Mac Studio (M2 Max)",
+      "brand": "Apple",
+      "subcategory": "Desktops",
+      "file": "/images/catalog/apple/mac-studio-m2-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.497Z"
+    },
+    {
+      "modelKey": "mac-studio-m2-ultra",
+      "name": "Mac Studio (M2 Ultra)",
+      "brand": "Apple",
+      "subcategory": "Desktops",
+      "file": "/images/catalog/apple/mac-studio-m2-ultra.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.499Z"
+    },
+    {
+      "modelKey": "airpods-2",
+      "name": "AirPods (2nd generation)",
+      "brand": "Apple",
+      "subcategory": "Audio",
+      "file": "/images/catalog/apple/airpods-2.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.503Z"
+    },
+    {
+      "modelKey": "airpods-3",
+      "name": "AirPods (3rd generation)",
+      "brand": "Apple",
+      "subcategory": "Audio",
+      "file": "/images/catalog/apple/airpods-3.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.505Z"
+    },
+    {
+      "modelKey": "airpods-pro-1",
+      "name": "AirPods Pro (1st generation)",
+      "brand": "Apple",
+      "subcategory": "Audio",
+      "file": "/images/catalog/apple/airpods-pro-1.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.511Z"
+    },
+    {
+      "modelKey": "airpods-pro-2",
+      "name": "AirPods Pro (2nd generation)",
+      "brand": "Apple",
+      "subcategory": "Audio",
+      "file": "/images/catalog/apple/airpods-pro-2.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.514Z"
+    },
+    {
+      "modelKey": "airpods-4",
+      "name": "AirPods 4",
+      "brand": "Apple",
+      "subcategory": "Audio",
+      "file": "/images/catalog/apple/airpods-4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.517Z"
+    },
+    {
+      "modelKey": "airpods-max",
+      "name": "AirPods Max",
+      "brand": "Apple",
+      "subcategory": "Audio",
+      "file": "/images/catalog/apple/airpods-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.523Z"
+    },
+    {
+      "modelKey": "watch-series-6",
+      "name": "Apple Watch Series 6",
+      "brand": "Apple",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/apple/watch-series-6.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.526Z"
+    },
+    {
+      "modelKey": "watch-series-7",
+      "name": "Apple Watch Series 7",
+      "brand": "Apple",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/apple/watch-series-7.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.530Z"
+    },
+    {
+      "modelKey": "watch-series-8",
+      "name": "Apple Watch Series 8",
+      "brand": "Apple",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/apple/watch-series-8.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.533Z"
+    },
+    {
+      "modelKey": "watch-series-9",
+      "name": "Apple Watch Series 9",
+      "brand": "Apple",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/apple/watch-series-9.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.535Z"
+    },
+    {
+      "modelKey": "watch-series-10",
+      "name": "Apple Watch Series 10",
+      "brand": "Apple",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/apple/watch-series-10.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.537Z"
+    },
+    {
+      "modelKey": "watch-se-2",
+      "name": "Apple Watch SE (2nd generation)",
+      "brand": "Apple",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/apple/watch-se-2.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.540Z"
+    },
+    {
+      "modelKey": "watch-ultra-1",
+      "name": "Apple Watch Ultra",
+      "brand": "Apple",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/apple/watch-ultra-1.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.542Z"
+    },
+    {
+      "modelKey": "watch-ultra-2",
+      "name": "Apple Watch Ultra 2",
+      "brand": "Apple",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/apple/watch-ultra-2.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.545Z"
+    },
+    {
+      "modelKey": "galaxy-s20",
+      "name": "Galaxy S20",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s20.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.547Z"
+    },
+    {
+      "modelKey": "galaxy-s20-plus",
+      "name": "Galaxy S20+",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s20-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.549Z"
+    },
+    {
+      "modelKey": "galaxy-s20-ultra",
+      "name": "Galaxy S20 Ultra",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s20-ultra.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.551Z"
+    },
+    {
+      "modelKey": "galaxy-s21",
+      "name": "Galaxy S21",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s21.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.554Z"
+    },
+    {
+      "modelKey": "galaxy-s21-plus",
+      "name": "Galaxy S21+",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s21-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.556Z"
+    },
+    {
+      "modelKey": "galaxy-s21-ultra",
+      "name": "Galaxy S21 Ultra",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s21-ultra.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.557Z"
+    },
+    {
+      "modelKey": "galaxy-s22",
+      "name": "Galaxy S22",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s22.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.560Z"
+    },
+    {
+      "modelKey": "galaxy-s22-plus",
+      "name": "Galaxy S22+",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s22-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.562Z"
+    },
+    {
+      "modelKey": "galaxy-s22-ultra",
+      "name": "Galaxy S22 Ultra",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s22-ultra.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.564Z"
+    },
+    {
+      "modelKey": "galaxy-s23",
+      "name": "Galaxy S23",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s23.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.566Z"
+    },
+    {
+      "modelKey": "galaxy-s23-plus",
+      "name": "Galaxy S23+",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s23-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.567Z"
+    },
+    {
+      "modelKey": "galaxy-s23-ultra",
+      "name": "Galaxy S23 Ultra",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s23-ultra.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.569Z"
+    },
+    {
+      "modelKey": "galaxy-s24",
+      "name": "Galaxy S24",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s24.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.571Z"
+    },
+    {
+      "modelKey": "galaxy-s24-plus",
+      "name": "Galaxy S24+",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s24-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.572Z"
+    },
+    {
+      "modelKey": "galaxy-s24-ultra",
+      "name": "Galaxy S24 Ultra",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s24-ultra.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.573Z"
+    },
+    {
+      "modelKey": "galaxy-s25",
+      "name": "Galaxy S25",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s25.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.575Z"
+    },
+    {
+      "modelKey": "galaxy-s25-plus",
+      "name": "Galaxy S25+",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s25-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.578Z"
+    },
+    {
+      "modelKey": "galaxy-s25-ultra",
+      "name": "Galaxy S25 Ultra",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s25-ultra.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.579Z"
+    },
+    {
+      "modelKey": "galaxy-z-fold3",
+      "name": "Galaxy Z Fold3",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-z-fold3.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.581Z"
+    },
+    {
+      "modelKey": "galaxy-z-flip3",
+      "name": "Galaxy Z Flip3",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-z-flip3.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.583Z"
+    },
+    {
+      "modelKey": "galaxy-z-fold4",
+      "name": "Galaxy Z Fold4",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-z-fold4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.585Z"
+    },
+    {
+      "modelKey": "galaxy-z-flip4",
+      "name": "Galaxy Z Flip4",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-z-flip4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.587Z"
+    },
+    {
+      "modelKey": "galaxy-z-fold5",
+      "name": "Galaxy Z Fold5",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-z-fold5.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.588Z"
+    },
+    {
+      "modelKey": "galaxy-z-flip5",
+      "name": "Galaxy Z Flip5",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-z-flip5.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.590Z"
+    },
+    {
+      "modelKey": "galaxy-z-fold6",
+      "name": "Galaxy Z Fold6",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-z-fold6.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.592Z"
+    },
+    {
+      "modelKey": "galaxy-z-flip6",
+      "name": "Galaxy Z Flip6",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-z-flip6.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.594Z"
+    },
+    {
+      "modelKey": "galaxy-a51",
+      "name": "Galaxy A51",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a51.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.596Z"
+    },
+    {
+      "modelKey": "galaxy-a52",
+      "name": "Galaxy A52",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a52.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.597Z"
+    },
+    {
+      "modelKey": "galaxy-a53",
+      "name": "Galaxy A53",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a53.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.599Z"
+    },
+    {
+      "modelKey": "galaxy-a54",
+      "name": "Galaxy A54",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a54.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.601Z"
+    },
+    {
+      "modelKey": "galaxy-a55",
+      "name": "Galaxy A55",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a55.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.602Z"
+    },
+    {
+      "modelKey": "galaxy-a35",
+      "name": "Galaxy A35",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a35.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.604Z"
+    },
+    {
+      "modelKey": "galaxy-tab-s7",
+      "name": "Galaxy Tab S7",
+      "brand": "Samsung",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/samsung/galaxy-tab-s7.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.605Z"
+    },
+    {
+      "modelKey": "galaxy-tab-s8",
+      "name": "Galaxy Tab S8",
+      "brand": "Samsung",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/samsung/galaxy-tab-s8.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.607Z"
+    },
+    {
+      "modelKey": "galaxy-tab-s9",
+      "name": "Galaxy Tab S9",
+      "brand": "Samsung",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/samsung/galaxy-tab-s9.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.609Z"
+    },
+    {
+      "modelKey": "galaxy-tab-s9-ultra",
+      "name": "Galaxy Tab S9 Ultra",
+      "brand": "Samsung",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/samsung/galaxy-tab-s9-ultra.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.610Z"
+    },
+    {
+      "modelKey": "galaxy-tab-s10-plus",
+      "name": "Galaxy Tab S10+",
+      "brand": "Samsung",
+      "subcategory": "Tablets",
+      "file": "/images/catalog/samsung/galaxy-tab-s10-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.612Z"
+    },
+    {
+      "modelKey": "galaxy-watch3",
+      "name": "Galaxy Watch3",
+      "brand": "Samsung",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/samsung/galaxy-watch3.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.613Z"
+    },
+    {
+      "modelKey": "galaxy-watch4",
+      "name": "Galaxy Watch4",
+      "brand": "Samsung",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/samsung/galaxy-watch4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.615Z"
+    },
+    {
+      "modelKey": "galaxy-watch5-pro",
+      "name": "Galaxy Watch5 Pro",
+      "brand": "Samsung",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/samsung/galaxy-watch5-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.617Z"
+    },
+    {
+      "modelKey": "galaxy-watch6",
+      "name": "Galaxy Watch6",
+      "brand": "Samsung",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/samsung/galaxy-watch6.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.618Z"
+    },
+    {
+      "modelKey": "galaxy-watch7",
+      "name": "Galaxy Watch7",
+      "brand": "Samsung",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/samsung/galaxy-watch7.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.620Z"
+    },
+    {
+      "modelKey": "galaxy-watch-ultra",
+      "name": "Galaxy Watch Ultra",
+      "brand": "Samsung",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/samsung/galaxy-watch-ultra.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.621Z"
+    },
+    {
+      "modelKey": "samsung-q60a",
+      "name": "Samsung Q60A QLED TV",
+      "brand": "Samsung",
+      "subcategory": "TVs",
+      "file": "/images/catalog/samsung/samsung-q60a.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.623Z"
+    },
+    {
+      "modelKey": "samsung-q80b",
+      "name": "Samsung Q80B QLED TV",
+      "brand": "Samsung",
+      "subcategory": "TVs",
+      "file": "/images/catalog/samsung/samsung-q80b.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.624Z"
+    },
+    {
+      "modelKey": "samsung-s90c",
+      "name": "Samsung S90C OLED TV",
+      "brand": "Samsung",
+      "subcategory": "TVs",
+      "file": "/images/catalog/samsung/samsung-s90c.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.626Z"
+    },
+    {
+      "modelKey": "samsung-s95d",
+      "name": "Samsung S95D OLED TV",
+      "brand": "Samsung",
+      "subcategory": "TVs",
+      "file": "/images/catalog/samsung/samsung-s95d.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.627Z"
+    },
+    {
+      "modelKey": "samsung-qn900c",
+      "name": "Samsung Neo QLED 8K QN900C",
+      "brand": "Samsung",
+      "subcategory": "TVs",
+      "file": "/images/catalog/samsung/samsung-qn900c.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.629Z"
+    },
+    {
+      "modelKey": "vivo-x50-pro",
+      "name": "vivo X50 Pro",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-x50-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.630Z"
+    },
+    {
+      "modelKey": "vivo-x60-pro",
+      "name": "vivo X60 Pro",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-x60-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.632Z"
+    },
+    {
+      "modelKey": "vivo-x70-pro-plus",
+      "name": "vivo X70 Pro+",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-x70-pro-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.634Z"
+    },
+    {
+      "modelKey": "vivo-x80-pro",
+      "name": "vivo X80 Pro",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-x80-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.635Z"
+    },
+    {
+      "modelKey": "vivo-x90-pro",
+      "name": "vivo X90 Pro",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-x90-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.637Z"
+    },
+    {
+      "modelKey": "vivo-x100-pro",
+      "name": "vivo X100 Pro",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-x100-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.640Z"
+    },
+    {
+      "modelKey": "vivo-x200-pro",
+      "name": "vivo X200 Pro",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-x200-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.642Z"
+    },
+    {
+      "modelKey": "vivo-v21",
+      "name": "vivo V21",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-v21.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.644Z"
+    },
+    {
+      "modelKey": "vivo-v23",
+      "name": "vivo V23",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-v23.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.646Z"
+    },
+    {
+      "modelKey": "vivo-v25",
+      "name": "vivo V25",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-v25.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.648Z"
+    },
+    {
+      "modelKey": "vivo-v27",
+      "name": "vivo V27",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-v27.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.650Z"
+    },
+    {
+      "modelKey": "vivo-v29",
+      "name": "vivo V29",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-v29.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.651Z"
+    },
+    {
+      "modelKey": "vivo-v40",
+      "name": "vivo V40",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-v40.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.653Z"
+    },
+    {
+      "modelKey": "vivo-v50",
+      "name": "vivo V50",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-v50.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.654Z"
+    },
+    {
+      "modelKey": "vivo-y20",
+      "name": "vivo Y20",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y20.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.656Z"
+    },
+    {
+      "modelKey": "vivo-y33s",
+      "name": "vivo Y33s",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y33s.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.658Z"
+    },
+    {
+      "modelKey": "vivo-y36",
+      "name": "vivo Y36",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y36.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.659Z"
+    },
+    {
+      "modelKey": "vivo-y100",
+      "name": "vivo Y100",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y100.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.662Z"
+    },
+    {
+      "modelKey": "mi-10",
+      "name": "Mi 10",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/mi-10.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.663Z"
+    },
+    {
+      "modelKey": "mi-10-pro",
+      "name": "Mi 10 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/mi-10-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.665Z"
+    },
+    {
+      "modelKey": "mi-11",
+      "name": "Mi 11",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/mi-11.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.666Z"
+    },
+    {
+      "modelKey": "mi-12",
+      "name": "Mi 12",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/mi-12.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.668Z"
+    },
+    {
+      "modelKey": "xiaomi-13",
+      "name": "Xiaomi 13",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/xiaomi-13.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.670Z"
+    },
+    {
+      "modelKey": "xiaomi-14",
+      "name": "Xiaomi 14",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/xiaomi-14.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.671Z"
+    },
+    {
+      "modelKey": "xiaomi-15",
+      "name": "Xiaomi 15",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/xiaomi-15.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.673Z"
+    },
+    {
+      "modelKey": "redmi-note-9-pro",
+      "name": "Redmi Note 9 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-note-9-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.674Z"
+    },
+    {
+      "modelKey": "redmi-note-10-pro",
+      "name": "Redmi Note 10 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-note-10-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.676Z"
+    },
+    {
+      "modelKey": "redmi-note-11-pro",
+      "name": "Redmi Note 11 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-note-11-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.677Z"
+    },
+    {
+      "modelKey": "redmi-note-12-pro",
+      "name": "Redmi Note 12 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-note-12-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.679Z"
+    },
+    {
+      "modelKey": "redmi-note-13-pro",
+      "name": "Redmi Note 13 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-note-13-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.680Z"
+    },
+    {
+      "modelKey": "poco-f3",
+      "name": "POCO F3",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/poco-f3.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.682Z"
+    },
+    {
+      "modelKey": "poco-f4",
+      "name": "POCO F4",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/poco-f4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.683Z"
+    },
+    {
+      "modelKey": "poco-f5",
+      "name": "POCO F5",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/poco-f5.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.685Z"
+    },
+    {
+      "modelKey": "poco-f6",
+      "name": "POCO F6",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/poco-f6.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.687Z"
+    },
+    {
+      "modelKey": "xiaomi-watch-s1",
+      "name": "Xiaomi Watch S1",
+      "brand": "Xiaomi",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/xiaomi/xiaomi-watch-s1.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.688Z"
+    },
+    {
+      "modelKey": "xiaomi-watch-2",
+      "name": "Xiaomi Watch 2",
+      "brand": "Xiaomi",
+      "subcategory": "Wearables",
+      "file": "/images/catalog/xiaomi/xiaomi-watch-2.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.690Z"
+    },
+    {
+      "modelKey": "redmi-buds-4-pro",
+      "name": "Redmi Buds 4 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Audio",
+      "file": "/images/catalog/xiaomi/redmi-buds-4-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.692Z"
+    },
+    {
+      "modelKey": "xiaomi-buds-5-pro",
+      "name": "Xiaomi Buds 5 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Audio",
+      "file": "/images/catalog/xiaomi/xiaomi-buds-5-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.694Z"
+    },
+    {
+      "modelKey": "ps4-slim",
+      "name": "PlayStation 4 Slim",
+      "brand": "Sony",
+      "subcategory": "Consoles",
+      "file": "/images/catalog/sony/ps4-slim.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.696Z"
+    },
+    {
+      "modelKey": "ps4-pro",
+      "name": "PlayStation 4 Pro",
+      "brand": "Sony",
+      "subcategory": "Consoles",
+      "file": "/images/catalog/sony/ps4-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.698Z"
+    },
+    {
+      "modelKey": "ps5",
+      "name": "PlayStation 5",
+      "brand": "Sony",
+      "subcategory": "Consoles",
+      "file": "/images/catalog/sony/ps5.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.700Z"
+    },
+    {
+      "modelKey": "ps5-slim",
+      "name": "PlayStation 5 Slim",
+      "brand": "Sony",
+      "subcategory": "Consoles",
+      "file": "/images/catalog/sony/ps5-slim.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.702Z"
+    },
+    {
+      "modelKey": "ps5-pro",
+      "name": "PlayStation 5 Pro",
+      "brand": "Sony",
+      "subcategory": "Consoles",
+      "file": "/images/catalog/sony/ps5-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.704Z"
+    },
+    {
+      "modelKey": "sony-x80j",
+      "name": "Sony Bravia X80J",
+      "brand": "Sony",
+      "subcategory": "TVs",
+      "file": "/images/catalog/sony/sony-x80j.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.706Z"
+    },
+    {
+      "modelKey": "sony-x90j",
+      "name": "Sony Bravia X90J",
+      "brand": "Sony",
+      "subcategory": "TVs",
+      "file": "/images/catalog/sony/sony-x90j.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.707Z"
+    },
+    {
+      "modelKey": "sony-a80j",
+      "name": "Sony Bravia A80J OLED",
+      "brand": "Sony",
+      "subcategory": "TVs",
+      "file": "/images/catalog/sony/sony-a80j.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.709Z"
+    },
+    {
+      "modelKey": "sony-a95l",
+      "name": "Sony Bravia A95L QD-OLED",
+      "brand": "Sony",
+      "subcategory": "TVs",
+      "file": "/images/catalog/sony/sony-a95l.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.711Z"
+    },
+    {
+      "modelKey": "sony-xr8",
+      "name": "Sony Bravia XR8 Mini LED",
+      "brand": "Sony",
+      "subcategory": "TVs",
+      "file": "/images/catalog/sony/sony-xr8.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.712Z"
+    },
+    {
+      "modelKey": "sony-wh1000xm4",
+      "name": "Sony WH-1000XM4",
+      "brand": "Sony",
+      "subcategory": "Audio",
+      "file": "/images/catalog/sony/sony-wh1000xm4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.714Z"
+    },
+    {
+      "modelKey": "sony-wh1000xm5",
+      "name": "Sony WH-1000XM5",
+      "brand": "Sony",
+      "subcategory": "Audio",
+      "file": "/images/catalog/sony/sony-wh1000xm5.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.716Z"
+    },
+    {
+      "modelKey": "sony-wh1000xm6",
+      "name": "Sony WH-1000XM6",
+      "brand": "Sony",
+      "subcategory": "Audio",
+      "file": "/images/catalog/sony/sony-wh1000xm6.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.717Z"
+    },
+    {
+      "modelKey": "sony-wf1000xm4",
+      "name": "Sony WF-1000XM4",
+      "brand": "Sony",
+      "subcategory": "Audio",
+      "file": "/images/catalog/sony/sony-wf1000xm4.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.719Z"
+    },
+    {
+      "modelKey": "sony-wf1000xm5",
+      "name": "Sony WF-1000XM5",
+      "brand": "Sony",
+      "subcategory": "Audio",
+      "file": "/images/catalog/sony/sony-wf1000xm5.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.721Z"
+    },
+    {
+      "modelKey": "sony-linkbuds-s",
+      "name": "Sony LinkBuds S",
+      "brand": "Sony",
+      "subcategory": "Audio",
+      "file": "/images/catalog/sony/sony-linkbuds-s.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.722Z"
+    },
+    {
+      "modelKey": "galaxy-note-20",
+      "name": "Galaxy Note 20",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-note-20.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.724Z"
+    },
+    {
+      "modelKey": "galaxy-note-20-ultra",
+      "name": "Galaxy Note 20 Ultra",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-note-20-ultra.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.726Z"
+    },
+    {
+      "modelKey": "galaxy-s10",
+      "name": "Galaxy S10",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s10.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.730Z"
+    },
+    {
+      "modelKey": "galaxy-s10-plus",
+      "name": "Galaxy S10+",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-s10-plus.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.732Z"
+    },
+    {
+      "modelKey": "vivo-x51",
+      "name": "vivo X51 5G",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-x51.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.734Z"
+    },
+    {
+      "modelKey": "vivo-x30-pro",
+      "name": "vivo X30 Pro",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-x30-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.735Z"
+    },
+    {
+      "modelKey": "vivo-s1-pro",
+      "name": "vivo S1 Pro",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-s1-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.737Z"
+    },
+    {
+      "modelKey": "mi-9",
+      "name": "Mi 9",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/mi-9.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.740Z"
+    },
+    {
+      "modelKey": "redmi-note-8-pro",
+      "name": "Redmi Note 8 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-note-8-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.741Z"
+    },
+    {
+      "modelKey": "redmi-10",
+      "name": "Redmi 10",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-10.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.743Z"
+    },
+    {
+      "modelKey": "redmi-12",
+      "name": "Redmi 12",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-12.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.745Z"
+    },
+    {
+      "modelKey": "redmi-13",
+      "name": "Redmi 13",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-13.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.747Z"
+    },
+    {
+      "modelKey": "iphone-se-2",
+      "name": "iPhone SE (2nd generation)",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-se-2.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.749Z"
+    },
+    {
+      "modelKey": "iphone-se-3",
+      "name": "iPhone SE (3rd generation)",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-se-3.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.752Z"
+    },
+    {
+      "modelKey": "iphone-xr",
+      "name": "iPhone XR",
+      "brand": "Apple",
+      "subcategory": "Phones",
+      "file": "/images/catalog/apple/iphone-xr.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.753Z"
+    },
+    {
+      "modelKey": "samsung-cu7000",
+      "name": "Samsung CU7000 Crystal UHD",
+      "brand": "Samsung",
+      "subcategory": "TVs",
+      "file": "/images/catalog/samsung/samsung-cu7000.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.755Z"
+    },
+    {
+      "modelKey": "sony-x85k",
+      "name": "Sony X85K LED TV",
+      "brand": "Sony",
+      "subcategory": "TVs",
+      "file": "/images/catalog/sony/sony-x85k.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.756Z"
+    },
+    {
+      "modelKey": "galaxy-buds2",
+      "name": "Samsung Galaxy Buds2",
+      "brand": "Samsung",
+      "subcategory": "Audio",
+      "file": "/images/catalog/samsung/galaxy-buds2.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.758Z"
+    },
+    {
+      "modelKey": "galaxy-buds2-pro",
+      "name": "Samsung Galaxy Buds2 Pro",
+      "brand": "Samsung",
+      "subcategory": "Audio",
+      "file": "/images/catalog/samsung/galaxy-buds2-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.760Z"
+    },
+    {
+      "modelKey": "sony-wf-c500",
+      "name": "Sony WF-C500",
+      "brand": "Sony",
+      "subcategory": "Audio",
+      "file": "/images/catalog/sony/sony-wf-c500.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.761Z"
+    },
+    {
+      "modelKey": "macbook-pro-14-m4-pro",
+      "name": "MacBook Pro 14\" (M4 Pro)",
+      "brand": "Apple",
+      "subcategory": "Laptops",
+      "file": "/images/catalog/apple/macbook-pro-14-m4-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.763Z"
+    },
+    {
+      "modelKey": "macbook-pro-16-m4-max",
+      "name": "MacBook Pro 16\" (M4 Max)",
+      "brand": "Apple",
+      "subcategory": "Laptops",
+      "file": "/images/catalog/apple/macbook-pro-16-m4-max.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.764Z"
+    },
+    {
+      "modelKey": "galaxy-a12",
+      "name": "Galaxy A12",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a12.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.766Z"
+    },
+    {
+      "modelKey": "galaxy-a13",
+      "name": "Galaxy A13",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a13.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.767Z"
+    },
+    {
+      "modelKey": "galaxy-a14",
+      "name": "Galaxy A14",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a14.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.769Z"
+    },
+    {
+      "modelKey": "galaxy-a23",
+      "name": "Galaxy A23",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a23.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.770Z"
+    },
+    {
+      "modelKey": "galaxy-a24",
+      "name": "Galaxy A24",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a24.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.772Z"
+    },
+    {
+      "modelKey": "galaxy-a25",
+      "name": "Galaxy A25",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a25.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.774Z"
+    },
+    {
+      "modelKey": "galaxy-a34",
+      "name": "Galaxy A34",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a34.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.775Z"
+    },
+    {
+      "modelKey": "galaxy-a73",
+      "name": "Galaxy A73",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-a73.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.777Z"
+    },
+    {
+      "modelKey": "vivo-y15",
+      "name": "vivo Y15",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y15.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.778Z"
+    },
+    {
+      "modelKey": "vivo-y16",
+      "name": "vivo Y16",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y16.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.780Z"
+    },
+    {
+      "modelKey": "vivo-y17",
+      "name": "vivo Y17",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y17.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.781Z"
+    },
+    {
+      "modelKey": "vivo-y21",
+      "name": "vivo Y21",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y21.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.783Z"
+    },
+    {
+      "modelKey": "vivo-y27",
+      "name": "vivo Y27",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y27.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.785Z"
+    },
+    {
+      "modelKey": "vivo-y28",
+      "name": "vivo Y28",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y28.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.787Z"
+    },
+    {
+      "modelKey": "vivo-y35",
+      "name": "vivo Y35",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-y35.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.789Z"
+    },
+    {
+      "modelKey": "redmi-9",
+      "name": "Redmi 9",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-9.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.791Z"
+    },
+    {
+      "modelKey": "redmi-9a",
+      "name": "Redmi 9A",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-9a.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.793Z"
+    },
+    {
+      "modelKey": "redmi-9c",
+      "name": "Redmi 9C",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-9c.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.795Z"
+    },
+    {
+      "modelKey": "redmi-11-prime",
+      "name": "Redmi 11 Prime",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-11-prime.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.797Z"
+    },
+    {
+      "modelKey": "redmi-12c",
+      "name": "Redmi 12C",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/redmi-12c.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.799Z"
+    },
+    {
+      "modelKey": "poco-x3",
+      "name": "POCO X3",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/poco-x3.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.801Z"
+    },
+    {
+      "modelKey": "poco-x4-pro",
+      "name": "POCO X4 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/poco-x4-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.803Z"
+    },
+    {
+      "modelKey": "poco-m4-pro",
+      "name": "POCO M4 Pro",
+      "brand": "Xiaomi",
+      "subcategory": "Phones",
+      "file": "/images/catalog/xiaomi/poco-m4-pro.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.804Z"
+    },
+    {
+      "modelKey": "galaxy-m32",
+      "name": "Galaxy M32",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-m32.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.806Z"
+    },
+    {
+      "modelKey": "galaxy-m33",
+      "name": "Galaxy M33",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-m33.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.807Z"
+    },
+    {
+      "modelKey": "galaxy-m34",
+      "name": "Galaxy M34",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-m34.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.809Z"
+    },
+    {
+      "modelKey": "galaxy-m54",
+      "name": "Galaxy M54",
+      "brand": "Samsung",
+      "subcategory": "Phones",
+      "file": "/images/catalog/samsung/galaxy-m54.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.811Z"
+    },
+    {
+      "modelKey": "vivo-t1",
+      "name": "vivo T1",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-t1.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.812Z"
+    },
+    {
+      "modelKey": "vivo-t2",
+      "name": "vivo T2",
+      "brand": "Vivo",
+      "subcategory": "Phones",
+      "file": "/images/catalog/vivo/vivo-t2.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.814Z"
+    },
+    {
+      "modelKey": "amazon-echo-dot-3-fixture",
+      "name": "Amazon Echo Dot (3rd Generation)",
+      "brand": "Amazon",
+      "subcategory": "Smart Speakers",
+      "file": "/images/catalog/amazon/echo-dot-3.webp",
+      "status": "pass",
+      "reason": "audit+file validation pass",
+      "reviewedAt": "2026-06-05T05:26:38.815Z"
+    }
+  ]
+}

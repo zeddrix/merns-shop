@@ -1,0 +1,935 @@
+{
+  "entries": {
+    "galaxy-s20": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s21": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s22": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s23": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-m32": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Blue Mango Juice",
+      "commonsTitle": "File:Samsung Galaxy M32.jpg",
+      "sourceType": "wikimedia"
+    },
+    "galaxy-m33": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-m34": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Blue Mango Juice",
+      "commonsTitle": "File:Samsung Galaxy M32.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-m54": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a51": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-tab-s7": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Samsung_Galaxy_Tab_S6_Lite.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Juan Pablo Olano",
+      "commonsTitle": "File:Samsung Galaxy Tab S6 Lite.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-buds2": {
+      "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
+      "license": "CC BY 2.0",
+      "author": "Mpow",
+      "commonsTitle": "Wireless earbuds product photo (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "vivo-t1": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "vivo-t2": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "vivo-x50-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "poco-x4-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/POCO_X3_Pro_running_LineageOS_18.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Фосса",
+      "commonsTitle": "File:POCO X3 Pro running LineageOS 18.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-9c": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-9": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia"
+    },
+    "redmi-11-prime": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/HK_TKL_%E8%AA%BF%E6%99%AF%E5%B6%BA_Tiu_Keng_Leng_%E5%BD%A9%E6%98%8E%E5%95%86%E5%A0%B4_Choi_Ming_Shopping_Mall_shop_smartphones_March_2023_Px3.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Manholametam Lunagouwhi",
+      "commonsTitle": "File:HK TKL 調景嶺 Tiu Keng Leng 彩明商場 Choi Ming Shopping Mall shop smartphones March 2023 Px3.jpg",
+      "sourceType": "wikimedia"
+    },
+    "imac-m1": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Apple_MacBook_Pro_%28M3%29.jpg",
+      "license": "CC0",
+      "author": "Xkalponik",
+      "commonsTitle": "File:Apple MacBook Pro (M3).jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "imac-m4": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Apple_MacBook_Pro_%28M3%29.jpg",
+      "license": "CC0",
+      "author": "Xkalponik",
+      "commonsTitle": "File:Apple MacBook Pro (M3).jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s20-plus": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s20-ultra": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s21-plus": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s21-ultra": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s22-plus": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s22-ultra": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s23-plus": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s23-ultra": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s24-plus": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s25": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s25-plus": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s10": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-s10-plus": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-note-20": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-note-20-ultra": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a12": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a13": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a14": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a23": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a24": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a25": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a34": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a35": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a52": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a53": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a54": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a55": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-a73": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "vivo-x60-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-x70-pro-plus": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-x80-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-x90-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-x100-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-x200-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-v21": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-v23": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-v25": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-v27": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-v29": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-v40": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-v50": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y15": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y16": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y17": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y20": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y21": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y27": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y28": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y33s": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y35": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y36": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-y100": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-s1-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-x30-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "vivo-x51": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "TechInsider",
+      "commonsTitle": "File:Vivo X50 Pro.jpg",
+      "sourceType": "wikimedia"
+    },
+    "galaxy-z-fold3": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-z-flip3": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-z-fold4": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-z-flip4": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-z-fold6": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-z-flip6": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Hajoon0102",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-tab-s8": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Samsung_Galaxy_Tab_S6_Lite.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Juan Pablo Olano",
+      "commonsTitle": "File:Samsung Galaxy Tab S6 Lite.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-tab-s9": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Samsung_Galaxy_Tab_S6_Lite.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Juan Pablo Olano",
+      "commonsTitle": "File:Samsung Galaxy Tab S6 Lite.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-tab-s9-ultra": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Samsung_Galaxy_Tab_S6_Lite.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Juan Pablo Olano",
+      "commonsTitle": "File:Samsung Galaxy Tab S6 Lite.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-tab-s10-plus": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Samsung_Galaxy_Tab_S6_Lite.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Juan Pablo Olano",
+      "commonsTitle": "File:Samsung Galaxy Tab S6 Lite.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "galaxy-buds2-pro": {
+      "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
+      "license": "CC BY 2.0",
+      "author": "Mpow",
+      "commonsTitle": "Wireless earbuds product photo (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "redmi-9a": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-12c": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "mi-10": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "mi-10-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "mi-11": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "mi-12": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "xiaomi-13": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "xiaomi-14": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "xiaomi-15": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-note-9-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-note-10-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-note-11-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-note-12-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-note-13-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "poco-f3": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "poco-f4": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "poco-f5": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "poco-f6": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-13": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-note-8-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "mi-9": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-10": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "sony-x80j": {
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-x90j": {
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-a80j": {
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-a95l": {
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-xr8": {
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-x85k": {
+      "sourceUrl": "https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg",
+      "license": "CC BY 2.0",
+      "author": "Marcin Wichary",
+      "commonsTitle": "Sony Bravia television (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-wh1000xm4": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-wh1000xm5": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-wh1000xm6": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-wf1000xm4": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-wf1000xm5": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-linkbuds-s": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg",
+      "sourceType": "licensed-fallback"
+    },
+    "sony-wf-c500": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KKPCW（Kyu3）",
+      "commonsTitle": "File:Sony WF-1000XM4.jpg",
+      "sourceType": "licensed-fallback"
+    },
+    "ps4-slim": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png",
+      "sourceType": "wikimedia-sibling"
+    },
+    "ps4-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png",
+      "sourceType": "wikimedia-sibling"
+    },
+    "ps5": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png",
+      "sourceType": "wikimedia-sibling"
+    },
+    "ps5-slim": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
+      "license": "CC BY-SA 4.0",
+      "author": "Kuebi",
+      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png",
+      "sourceType": "wikimedia-sibling"
+    },
+    "redmi-12": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/HK_%E8%91%B5%E9%9D%92%E5%8D%80_Kwai_Tsing_%E9%9D%92%E8%A1%A3%E5%9F%8E_Maritime_Square_mall_shop_January_2022_Px3_XiaoMi_POCO_Smartphone_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Ameiall Leissa",
+      "commonsTitle": "File:HK 葵青區 Kwai Tsing 青衣城 Maritime Square mall shop January 2022 Px3 XiaoMi POCO Smartphone 01.jpg",
+      "sourceType": "wikimedia"
+    },
+    "poco-x3": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/POCO_X3_Pro_running_LineageOS_18.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Фосса",
+      "commonsTitle": "File:POCO X3 Pro running LineageOS 18.jpg",
+      "sourceType": "wikimedia-sibling"
+    },
+    "poco-m4-pro": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/HK_MK_Mongkok_Nathan_Road_XiaoMi_Store_smart_phone_Poco_M4_Pro_5G_testing_macro_standard_n_wide_lens_effects_December_2021_RedMi_02.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "KongWuood Hangi 1219",
+      "commonsTitle": "File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Poco M4 Pro 5G testing macro standard n wide lens effects December 2021 RedMi 02.jpg",
+      "sourceType": "wikimedia"
+    },
+    "amazon-echo-dot-3-fixture": {
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/67/Echo_Dot_%283rd_Gen%29_01.jpg",
+      "license": "CC0",
+      "author": "Samuel Wiki",
+      "commonsTitle": "File:Echo Dot (3rd Gen) 01.jpg",
+      "sourceType": "wikimedia"
+    },
+    "xiaomi-watch-s1": {
+      "sourceUrl": "https://live.staticflickr.com/5779/29729617883_5b6a2c7e2e_b.jpg",
+      "license": "Public domain",
+      "author": "MIUI",
+      "commonsTitle": "Xiaomi Mi Band (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "xiaomi-watch-2": {
+      "sourceUrl": "https://live.staticflickr.com/5779/29729617883_5b6a2c7e2e_b.jpg",
+      "license": "Public domain",
+      "author": "MIUI",
+      "commonsTitle": "Xiaomi Mi Band (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "redmi-buds-4-pro": {
+      "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
+      "license": "CC BY 2.0",
+      "author": "Mpow",
+      "commonsTitle": "Wireless earbuds product photo (Flickr)",
+      "sourceType": "licensed-fallback"
+    },
+    "xiaomi-buds-5-pro": {
+      "sourceUrl": "https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg",
+      "license": "CC BY 2.0",
+      "author": "Mpow",
+      "commonsTitle": "Wireless earbuds product photo (Flickr)",
+      "sourceType": "licensed-fallback"
+    }
+  }
+}
