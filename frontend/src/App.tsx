@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { useAuthBootstrap } from './features/authBootstrap';
+import { useCartBootstrap } from './features/cartBootstrap';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PageTransition from './components/motion/PageTransition';
@@ -49,6 +50,7 @@ const appRouteObjects: RouteObject[] = [
 
 const AppRoutes = () => {
   useAuthBootstrap();
+  useCartBootstrap();
   const location = useLocation();
   const routeElement = useRoutes(appRouteObjects);
 

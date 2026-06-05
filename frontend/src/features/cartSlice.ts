@@ -7,6 +7,7 @@ export interface CartState {
   cartItems: CartItem[];
   shippingAddress: ShippingAddress;
   paymentMethod?: string;
+  staleItemsPruned: boolean;
 }
 
 const cartItemsFromStorage = (): CartItem[] => {
@@ -21,7 +22,8 @@ const shippingAddressFromStorage = (): ShippingAddress => {
 
 const initialState: CartState = {
   cartItems: cartItemsFromStorage(),
-  shippingAddress: shippingAddressFromStorage()
+  shippingAddress: shippingAddressFromStorage(),
+  staleItemsPruned: false
 };
 
 const cartLineKey = (productId: string, variantSku: string) => `${productId}:${variantSku}`;
@@ -35,6 +37,31 @@ const resolveVariantFromProduct = (
   }
   return product.variants.find((v) => v.sku === variantSku);
 };
+
+export const rehydrateCart = createAsyncThunk(
+  'cart/rehydrateCart',
+  async (_void: undefined, { getState }) => {
+    const { cartItems } = (getState() as { cart: CartState }).cart;
+    if (cartItems.length === 0) {
+      return { cartItems: [], pruned: false };
+    }
+
+    const validItems: CartItem[] = [];
+    for (const item of cartItems) {
+      try {
+        await axios.get<Product>(`/api/products/${item.product}`);
+        validItems.push(item);
+      } catch {
+        // Drop stale cart lines whose product no longer exists after re-seed.
+      }
+    }
+
+    return {
+      cartItems: validItems,
+      pruned: validItems.length !== cartItems.length
+    };
+  }
+);
 
 export const addToCart = createAsyncThunk(
   'cart/addToCart',
@@ -85,10 +112,19 @@ const cartSlice = createSlice({
     },
     clearCartItems: (state) => {
       state.cartItems = [];
+      state.staleItemsPruned = false;
       localStorage.removeItem('cartItems');
+    },
+    clearStaleItemsNotice: (state) => {
+      state.staleItemsPruned = false;
     }
   },
   extraReducers: (builder) => {
+    builder.addCase(rehydrateCart.fulfilled, (state, action) => {
+      state.cartItems = action.payload.cartItems;
+      state.staleItemsPruned = action.payload.pruned;
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+    });
     builder.addCase(addToCart.fulfilled, (state, action) => {
       const item = action.payload;
       const key = cartLineKey(item.product, item.variantSku);
@@ -105,8 +141,13 @@ const cartSlice = createSlice({
   }
 });
 
-export const { removeFromCart, saveShippingAddress, savePaymentMethod, clearCartItems } =
-  cartSlice.actions;
+export const {
+  removeFromCart,
+  saveShippingAddress,
+  savePaymentMethod,
+  clearCartItems,
+  clearStaleItemsNotice
+} = cartSlice.actions;
 
 export { cartLineKey };
 

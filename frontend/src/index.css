@@ -316,6 +316,27 @@ strong {
   }
 }
 
+.cart-stale-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  color: #1d1d1f;
+  background: #fff4ce;
+  border-bottom: 1px solid #f5d66b;
+}
+
+.cart-stale-notice-dismiss {
+  border: none;
+  background: transparent;
+  color: #1d1d1f;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
 .site-header {
   position: sticky;
   top: 0;

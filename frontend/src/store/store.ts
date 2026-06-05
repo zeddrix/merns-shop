@@ -65,7 +65,8 @@ export const store = configureStore({
   preloadedState: {
     cart: {
       cartItems: cartItemsFromStorage(),
-      shippingAddress: shippingAddressFromStorage()
+      shippingAddress: shippingAddressFromStorage(),
+      staleItemsPruned: false
     },
     userLogin: {}
   },

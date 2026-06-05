@@ -1,13 +1,24 @@
-import { describe, expect, it, beforeEach } from 'vitest';
+import { describe, expect, it, beforeEach, vi } from 'vitest';
+
+const axiosGet = vi.hoisted(() => vi.fn());
+
+vi.mock('axios', () => ({
+  default: {
+    get: axiosGet
+  }
+}));
+
 import cartReducer, {
   removeFromCart,
   saveShippingAddress,
+  rehydrateCart,
   cartLineKey
 } from '../../../frontend/src/features/cartSlice';
 
 describe('cartSlice', () => {
   beforeEach(() => {
     localStorage.clear();
+    axiosGet.mockReset();
   });
 
   it('removes item from cart', () => {
@@ -24,15 +35,66 @@ describe('cartSlice', () => {
           qty: 1
         }
       ],
-      shippingAddress: {}
+      shippingAddress: {},
+      staleItemsPruned: false
     };
 
     const state = cartReducer(initial, removeFromCart(cartLineKey('abc', 'abc-128gb')));
     expect(state.cartItems).toHaveLength(0);
   });
 
+  it('rehydrateCart_removes_items_whose_product_returns_404', async () => {
+    axiosGet.mockRejectedValueOnce(new Error('Not found'));
+
+    const dispatch = vi.fn();
+    const getState = vi.fn(() => ({
+      cart: {
+        cartItems: [
+          {
+            product: 'dead-product-id',
+            variantSku: 'dead-128gb',
+            variantLabel: '128GB',
+            name: 'Dead (128GB)',
+            image: '/img.jpg',
+            price: 10,
+            countInStock: 5,
+            qty: 1
+          }
+        ]
+      }
+    }));
+
+    const thunk = rehydrateCart();
+    const result = await thunk(dispatch, getState, undefined);
+
+    expect(result.payload).toEqual({ cartItems: [], pruned: true });
+  });
+
+  it('rehydrateCart_keeps_valid_items', () => {
+    const validItem = {
+      product: 'live-product-id',
+      variantSku: 'live-128gb',
+      variantLabel: '128GB',
+      name: 'Live (128GB)',
+      image: '/img.jpg',
+      price: 10,
+      countInStock: 5,
+      qty: 1
+    };
+    const initial = { cartItems: [], shippingAddress: {}, staleItemsPruned: false };
+
+    const state = cartReducer(initial, {
+      type: rehydrateCart.fulfilled.type,
+      payload: { cartItems: [validItem], pruned: false }
+    });
+
+    expect(state.cartItems).toEqual([validItem]);
+    expect(state.staleItemsPruned).toBe(false);
+    expect(JSON.parse(localStorage.getItem('cartItems') ?? '[]')).toEqual([validItem]);
+  });
+
   it('saves shipping address to state and localStorage', () => {
-    const initial = { cartItems: [], shippingAddress: {} };
+    const initial = { cartItems: [], shippingAddress: {}, staleItemsPruned: false };
     const address = {
       address: '123 St',
       city: 'City',

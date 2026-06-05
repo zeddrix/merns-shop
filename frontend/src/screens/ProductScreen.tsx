@@ -133,7 +133,15 @@ const ProductScreen = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <div data-testid="product-not-found">
+          <Message variant="danger">{error}</Message>
+          <p className="mt-3 mb-0">
+            This product may have been removed or the link is out of date after a catalog refresh.
+          </p>
+          <Link to="/" className="btn btn-primary mt-3" data-testid="product-not-found-browse">
+            Browse catalog
+          </Link>
+        </div>
       ) : (
         <>
           <Meta

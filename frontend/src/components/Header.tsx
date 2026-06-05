@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { logout } from '../features/userSlice';
+import { clearStaleItemsNotice } from '../features/cartSlice';
 import SearchBox from './SearchBox';
 import SearchOverlay from './SearchOverlay';
 import CartPopover from './CartPopover';
@@ -21,6 +22,7 @@ const Header = () => {
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
+  const staleItemsPruned = useAppSelector((state) => state.cart.staleItemsPruned);
   const { openLogin, openRegister } = useAuthModal();
 
   const logoutHandler = () => {
@@ -49,6 +51,19 @@ const Header = () => {
 
   return (
     <header className="site-header">
+      {staleItemsPruned && (
+        <div className="cart-stale-notice" data-testid="cart-stale-pruned-notice">
+          <span>Some saved cart items were removed because they are no longer available.</span>
+          <button
+            type="button"
+            className="cart-stale-notice-dismiss"
+            data-testid="cart-stale-pruned-dismiss"
+            onClick={() => dispatch(clearStaleItemsNotice())}
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
       <Navbar className="site-navbar" variant="dark" expand="lg" collapseOnSelect>
         <Container className="site-navbar-container">
           <Navbar.Brand as={Link} to="/" className="site-brand" data-testid="site-brand">
