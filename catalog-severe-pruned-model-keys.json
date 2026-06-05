@@ -1,0 +1,15 @@
+{
+  "description": "Catalog parents removed after agent visual review — severe wrong hero image (option A: 10 SKUs).",
+  "modelKeys": [
+    "galaxy-m33",
+    "galaxy-m34",
+    "iphone-12-pro",
+    "iphone-13-pro-max",
+    "ps4-pro",
+    "ps5-slim",
+    "ps5-pro",
+    "sony-wh1000xm4",
+    "sony-wh1000xm5",
+    "sony-wh1000xm6"
+  ]
+}

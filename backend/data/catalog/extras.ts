@@ -316,8 +316,6 @@ const bulkMidRange: CatalogParentDraft[] = [
   'POCO X4 Pro',
   'POCO M4 Pro',
   'Galaxy M32',
-  'Galaxy M33',
-  'Galaxy M34',
   'Galaxy M54',
   'vivo T1',
   'vivo T2'

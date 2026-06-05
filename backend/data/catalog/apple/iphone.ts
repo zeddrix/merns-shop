@@ -72,18 +72,6 @@ const iphoneModels: Array<{
     ]
   },
   {
-    name: 'iPhone 12 Pro',
-    modelKey: 'iphone-12-pro',
-    year: 2020,
-    slug: 'iphone-12-pro',
-    desc: 'ProRAW photography and LiDAR scanner.',
-    tiers: [
-      { gb: 128, listPrice: 999 },
-      { gb: 256, listPrice: 1099 },
-      { gb: 512, listPrice: 1299 }
-    ]
-  },
-  {
     name: 'iPhone 12 Pro Max',
     modelKey: 'iphone-12-pro-max',
     year: 2020,
@@ -130,19 +118,6 @@ const iphoneModels: Array<{
       { gb: 256, listPrice: 1099 },
       { gb: 512, listPrice: 1299 },
       { gb: 1024, listPrice: 1499 }
-    ]
-  },
-  {
-    name: 'iPhone 13 Pro Max',
-    modelKey: 'iphone-13-pro-max',
-    year: 2021,
-    slug: 'iphone-13-pro-max',
-    desc: 'Longest battery in iPhone 13 lineup.',
-    tiers: [
-      { gb: 128, listPrice: 1099 },
-      { gb: 256, listPrice: 1199 },
-      { gb: 512, listPrice: 1399 },
-      { gb: 1024, listPrice: 1599 }
     ]
   },
   {
