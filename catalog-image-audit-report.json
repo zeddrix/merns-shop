@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-05T10:02:31.478Z",
+  "generatedAt": "2026-06-05T13:40:10.652Z",
   "total": 212,
   "passed": 212,
   "failed": 0,
@@ -61,17 +61,6 @@
       "reasons": []
     },
     {
-      "modelKey": "iphone-12-pro",
-      "name": "iPhone 12 Pro",
-      "brand": "Apple",
-      "subcategory": "Phones",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/IPhone_12_Pro_Max_-_3.jpg",
-      "commonsTitle": "File:IPhone 12 Pro Max - 3.jpg",
-      "ok": true,
-      "score": 14,
-      "reasons": []
-    },
-    {
       "modelKey": "iphone-12-pro-max",
       "name": "iPhone 12 Pro Max",
       "brand": "Apple",
@@ -111,17 +100,6 @@
       "subcategory": "Phones",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Apple_iPhone_13_Pro_and_13_Pro_Max.jpg",
       "commonsTitle": "",
-      "ok": true,
-      "score": 18,
-      "reasons": []
-    },
-    {
-      "modelKey": "iphone-13-pro-max",
-      "name": "iPhone 13 Pro Max",
-      "brand": "Apple",
-      "subcategory": "Phones",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Iphone_13_pro_max.jpg",
-      "commonsTitle": "File:Iphone 13 pro max.jpg",
       "ok": true,
       "score": 18,
       "reasons": []
@@ -340,7 +318,7 @@
       "name": "iPad Air (4th generation)",
       "brand": "Apple",
       "subcategory": "Tablets",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/IPad_Air_4th_generation_-_2.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/IPad_Air_4th_generation_-_2.jpg",
       "commonsTitle": "File:IPad Air 4th generation - 2.jpg",
       "ok": true,
       "score": 18,
@@ -538,8 +516,8 @@
       "name": "iMac 24\" (M1)",
       "brand": "Apple",
       "subcategory": "Desktops",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/IMac_24_inch_2021.png",
-      "commonsTitle": "File:IMac 24 inch 2021.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/M1_iMac_Green_model.jpg",
+      "commonsTitle": "File:M1 iMac Green model.jpg",
       "ok": true,
       "score": 10,
       "reasons": []
@@ -549,10 +527,10 @@
       "name": "iMac 24\" (M4)",
       "brand": "Apple",
       "subcategory": "Desktops",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/IMac_24_inch_2024.png",
-      "commonsTitle": "File:IMac 24 inch 2024.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/IMac_M4_2024.jpg",
+      "commonsTitle": "File:IMac M4 2024.jpg",
       "ok": true,
-      "score": 10,
+      "score": 14,
       "reasons": []
     },
     {
@@ -945,8 +923,8 @@
       "name": "Galaxy S25 Ultra",
       "brand": "Samsung",
       "subcategory": "Phones",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
-      "commonsTitle": "File:Back of the Samsung Galaxy A53 5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
       "ok": true,
       "score": 10,
       "reasons": []
@@ -1055,8 +1033,8 @@
       "name": "Galaxy A52",
       "brand": "Samsung",
       "subcategory": "Phones",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
-      "commonsTitle": "File:Back of the Samsung Galaxy A53 5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
       "ok": true,
       "score": 10,
       "reasons": []
@@ -1077,10 +1055,10 @@
       "name": "Galaxy A54",
       "brand": "Samsung",
       "subcategory": "Phones",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
-      "commonsTitle": "File:Back of the Samsung Galaxy A53 5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
       "ok": true,
-      "score": 10,
+      "score": 14,
       "reasons": []
     },
     {
@@ -1711,41 +1689,8 @@
       "reasons": []
     },
     {
-      "modelKey": "ps4-pro",
-      "name": "PlayStation 4 Pro",
-      "brand": "Sony",
-      "subcategory": "Consoles",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/PlayStation_4_Slim_video_game_console.jpg",
-      "commonsTitle": "File:PlayStation 4 Slim video game console.jpg",
-      "ok": true,
-      "score": 6,
-      "reasons": []
-    },
-    {
       "modelKey": "ps5",
       "name": "PlayStation 5",
-      "brand": "Sony",
-      "subcategory": "Consoles",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
-      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png",
-      "ok": true,
-      "score": 6,
-      "reasons": []
-    },
-    {
-      "modelKey": "ps5-slim",
-      "name": "PlayStation 5 Slim",
-      "brand": "Sony",
-      "subcategory": "Consoles",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
-      "commonsTitle": "File:PlayStation 5 and DualSense with transparent background.png",
-      "ok": true,
-      "score": 6,
-      "reasons": []
-    },
-    {
-      "modelKey": "ps5-pro",
-      "name": "PlayStation 5 Pro",
       "brand": "Sony",
       "subcategory": "Consoles",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png",
@@ -1807,39 +1752,6 @@
       "commonsTitle": "Sony Bravia television (Flickr)",
       "ok": true,
       "score": 12,
-      "reasons": []
-    },
-    {
-      "modelKey": "sony-wh1000xm4",
-      "name": "Sony WH-1000XM4",
-      "brand": "Sony",
-      "subcategory": "Audio",
-      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
-      "commonsTitle": "Sony headphones lifestyle (Flickr fallback)",
-      "ok": true,
-      "score": 8,
-      "reasons": []
-    },
-    {
-      "modelKey": "sony-wh1000xm5",
-      "name": "Sony WH-1000XM5",
-      "brand": "Sony",
-      "subcategory": "Audio",
-      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
-      "commonsTitle": "Sony headphones lifestyle (Flickr fallback)",
-      "ok": true,
-      "score": 8,
-      "reasons": []
-    },
-    {
-      "modelKey": "sony-wh1000xm6",
-      "name": "Sony WH-1000XM6",
-      "brand": "Sony",
-      "subcategory": "Audio",
-      "sourceUrl": "https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg",
-      "commonsTitle": "Sony headphones lifestyle (Flickr fallback)",
-      "ok": true,
-      "score": 8,
       "reasons": []
     },
     {
@@ -2382,34 +2294,12 @@
       "reasons": []
     },
     {
-      "modelKey": "galaxy-m33",
-      "name": "Galaxy M33",
-      "brand": "Samsung",
-      "subcategory": "Phones",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
-      "commonsTitle": "File:Samsung Galaxy M32.jpg",
-      "ok": true,
-      "score": 10,
-      "reasons": []
-    },
-    {
-      "modelKey": "galaxy-m34",
-      "name": "Galaxy M34",
-      "brand": "Samsung",
-      "subcategory": "Phones",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg",
-      "commonsTitle": "File:Samsung Galaxy M32.jpg",
-      "ok": true,
-      "score": 10,
-      "reasons": []
-    },
-    {
       "modelKey": "galaxy-m54",
       "name": "Galaxy M54",
       "brand": "Samsung",
       "subcategory": "Phones",
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
-      "commonsTitle": "File:Back of the Samsung Galaxy A53 5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg",
       "ok": true,
       "score": 10,
       "reasons": []

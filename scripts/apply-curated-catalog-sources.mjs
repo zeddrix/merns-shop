@@ -191,6 +191,7 @@ const SAMSUNG_S_SERIES = [
   'galaxy-s24-plus',
   'galaxy-s25',
   'galaxy-s25-plus',
+  'galaxy-s25-ultra',
   'galaxy-s10',
   'galaxy-s10-plus',
   'galaxy-note-20',

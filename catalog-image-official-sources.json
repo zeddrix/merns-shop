@@ -704,13 +704,13 @@
       "brand": "Samsung"
     },
     "galaxy-s25-ultra": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A53_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
       "brand": "Samsung",
-      "sourceType": "wikimedia-agent-visual",
+      "sourceType": "wikimedia-sibling",
       "license": "CC BY-SA 4.0",
       "author": "Hajoon0102",
-      "commonsTitle": "File:Back of the Samsung Galaxy A53 5G.jpg"
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg"
     },
     "galaxy-z-fold5": {
       "sourceUrl": "https://images.samsung.com/us/smartphones/galaxy-z-fold5/images/galaxy-z-fold5-thumbnail-image.jpg",
@@ -975,13 +975,13 @@
       "commonsTitle": "File:Samsung Galaxy A51 front"
     },
     "galaxy-a52": {
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
-      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A53_5G.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_A54_5G.jpg",
       "brand": "Samsung",
-      "sourceType": "wikimedia-agent-visual",
+      "sourceType": "wikimedia-sibling",
       "license": "CC BY-SA 4.0",
       "author": "Hajoon0102",
-      "commonsTitle": "File:Back of the Samsung Galaxy A53 5G.jpg"
+      "commonsTitle": "File:Back of the Samsung Galaxy A54 5G.jpg"
     },
     "galaxy-a53": {
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Back_of_the_Samsung_Galaxy_A53_5G.jpg",
