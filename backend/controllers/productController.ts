@@ -9,6 +9,7 @@ import {
 } from '../utils/productQuery.js';
 import { enrichProductForList } from '../utils/productVariants.js';
 import { userCanReviewProduct } from '../utils/reviewEligibility.js';
+import { findProductByIdOrModelKey } from '../utils/productResolve.js';
 
 const toListProduct = (product: {
   toObject?: () => Record<string, unknown>;
@@ -47,7 +48,8 @@ const getProducts = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getProductById = asyncHandler(async (req: Request, res: Response) => {
-  const product = await Product.findById(req.params.id);
+  const productId = String(req.params.id);
+  const product = await findProductByIdOrModelKey(productId);
 
   if (product) {
     const payload = toListProduct(product) as ReturnType<typeof toListProduct> & {
