@@ -55,7 +55,7 @@ async function downloadAndConvert(sourceUrl) {
 }
 
 async function main() {
-  execSync('pnpm exec tsx scripts/generate-catalog-manifest.ts', {
+  execSync('node scripts/resolve-official-catalog-sources.mjs', {
     cwd: root,
     stdio: 'inherit'
   });

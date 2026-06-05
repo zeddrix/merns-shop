@@ -41,6 +41,10 @@ const main = () => {
     entry.sourcePageUrl = officialEntry.sourcePageUrl ?? '';
     if (
       officialEntry.sourceType === 'wikimedia' ||
+      officialEntry.sourceType === 'wikimedia-hand-curated' ||
+      officialEntry.sourceType === 'wikimedia-agent-visual' ||
+      officialEntry.sourceType === 'wikimedia-web-curated' ||
+      officialEntry.sourceType === 'wikimedia-sibling' ||
       officialEntry.sourceType === 'licensed-fallback'
     ) {
       entry.license = officialEntry.license ?? entry.license;

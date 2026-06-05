@@ -3,21 +3,68 @@ import {
   CATALOG_CANVAS_BG,
   CATALOG_CANVAS_HEIGHT,
   CATALOG_CANVAS_WIDTH,
+  CATALOG_PRODUCT_FILL,
   WEBP_QUALITY
 } from './catalog-image-canvas.mjs';
 
 export const MIN_IMAGE_BYTES = 3000;
 export const MIN_IMAGE_DIMENSION = 200;
 
+const TRIM_THRESHOLD = 14;
+
+/**
+ * Trim uniform borders, then scale the product to fill most of the hero frame.
+ * @param {import('sharp').Sharp} pipeline
+ */
+async function trimProductBounds(pipeline) {
+  try {
+    const { data, info } = await pipeline
+      .clone()
+      .flatten({ background: CATALOG_CANVAS_BG })
+      .trim({ threshold: TRIM_THRESHOLD })
+      .toBuffer({ resolveWithObject: true });
+    if (info.width >= 80 && info.height >= 80) {
+      return sharp(data);
+    }
+  } catch {
+    // Photos with gradients or busy edges may not trim cleanly.
+  }
+  return pipeline.clone().flatten({ background: CATALOG_CANVAS_BG });
+}
+
 /** @param {Buffer} buffer */
 export async function normalizeToCatalogCanvas(buffer) {
-  return sharp(buffer)
-    .rotate()
-    .resize(CATALOG_CANVAS_WIDTH, CATALOG_CANVAS_HEIGHT, {
-      fit: 'contain',
-      background: CATALOG_CANVAS_BG
+  const rotated = sharp(buffer).rotate();
+  const trimmed = await trimProductBounds(rotated);
+  const meta = await trimmed.metadata();
+  const width = meta.width ?? 1;
+  const height = meta.height ?? 1;
+
+  const fillScale = Math.min(
+    (CATALOG_CANVAS_WIDTH * CATALOG_PRODUCT_FILL) / width,
+    (CATALOG_CANVAS_HEIGHT * CATALOG_PRODUCT_FILL) / height
+  );
+  const targetWidth = Math.max(1, Math.round(width * fillScale));
+  const targetHeight = Math.max(1, Math.round(height * fillScale));
+
+  const left = Math.floor((CATALOG_CANVAS_WIDTH - targetWidth) / 2);
+  const top = Math.floor((CATALOG_CANVAS_HEIGHT - targetHeight) / 2);
+  const resized = await trimmed
+    .resize(targetWidth, targetHeight, {
+      fit: 'inside',
+      withoutEnlargement: false
     })
-    .flatten({ background: CATALOG_CANVAS_BG })
+    .toBuffer();
+
+  return sharp({
+    create: {
+      width: CATALOG_CANVAS_WIDTH,
+      height: CATALOG_CANVAS_HEIGHT,
+      channels: 3,
+      background: CATALOG_CANVAS_BG
+    }
+  })
+    .composite([{ input: resized, left, top }])
     .webp({ quality: WEBP_QUALITY, effort: 4 })
     .toBuffer();
 }
