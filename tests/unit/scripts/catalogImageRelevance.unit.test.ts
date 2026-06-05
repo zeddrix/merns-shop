@@ -63,7 +63,7 @@ describe('catalog image relevance', () => {
     expect(result.ok).toBe(false);
   });
 
-  it('passes plausible phone commons match', () => {
+  it('rejects in-store mall photo titles for phones', () => {
     const entry = {
       modelKey: 'poco-m4-pro',
       name: 'POCO M4 Pro',
@@ -73,6 +73,19 @@ describe('catalog image relevance', () => {
         'https://upload.wikimedia.org/wikipedia/commons/d/d2/HK_MK_Mongkok_Nathan_Road_XiaoMi_Store_smart_phone_Poco_M4_Pro_5G_testing_macro_standard_n_wide_lens_effects_December_2021_RedMi_02.jpg',
       commonsTitle:
         'File:HK MK Mongkok Nathan Road XiaoMi Store smart phone Poco M4 Pro 5G testing macro standard n wide lens effects December 2021 RedMi 02.jpg'
+    };
+    const result = scoreManifestEntryRelevance(entry);
+    expect(result.ok).toBe(false);
+  });
+
+  it('passes clean product commons match', () => {
+    const entry = {
+      modelKey: 'poco-f3',
+      name: 'POCO F3',
+      brand: 'Xiaomi',
+      subcategory: 'Phones',
+      sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/POCO_F3.jpg',
+      commonsTitle: 'File:POCO F3.jpg'
     };
     const result = scoreManifestEntryRelevance(entry);
     expect(result.ok).toBe(true);
