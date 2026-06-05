@@ -14,7 +14,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import AuthLegacyRedirect from './components/AuthLegacyRedirect';
-import { AuthModalProvider } from './context/AuthModalContext';
+import AuthModalHost from './components/AuthModalHost';
 import ProfileScreen from './screens/ProfileScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
@@ -74,9 +74,8 @@ const AppRoutes = () => {
 const App = () => {
   return (
     <Router>
-      <AuthModalProvider>
-        <AppRoutes />
-      </AuthModalProvider>
+      <AppRoutes />
+      <AuthModalHost />
     </Router>
   );
 };

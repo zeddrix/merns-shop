@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Product from '../components/Product';
@@ -21,6 +21,7 @@ import {
 } from '../constants/seo';
 import { listProducts } from '../features/productSlice';
 import { isRegisterWelcomeState } from '../utils/authRedirect';
+import { getCatalogSearchString } from '../utils/authModalUrl';
 import {
   buildHomeCanonicalPath,
   buildOrganizationJsonLd,
@@ -45,7 +46,7 @@ const HomeScreen = () => {
   const productList = useAppSelector((state) => state.productList);
   const { loading, error, products, page: currentPage, pages } = productList;
 
-  const filterQuery = searchParams.toString();
+  const filterQuery = getCatalogSearchString(location.search);
   const brand = searchParams.get('brand') ?? '';
   const category = searchParams.get('category') ?? '';
   const subcategory = searchParams.get('subcategory') ?? '';
@@ -141,4 +142,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default memo(HomeScreen);

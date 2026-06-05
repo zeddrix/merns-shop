@@ -19,9 +19,33 @@ test.describe('auth login register profile', () => {
     await page.goto('/');
     await openMobileNavIfNeeded(page);
     await page.locator('[data-testid="nav-sign-up"]').click();
-    await expect(page).toHaveURL(/\?auth=register/);
+    await expect(page).toHaveURL(/\/$/);
     await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
+  });
+
+  test('header_sign_in_does_not_refetch_catalog', async ({ page }) => {
+    let productListRequests = 0;
+    page.on('request', (request) => {
+      if (request.method() === 'GET' && /\/api\/products(\?|$)/.test(request.url())) {
+        productListRequests += 1;
+      }
+    });
+
+    await page.goto('/');
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
+    const requestsAfterLoad = productListRequests;
+
+    await openMobileNavIfNeeded(page);
+    await page.locator('[data-testid="nav-login"]').click();
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await expect(page).toHaveURL(/\/$/);
+    expect(productListRequests).toBe(requestsAfterLoad);
+
+    await page.locator('[data-testid="auth-modal-close"]').click();
+    await expect(page.locator('[data-testid="auth-modal"]')).toHaveCount(0);
+    expect(productListRequests).toBe(requestsAfterLoad);
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
   });
 
   test('login_wrong_password_shows_error', async ({ page }) => {

@@ -43,6 +43,8 @@ const CatalogFilters = ({ keyword = '' }: CatalogFiltersProps) => {
       }
     }
     params.delete('pageNumber');
+    params.delete('auth');
+    params.delete('redirect');
     const query = params.toString();
     const base = keyword ? `/search/${keyword}` : '/';
     navigate(query ? `${base}?${query}` : base);

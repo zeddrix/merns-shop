@@ -71,3 +71,8 @@ export const getAuthRedirectTarget = (pathname: string, search: string): string 
   }
   return pathname;
 };
+
+/** Catalog/filter query string with auth modal params removed. */
+export const getCatalogSearchString = (search: string): string => {
+  return stripAuthSearch(search).replace(/^\?/, '');
+};

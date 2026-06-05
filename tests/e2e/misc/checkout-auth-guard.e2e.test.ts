@@ -25,7 +25,7 @@ test.describe('checkout auth guard', () => {
     await expect(page).toHaveURL(/\/profile\?auth=login/);
     await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await page.locator('[data-testid="login-register-link"]').click();
-    await expect(page).toHaveURL(/auth=register/);
     await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
   });
 });

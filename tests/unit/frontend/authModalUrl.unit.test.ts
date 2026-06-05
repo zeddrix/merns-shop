@@ -4,6 +4,7 @@ import {
   buildAuthUrl,
   buildLoginRedirectUrl,
   buildRegisterRedirectUrl,
+  getCatalogSearchString,
   parseAuthModalSearch,
   stripAuthSearch
 } from '../../../frontend/src/utils/authModalUrl';
@@ -51,5 +52,10 @@ describe('authModalUrl', () => {
 
   it('buildRegisterRedirectUrl uses auth query instead of register route', () => {
     expect(buildRegisterRedirectUrl('/payment')).toBe('/?auth=register&redirect=%2Fpayment');
+  });
+
+  it('getCatalogSearchString strips auth params for catalog listKey', () => {
+    expect(getCatalogSearchString('?auth=login&brand=Apple')).toBe('brand=Apple');
+    expect(getCatalogSearchString('?auth=register')).toBe('');
   });
 });

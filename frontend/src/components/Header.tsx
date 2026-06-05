@@ -1,19 +1,21 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { logout } from '../features/userSlice';
 import { clearStaleItemsNotice } from '../features/cartSlice';
+import { openLogin, openRegister } from '../features/authModalSlice';
 import SearchBox from './SearchBox';
 import SearchOverlay from './SearchOverlay';
 import CartPopover from './CartPopover';
 import { DISPLAY_BRAND_NAME } from '../constants/brand';
 import { useIsDesktop } from '../hooks/useIsDesktop';
-import { useAuthModal } from '../context/AuthModalContext';
+import { stripAuthSearch } from '../utils/authModalUrl';
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const isDesktop = useIsDesktop();
   const [cartOpen, setCartOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -23,7 +25,7 @@ const Header = () => {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
   const staleItemsPruned = useAppSelector((state) => state.cart.staleItemsPruned);
-  const { openLogin, openRegister } = useAuthModal();
+  const currentPath = `${location.pathname}${stripAuthSearch(location.search)}`;
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -157,7 +159,7 @@ const Header = () => {
                     type="button"
                     className="nav-auth-button"
                     data-testid="nav-login"
-                    onClick={() => openLogin()}
+                    onClick={() => dispatch(openLogin(currentPath))}
                   >
                     <i className="fas fa-user" aria-hidden="true" />
                     <span className="d-none d-md-inline ms-1">Sign In</span>
@@ -167,7 +169,7 @@ const Header = () => {
                     type="button"
                     className="nav-auth-button"
                     data-testid="nav-sign-up"
-                    onClick={() => openRegister()}
+                    onClick={() => dispatch(openRegister(currentPath))}
                   >
                     Sign Up
                   </Nav.Link>
