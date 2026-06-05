@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import {
-  closeAuthModal,
-  setAuthModalFromUrl,
-  switchAuthMode
-} from '../features/authModalSlice';
+import { closeAuthModal, setAuthModalFromUrl, switchAuthMode } from '../features/authModalSlice';
 import AuthModal from './AuthModal';
-import { parseAuthModalSearch, stripAuthSearch, type AuthModalMode } from '../utils/authModalUrl';
+import {
+  parseAuthModalSearch,
+  stripAuthSearch,
+  buildAuthSearch,
+  type AuthModalMode
+} from '../utils/authModalUrl';
 
 const PROTECTED_PATH_PREFIXES = ['/profile', '/shipping', '/payment', '/placeorder', '/order'];
 
@@ -99,8 +100,15 @@ const AuthModalHost = () => {
   const handleSwitchMode = useCallback(
     (nextMode: AuthModalMode) => {
       dispatch(switchAuthMode(nextMode));
+      navigate(
+        {
+          pathname: location.pathname,
+          search: buildAuthSearch(nextMode, redirectPath, location.search)
+        },
+        { replace: true }
+      );
     },
-    [dispatch]
+    [dispatch, location.pathname, location.search, navigate, redirectPath]
   );
 
   const handleAuthSuccess = useCallback(
