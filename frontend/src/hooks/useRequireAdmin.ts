@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks';
+import { buildAuthSearch, parseAuthModalSearch, stripAuthSearch } from '../utils/authModalUrl';
 
 /** Redirects guests to login and non-admins to home. Returns true only for admin users. */
 export const useRequireAdmin = (): boolean => {
@@ -10,8 +11,15 @@ export const useRequireAdmin = (): boolean => {
 
   useEffect(() => {
     if (!userInfo) {
-      const redirectPath = `${location.pathname}${location.search}`;
-      navigate(`/login?redirect=${encodeURIComponent(redirectPath)}`);
+      const parsed = parseAuthModalSearch(location.search);
+      if (!parsed.mode) {
+        const cleanSearch = stripAuthSearch(location.search);
+        const redirectPath = `${location.pathname}${cleanSearch}`;
+        navigate({
+          pathname: location.pathname,
+          search: buildAuthSearch('login', redirectPath, cleanSearch)
+        });
+      }
       return;
     }
 

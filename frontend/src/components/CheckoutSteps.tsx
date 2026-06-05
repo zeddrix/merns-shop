@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
-import { buildLoginRedirectUrl, buildRegisterRedirectUrl } from '../utils/authRedirect';
+import { buildAuthUrl } from '../utils/authModalUrl';
 
 interface CheckoutStepsProps {
   step1?: boolean;
@@ -17,8 +17,9 @@ const CheckoutSteps = ({
   step4,
   redirectPath = '/shipping'
 }: CheckoutStepsProps) => {
-  const loginUrl = buildLoginRedirectUrl(redirectPath);
-  const registerUrl = buildRegisterRedirectUrl(redirectPath);
+  const location = useLocation();
+  const loginUrl = buildAuthUrl(location.pathname, 'login', redirectPath, location.search);
+  const registerUrl = buildAuthUrl(location.pathname, 'register', redirectPath, location.search);
 
   return (
     <Nav className="justify-content-center mb-4 checkout-steps" data-testid="checkout-steps">

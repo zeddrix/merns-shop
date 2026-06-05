@@ -8,6 +8,7 @@ import { addToCart, removeFromCart, cartLineKey } from '../features/cartSlice';
 import { capQtyOptions } from '../constants/cartLimits';
 import { formatPrice } from '../utils/formatPrice';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
+import { buildAuthUrl } from '../utils/authModalUrl';
 
 const CartScreen = () => {
   const { id: productId } = useParams<{ id?: string }>();
@@ -38,7 +39,7 @@ const CartScreen = () => {
     if (userInfo) {
       navigate('/shipping');
     } else {
-      navigate('/login?redirect=shipping');
+      navigate(buildAuthUrl('/cart', 'login', '/shipping'));
     }
   };
 

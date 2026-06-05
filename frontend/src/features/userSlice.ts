@@ -84,7 +84,7 @@ export const logout = createAsyncThunk('user/logout', async (_void: undefined, {
   localStorage.removeItem('shippingAddress');
   localStorage.removeItem('paymentMethod');
   dispatch(clearCartItems());
-  window.location.href = '/login';
+  window.location.href = '/';
 });
 
 export const getUserDetails = createAsyncThunk(

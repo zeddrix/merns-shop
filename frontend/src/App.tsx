@@ -12,8 +12,8 @@ import PageTransition from './components/motion/PageTransition';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
-import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
+import AuthLegacyRedirect from './components/AuthLegacyRedirect';
+import { AuthModalProvider } from './context/AuthModalContext';
 import ProfileScreen from './screens/ProfileScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
@@ -30,8 +30,8 @@ const appRouteObjects: RouteObject[] = [
   { path: '/shipping', element: <ShippingScreen /> },
   { path: '/payment', element: <PaymentScreen /> },
   { path: '/placeorder', element: <PlaceOrderScreen /> },
-  { path: '/login', element: <LoginScreen /> },
-  { path: '/register', element: <RegisterScreen /> },
+  { path: '/login', element: <AuthLegacyRedirect mode="login" /> },
+  { path: '/register', element: <AuthLegacyRedirect mode="register" /> },
   { path: '/profile', element: <ProfileScreen /> },
   { path: '/product/:id', element: <ProductScreen /> },
   { path: '/cart/:id?', element: <CartScreen /> },
@@ -72,7 +72,9 @@ const AppRoutes = () => {
 const App = () => {
   return (
     <Router>
-      <AppRoutes />
+      <AuthModalProvider>
+        <AppRoutes />
+      </AuthModalProvider>
     </Router>
   );
 };

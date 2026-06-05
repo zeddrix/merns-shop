@@ -115,8 +115,6 @@ Allow: /
 Allow: /product/
 Disallow: /admin
 Disallow: /cart
-Disallow: /login
-Disallow: /register
 Disallow: /profile
 Disallow: /shipping
 Disallow: /payment

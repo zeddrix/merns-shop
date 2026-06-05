@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks';
-import { buildLoginRedirectUrl } from '../utils/authRedirect';
+import { buildAuthSearch, parseAuthModalSearch, stripAuthSearch } from '../utils/authModalUrl';
 
 export {
   buildLoginRedirectUrl,
@@ -18,8 +18,16 @@ export const useRequireAuth = (): boolean => {
 
   useEffect(() => {
     if (!userInfo) {
-      const redirectPath = `${location.pathname}${location.search}`;
-      navigate(buildLoginRedirectUrl(redirectPath));
+      const parsed = parseAuthModalSearch(location.search);
+      if (parsed.mode) {
+        return;
+      }
+      const cleanSearch = stripAuthSearch(location.search);
+      const redirectPath = `${location.pathname}${cleanSearch}`;
+      navigate({
+        pathname: location.pathname,
+        search: buildAuthSearch('login', redirectPath, cleanSearch)
+      });
     }
   }, [location.pathname, location.search, navigate, userInfo]);
 

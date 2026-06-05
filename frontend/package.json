@@ -9,18 +9,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@hookform/resolvers": "^5.4.0",
     "@paypal/react-paypal-js": "^8.8.2",
     "@reduxjs/toolkit": "^2.6.1",
     "axios": "^1.8.4",
-    "@fortawesome/fontawesome-free": "^6.7.2",
     "bootstrap": "^5.3.3",
     "framer-motion": "^12.9.2",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
     "react-helmet-async": "^3.0.0",
+    "react-hook-form": "^7.77.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^6.30.0"
+    "react-router-dom": "^6.30.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",

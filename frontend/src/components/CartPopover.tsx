@@ -3,6 +3,7 @@ import { Button, ListGroup } from 'react-bootstrap';
 import { useAppSelector } from '../store/hooks';
 import { cartLineKey } from '../features/cartSlice';
 import { formatPrice } from '../utils/formatPrice';
+import { buildAuthUrl } from '../utils/authModalUrl';
 
 interface CartPopoverProps {
   onClose: () => void;
@@ -20,7 +21,7 @@ const CartPopover = ({ onClose }: CartPopoverProps) => {
     if (userInfo) {
       navigate('/shipping');
     } else {
-      navigate('/login?redirect=shipping');
+      navigate(buildAuthUrl('/', 'login', '/shipping'));
     }
   };
 

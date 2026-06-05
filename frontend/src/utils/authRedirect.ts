@@ -11,15 +11,7 @@ export const getRedirectPath = (search: string): string => {
   return normalizeRedirectPath(redirect);
 };
 
-export const buildLoginRedirectUrl = (redirectPath: string): string => {
-  const path = normalizeRedirectPath(redirectPath);
-  return `/login?redirect=${encodeURIComponent(path)}`;
-};
-
-export const buildRegisterRedirectUrl = (redirectPath: string): string => {
-  const path = normalizeRedirectPath(redirectPath);
-  return `/register?redirect=${encodeURIComponent(path)}`;
-};
+export { buildLoginRedirectUrl, buildRegisterRedirectUrl } from './authModalUrl';
 
 export interface RegisterWelcomeLocationState {
   registerWelcome: string;

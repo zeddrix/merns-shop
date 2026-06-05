@@ -8,6 +8,7 @@ import SearchOverlay from './SearchOverlay';
 import CartPopover from './CartPopover';
 import { DISPLAY_BRAND_NAME } from '../constants/brand';
 import { useIsDesktop } from '../hooks/useIsDesktop';
+import { useAuthModal } from '../context/AuthModalContext';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +21,7 @@ const Header = () => {
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
+  const { openLogin, openRegister } = useAuthModal();
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -135,11 +137,23 @@ const Header = () => {
                 </NavDropdown>
               ) : (
                 <>
-                  <Nav.Link as={Link} to="/login" data-testid="nav-login">
+                  <Nav.Link
+                    as="button"
+                    type="button"
+                    className="nav-auth-button"
+                    data-testid="nav-login"
+                    onClick={() => openLogin()}
+                  >
                     <i className="fas fa-user" aria-hidden="true" />
                     <span className="d-none d-md-inline ms-1">Sign In</span>
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/register" data-testid="nav-sign-up">
+                  <Nav.Link
+                    as="button"
+                    type="button"
+                    className="nav-auth-button"
+                    data-testid="nav-sign-up"
+                    onClick={() => openRegister()}
+                  >
                     Sign Up
                   </Nav.Link>
                 </>
