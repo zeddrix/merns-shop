@@ -68,9 +68,15 @@ See `tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts` and `.env.test.examp
 E2E global setup and integration `beforeEach` re-seed the database:
 
 ```bash
-pnpm db:seed      # import users + products (clears orders/products/users first)
-pnpm db:destroy   # remove all users, products, orders
+pnpm db:seed         # reset orders/users; upsert products by modelKey (preserves product IDs)
+pnpm db:sync         # non-destructive catalog refresh (local)
+pnpm db:sync:fixtures # add missing demo users/orders without wiping data
+pnpm db:destroy      # remove all users, products, orders (localhost or confirmed remote)
+pnpm db:seed:prod    # destructive full reset on Atlas — requires ALLOW_DESTRUCTIVE_SEED=I_UNDERSTAND_DATA_LOSS
+pnpm db:sync:prod    # safe prod catalog refresh (preferred after deploy)
 ```
+
+If you see **Product not found** on old `/product/:id` links after `pnpm db:seed`, reload the app (stale cart lines are pruned automatically) or browse products from the homepage for fresh links.
 
 Requires `MONGO_URI` (default in `.env.test.example`: `mongodb://127.0.0.1:27017/merns-shop`).
 

@@ -22,13 +22,19 @@ pnpm db:ping:atlas
 # Requires MONGO_URI in .env pointing at Atlas
 ```
 
-6. Seed production once (from a trusted machine):
+6. Refresh production data (from a trusted machine) — pick the branch that matches your Atlas state:
 
-```bash
-MONGO_URI="mongodb+srv://..." JWT_SECRET="prod-secret" pnpm db:seed:prod
-```
+| Situation                                          | Command                                                                                                                  |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| First deploy / empty Atlas / demo reset OK         | `ALLOW_DESTRUCTIVE_SEED=I_UNDERSTAND_DATA_LOSS MONGO_URI="mongodb+srv://..." JWT_SECRET="prod-secret" pnpm db:seed:prod` |
+| App already live or unknown data ( **default** )   | `MONGO_URI="mongodb+srv://..." JWT_SECRET="prod-secret" pnpm db:sync:prod`                                               |
+| Need John/iPad delivered-order fixtures on staging | `pnpm db:sync:prod && pnpm db:sync:prod:fixtures`                                                                        |
 
-Default seeded admin: `admin@gmail.com` / `123456` — **change immediately in production**.
+`db:sync:prod` updates catalog copy/reviews/variants by stable `modelKey` and **preserves** existing product `_id` values, users, and orders.
+
+`db:seed:prod` wipes users, products, and orders — only use when data loss is acceptable.
+
+Default seeded admin after destructive seed: `admin@gmail.com` / `123456` — **change immediately in production**.
 
 ---
 
@@ -92,15 +98,16 @@ pnpm db:seed
 
 ## Part E — Troubleshooting
 
-| Symptom                      | Fix                                                                                                                                                                 |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Atlas connection timeout     | Check Network Access IP allowlist; verify URI encoding for special chars in password                                                                                |
-| Render build fails on `pnpm` | Ensure `pnpm-workspace.yaml` committed; Node 22 in Render settings                                                                                                  |
-| Render start fails           | Run from repo root; confirm `dist/backend/server.js` exists after `pnpm build`                                                                                      |
-| Blank page in production     | Confirm `pnpm build` outputs `frontend/dist`; Express serves `frontend/dist`                                                                                        |
-| PayPal buttons missing       | Set `PAYPAL_CLIENT_ID` on Render; check browser console for SDK errors                                                                                              |
-| 401 on admin routes          | Re-login; verify `JWT_SECRET` unchanged between deploys                                                                                                             |
-| Broken product images        | `git lfs pull`; `pnpm catalog:validate`; if missing run `pnpm catalog:sources` + `pnpm catalog:images`; re-seed with `pnpm db:seed:prod` after catalog path changes |
+| Symptom                      | Fix                                                                                                                                                                                                     |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Atlas connection timeout     | Check Network Access IP allowlist; verify URI encoding for special chars in password                                                                                                                    |
+| Render build fails on `pnpm` | Ensure `pnpm-workspace.yaml` committed; Node 22 in Render settings                                                                                                                                      |
+| Render start fails           | Run from repo root; confirm `dist/backend/server.js` exists after `pnpm build`                                                                                                                          |
+| Blank page in production     | Confirm `pnpm build` outputs `frontend/dist`; Express serves `frontend/dist`                                                                                                                            |
+| PayPal buttons missing       | Set `PAYPAL_CLIENT_ID` on Render; check browser console for SDK errors                                                                                                                                  |
+| 401 on admin routes          | Re-login; verify `JWT_SECRET` unchanged between deploys                                                                                                                                                 |
+| Broken product images        | `git lfs pull`; `pnpm catalog:validate`; if missing run `pnpm catalog:sources` + `pnpm catalog:images`; then `pnpm db:sync:prod` after catalog path changes                                             |
+| Product not found on PDP URL | Stale Mongo `_id` after destructive re-seed. Prefer `pnpm db:sync:prod`; reload app to prune stale cart; open products from homepage; API also accepts `/api/products/:modelKey` (e.g. `iphone-15-pro`) |
 
 ---
 

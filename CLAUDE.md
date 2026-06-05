@@ -18,6 +18,8 @@ pnpm format:check && pnpm quality:fast
 
 ## Development
 
+Requires **Node 22** (see `.nvmrc`). Use `nvm install && nvm use` before `pnpm install`.
+
 ```bash
 docker compose up -d mongo
 pnpm install
@@ -26,6 +28,8 @@ cp .env.test.example .env.test
 pnpm db:seed
 pnpm dev
 ```
+
+After deploying catalog changes to production, run `pnpm db:sync:prod` (safe, non-destructive). Use `pnpm db:seed:prod` only for empty/demo databases with `ALLOW_DESTRUCTIVE_SEED=I_UNDERSTAND_DATA_LOSS`.
 
 - Frontend (Vite): http://localhost:5020
 - API (Express): http://localhost:5021
