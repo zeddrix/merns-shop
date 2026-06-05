@@ -155,34 +155,7 @@ const VIVO_MODEL_HEROES = {
  * Each entry was chosen to avoid literal-name traps (M33 ≠ galaxy photo) and street-view junk.
  */
 const HERO_FIXES = {
-  'iphone-13-pro-max': {
-    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Iphone_13_pro_max.jpg',
-    sourcePageUrl: 'https://commons.wikimedia.org/wiki/File:Iphone_13_pro_max.jpg',
-    brand: 'Apple',
-    sourceType: 'wikimedia-hand-curated',
-    license: 'CC BY-SA 4.0',
-    author: 'Kuebi',
-    commonsTitle: 'File:Iphone 13 pro max.jpg'
-  },
   'galaxy-m32': {
-    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg',
-    sourcePageUrl: 'https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_M32.jpg',
-    brand: 'Samsung',
-    sourceType: 'wikimedia-hand-curated',
-    license: 'CC BY-SA 4.0',
-    author: 'Blue Mango Juice',
-    commonsTitle: 'File:Samsung Galaxy M32.jpg'
-  },
-  'galaxy-m33': {
-    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg',
-    sourcePageUrl: 'https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_M32.jpg',
-    brand: 'Samsung',
-    sourceType: 'wikimedia-hand-curated',
-    license: 'CC BY-SA 4.0',
-    author: 'Blue Mango Juice',
-    commonsTitle: 'File:Samsung Galaxy M32.jpg'
-  },
-  'galaxy-m34': {
     sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg',
     sourcePageUrl: 'https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_M32.jpg',
     brand: 'Samsung',

@@ -27,6 +27,7 @@
     "catalog:hand-curate": "node scripts/hand-curate-catalog-heroes.mjs",
     "catalog:apply:agent-fixes": "node scripts/apply-agent-visual-fixes.mjs",
     "catalog:visual-review": "node scripts/build-catalog-visual-review.mjs",
+    "catalog:prune:severe": "node scripts/prune-catalog-model-keys.mjs",
     "catalog:validate": "node scripts/validate-catalog-prices.mjs && node scripts/validate-catalog-images.mjs",
     "start": "node dist/backend/server.js",
     "server": "tsx watch backend/server.ts",

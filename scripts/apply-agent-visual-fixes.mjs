@@ -25,12 +25,6 @@ function commons(row) {
 
 /** Agent visual review — verified heroes replacing store shots, wrong subjects, duplicates. */
 const AGENT_VISUAL_FIXES = {
-  'iphone-13-pro-max': commons({
-    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Iphone_13_pro_max.jpg',
-    commonsTitle: 'File:Iphone 13 pro max.jpg',
-    license: 'CC BY-SA 4.0',
-    author: 'Kuebi'
-  }),
   'iphone-11': commons({
     sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/09/IPhone_11_all_color.jpg',
     commonsTitle: 'File:IPhone 11 all color.jpg',
@@ -48,12 +42,6 @@ const AGENT_VISUAL_FIXES = {
     sourceUrl:
       'https://upload.wikimedia.org/wikipedia/commons/8/8e/Back_view_of_iPhone_12_white.jpg',
     commonsTitle: 'File:Back view of iPhone 12 white.jpg',
-    license: 'CC BY-SA 4.0',
-    author: 'Kuebi'
-  }),
-  'iphone-12-pro': commons({
-    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/IPhone_12_Pro_Max_-_3.jpg',
-    commonsTitle: 'File:IPhone 12 Pro Max - 3.jpg',
     license: 'CC BY-SA 4.0',
     author: 'Kuebi'
   }),
@@ -189,51 +177,12 @@ const AGENT_VISUAL_FIXES = {
     license: 'CC BY-SA 4.0',
     author: 'Evan-Amos'
   }),
-  'ps4-pro': commons({
-    sourceUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/2/20/PlayStation_4_Slim_video_game_console.jpg',
-    commonsTitle: 'File:PlayStation 4 Slim video game console.jpg',
-    license: 'CC BY-SA 4.0',
-    author: 'Evan-Amos'
-  }),
   ps5: commons({
     sourceUrl:
       'https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png',
     commonsTitle: 'File:PlayStation 5 and DualSense with transparent background.png',
     license: 'CC BY-SA 4.0',
     author: 'Kuebi'
-  }),
-  'ps5-slim': commons({
-    sourceUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png',
-    commonsTitle: 'File:PlayStation 5 and DualSense with transparent background.png',
-    license: 'CC BY-SA 4.0',
-    author: 'Kuebi'
-  }),
-  'ps5-pro': commons({
-    sourceUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png',
-    commonsTitle: 'File:PlayStation 5 and DualSense with transparent background.png',
-    license: 'CC BY-SA 4.0',
-    author: 'Kuebi'
-  }),
-  'sony-wh1000xm4': commons({
-    sourceUrl: 'https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg',
-    commonsTitle: 'Sony headphones lifestyle (Flickr fallback)',
-    license: 'CC BY-SA 2.0',
-    author: 'Ervins Strauhmanis'
-  }),
-  'sony-wh1000xm5': commons({
-    sourceUrl: 'https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg',
-    commonsTitle: 'Sony headphones lifestyle (Flickr fallback)',
-    license: 'CC BY-SA 2.0',
-    author: 'Ervins Strauhmanis'
-  }),
-  'sony-wh1000xm6': commons({
-    sourceUrl: 'https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg',
-    commonsTitle: 'Sony headphones lifestyle (Flickr fallback)',
-    license: 'CC BY-SA 2.0',
-    author: 'Ervins Strauhmanis'
   }),
   'sony-wf1000xm4': commons({
     sourceUrl: 'https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg',

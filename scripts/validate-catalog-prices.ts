@@ -24,8 +24,8 @@ if (stats.parentCount < 140) {
   errors += 1;
 }
 
-if (stats.variantCount < 500) {
-  console.error(`Variants too few: ${stats.variantCount} (need >= 500)`);
+if (stats.variantCount < 475) {
+  console.error(`Variants too few: ${stats.variantCount} (need >= 475)`);
   errors += 1;
 }
 

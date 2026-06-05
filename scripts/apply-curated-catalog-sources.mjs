@@ -71,20 +71,6 @@ const CURATED = {
     commonsTitle: 'File:Samsung Galaxy M32.jpg',
     sourceType: 'wikimedia'
   },
-  'galaxy-m33': {
-    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg',
-    license: 'CC BY-SA 4.0',
-    author: 'Blue Mango Juice',
-    commonsTitle: 'File:Samsung Galaxy M32.jpg',
-    sourceType: 'wikimedia-hand-curated'
-  },
-  'galaxy-m34': {
-    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg',
-    license: 'CC BY-SA 4.0',
-    author: 'Blue Mango Juice',
-    commonsTitle: 'File:Samsung Galaxy M32.jpg',
-    sourceType: 'wikimedia-sibling'
-  },
   'galaxy-m54': {
     sourceUrl:
       'https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg',
@@ -326,15 +312,7 @@ for (const key of sonyTv) {
   };
 }
 
-const sonyAudio = [
-  'sony-wh1000xm4',
-  'sony-wh1000xm5',
-  'sony-wh1000xm6',
-  'sony-wf1000xm4',
-  'sony-wf1000xm5',
-  'sony-linkbuds-s',
-  'sony-wf-c500'
-];
+const sonyAudio = ['sony-wf1000xm4', 'sony-wf1000xm5', 'sony-linkbuds-s', 'sony-wf-c500'];
 for (const key of sonyAudio) {
   CURATED[key] = {
     sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg',
@@ -345,7 +323,7 @@ for (const key of sonyAudio) {
   };
 }
 
-const sonyConsole = ['ps4-slim', 'ps4-pro', 'ps5', 'ps5-slim'];
+const sonyConsole = ['ps4-slim', 'ps5'];
 for (const key of sonyConsole) {
   CURATED[key] = {
     sourceUrl:
