@@ -35,5 +35,12 @@ describe('catalog index', () => {
     const echo = buildSeedProducts().find((p) => p.name.includes('Echo Dot'));
     expect(echo).toBeDefined();
     expect(echo?.variants.every((v) => v.countInStock === 0)).toBe(true);
+    expect(echo?.numReviews).toBe(0);
+    expect(echo?.reviews ?? []).toHaveLength(0);
+  });
+
+  it('enriched_descriptions_are_multi_sentence', () => {
+    const products = buildSeedProducts();
+    expect(products[0]?.description.length).toBeGreaterThan(120);
   });
 });

@@ -1,5 +1,11 @@
+import type { Types } from 'mongoose';
 import { applyTieredPrice } from './pricing.js';
-import { defaultReviews } from './helpers.js';
+import { enrichDescription } from './copy.js';
+import {
+  averageRating,
+  buildSeedReviewsForProduct,
+  productHasSeedReviews
+} from './review-seeds.js';
 import type { CatalogParentDraft, SeedProduct } from './types.js';
 
 export type { SeedProduct, CatalogParentDraft, PricingCategory } from './types.js';
@@ -60,24 +66,38 @@ const buildVariants = (parent: CatalogParentDraft) =>
     };
   });
 
-export const buildSeedProducts = (): SeedProduct[] =>
-  allDrafts.map((parent) => {
-    const reviews = defaultReviews(parent.releaseYear);
+export interface BuildSeedProductsOptions {
+  reviewerUserId?: Types.ObjectId;
+}
+
+export const buildSeedProducts = (options: BuildSeedProductsOptions = {}): SeedProduct[] => {
+  const { reviewerUserId } = options;
+
+  return allDrafts.map((parent) => {
+    const embeddedReviews = reviewerUserId
+      ? buildSeedReviewsForProduct(parent, reviewerUserId)
+      : [];
+    const hasExplicitStats = parent.rating !== undefined || parent.numReviews !== undefined;
+    const rating = hasExplicitStats ? (parent.rating ?? 0) : averageRating(embeddedReviews);
+    const numReviews = hasExplicitStats ? (parent.numReviews ?? 0) : embeddedReviews.length;
+
     return {
       name: parent.name,
       image: parent.image,
-      description: parent.description,
+      description: enrichDescription(parent),
       brand: parent.brand,
       category: parent.category,
       subcategory: parent.subcategory,
       modelKey: parent.modelKey,
       releaseYear: parent.releaseYear,
       condition: 'Like New',
-      rating: parent.rating ?? reviews.rating,
-      numReviews: parent.numReviews ?? reviews.numReviews,
+      rating,
+      numReviews,
+      reviews: productHasSeedReviews(parent.modelKey) ? embeddedReviews : [],
       variants: buildVariants(parent)
     };
   });
+};
 
 export const getCatalogDrafts = (): CatalogParentDraft[] => allDrafts;
 

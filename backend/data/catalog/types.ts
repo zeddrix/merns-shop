@@ -33,6 +33,15 @@ export interface CatalogParentDraft {
   variants: CatalogVariantDraft[];
 }
 
+import type { Types } from 'mongoose';
+
+export interface SeedReview {
+  name: string;
+  rating: number;
+  comment: string;
+  user: Types.ObjectId;
+}
+
 export interface SeedProduct {
   name: string;
   image: string;
@@ -45,6 +54,7 @@ export interface SeedProduct {
   condition: string;
   rating: number;
   numReviews: number;
+  reviews?: SeedReview[];
   variants: Array<{
     sku: string;
     label: string;

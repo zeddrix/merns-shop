@@ -13,8 +13,8 @@ export const fixtureOutOfStock: CatalogParentDraft = {
   description:
     'Meet Echo Dot - Our most popular smart speaker with a fabric design. Compact smart speaker for small spaces.',
   image: catalogImage('amazon', 'echo-dot-3'),
-  rating: 4,
-  numReviews: 12,
+  rating: 0,
+  numReviews: 0,
   variants: [
     {
       skuSuffix: 'charcoal',

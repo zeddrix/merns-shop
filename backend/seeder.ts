@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import users from './data/users.js';
-import products from './data/products.js';
+import buildSeedProducts from './data/catalog/index.js';
+import { insertSeedOrders } from './data/seed-orders.js';
 import User from './models/User.js';
 import Product from './models/Product.js';
 import Order from './models/Order.js';
@@ -19,12 +20,12 @@ const importData = async (): Promise<void> => {
     const createdUsers = await User.insertMany(users);
 
     const adminUser = createdUsers[0]._id;
+    const sampleProducts = buildSeedProducts({
+      reviewerUserId: adminUser
+    }).map((product) => ({ ...product, user: adminUser }));
 
-    const sampleProducts = products.map((product) => {
-      return { ...product, user: adminUser };
-    });
-
-    await Product.insertMany(sampleProducts);
+    const insertedProducts = await Product.insertMany(sampleProducts);
+    await insertSeedOrders(createdUsers, insertedProducts);
 
     console.log('Data imported...');
     process.exit();

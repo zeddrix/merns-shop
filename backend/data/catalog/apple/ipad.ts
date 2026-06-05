@@ -1,5 +1,5 @@
 import type { CatalogParentDraft } from '../types.js';
-import { catalogImage, storageVariants, defaultReviews } from '../helpers.js';
+import { catalogImage, storageVariants } from '../helpers.js';
 
 const apple = 'apple';
 
@@ -193,11 +193,5 @@ const ipads: CatalogParentDraft[] = [
     ])
   }
 ];
-
-ipads.forEach((p, i) => {
-  const reviews = defaultReviews(p.releaseYear);
-  p.rating = reviews.rating;
-  p.numReviews = reviews.numReviews + i;
-});
 
 export const appleIpads = ipads;
