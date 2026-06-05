@@ -4,6 +4,7 @@ import {
   openProductByExactName,
   fillSearchAndSubmit,
   searchProducts,
+  selectAppOption,
   selectProductVariant,
   selectVariantAndAddToCart
 } from '../fixtures/test-helpers';
@@ -68,7 +69,38 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
   });
 
+  test('product_card_media_uniform_height', async ({ page }) => {
+    await selectAppOption(page, 'filter-category', 'Electronics');
+    await selectAppOption(page, 'filter-subcategory', 'Tablets');
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
+    const mediaBoxes = page.locator(
+      '[data-testid^="product-card-"] [data-testid="catalog-card-media"]'
+    );
+    await expect(mediaBoxes.first()).toBeVisible();
+    const heights = await mediaBoxes.evaluateAll((nodes) =>
+      nodes.slice(0, 4).map((el) => el.getBoundingClientRect().height)
+    );
+    expect(heights.length).toBeGreaterThanOrEqual(2);
+    const max = Math.max(...heights);
+    const min = Math.min(...heights);
+    expect(max - min).toBeLessThanOrEqual(2);
+    const objectFits = await mediaBoxes.evaluateAll((nodes) =>
+      nodes.slice(0, 4).map((el) => getComputedStyle(el.querySelector('img') ?? el).objectFit)
+    );
+    expect(objectFits.every((fit) => fit === 'contain')).toBe(true);
+  });
+
   test('product_image_loads_offline', async ({ page }) => {
+    await fillSearchAndSubmit(page, 'Galaxy Tab');
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
+    const cardMedia = page.locator('[data-testid="catalog-card-media"] img').first();
+    await expect(cardMedia).toHaveAttribute('src', /\/images\/catalog\/.*\.webp$/);
+    await expect
+      .poll(async () =>
+        cardMedia.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth >= 200)
+      )
+      .toBe(true);
+
     await openProductByExactName(page, IPHONE_15_PRO);
 
     const productImage = page.locator('[data-testid="product-details"] img');

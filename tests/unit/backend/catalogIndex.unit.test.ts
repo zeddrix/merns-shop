@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import fs from 'node:fs';
+import path from 'node:path';
 import buildSeedProducts, { getCatalogStats } from '../../../backend/data/catalog/index.js';
 
 describe('catalog index', () => {
@@ -42,5 +44,14 @@ describe('catalog index', () => {
   it('enriched_descriptions_are_multi_sentence', () => {
     const products = buildSeedProducts();
     expect(products[0]?.description.length).toBeGreaterThan(120);
+  });
+
+  it('manifest entry count matches parent product count after regen', () => {
+    const stats = getCatalogStats();
+    const manifestPath = path.join(process.cwd(), 'catalog-image-manifest.json');
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as {
+      entries: { modelKey: string }[];
+    };
+    expect(manifest.entries.length).toBe(stats.parentCount);
   });
 });

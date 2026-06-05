@@ -4,8 +4,10 @@ import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
 
-const MIN_IMAGE_BYTES = 8 * 1024;
-const MIN_IMAGE_DIMENSION = 200;
+const MIN_IMAGE_BYTES = 3000;
+const CATALOG_CANVAS_WIDTH = 1200;
+const CATALOG_CANVAS_HEIGHT = 900;
+const CATALOG_CANVAS_BG = { r: 248, g: 249, b: 250 };
 
 async function validateCatalogImageFile(
   filePath: string
@@ -17,10 +19,25 @@ async function validateCatalogImageFile(
   const meta = await sharp(filePath).metadata();
   const width = meta.width ?? 0;
   const height = meta.height ?? 0;
-  if (width < MIN_IMAGE_DIMENSION || height < MIN_IMAGE_DIMENSION) {
-    return { ok: false, reason: `dimensions ${width}x${height} below ${MIN_IMAGE_DIMENSION}px` };
+  if (width !== CATALOG_CANVAS_WIDTH || height !== CATALOG_CANVAS_HEIGHT) {
+    return {
+      ok: false,
+      reason: `expected ${CATALOG_CANVAS_WIDTH}x${CATALOG_CANVAS_HEIGHT}, got ${width}x${height}`
+    };
   }
   return { ok: true };
+}
+
+async function normalizeToCatalogCanvas(buffer: Buffer): Promise<Buffer> {
+  return sharp(buffer)
+    .rotate()
+    .resize(CATALOG_CANVAS_WIDTH, CATALOG_CANVAS_HEIGHT, {
+      fit: 'contain',
+      background: CATALOG_CANVAS_BG
+    })
+    .flatten({ background: CATALOG_CANVAS_BG })
+    .webp({ quality: 82, effort: 4 })
+    .toBuffer();
 }
 
 describe('catalog image quality', () => {
@@ -36,24 +53,36 @@ describe('catalog image quality', () => {
 
     const result = await validateCatalogImageFile(filePath);
     expect(result.ok).toBe(false);
-    expect(result.reason).toMatch(/small|dimension/i);
+    expect(result.reason).toMatch(/small|expected/i);
     fs.rmSync(dir, { recursive: true });
   });
 
-  it('accepts decodable images above thresholds', async () => {
+  it('normalizeToCatalogCanvas outputs fixed 1200x900 webp', async () => {
+    const portrait = await sharp({
+      create: { width: 400, height: 900, channels: 3, background: { r: 10, g: 20, b: 30 } }
+    })
+      .png()
+      .toBuffer();
+    const output = await normalizeToCatalogCanvas(portrait);
+    const meta = await sharp(output).metadata();
+    expect(meta.width).toBe(CATALOG_CANVAS_WIDTH);
+    expect(meta.height).toBe(CATALOG_CANVAS_HEIGHT);
+    expect(meta.format).toBe('webp');
+  });
+
+  it('accepts normalized canvas webp at 1200x900', async () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'catalog-img-'));
     const filePath = path.join(dir, 'ok.webp');
-    const ok = await sharp({
-      create: {
-        width: MIN_IMAGE_DIMENSION,
-        height: MIN_IMAGE_DIMENSION,
-        channels: 3,
-        background: { r: 40, g: 80, b: 120 }
-      }
+    const pixels = Buffer.alloc(800 * 600 * 3);
+    for (let i = 0; i < pixels.length; i += 1) {
+      pixels[i] = (i * 17) % 256;
+    }
+    const source = await sharp(pixels, {
+      raw: { width: 800, height: 600, channels: 3 }
     })
-      .webp({ quality: 90 })
+      .png()
       .toBuffer();
-    expect(ok.length).toBeGreaterThanOrEqual(MIN_IMAGE_BYTES);
+    const ok = await normalizeToCatalogCanvas(source);
     fs.writeFileSync(filePath, ok);
 
     const result = await validateCatalogImageFile(filePath);

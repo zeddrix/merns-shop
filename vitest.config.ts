@@ -27,6 +27,9 @@ export default defineConfig({
           name: 'node',
           include: [
             'tests/unit/backend/**/*.{test,spec}.ts',
+            'tests/unit/scripts/**/*.{test,spec}.ts',
+            'tests/unit/e2e/**/*.{test,spec}.ts',
+            'tests/unit/smoke/**/*.{test,spec}.ts',
             'tests/unit/types/**/*.{test,spec}.ts',
             'tests/integration/**/*.{test,spec}.ts'
           ],

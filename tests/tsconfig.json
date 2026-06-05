@@ -7,6 +7,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "allowJs": true,
     "types": ["node", "vitest/globals"],
     "paths": {
       "@types/*": ["../types/*"]
@@ -18,7 +19,10 @@
     "./vitest-setup.ts",
     "../types/**/*.ts",
     "../backend/types/**/*.d.ts",
-    "../frontend/src/vite-env.d.ts"
+    "../frontend/src/vite-env.d.ts",
+    "../scripts/is-polluted-official-url.mjs",
+    "../scripts/official-category-donors.mjs",
+    "../scripts/catalog-image-relevance.mjs"
   ],
   "exclude": ["./e2e/**", "node_modules"]
 }

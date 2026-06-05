@@ -4,6 +4,9 @@ import { assertHomeCatalogHealthy, fillSearchAndSubmit } from '../fixtures/test-
 test.describe('smoke app boot', () => {
   test('smoke_home_catalog_healthy', async ({ page, request }) => {
     await page.goto('/');
+    await page.locator('[data-testid="pagination-next"]').click();
+    await expect(page).toHaveURL(/\/page\/2/);
+    await page.locator('[data-testid="pagination-prev"]').click();
     expect(page.url()).toMatch(/localhost:5020/);
     await expect(page.locator('[data-testid="site-brand"]')).toHaveText("MERN's Shop");
     await expect(page.locator('[data-testid="home-heading"]')).toBeVisible();
@@ -22,7 +25,17 @@ test.describe('smoke app boot', () => {
     expect(Array.isArray(products.products)).toBe(true);
     expect(products.products.length).toBeGreaterThan(0);
 
-    const productImage = page.locator('[data-testid^="product-card-"] img').first();
+    const carouselMedia = page.locator('[data-testid="product-carousel-media"]').first();
+    await expect(carouselMedia).toBeVisible();
+    const carouselBox = await carouselMedia.boundingBox();
+    expect(carouselBox?.height ?? 0).toBeGreaterThan(200);
+    expect(carouselBox?.height ?? 0).toBeLessThanOrEqual(400);
+    const carouselObjectFit = await carouselMedia.evaluate(
+      (el) => getComputedStyle(el.querySelector('img') ?? el).objectFit
+    );
+    expect(carouselObjectFit).toBe('contain');
+
+    const productImage = page.locator('[data-testid="catalog-card-media"] img').first();
     await expect(productImage).toHaveAttribute('src', /\/images\//);
     const loaded = await productImage.evaluate(
       (img: HTMLImageElement) => img.complete && img.naturalWidth > 0
