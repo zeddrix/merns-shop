@@ -30,6 +30,7 @@ const OrderScreen = () => {
   const { id: orderId } = useParams<{ id: string }>();
   const isAuthenticated = useRequireAuth();
   const [clientId, setClientId] = useState('');
+  const [paypalButtonsReady, setPaypalButtonsReady] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -57,12 +58,35 @@ const OrderScreen = () => {
     if (!orderId) {
       return;
     }
-    const fetchPayPalClientId = async () => {
-      const { data } = await axios.get<string>('/api/config/paypal');
-      setClientId(typeof data === 'string' ? data : '');
+
+    let cancelled = false;
+
+    const fetchPayPalClientId = async (attempt = 0): Promise<void> => {
+      try {
+        const { data } = await axios.get<string>('/api/config/paypal');
+        if (!cancelled) {
+          setClientId(typeof data === 'string' ? data : '');
+        }
+      } catch {
+        if (!cancelled && attempt < 2) {
+          await new Promise((resolve) => {
+            window.setTimeout(resolve, 1000);
+          });
+          await fetchPayPalClientId(attempt + 1);
+        }
+      }
     };
+
     void fetchPayPalClientId();
+
+    return () => {
+      cancelled = true;
+    };
   }, [orderId]);
+
+  useEffect(() => {
+    setPaypalButtonsReady(false);
+  }, [clientId, orderId]);
 
   useEffect(() => {
     if (!isAuthenticated || !orderId) return;
@@ -212,11 +236,14 @@ const OrderScreen = () => {
                 </Row>
               </ListGroup.Item>
               {!displayOrder.isPaid && clientId && (
-                <ListGroup.Item data-testid="paypal-buttons">
+                <ListGroup.Item
+                  data-testid={paypalButtonsReady ? 'paypal-buttons-ready' : 'paypal-buttons'}
+                >
                   {loadingPay && <Loader />}
                   <PayPalScriptProvider options={{ clientId, currency: 'USD' }}>
                     <PayPalButtons
                       style={{ layout: 'vertical' }}
+                      onInit={() => setPaypalButtonsReady(true)}
                       createOrder={(_data, actions) => {
                         return actions.order.create({
                           intent: 'CAPTURE',
