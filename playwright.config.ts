@@ -37,6 +37,8 @@ function readEnvInt(name: string, fallback: number): number {
   return Number.isFinite(n) && n >= 0 ? n : fallback;
 }
 
+const paypalRetries = readEnvInt('PW_PAYPAL_RETRIES', readEnvInt('PW_RETRIES', 1));
+
 const config: PlaywrightTestConfig = {
   globalSetup: './tests/e2e/setup/global-setup.ts',
   globalTeardown: './tests/e2e/setup/global-teardown.ts',
@@ -66,7 +68,17 @@ const config: PlaywrightTestConfig = {
   projects: [
     {
       name: 'chromium',
-      use: { browserName: 'chromium' }
+      use: { browserName: 'chromium' },
+      grepInvert: /@paypal/
+    },
+    {
+      name: 'paypal',
+      use: { browserName: 'chromium' },
+      grep: /@paypal/,
+      fullyParallel: false,
+      retries: paypalRetries,
+      workers: 1,
+      ...(process.env.PW_PAYPAL_ONLY !== '1' ? { dependencies: ['chromium' as const] } : {})
     }
   ]
 };

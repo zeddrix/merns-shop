@@ -78,7 +78,7 @@
     "test:e2e:checkout": "PW_WORKERS=1 playwright test tests/e2e/checkout",
     "test:e2e:admin": "PW_WORKERS=1 playwright test tests/e2e/admin",
     "test:e2e:misc": "PW_WORKERS=1 playwright test tests/e2e/misc",
-    "test:e2e:paypal": "PW_WORKERS=1 playwright test tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts",
+    "test:e2e:paypal": "PW_PAYPAL_ONLY=1 PW_WORKERS=1 playwright test --project=paypal",
     "test:e2e:journeys": "PW_WORKERS=1 playwright test tests/e2e/journeys",
     "test:e2e:ui": "playwright test --ui",
     "verify:inner": "pnpm format:check && pnpm quality:fast && pnpm test:unit:inner && pnpm test:integration:inner && pnpm build:inner",
