@@ -179,7 +179,7 @@ Prefer asserting cart UI (`cart-item-*`, quantities) after user actions instead.
 
 ### React Bootstrap forms and native controls
 
-This app uses React Bootstrap (`Form`, `Button`, `Nav`, `Table`) — not custom Svelte comboboxes. For `<select>` elements (e.g., review rating, cart quantity), use Playwright's `selectOption` or fill/check patterns with ≥2 user actions and a verified outcome.
+This app uses React Bootstrap (`Form`, `Button`, `Nav`, `Table`) and a custom `AppSelect` dropdown for filters, cart quantity, and review rating. For `AppSelect`, use `selectAppOption(page, testId, value)` from `tests/e2e/fixtures/test-helpers.ts` (click trigger → click option) with ≥2 user actions and a verified outcome. Do not use Playwright `selectOption` on `AppSelect` testids.
 
 ### Multi-step journey: action → result → consequence
 

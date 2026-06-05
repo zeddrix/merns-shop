@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, Button, Form } from 'react-bootstrap';
+import AppSelect from './AppSelect';
 import type { CartItem } from '../types';
 import { cartLineTestId } from '../utils/cartTestId';
 import { formatPrice } from '../utils/formatPrice';
@@ -35,17 +36,15 @@ const CartLineItem = ({ item, maxQty, onQtyChange, onRemove }: CartLineItemProps
         </Col>
         <Col xs={4} md={2}>
           <Form.Label className="text-muted small mb-1 d-md-none">Qty</Form.Label>
-          <Form.Select
+          <AppSelect
             value={item.qty}
             data-testid={`cart-qty-${lineId}`}
-            onChange={(e) => onQtyChange(Number(e.target.value))}
-          >
-            {[...Array(maxQty).keys()].map((x) => (
-              <option key={x + 1} value={x + 1}>
-                {x + 1}
-              </option>
-            ))}
-          </Form.Select>
+            onChange={(value) => onQtyChange(Number(value))}
+            options={[...Array(maxQty).keys()].map((x) => ({
+              value: String(x + 1),
+              label: String(x + 1)
+            }))}
+          />
         </Col>
         <Col xs={4} md={2} className="text-end text-md-start">
           <Button

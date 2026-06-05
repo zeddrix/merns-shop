@@ -268,7 +268,9 @@ const productDetailsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(listProductDetails.pending, (state) => {
-        state.loading = true;
+        if (!state.product._id) {
+          state.loading = true;
+        }
       })
       .addCase(listProductDetails.fulfilled, (state, action) => {
         state.loading = false;

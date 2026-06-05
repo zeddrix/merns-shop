@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button, Form, Badge } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Rating from '../components/Rating';
@@ -7,6 +7,8 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Meta from '../components/Meta';
 import PriceDisplay from '../components/PriceDisplay';
+import AppSelect from '../components/AppSelect';
+import ProductVariantDetails from '../components/ProductVariantDetails';
 import {
   buildProductJsonLd,
   buildProductTitle,
@@ -15,18 +17,21 @@ import {
 } from '../utils/seoMeta';
 import ProductVariantPicker from '../components/ProductVariantPicker';
 import { capQtyOptions } from '../constants/cartLimits';
+import { firstInStockSku } from '../utils/defaultVariant';
+import { addToCart } from '../features/cartSlice';
 import {
   listProductDetails,
   createProductReview,
   productReviewCreateReset
 } from '../features/productSlice';
 
+type AddCartButtonState = 'idle' | 'added';
+
 const ProductScreen = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const [qty, setQty] = useState(1);
   const [selectedSku, setSelectedSku] = useState('');
-  const [variantError, setVariantError] = useState(false);
+  const [addCartState, setAddCartState] = useState<AddCartButtonState>('idle');
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
@@ -34,8 +39,6 @@ const ProductScreen = () => {
 
   const productDetails = useAppSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-
-  const userInfo = useAppSelector((state) => state.userLogin.userInfo);
 
   const productReviewCreate = useAppSelector((state) => state.productReviewCreate);
   const {
@@ -50,31 +53,50 @@ const ProductScreen = () => {
   const displayImage = selectedVariant?.image ?? product.image;
   const maxQty = capQtyOptions(selectedVariant?.countInStock ?? 0);
 
+  const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+
   useEffect(() => {
-    if (successProductReview) {
+    if (successProductReview && id) {
       setRating(0);
       setComment('');
+      dispatch(listProductDetails(id));
     }
     if (id && (!product._id || product._id !== id)) {
       dispatch(listProductDetails(id));
       dispatch(productReviewCreateReset());
-      setSelectedSku('');
       setQty(1);
+      setAddCartState('idle');
     }
   }, [dispatch, id, successProductReview, product._id]);
 
+  useEffect(() => {
+    if (id && userInfo && product._id === id) {
+      dispatch(listProductDetails(id));
+    }
+  }, [dispatch, id, userInfo, product._id]);
+
+  useEffect(() => {
+    if (product.variants.length > 0 && product._id === id) {
+      const defaultSku = firstInStockSku(product.variants);
+      setSelectedSku(defaultSku);
+      setQty(1);
+    }
+  }, [product._id, product.variants, id]);
+
+  useEffect(() => {
+    if (addCartState !== 'added') {
+      return;
+    }
+    const timer = window.setTimeout(() => setAddCartState('idle'), 2000);
+    return () => window.clearTimeout(timer);
+  }, [addCartState]);
+
   const addToCartHandler = () => {
-    if (!selectedSku) {
-      setVariantError(true);
+    if (!id || !selectedSku || !selectedVariant || selectedVariant.countInStock === 0) {
       return;
     }
-    if (!selectedVariant || selectedVariant.countInStock === 0) {
-      return;
-    }
-    setVariantError(false);
-    if (id) {
-      navigate(`/cart/${id}?qty=${qty}&variantSku=${encodeURIComponent(selectedSku)}`);
-    }
+    void dispatch(addToCart({ id, qty, variantSku: selectedSku }));
+    setAddCartState('added');
   };
 
   const submitHandler = (e: FormEvent) => {
@@ -88,6 +110,20 @@ const ProductScreen = () => {
       );
     }
   };
+
+  const qtyOptions = [...Array(maxQty).keys()].map((x) => ({
+    value: String(x + 1),
+    label: String(x + 1)
+  }));
+
+  const ratingOptions = [
+    { value: '0', label: 'Select...' },
+    { value: '1', label: '1 - Poor' },
+    { value: '2', label: '2 - Fair' },
+    { value: '3', label: '3 - Good' },
+    { value: '4', label: '4 - Very Good' },
+    { value: '5', label: '5 - Excellent' }
+  ];
 
   return (
     <>
@@ -141,6 +177,11 @@ const ProductScreen = () => {
                 <ListGroup.Item>
                   <span className="product-description-clamp">{product.description}</span>
                 </ListGroup.Item>
+                {selectedVariant && (
+                  <ListGroup.Item>
+                    <ProductVariantDetails product={product} variant={selectedVariant} />
+                  </ListGroup.Item>
+                )}
               </ListGroup>
             </Col>
             <Col xs={12} lg={3}>
@@ -152,15 +193,9 @@ const ProductScreen = () => {
                       selectedSku={selectedSku}
                       onSelect={(sku) => {
                         setSelectedSku(sku);
-                        setVariantError(false);
                         setQty(1);
                       }}
                     />
-                    {variantError && (
-                      <Message variant="warning" data-testid="product-variant-error">
-                        Please select an option before adding to cart.
-                      </Message>
-                    )}
                   </ListGroup.Item>
 
                   {selectedVariant && (
@@ -177,17 +212,12 @@ const ProductScreen = () => {
                       <Row>
                         <Col>Qty</Col>
                         <Col>
-                          <Form.Select
+                          <AppSelect
                             value={qty}
                             data-testid="product-qty"
-                            onChange={(e) => setQty(Number(e.target.value))}
-                          >
-                            {[...Array(maxQty).keys()].map((x) => (
-                              <option key={x + 1} value={x + 1}>
-                                {x + 1}
-                              </option>
-                            ))}
-                          </Form.Select>
+                            onChange={(value) => setQty(Number(value))}
+                            options={qtyOptions}
+                          />
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -196,15 +226,17 @@ const ProductScreen = () => {
                   <ListGroup.Item>
                     <Button
                       onClick={addToCartHandler}
-                      className="w-100 btn-cta"
+                      className={`w-100 btn-cta product-add-cart-btn${addCartState === 'added' ? ' product-add-cart-btn--added' : ''}`}
                       type="button"
-                      data-testid="product-add-cart"
+                      data-testid={
+                        addCartState === 'added' ? 'product-add-cart-added' : 'product-add-cart'
+                      }
                       disabled={
                         allVariantsOutOfStock ||
                         (selectedVariant !== undefined && selectedVariant.countInStock === 0)
                       }
                     >
-                      Add To Cart
+                      {addCartState === 'added' ? 'Added to cart!' : 'Add To Cart'}
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>
@@ -217,38 +249,34 @@ const ProductScreen = () => {
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant="flush">
                 {product.reviews.map((review) => (
-                  <ListGroup.Item key={review._id}>
+                  <ListGroup.Item key={review._id} data-testid="review-item">
                     <strong>{review.name}</strong>
                     <Rating value={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
                   </ListGroup.Item>
                 ))}
-                <ListGroup.Item>
+              </ListGroup>
+              {(successProductReview || errorProductReview || product.canReview) && (
+                <div className="mt-4">
                   <h2>Write a Customer Review</h2>
                   {successProductReview && (
                     <Message variant="success">Review submitted successfully</Message>
                   )}
                   {loadingProductReview && <Loader />}
                   {errorProductReview && <Message variant="danger">{errorProductReview}</Message>}
-                  {userInfo ? (
+                  {product.canReview && (
                     <Form onSubmit={submitHandler} data-testid="review-form">
-                      <Form.Group controlId="rating">
+                      <Form.Group controlId="rating" className="mb-3">
                         <Form.Label>Rating</Form.Label>
-                        <Form.Select
+                        <AppSelect
                           value={rating}
                           data-testid="review-rating"
-                          onChange={(e) => setRating(Number(e.target.value))}
-                        >
-                          <option value={0}>Select...</option>
-                          <option value={1}>1 - Poor</option>
-                          <option value={2}>2 - Fair</option>
-                          <option value={3}>3 - Good</option>
-                          <option value={4}>4 - Very Good</option>
-                          <option value={5}>5 - Excellent</option>
-                        </Form.Select>
+                          onChange={(value) => setRating(Number(value))}
+                          options={ratingOptions}
+                        />
                       </Form.Group>
-                      <Form.Group controlId="comment">
+                      <Form.Group controlId="comment" className="mb-3">
                         <Form.Label>Comment</Form.Label>
                         <Form.Control
                           as="textarea"
@@ -267,13 +295,9 @@ const ProductScreen = () => {
                         Submit
                       </Button>
                     </Form>
-                  ) : (
-                    <Message>
-                      Please <Link to="/login">sign in</Link> to write a review{' '}
-                    </Message>
                   )}
-                </ListGroup.Item>
-              </ListGroup>
+                </div>
+              )}
             </Col>
           </Row>
         </>

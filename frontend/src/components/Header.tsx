@@ -1,29 +1,99 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { logout } from '../features/userSlice';
 import SearchBox from './SearchBox';
+import SearchOverlay from './SearchOverlay';
+import CartPopover from './CartPopover';
 import { DISPLAY_BRAND_NAME } from '../constants/brand';
+import { useIsDesktop } from '../hooks/useIsDesktop';
 
 const Header = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const isDesktop = useIsDesktop();
+  const [cartOpen, setCartOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const cartWrapRef = useRef<HTMLDivElement>(null);
+
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
   const logoutHandler = () => {
     dispatch(logout());
   };
 
+  useEffect(() => {
+    if (!cartOpen) return;
+    const handlePointerDown = (event: Event) => {
+      if (!cartWrapRef.current?.contains(event.target as Node)) {
+        setCartOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handlePointerDown);
+    return () => document.removeEventListener('mousedown', handlePointerDown);
+  }, [cartOpen]);
+
+  const cartClickHandler = (event: MouseEvent) => {
+    if (isDesktop) {
+      event.preventDefault();
+      setCartOpen((open) => !open);
+      return;
+    }
+    navigate('/cart');
+  };
+
   return (
-    <header>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
-        <Container>
-          <Navbar.Brand as={Link} to="/" data-testid="site-brand">
+    <header className="site-header">
+      <Navbar className="site-navbar" variant="dark" expand="lg" collapseOnSelect>
+        <Container className="site-navbar-container">
+          <Navbar.Brand as={Link} to="/" className="site-brand" data-testid="site-brand">
             {DISPLAY_BRAND_NAME}
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" data-testid="navbar-toggle" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <SearchBox />
-            <Nav className="me-auto nav-categories-wrap">
+          <div className="site-header-tools ms-auto d-flex align-items-center gap-2">
+            <div className="site-search-desktop d-none d-lg-flex align-items-center">
+              <button
+                type="button"
+                className="nav-search-open touch-target"
+                data-testid="nav-search-open"
+                aria-label="Open search"
+                onClick={() => setSearchOpen(true)}
+              >
+                <i className="fas fa-search" aria-hidden="true" />
+              </button>
+            </div>
+            <div className="cart-nav-wrap" ref={cartWrapRef}>
+              <Nav.Link
+                as={Link}
+                to="/cart"
+                className="cart-nav-link"
+                data-testid="nav-cart"
+                onClick={cartClickHandler}
+              >
+                <i className="fas fa-shopping-bag" aria-hidden="true" />
+                <span className="cart-nav-label d-none d-lg-inline">Cart</span>
+                {cartCount > 0 && (
+                  <span className="cart-badge" data-testid="nav-cart-count">
+                    {cartCount}
+                  </span>
+                )}
+              </Nav.Link>
+              {isDesktop && cartOpen && <CartPopover onClose={() => setCartOpen(false)} />}
+            </div>
+            <Navbar.Toggle
+              aria-controls="basic-navbar-nav"
+              data-testid="navbar-toggle"
+              className="d-lg-none"
+            />
+          </div>
+          <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
+          <Navbar.Collapse id="basic-navbar-nav" className="site-navbar-collapse">
+            <div className="site-search-mobile d-lg-none w-100">
+              <SearchBox />
+            </div>
+            <Nav className="site-nav-categories">
               <Nav.Link
                 as={Link}
                 to="/?category=Electronics&subcategory=Phones"
@@ -53,12 +123,9 @@ const Header = () => {
                 Consoles
               </Nav.Link>
             </Nav>
-            <Nav className="ms-auto">
-              <Nav.Link as={Link} to="/cart" data-testid="nav-cart">
-                <i className="fas fa-shopping-cart" /> Cart
-              </Nav.Link>
+            <Nav className="site-nav-actions ms-lg-auto">
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id="username">
+                <NavDropdown title={userInfo.name} id="username" align="end">
                   <NavDropdown.Item as={Link} to="/profile" data-testid="nav-profile">
                     Profile
                   </NavDropdown.Item>
@@ -69,8 +136,8 @@ const Header = () => {
               ) : (
                 <>
                   <Nav.Link as={Link} to="/login" data-testid="nav-login">
-                    <i className="fas fa-user" />
-                    Sign In
+                    <i className="fas fa-user" aria-hidden="true" />
+                    <span className="d-none d-md-inline ms-1">Sign In</span>
                   </Nav.Link>
                   <Nav.Link as={Link} to="/register" data-testid="nav-sign-up">
                     Sign Up
@@ -78,7 +145,7 @@ const Header = () => {
                 </>
               )}
               {userInfo?.isAdmin && (
-                <NavDropdown title="Admin" id="adminmenu">
+                <NavDropdown title="Admin" id="adminmenu" align="end">
                   <NavDropdown.Item as={Link} to="/admin/userlist" data-testid="nav-admin-users">
                     Users
                   </NavDropdown.Item>

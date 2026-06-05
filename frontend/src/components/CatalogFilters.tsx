@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Row, Col, Form, Button } from 'react-bootstrap';
+import { Row, Col, Form } from 'react-bootstrap';
+import AppSelect from './AppSelect';
 import axios from 'axios';
 import type { ProductMetaResponse } from '../types';
 
@@ -62,52 +63,43 @@ const CatalogFilters = ({ keyword = '' }: CatalogFiltersProps) => {
         <Col xs={12} sm={6} md={4} lg={2}>
           <Form.Group controlId="filter-brand">
             <Form.Label>Brand</Form.Label>
-            <Form.Select
+            <AppSelect
               value={brand}
               data-testid="filter-brand"
-              onChange={(e) => applyFilters({ brand: e.target.value })}
-            >
-              <option value="">All brands</option>
-              {meta.brands.map((b) => (
-                <option key={b} value={b}>
-                  {b}
-                </option>
-              ))}
-            </Form.Select>
+              onChange={(value) => applyFilters({ brand: value })}
+              options={[
+                { value: '', label: 'All brands' },
+                ...meta.brands.map((b) => ({ value: b, label: b }))
+              ]}
+            />
           </Form.Group>
         </Col>
         <Col md={4} lg={2}>
           <Form.Group controlId="filter-category">
             <Form.Label>Category</Form.Label>
-            <Form.Select
+            <AppSelect
               value={category}
               data-testid="filter-category"
-              onChange={(e) => applyFilters({ category: e.target.value, subcategory: '' })}
-            >
-              <option value="">All categories</option>
-              {meta.categories.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </Form.Select>
+              onChange={(value) => applyFilters({ category: value, subcategory: '' })}
+              options={[
+                { value: '', label: 'All categories' },
+                ...meta.categories.map((c) => ({ value: c, label: c }))
+              ]}
+            />
           </Form.Group>
         </Col>
         <Col xs={12} sm={6} md={4} lg={2}>
           <Form.Group controlId="filter-subcategory">
             <Form.Label>Type</Form.Label>
-            <Form.Select
+            <AppSelect
               value={subcategory}
               data-testid="filter-subcategory"
-              onChange={(e) => applyFilters({ subcategory: e.target.value })}
-            >
-              <option value="">All types</option>
-              {meta.subcategories.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </Form.Select>
+              onChange={(value) => applyFilters({ subcategory: value })}
+              options={[
+                { value: '', label: 'All types' },
+                ...meta.subcategories.map((s) => ({ value: s, label: s }))
+              ]}
+            />
           </Form.Group>
         </Col>
         <Col xs={12} sm={6} md={4} lg={2}>
@@ -139,29 +131,30 @@ const CatalogFilters = ({ keyword = '' }: CatalogFiltersProps) => {
         <Col xs={12} sm={6} md={4} lg={2}>
           <Form.Group controlId="filter-sort">
             <Form.Label>Sort</Form.Label>
-            <Form.Select
+            <AppSelect
               value={sort}
               data-testid="filter-sort"
-              onChange={(e) => applyFilters({ sort: e.target.value })}
-            >
-              <option value="">Newest</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="rating">Top Rated</option>
-              <option value="newest">Release Year</option>
-            </Form.Select>
+              onChange={(value) => applyFilters({ sort: value })}
+              options={[
+                { value: '', label: 'Newest' },
+                { value: 'price-asc', label: 'Price: Low to High' },
+                { value: 'price-desc', label: 'Price: High to Low' },
+                { value: 'rating', label: 'Top Rated' },
+                { value: 'newest', label: 'Release Year' }
+              ]}
+            />
           </Form.Group>
         </Col>
       </Row>
       {hasActiveFilters && (
-        <Button
-          variant="link"
-          className="px-0 mt-2"
+        <button
+          type="button"
+          className="link-subtle px-0 mt-2"
           data-testid="filter-clear"
           onClick={clearFilters}
         >
           Clear filters
-        </Button>
+        </button>
       )}
     </div>
   );
