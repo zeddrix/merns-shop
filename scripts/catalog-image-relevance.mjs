@@ -20,7 +20,32 @@ export const TITLE_DENYLIST = [
   'frwiki iphone',
   'স্যুপ',
   'ফুলকপির',
-  'gandabahali'
+  'gandabahali',
+  'hartono',
+  'mall',
+  'store',
+  'shop',
+  'extracted',
+  'mini-sim',
+  'invoice',
+  'receipt',
+  'box',
+  'packaging',
+  'unboxing',
+  'mapillary',
+  'windshield',
+  'street view',
+  'backcase',
+  'back case',
+  'black hole',
+  'stellar',
+  'nebula',
+  'nasa',
+  'astronom',
+  'telescope',
+  'cosmic',
+  'illustration:',
+  'x-7-'
 ];
 
 export const PHONE_SUBCATEGORIES = new Set(['Phones']);
@@ -48,6 +73,9 @@ export function productNameTokens(name) {
 /** @param {string} brand */
 export function brandTokens(brand) {
   const base = normalizeTokens(brand);
+  if (brand === 'Apple') {
+    return [...base, 'apple', 'iphone', 'ipad', 'macbook', 'imac', 'airpods', 'watch'];
+  }
   if (brand === 'Xiaomi') return [...base, 'xiaomi', 'poco', 'redmi', 'mi'];
   if (brand === 'Sony') return [...base, 'sony', 'playstation', 'ps4', 'ps5'];
   if (brand === 'Samsung') return [...base, 'samsung', 'galaxy'];
@@ -80,6 +108,7 @@ export function scoreManifestEntryRelevance(entry) {
 
   const sourceUrl = entry.sourceUrl ?? '';
   const commonsTitle = entry.commonsTitle ?? '';
+  const titleLower = commonsTitle.toLowerCase();
   const combined = `${commonsTitle} ${sourceUrl}`.toLowerCase();
 
   if (!sourceUrl) {
@@ -92,7 +121,7 @@ export function scoreManifestEntryRelevance(entry) {
   }
 
   for (const denied of TITLE_DENYLIST) {
-    if (combined.includes(denied)) {
+    if (titleLower.includes(denied)) {
       reasons.push(`denylist match: ${denied}`);
       score -= 20;
     }
@@ -146,6 +175,21 @@ export function scoreManifestEntryRelevance(entry) {
       'vivo',
       'xiaomi'
     ];
+    const astronomySignals = [
+      'black hole',
+      'stellar',
+      'nebula',
+      'nasa',
+      'astronom',
+      'telescope',
+      'cosmic',
+      'galaxy (',
+      'nearby galaxy'
+    ];
+    if (astronomySignals.some((signal) => titleLower.includes(signal))) {
+      reasons.push('phones subcategory linked to astronomy image');
+      score -= 40;
+    }
     const hasPhoneSignal = phoneSignals.some((signal) => combined.includes(signal));
     if (!hasPhoneSignal && metadataHits < 2) {
       reasons.push('phones subcategory lacks phone-related metadata');
@@ -168,7 +212,8 @@ export function scoreManifestEntryRelevance(entry) {
       r.startsWith('denylist') ||
       r.startsWith('polluted') ||
       r.startsWith('TV product') ||
-      r.startsWith('phones subcategory lacks')
+      r.startsWith('phones subcategory lacks') ||
+      r.startsWith('phones subcategory linked to astronomy')
   );
   const ok = score >= 0 && hardFails.length === 0;
 
@@ -237,7 +282,19 @@ export function auditManifestEntry(entry, allEntries, allowedDuplicateUrls = new
         const other = allEntries.find((e) => dup.duplicates.includes(e.modelKey));
         return other && other.subcategory === entry.subcategory && other.brand === entry.brand;
       });
-      if (sameSubcategory && entry.subcategory === 'Phones') {
+      const siblingTypes = new Set([
+        'wikimedia-hand-curated',
+        'wikimedia-agent-visual',
+        'wikimedia-sibling',
+        'official'
+      ]);
+      const handCuratedSibling =
+        siblingTypes.has(entry.sourceType ?? '') &&
+        dupes.every((dup) => {
+          const other = allEntries.find((row) => dup.duplicates.includes(row.modelKey));
+          return siblingTypes.has(other?.sourceType ?? '') && other.brand === entry.brand;
+        });
+      if (sameSubcategory && entry.subcategory === 'Phones' && !handCuratedSibling) {
         reasons.push(`duplicate sourceUrl shared with ${dupes[0].duplicates.join(', ')}`);
       }
     }
@@ -282,8 +339,19 @@ export function scoreCommonsCandidate(candidate, product) {
   const brandLower = product.brand.toLowerCase();
   if (lower.includes(brandLower)) score += 4;
 
-  for (const token of modelKeyTokens(product.modelKey)) {
+  const modelTokens = modelKeyTokens(product.modelKey);
+  for (const token of modelTokens) {
     if (token.length > 2 && lower.includes(token)) score += 3;
+  }
+
+  const modelNumber = modelTokens.find((token) => /^\d+[a-z]?$/i.test(token));
+  if (modelNumber) {
+    const wrongNumber = /\b(iphone|galaxy|ipad|tab|ps|poco|redmi|vivo|xiaomi)\s*(\d+[a-z]?)/i.exec(
+      lower
+    );
+    if (wrongNumber && wrongNumber[2] !== modelNumber && wrongNumber[2] !== `${modelNumber}`) {
+      score -= 12;
+    }
   }
 
   for (const token of productNameTokens(product.name)) {
@@ -292,6 +360,14 @@ export function scoreCommonsCandidate(candidate, product) {
 
   if (lower.includes('phone') || lower.includes('smartphone') || lower.includes('product'))
     score += 2;
+  if (
+    lower.includes('back') ||
+    lower.includes('backside') ||
+    lower.includes('all color') ||
+    lower.includes('product red')
+  ) {
+    score += 4;
+  }
 
   const width = candidate.width ?? 0;
   const height = candidate.height ?? 0;

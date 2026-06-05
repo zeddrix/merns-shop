@@ -13,7 +13,12 @@ const ALLOWED_DUPLICATE_URLS = new Set([
   'https://live.staticflickr.com/5122/5330778783_36b10ec7b1_b.jpg',
   'https://live.staticflickr.com/3250/2724608410_a14716dbfc_b.jpg',
   'https://live.staticflickr.com/65535/49999107437_409f70cb5d.jpg',
-  'https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg'
+  'https://upload.wikimedia.org/wikipedia/commons/f/f8/Sony_WF-1000XM4.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/e/e7/Back_of_POCO_F4.png',
+  'https://upload.wikimedia.org/wikipedia/commons/f/fe/The_back_of_Redmi_K40.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Tab_S9.png',
+  'https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_Watch_4.jpg'
 ]);
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));

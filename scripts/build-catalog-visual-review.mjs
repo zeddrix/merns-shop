@@ -23,7 +23,7 @@ for (const item of manifest.entries) {
   if (fs.existsSync(diskPath)) {
     const check = await validateCatalogImageFile(diskPath);
     fileOk = check.ok;
-    fileReason = check.ok ? 'valid canvas webp' : check.reason ?? 'invalid file';
+    fileReason = check.ok ? 'valid canvas webp' : (check.reason ?? 'invalid file');
   }
 
   const audited = auditByKey.get(item.modelKey);

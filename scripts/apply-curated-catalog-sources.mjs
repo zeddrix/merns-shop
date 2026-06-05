@@ -72,12 +72,11 @@ const CURATED = {
     sourceType: 'wikimedia'
   },
   'galaxy-m33': {
-    sourceUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/9/95/Back_of_the_Samsung_Galaxy_A54_5G.jpg',
+    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg',
     license: 'CC BY-SA 4.0',
-    author: 'Hajoon0102',
-    commonsTitle: 'File:Back of the Samsung Galaxy A54 5G.jpg',
-    sourceType: 'wikimedia-sibling'
+    author: 'Blue Mango Juice',
+    commonsTitle: 'File:Samsung Galaxy M32.jpg',
+    sourceType: 'wikimedia-hand-curated'
   },
   'galaxy-m34': {
     sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Samsung_Galaxy_M32.jpg',
@@ -118,18 +117,18 @@ const CURATED = {
   },
   // Vivo phones
   'vivo-t1': {
-    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg',
+    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/f6/Vivo_V20_back.jpg',
     license: 'CC BY-SA 4.0',
-    author: 'TechInsider',
-    commonsTitle: 'File:Vivo X50 Pro.jpg',
-    sourceType: 'wikimedia-sibling'
+    author: 'Hajoon0102',
+    commonsTitle: 'File:Vivo V20 back.jpg',
+    sourceType: 'wikimedia-hand-curated'
   },
   'vivo-t2': {
-    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg',
+    sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Vivo_V21_back.jpg',
     license: 'CC BY-SA 4.0',
-    author: 'TechInsider',
-    commonsTitle: 'File:Vivo X50 Pro.jpg',
-    sourceType: 'wikimedia-sibling'
+    author: 'Hajoon0102',
+    commonsTitle: 'File:Vivo V21 back.jpg',
+    sourceType: 'wikimedia-hand-curated'
   },
   'vivo-x50-pro': {
     sourceUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg',
