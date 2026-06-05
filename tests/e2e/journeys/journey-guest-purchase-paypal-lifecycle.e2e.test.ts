@@ -3,11 +3,15 @@ import {
   addFirstProductToCart,
   completeShippingStep,
   completePaymentStep,
+  guestCheckoutPlaceUnpaidOrder,
   loginWithCredentials
 } from '../fixtures/test-helpers';
 import { TEST_USERS } from '../fixtures/test-users';
 import { resetE2eDatabase } from '../fixtures/reset-db';
-import { completePayPalSandboxPayment } from '../fixtures/paypal-helpers';
+import {
+  completePayPalSandboxPayment,
+  waitForPayPalButtonsReady
+} from '../fixtures/paypal-helpers';
 import { findOrderById } from '../fixtures/mongo-helpers';
 import { shouldRunPayPalE2e, payPalSkipReason } from '../fixtures/paypal-env';
 
@@ -39,30 +43,20 @@ test.describe('journey guest purchase lifecycle', () => {
     await expect(page.locator('[data-testid="order-heading"]')).toBeVisible();
   });
 
-  test('guest_completes_paypal_payment_when_opt_in', async ({ page }) => {
-    test.skip(!shouldRunPayPalE2e(), payPalSkipReason);
+  test('guest_completes_paypal_payment_when_opt_in', { tag: '@paypal' }, async ({ page }) => {
+    test.skip(
+      !shouldRunPayPalE2e() || process.env.PW_RUN_PAYPAL !== '1',
+      `${payPalSkipReason} (journey PayPal is opt-in via PW_RUN_PAYPAL=1; canonical spec: paypal-sandbox-payment.e2e.test.ts)`
+    );
     test.setTimeout(240_000);
 
-    await addFirstProductToCart(page);
-    await page.goto('/cart');
-    await page.locator('[data-testid="cart-checkout"]').click();
-    await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
-    await completeShippingStep(page);
-    await completePaymentStep(page);
-    await Promise.all([
-      page.waitForResponse(
-        (response) => response.url().includes('/api/orders') && response.status() === 201
-      ),
-      page.locator('[data-testid="place-order-submit"]').click()
-    ]);
-    await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
-    await page.reload();
-    await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
-
-    const orderId = page.url().split('/order/')[1]?.split(/[/?#]/)[0];
+    const orderId = await guestCheckoutPlaceUnpaidOrder(page);
+    await waitForPayPalButtonsReady(page);
+    await expect(page.locator('[data-testid="paypal-buttons-ready"]')).toBeVisible();
     await completePayPalSandboxPayment(page);
 
-    const dbOrder = await findOrderById(orderId as string);
+    await expect(page.locator('[data-testid="order-paid-message"]')).toBeVisible();
+    const dbOrder = await findOrderById(orderId);
     expect(dbOrder?.isPaid).toBe(true);
   });
 });
