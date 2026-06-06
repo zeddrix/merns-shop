@@ -1,9 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, ListGroup } from 'react-bootstrap';
 import { useAppSelector } from '../store/hooks';
 import { cartLineKey } from '../features/cartSlice';
 import { formatPrice } from '../utils/formatPrice';
-import { buildAuthUrl } from '../utils/authModalUrl';
+import { buildAuthUrl, stripAuthSearch } from '../utils/authModalUrl';
 
 interface CartPopoverProps {
   onClose: () => void;
@@ -11,6 +11,7 @@ interface CartPopoverProps {
 
 const CartPopover = ({ onClose }: CartPopoverProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { cartItems } = useAppSelector((state) => state.cart);
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
 
@@ -21,7 +22,9 @@ const CartPopover = ({ onClose }: CartPopoverProps) => {
     if (userInfo) {
       navigate('/shipping');
     } else {
-      navigate(buildAuthUrl('/', 'login', '/shipping'));
+      navigate(
+        buildAuthUrl(location.pathname, 'login', '/shipping', stripAuthSearch(location.search))
+      );
     }
   };
 

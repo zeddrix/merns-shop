@@ -10,14 +10,6 @@ import {
   type AuthModalMode
 } from '../utils/authModalUrl';
 
-const PROTECTED_PATH_PREFIXES = ['/profile', '/shipping', '/payment', '/placeorder', '/order'];
-
-const isProtectedPath = (pathname: string): boolean => {
-  return PROTECTED_PATH_PREFIXES.some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
-  );
-};
-
 const AuthModalHost = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -67,24 +59,23 @@ const AuthModalHost = () => {
     prevPathnameRef.current = location.pathname;
     if (isOpen) {
       dispatch(closeAuthModal());
+      const hasAuthInUrl = parseAuthModalSearch(location.search).mode !== null;
+      if (hasAuthInUrl) {
+        navigate(
+          {
+            pathname: location.pathname,
+            search: stripAuthSearch(location.search)
+          },
+          { replace: true }
+        );
+      }
     }
-  }, [dispatch, isOpen, location.pathname]);
+  }, [dispatch, isOpen, location.pathname, location.search, navigate]);
 
   const handleClose = useCallback(() => {
     dispatch(closeAuthModal());
     const hasAuthInUrl = parseAuthModalSearch(location.search).mode !== null;
     const cleanSearch = stripAuthSearch(location.search);
-
-    if (!userInfo && isProtectedPath(location.pathname)) {
-      navigate(
-        {
-          pathname: '/',
-          search: cleanSearch
-        },
-        { replace: true }
-      );
-      return;
-    }
 
     if (hasAuthInUrl) {
       navigate(
@@ -95,7 +86,7 @@ const AuthModalHost = () => {
         { replace: true }
       );
     }
-  }, [dispatch, location.pathname, location.search, navigate, userInfo]);
+  }, [dispatch, location.pathname, location.search, navigate]);
 
   const handleSwitchMode = useCallback(
     (nextMode: AuthModalMode) => {

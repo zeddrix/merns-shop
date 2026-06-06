@@ -15,7 +15,10 @@ const AuthLegacyRedirect = ({ mode }: AuthLegacyRedirectProps) => {
 
   useEffect(() => {
     const redirect = getRedirectPath(location.search);
-    navigate(buildAuthUrl('/', mode, redirect === '/' ? undefined : redirect), { replace: true });
+    const pathWithoutQuery = redirect.split('?')[0] ?? '/';
+    const targetPathname = redirect !== '/' ? pathWithoutQuery : '/';
+    const redirectTarget = redirect === '/' ? undefined : redirect;
+    navigate(buildAuthUrl(targetPathname, mode, redirectTarget), { replace: true });
   }, [location.search, mode, navigate]);
 
   return <Loader />;

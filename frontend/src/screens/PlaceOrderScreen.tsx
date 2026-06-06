@@ -9,6 +9,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder, orderCreateReset } from '../features/orderSlice';
 import { userDetailsReset } from '../features/userSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
+import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const addDecimals = (num: number) => {
@@ -69,7 +70,12 @@ const PlaceOrderScreen = () => {
   };
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <>
+        <SeoPrivateMeta canonicalPath="/placeorder" />
+        <AuthRequiredGate variant="checkout" />
+      </>
+    );
   }
 
   return (

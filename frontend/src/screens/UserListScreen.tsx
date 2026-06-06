@@ -8,6 +8,7 @@ import Loader from '../components/Loader';
 import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import { listUsers, deleteUser } from '../features/userSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
+import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const UserListScreen = () => {
@@ -17,6 +18,7 @@ const UserListScreen = () => {
   const userList = useAppSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
+  const userInfo = useAppSelector((state) => state.userLogin.userInfo);
   const isAdmin = useRequireAdmin();
 
   const userDelete = useAppSelector((state) => state.userDelete);
@@ -30,6 +32,14 @@ const UserListScreen = () => {
   }, [dispatch, isAdmin, location.pathname, successDelete]);
 
   if (!isAdmin) {
+    if (!userInfo) {
+      return (
+        <>
+          <SeoPrivateMeta canonicalPath="/admin/userlist" />
+          <AuthRequiredGate variant="admin" />
+        </>
+      );
+    }
     return null;
   }
 

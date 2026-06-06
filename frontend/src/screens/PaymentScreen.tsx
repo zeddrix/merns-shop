@@ -6,6 +6,7 @@ import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { savePaymentMethod } from '../features/cartSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
+import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const PaymentScreen = () => {
@@ -37,7 +38,12 @@ const PaymentScreen = () => {
   };
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <>
+        <SeoPrivateMeta canonicalPath="/payment" />
+        <AuthRequiredGate variant="checkout" />
+      </>
+    );
   }
 
   return (

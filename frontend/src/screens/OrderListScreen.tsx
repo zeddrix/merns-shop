@@ -8,6 +8,7 @@ import Loader from '../components/Loader';
 import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import { listOrders } from '../features/orderSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
+import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const OrderListScreen = () => {
@@ -16,6 +17,7 @@ const OrderListScreen = () => {
   const orderList = useAppSelector((state) => state.orderList);
   const { loading, error, orders } = orderList;
 
+  const userInfo = useAppSelector((state) => state.userLogin.userInfo);
   const isAdmin = useRequireAdmin();
 
   useEffect(() => {
@@ -25,6 +27,14 @@ const OrderListScreen = () => {
   }, [dispatch, isAdmin]);
 
   if (!isAdmin) {
+    if (!userInfo) {
+      return (
+        <>
+          <SeoPrivateMeta canonicalPath="/admin/orderlist" />
+          <AuthRequiredGate variant="admin" />
+        </>
+      );
+    }
     return null;
   }
 

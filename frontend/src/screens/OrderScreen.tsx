@@ -21,6 +21,7 @@ import {
   orderDeliverReset
 } from '../features/orderSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
+import AuthRequiredGate from '../components/AuthRequiredGate';
 import type { Order, PaymentResult } from '../types';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
@@ -127,7 +128,12 @@ const OrderScreen = () => {
   };
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <>
+        <SeoPrivateMeta canonicalPath={orderId ? `/order/${orderId}` : '/order'} />
+        <AuthRequiredGate variant="order" />
+      </>
+    );
   }
 
   if (loading || (!error && !orderWithPrices)) {

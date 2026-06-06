@@ -14,6 +14,7 @@ import {
   productCreateReset
 } from '../features/productSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
+import AuthRequiredGate from '../components/AuthRequiredGate';
 import { useScrollToTopOnPageChange } from '../hooks/useScrollToTopOnPageChange';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
@@ -38,6 +39,7 @@ const ProductListScreen = () => {
     product: createdProduct
   } = productCreate;
 
+  const userInfo = useAppSelector((state) => state.userLogin.userInfo);
   const isAdmin = useRequireAdmin();
 
   useScrollToTopOnPageChange('admin-product-list-heading', page, !loading);
@@ -67,6 +69,14 @@ const ProductListScreen = () => {
   };
 
   if (!isAdmin) {
+    if (!userInfo) {
+      return (
+        <>
+          <SeoPrivateMeta canonicalPath="/admin/productlist" />
+          <AuthRequiredGate variant="admin" />
+        </>
+      );
+    }
     return null;
   }
 

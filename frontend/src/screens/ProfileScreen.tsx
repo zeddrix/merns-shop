@@ -9,6 +9,7 @@ import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import { getUserDetails, updateUserProfile } from '../features/userSlice';
 import { listMyOrder } from '../features/orderSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
+import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const ProfileScreen = () => {
@@ -50,7 +51,12 @@ const ProfileScreen = () => {
   }, [dispatch, userInfo, user._id, user.name, user.email, success]);
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <>
+        <SeoPrivateMeta canonicalPath="/profile" />
+        <AuthRequiredGate variant="profile" />
+      </>
+    );
   }
 
   const submitHandler = (e: FormEvent) => {

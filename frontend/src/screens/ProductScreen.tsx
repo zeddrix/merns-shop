@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button, Form, Badge } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Rating from '../components/Rating';
@@ -22,6 +22,7 @@ import AddToCartButton, { type AddToCartButtonState } from '../components/AddToC
 import { capQtyOptions } from '../constants/cartLimits';
 import { firstInStockSku } from '../utils/defaultVariant';
 import { addToCart } from '../features/cartSlice';
+import { buildAuthUrl, stripAuthSearch } from '../utils/authModalUrl';
 import { useScrollIntoViewOnKeyChange } from '../hooks/useScrollIntoViewOnKeyChange';
 import {
   listProductDetails,
@@ -33,6 +34,8 @@ type AddCartButtonState = AddToCartButtonState;
 
 const ProductScreen = () => {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [qty, setQty] = useState(1);
   const [selectedSku, setSelectedSku] = useState('');
   const [addCartState, setAddCartState] = useState<AddCartButtonState>('idle');
@@ -58,6 +61,7 @@ const ProductScreen = () => {
   const maxQty = capQtyOptions(selectedVariant?.countInStock ?? 0);
 
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+  const currentPath = `${location.pathname}${stripAuthSearch(location.search)}`;
 
   const productContentReady =
     Boolean(id) && !loading && !error && !isApiUnreachableMessage(error) && product._id === id;
@@ -291,7 +295,25 @@ const ProductScreen = () => {
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-              {(successProductReview || errorProductReview || product.canReview) && (
+              {!userInfo && product._id === id && (
+                <div className="mt-4">
+                  <h2>Write a Customer Review</h2>
+                  <p className="text-muted">Sign in to share your experience with this product.</p>
+                  <Button
+                    type="button"
+                    variant="primary"
+                    data-testid="review-sign-in-cta"
+                    onClick={() =>
+                      navigate(
+                        buildAuthUrl(location.pathname, 'login', currentPath, location.search)
+                      )
+                    }
+                  >
+                    Sign In to Write a Review
+                  </Button>
+                </div>
+              )}
+              {userInfo && (successProductReview || errorProductReview || product.canReview) && (
                 <div className="mt-4">
                   <h2>Write a Customer Review</h2>
                   {successProductReview && (

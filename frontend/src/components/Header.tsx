@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { logout } from '../features/userSlice';
 import { clearStaleItemsNotice } from '../features/cartSlice';
-import { openLogin, openRegister } from '../features/authModalSlice';
+import { buildAuthSearch } from '../utils/authModalUrl';
 import SearchBox from './SearchBox';
 import SearchOverlay from './SearchOverlay';
 import CartPopover from './CartPopover';
@@ -29,6 +29,20 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
+  };
+
+  const openLoginHandler = () => {
+    navigate({
+      pathname: location.pathname,
+      search: buildAuthSearch('login', currentPath, stripAuthSearch(location.search))
+    });
+  };
+
+  const openRegisterHandler = () => {
+    navigate({
+      pathname: location.pathname,
+      search: buildAuthSearch('register', currentPath, stripAuthSearch(location.search))
+    });
   };
 
   useEffect(() => {
@@ -162,7 +176,7 @@ const Header = () => {
                     type="button"
                     className="nav-auth-button"
                     data-testid="nav-login"
-                    onClick={() => dispatch(openLogin(currentPath))}
+                    onClick={openLoginHandler}
                   >
                     <i className="fas fa-user" aria-hidden="true" />
                     <span className="d-none d-md-inline ms-1">Sign In</span>
@@ -172,7 +186,7 @@ const Header = () => {
                     type="button"
                     className="nav-auth-button"
                     data-testid="nav-sign-up"
-                    onClick={() => dispatch(openRegister(currentPath))}
+                    onClick={openRegisterHandler}
                   >
                     Sign Up
                   </Nav.Link>

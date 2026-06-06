@@ -602,6 +602,21 @@ strong {
   text-decoration: underline;
 }
 
+.auth-gate {
+  max-width: 28rem;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  background: var(--bs-body-bg);
+}
+
+.auth-gate-message {
+  margin-bottom: 1rem;
+  color: var(--bs-secondary-color);
+}
+
 .nav-auth-button {
   background: none;
   border: none;

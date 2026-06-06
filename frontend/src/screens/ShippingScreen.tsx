@@ -6,6 +6,7 @@ import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { saveShippingAddress } from '../features/cartSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
+import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const ShippingScreen = () => {
@@ -30,7 +31,12 @@ const ShippingScreen = () => {
   };
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <>
+        <SeoPrivateMeta canonicalPath="/shipping" />
+        <AuthRequiredGate variant="checkout" />
+      </>
+    );
   }
 
   return (
