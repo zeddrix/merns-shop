@@ -20,6 +20,16 @@ test.describe('api security auth', () => {
     expect(users.status()).toBe(401);
   });
 
+  test('guest_admin_route_shows_auth_gate_after_dismiss', async ({ page }) => {
+    await page.goto('/admin/productlist');
+    await expect(page).toHaveURL(/\/admin\/productlist\?auth=login/);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await page.locator('[data-testid="auth-modal-close"]').click();
+    await expect(page.locator('[data-testid="auth-modal"]')).toHaveCount(0);
+    await expect(page).toHaveURL(/\/admin\/productlist$/);
+    await expect(page.locator('[data-testid="auth-gate"]')).toBeVisible();
+  });
+
   test('admin_nav_hidden_for_customer', async ({ page }) => {
     await page.goto('/?auth=login');
     await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();

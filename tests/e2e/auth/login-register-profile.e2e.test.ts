@@ -1,5 +1,12 @@
 import { test, expect } from '@playwright/test';
-import { loginAs, logout, openAuthModal, openMobileNavIfNeeded } from '../fixtures/test-helpers';
+import {
+  loginAs,
+  loginWithCredentials,
+  logout,
+  openAuthModal,
+  openMobileNavIfNeeded,
+  openProductByExactName
+} from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { TEST_USERS } from '../fixtures/test-users';
 
@@ -19,7 +26,7 @@ test.describe('auth login register profile', () => {
     await page.goto('/');
     await openMobileNavIfNeeded(page);
     await page.locator('[data-testid="nav-sign-up"]').click();
-    await expect(page).toHaveURL(/\/$/);
+    await expect(page).toHaveURL(/auth=register/);
     await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
   });
@@ -39,7 +46,7 @@ test.describe('auth login register profile', () => {
     await openMobileNavIfNeeded(page);
     await page.locator('[data-testid="nav-login"]').click();
     await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
-    await expect(page).toHaveURL(/\/$/);
+    await expect(page).toHaveURL(/auth=login/);
     expect(productListRequests).toBe(requestsAfterLoad);
 
     await page.locator('[data-testid="auth-modal-close"]').click();
@@ -191,6 +198,68 @@ test.describe('auth login register profile', () => {
       'Welcome, Welcome User'
     );
     await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+  });
+
+  test('nav_sign_in_on_pdp_syncs_auth_query', async ({ page }) => {
+    await openProductByExactName(page, 'iPhone 15 Pro');
+    const productPath = new URL(page.url()).pathname;
+
+    await openMobileNavIfNeeded(page);
+    await page.locator('[data-testid="nav-login"]').click();
+
+    await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}\\?.*auth=login`));
+    await expect(page.url()).toContain(`redirect=${encodeURIComponent(productPath)}`);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+
+    await page.locator('[data-testid="auth-modal-close"]').click();
+    await expect(page.locator('[data-testid="auth-modal"]')).toHaveCount(0);
+    await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}$`));
+  });
+
+  test('legacy_login_route_without_redirect_opens_modal_on_home', async ({ page }) => {
+    await page.goto('/login');
+    await expect(page).toHaveURL(/\/\?auth=login/);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
+  });
+
+  test('legacy_login_route_opens_modal_on_redirect_target', async ({ page }) => {
+    await page.goto('/');
+    const productHref = await page
+      .locator('[data-testid^="product-card-"]')
+      .first()
+      .getAttribute('href');
+    expect(productHref).toBeTruthy();
+
+    await page.goto(`/login?redirect=${encodeURIComponent(productHref as string)}`);
+    await expect(page).toHaveURL(
+      new RegExp(`${(productHref as string).replace(/\//g, '\\/')}\\?.*auth=login`)
+    );
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await expect(
+      page.locator('[data-testid="product-details"], [data-testid="product-list"]')
+    ).toBeVisible();
+  });
+
+  test('nav_sign_in_on_pdp_login_returns_to_pdp', async ({ page }) => {
+    await openProductByExactName(page, 'iPhone 15 Pro');
+    const productPath = new URL(page.url()).pathname;
+
+    await openMobileNavIfNeeded(page);
+    await page.locator('[data-testid="nav-login"]').click();
+    await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}\\?.*auth=login`));
+    await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
+    await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}$`));
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+  });
+
+  test('login_honors_redirect_query', async ({ page }) => {
+    await page.goto('/profile?auth=login&redirect=%2Fprofile');
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
+    await expect(page).toHaveURL(/\/profile/);
+    await expect(page.locator('[data-testid="profile-screen"]')).toBeVisible();
   });
 
   test('register_honors_redirect_query', async ({ page }) => {

@@ -72,6 +72,17 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
   });
 
+  test('guest_add_to_cart_never_opens_auth_modal', async ({ page }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+    const productUrl = page.url();
+
+    await selectVariantAndAddToCart(page);
+
+    await expect(page).toHaveURL(productUrl);
+    await expect(page.locator('[data-testid="product-add-cart-added"]')).toBeVisible();
+    await expect(page.locator('[data-testid="auth-modal"]')).toHaveCount(0);
+  });
+
   test('add_to_cart_shows_loading_spinner_while_pending', async ({ page, context }) => {
     await openProductByExactName(page, IPHONE_15_PRO);
 

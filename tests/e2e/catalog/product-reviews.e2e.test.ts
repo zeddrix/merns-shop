@@ -54,8 +54,13 @@ test.describe('product reviews', () => {
 
   test('guest_no_write_review_section', async ({ page }) => {
     await openProductByExactName(page, IPHONE_15_PRO);
+    const productUrl = page.url();
     await expect(page.locator('[data-testid="review-form"]')).toHaveCount(0);
-    await expect(page.getByText(/sign in to write a review/i)).toHaveCount(0);
+    await expect(page.locator('[data-testid="review-sign-in-cta"]')).toBeVisible();
+    await page.locator('[data-testid="review-sign-in-cta"]').click();
+    await expect(page).toHaveURL(/\/product\/.*auth=login/);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await expect(page.url()).toContain(new URL(productUrl).pathname);
   });
 
   test('seeded_reviews_visible_on_pdp', async ({ page }) => {
