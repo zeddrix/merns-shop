@@ -47,6 +47,35 @@ describe('products integration', () => {
     }
   });
 
+  it('filters products by min price', async () => {
+    const res = await request(app).get('/api/products?minPrice=500&pageNumber=1');
+    expect(res.status).toBe(200);
+    expect(res.body.products.length).toBeGreaterThan(0);
+    for (const product of res.body.products) {
+      expect(product.priceFrom).toBeGreaterThanOrEqual(500);
+    }
+  });
+
+  it('filters products by subcategory', async () => {
+    const res = await request(app).get('/api/products?subcategory=Phones&pageNumber=1');
+    expect(res.status).toBe(200);
+    expect(res.body.products.length).toBeGreaterThan(0);
+    expect(
+      res.body.products.every((p: { subcategory: string }) => p.subcategory === 'Phones')
+    ).toBe(true);
+  });
+
+  it('sorts products by price descending', async () => {
+    const res = await request(app).get('/api/products?sort=price-desc&pageNumber=1');
+    expect(res.status).toBe(200);
+    expect(res.body.products.length).toBeGreaterThan(1);
+
+    const prices = res.body.products.map((p: { priceFrom: number }) => p.priceFrom);
+    for (let i = 1; i < prices.length; i += 1) {
+      expect(prices[i]).toBeLessThanOrEqual(prices[i - 1]);
+    }
+  });
+
   it('filters products by brand', async () => {
     const res = await request(app).get('/api/products?brand=Apple&pageNumber=1');
     expect(res.status).toBe(200);

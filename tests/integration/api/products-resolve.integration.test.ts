@@ -1,9 +1,11 @@
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import request from 'supertest';
 import app from '../../../backend/app.js';
+import Order from '../../../backend/models/Order.js';
 import Product from '../../../backend/models/Product.js';
+import User from '../../../backend/models/User.js';
 import { connectTestDb, disconnectTestDb, resetTestDb } from '../helpers/db.js';
-import { importSeedData } from '../../../backend/utils/importSeedData.js';
+import { importSeedData, syncCatalogOnly } from '../../../backend/utils/importSeedData.js';
 
 describe('products resolve integration', () => {
   beforeAll(async () => {
@@ -38,20 +40,35 @@ describe('products resolve integration', () => {
     const response = await request(app).get('/api/products/000000000000000000000000');
     expect(response.status).toBe(404);
   });
+});
+
+describe('products resolve local seed stability', () => {
+  beforeAll(async () => {
+    await connectTestDb();
+  });
+
+  afterAll(async () => {
+    await disconnectTestDb();
+  });
+
+  beforeEach(async () => {
+    await Order.deleteMany();
+    await Product.deleteMany();
+    await User.deleteMany();
+    await importSeedData();
+  });
 
   it('local_seed_preserves_product_id_across_second_seed', async () => {
-    const firstSeed = await importSeedData();
-    const iphoneFirst = firstSeed.products.find((product) => product.modelKey === 'iphone-15-pro');
-    expect(iphoneFirst).toBeDefined();
+    const iphoneBefore = await Product.findOne({ modelKey: 'iphone-15-pro' });
+    expect(iphoneBefore).toBeTruthy();
+    const idBefore = iphoneBefore?._id.toString();
 
-    const secondSeed = await importSeedData();
-    const iphoneSecond = secondSeed.products.find(
-      (product) => product.modelKey === 'iphone-15-pro'
-    );
-    expect(iphoneSecond).toBeDefined();
-    expect(iphoneSecond?._id.toString()).toBe(iphoneFirst?._id.toString());
+    const syncedProducts = await syncCatalogOnly();
+    const iphoneFromSync = syncedProducts.find((product) => product.modelKey === 'iphone-15-pro');
+    expect(iphoneFromSync).toBeDefined();
+    expect(iphoneFromSync?._id.toString()).toBe(idBefore);
 
-    const stored = await Product.findOne({ modelKey: 'iphone-15-pro' });
-    expect(stored?._id.toString()).toBe(iphoneFirst?._id.toString());
+    const iphoneAfter = await Product.findOne({ modelKey: 'iphone-15-pro' });
+    expect(iphoneAfter?._id.toString()).toBe(idBefore);
   });
 });

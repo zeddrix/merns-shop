@@ -3,9 +3,11 @@ import request from 'supertest';
 import app from '../../../backend/app.js';
 import { connectTestDb, disconnectTestDb, resetTestDb } from '../helpers/db.js';
 import { getAuthToken } from '../helpers/auth.js';
+import { getSeededProductId } from '../helpers/products.js';
 
 describe('products review integration', () => {
   let token = '';
+  let iphone15ProId = '';
 
   beforeAll(async () => {
     await connectTestDb();
@@ -18,24 +20,18 @@ describe('products review integration', () => {
   beforeEach(async () => {
     await resetTestDb();
     token = await getAuthToken(app, 'john@gmail.com', '123456');
+    iphone15ProId = await getSeededProductId('iphone-15-pro');
   });
 
   it('POST review persists on product when delivered', async () => {
-    const search = await request(app).get('/api/products?keyword=iPhone%2015%20Pro');
-    const iphone = search.body.products.find(
-      (p: { modelKey?: string }) => p.modelKey === 'iphone-15-pro'
-    );
-    expect(iphone).toBeDefined();
-    const targetId = iphone._id as string;
-
     const res = await request(app)
-      .post(`/api/products/${targetId}/reviews`)
+      .post(`/api/products/${iphone15ProId}/reviews`)
       .set('Authorization', `Bearer ${token}`)
       .send({ rating: 4, comment: 'Integration test review' });
 
     expect(res.status).toBe(201);
 
-    const product = await request(app).get(`/api/products/${targetId}`);
+    const product = await request(app).get(`/api/products/${iphone15ProId}`);
     expect(product.body.reviews.length).toBeGreaterThan(0);
     expect(
       product.body.reviews.some((r: { comment: string }) => r.comment === 'Integration test review')
@@ -43,14 +39,8 @@ describe('products review integration', () => {
   });
 
   it('GET product returns canReview for delivered purchase', async () => {
-    const search = await request(app).get('/api/products?keyword=iPhone%2015%20Pro');
-    const iphone = search.body.products.find(
-      (p: { modelKey?: string }) => p.modelKey === 'iphone-15-pro'
-    );
-    expect(iphone).toBeDefined();
-
     const res = await request(app)
-      .get(`/api/products/${iphone._id}`)
+      .get(`/api/products/${iphone15ProId}`)
       .set('Authorization', `Bearer ${token}`);
 
     expect(res.status).toBe(200);
@@ -59,17 +49,37 @@ describe('products review integration', () => {
   });
 
   it('POST review rejected without delivered order', async () => {
-    const search = await request(app).get('/api/products?keyword=Amazon%20Echo');
-    const withoutOrder = search.body.products.find(
-      (p: { modelKey?: string }) => p.modelKey === 'amazon-echo-dot-3-fixture'
-    );
-    expect(withoutOrder).toBeDefined();
+    const echoId = await getSeededProductId('amazon-echo-dot-3-fixture');
 
     const res = await request(app)
-      .post(`/api/products/${withoutOrder._id}/reviews`)
+      .post(`/api/products/${echoId}/reviews`)
       .set('Authorization', `Bearer ${token}`)
       .send({ rating: 5, comment: 'Should not post' });
 
     expect(res.status).toBe(403);
+  });
+
+  it('duplicate_review_400', async () => {
+    const first = await request(app)
+      .post(`/api/products/${iphone15ProId}/reviews`)
+      .set('Authorization', `Bearer ${token}`)
+      .send({ rating: 5, comment: 'First integration review' });
+    expect(first.status).toBe(201);
+
+    const duplicate = await request(app)
+      .post(`/api/products/${iphone15ProId}/reviews`)
+      .set('Authorization', `Bearer ${token}`)
+      .send({ rating: 4, comment: 'Duplicate should fail' });
+    expect(duplicate.status).toBe(400);
+    expect(duplicate.body.message).toMatch(/already reviewed/i);
+  });
+
+  it('invalid_review_body_400', async () => {
+    const res = await request(app)
+      .post(`/api/products/${iphone15ProId}/reviews`)
+      .set('Authorization', `Bearer ${token}`)
+      .send({ rating: 0, comment: '' });
+
+    expect(res.status).toBe(400);
   });
 });

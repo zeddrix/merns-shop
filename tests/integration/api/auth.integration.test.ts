@@ -3,7 +3,7 @@ import request from 'supertest';
 import app from '../../../backend/app.js';
 import { connectTestDb, disconnectTestDb, resetTestDb } from '../helpers/db.js';
 import { AUTH_COOKIE_NAME } from '../../../backend/utils/authCookie.js';
-import { extractAuthTokenFromLoginResponse, loginAgent } from '../helpers/auth.js';
+import { extractAuthTokenFromLoginResponse, getAuthToken, loginAgent } from '../helpers/auth.js';
 
 describe('auth integration', () => {
   beforeAll(async () => {
@@ -89,5 +89,42 @@ describe('auth integration', () => {
       .get('/api/users/profile')
       .set('Authorization', 'Bearer invalid-token');
     expect(res.status).toBe(401);
+  });
+
+  it('login_wrong_password_401', async () => {
+    const res = await request(app).post('/api/users/login').send({
+      email: 'john@gmail.com',
+      password: 'wrong-password'
+    });
+    expect(res.status).toBe(401);
+    expect(res.body.message).toMatch(/invalid email or password/i);
+  });
+
+  it('put_profile_success', async () => {
+    const token = await getAuthToken(app, 'john@gmail.com', '123456');
+
+    const res = await request(app)
+      .put('/api/users/profile')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ name: 'John Updated', email: 'john@gmail.com' });
+
+    expect(res.status).toBe(200);
+    expect(res.body.name).toBe('John Updated');
+
+    const profile = await request(app)
+      .get('/api/users/profile')
+      .set('Authorization', `Bearer ${token}`);
+    expect(profile.body.name).toBe('John Updated');
+  });
+
+  it('put_profile_validation_400', async () => {
+    const token = await getAuthToken(app, 'john@gmail.com', '123456');
+
+    const res = await request(app)
+      .put('/api/users/profile')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ email: 'not-an-email' });
+
+    expect(res.status).toBe(400);
   });
 });

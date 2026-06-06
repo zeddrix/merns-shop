@@ -220,4 +220,109 @@ describe('orders integration', () => {
       .set('Authorization', `Bearer ${customerToken}`);
     expect(customerOrder.body.isDelivered).toBe(true);
   });
+
+  it('order_404', async () => {
+    const res = await request(app)
+      .get('/api/orders/507f1f77bcf86cd799439011')
+      .set('Authorization', `Bearer ${customerToken}`);
+    expect(res.status).toBe(404);
+  });
+
+  it('pay_already_paid_400', async () => {
+    const product = await request(app).get(`/api/products/${productId}`);
+    const order = await request(app)
+      .post('/api/orders')
+      .set('Authorization', `Bearer ${customerToken}`)
+      .send(buildOrderPayload(product.body, productId));
+
+    const orderId = order.body._id as string;
+    const paymentPayload = {
+      id: 'integration-test-payment',
+      status: 'COMPLETED',
+      update_time: new Date().toISOString(),
+      payer: { email_address: 'john@gmail.com' }
+    };
+
+    const firstPay = await request(app)
+      .put(`/api/orders/${orderId}/pay`)
+      .set('Authorization', `Bearer ${customerToken}`)
+      .send(paymentPayload);
+    expect(firstPay.status).toBe(200);
+
+    const secondPay = await request(app)
+      .put(`/api/orders/${orderId}/pay`)
+      .set('Authorization', `Bearer ${customerToken}`)
+      .send(paymentPayload);
+    expect(secondPay.status).toBe(400);
+    expect(secondPay.body.message).toMatch(/already paid/i);
+  });
+
+  it('deliver_already_delivered_400', async () => {
+    const product = await request(app).get(`/api/products/${productId}`);
+    const order = await request(app)
+      .post('/api/orders')
+      .set('Authorization', `Bearer ${customerToken}`)
+      .send(buildOrderPayload(product.body, productId));
+
+    const orderId = order.body._id as string;
+
+    await request(app)
+      .put(`/api/orders/${orderId}/pay`)
+      .set('Authorization', `Bearer ${customerToken}`)
+      .send({
+        id: 'integration-deliver-payment',
+        status: 'COMPLETED',
+        update_time: new Date().toISOString(),
+        payer: { email_address: 'john@gmail.com' }
+      });
+
+    const firstDeliver = await request(app)
+      .put(`/api/orders/${orderId}/deliver`)
+      .set('Authorization', `Bearer ${adminToken}`);
+    expect(firstDeliver.status).toBe(200);
+
+    const secondDeliver = await request(app)
+      .put(`/api/orders/${orderId}/deliver`)
+      .set('Authorization', `Bearer ${adminToken}`);
+    expect(secondDeliver.status).toBe(400);
+    expect(secondDeliver.body.message).toMatch(/already delivered/i);
+  });
+
+  it('create_order_insufficient_stock', async () => {
+    const search = await request(app).get('/api/products?keyword=Amazon%20Echo');
+    const outOfStock = search.body.products.find(
+      (p: { modelKey?: string }) => p.modelKey === 'amazon-echo-dot-3-fixture'
+    );
+    expect(outOfStock).toBeDefined();
+
+    const product = await request(app).get(`/api/products/${outOfStock._id}`);
+    const variant = product.body.variants[0];
+
+    const res = await request(app)
+      .post('/api/orders')
+      .set('Authorization', `Bearer ${customerToken}`)
+      .send({
+        orderItems: [
+          {
+            product: outOfStock._id,
+            qty: 1,
+            variantSku: variant.sku
+          }
+        ],
+        shippingAddress: {
+          address: '123 St',
+          city: 'City',
+          postalCode: '12345',
+          country: 'US'
+        },
+        paymentMethod: 'PayPal',
+        itemsPrice: 0.01,
+        taxPrice: 0,
+        shippingPrice: 0,
+        totalPrice: 0.01
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body.message).toMatch(/insufficient stock/i);
+  });
 });
