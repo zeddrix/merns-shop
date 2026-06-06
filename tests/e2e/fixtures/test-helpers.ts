@@ -1,5 +1,5 @@
 import type { Locator, Page } from '@playwright/test';
-import { expect } from '@playwright/test';
+import { expect, request as playwrightRequest } from '@playwright/test';
 import { TEST_USERS } from './test-users';
 
 /** Expands the collapsed navbar on small viewports so header links and search are visible. */
@@ -282,6 +282,114 @@ export async function createPaidOrderViaApi(
 ): Promise<string> {
   const creds = TEST_USERS[user];
   return createPaidOrderForCredentials(page, creds.email, creds.password);
+}
+
+export async function createUnpaidOrderViaApi(
+  page: Page,
+  user: keyof typeof TEST_USERS = 'customer'
+): Promise<string> {
+  const creds = TEST_USERS[user];
+  const loginResponse = await page.request.post('/api/users/login', {
+    data: { email: creds.email, password: creds.password }
+  });
+  expect(loginResponse.ok()).toBeTruthy();
+  const authToken = extractAuthTokenFromLoginResponse(loginResponse.headers()['set-cookie']);
+  const authHeaders = authHeadersFromToken(authToken);
+
+  const productsResponse = await page.request.get('/api/products');
+  expect(productsResponse.ok()).toBeTruthy();
+  const { products } = (await productsResponse.json()) as ApiProductListResponse;
+  const product = products.find((p) => p.variants.some((v) => v.countInStock > 0)) ?? products[0];
+  expect(product).toBeDefined();
+  const variant = product.variants.find((v) => v.countInStock > 0) ?? product.variants[0];
+  expect(variant).toBeDefined();
+
+  const orderResponse = await page.request.post('/api/orders', {
+    headers: authHeaders,
+    data: {
+      orderItems: [
+        {
+          product: product._id,
+          qty: 1,
+          variantSku: variant.sku
+        }
+      ],
+      shippingAddress: {
+        address: '123 Test St',
+        city: 'Testville',
+        postalCode: '12345',
+        country: 'United States'
+      },
+      paymentMethod: 'PayPal',
+      itemsPrice: variant.price,
+      taxPrice: 0,
+      shippingPrice: 0,
+      totalPrice: variant.price
+    }
+  });
+  expect(orderResponse.status()).toBe(201);
+  const order = (await orderResponse.json()) as ApiOrderResponse;
+
+  await page.context().clearCookies();
+
+  return order._id;
+}
+
+export async function deliverOrderViaApi(page: Page, orderId: string): Promise<void> {
+  const adminCreds = TEST_USERS.admin;
+  const loginResponse = await page.request.post('/api/users/login', {
+    data: { email: adminCreds.email, password: adminCreds.password }
+  });
+  expect(loginResponse.ok()).toBeTruthy();
+  const authToken = extractAuthTokenFromLoginResponse(loginResponse.headers()['set-cookie']);
+  const authHeaders = authHeadersFromToken(authToken);
+
+  const deliverResponse = await page.request.put(`/api/orders/${orderId}/deliver`, {
+    headers: authHeaders
+  });
+  expect(deliverResponse.ok()).toBeTruthy();
+
+  await page.context().clearCookies();
+}
+
+/** Opens the Admin nav dropdown so admin menu links are visible. */
+export async function openAdminNavDropdown(page: Page): Promise<void> {
+  await openMobileNavIfNeeded(page);
+  const adminMenu = page.locator('#adminmenu');
+  await expect(adminMenu).toBeVisible();
+  await adminMenu.click();
+}
+
+export async function fetchFirstProductId(page: Page): Promise<string> {
+  const productsResponse = await page.request.get('/api/products');
+  expect(productsResponse.ok()).toBeTruthy();
+  const { products } = (await productsResponse.json()) as ApiProductListResponse;
+  const productId = products[0]?._id;
+  expect(productId).toBeTruthy();
+  return productId as string;
+}
+
+const E2E_BASE_URL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:5020';
+
+export async function fetchSeededUserId(_page: Page, email: string): Promise<string> {
+  const apiContext = await playwrightRequest.newContext({ baseURL: E2E_BASE_URL });
+  try {
+    const loginResponse = await apiContext.post('/api/users/login', {
+      data: { email: TEST_USERS.admin.email, password: TEST_USERS.admin.password }
+    });
+    expect(loginResponse.ok()).toBeTruthy();
+    const authToken = extractAuthTokenFromLoginResponse(loginResponse.headers()['set-cookie']);
+    const usersResponse = await apiContext.get('/api/users', {
+      headers: authHeadersFromToken(authToken)
+    });
+    expect(usersResponse.ok()).toBeTruthy();
+    const users = (await usersResponse.json()) as Array<{ _id: string; email: string }>;
+    const user = users.find((entry) => entry.email === email);
+    expect(user?._id).toBeTruthy();
+    return user?._id as string;
+  } finally {
+    await apiContext.dispose();
+  }
 }
 
 const AUTH_COOKIE_NAME = 'merns_shop_auth';

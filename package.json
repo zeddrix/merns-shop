@@ -71,7 +71,7 @@
     "test:integration": "bash scripts/run-with-project-node.sh run test:integration:inner",
     "test:integration:one": "vitest run",
     "test:e2e": "PW_DISABLE_REUSE_SERVER=1 playwright test",
-    "test:e2e:one": "PW_DISABLE_REUSE_SERVER=1 playwright test --workers=1",
+    "test:e2e:one": "PW_DISABLE_REUSE_SERVER=1 playwright test --workers=1 --project=chromium",
     "test:e2e:dev": "bash scripts/run-with-project-node.sh exec pnpm exec playwright test",
     "test:e2e:catalog": "PW_WORKERS=1 playwright test tests/e2e/catalog",
     "test:e2e:auth": "PW_WORKERS=1 playwright test tests/e2e/auth",

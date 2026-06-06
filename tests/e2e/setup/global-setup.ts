@@ -12,13 +12,14 @@ async function assertPayPalApiConfiguredWhenRequired(): Promise<void> {
     return;
   }
 
-  let response: Response;
+  let response: Response | undefined;
   try {
-    response = await fetch(`${CLIENT_URL}/api/config/paypal`);
+    response = await fetch(`${CLIENT_URL}/api/config/paypal`, {
+      signal: AbortSignal.timeout(3000)
+    });
   } catch {
-    throw new Error(
-      'PayPal E2E preflight failed: API is not reachable at http://localhost:5020. Start Mongo, then run `pnpm dev` or let Playwright spawn the stack with PW_DISABLE_REUSE_SERVER=1.'
-    );
+    // Playwright globalSetup runs before webServer; preflight runs when reusing an existing dev stack.
+    return;
   }
 
   const clientId = (await response.text()).trim();

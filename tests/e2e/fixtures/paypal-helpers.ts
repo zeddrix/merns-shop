@@ -100,43 +100,37 @@ async function clickPayPalLinkInSmartButton(page: Page): Promise<void> {
   const paypalLink = smartButtonFrame.getByRole('link', { name: 'PayPal' });
   const debitLink = smartButtonFrame.getByRole('link', { name: /Debit or Credit Card/i });
 
-  const deadline = Date.now() + 15_000;
-  while (Date.now() < deadline) {
-    if (await paypalLink.isVisible().catch(() => false)) {
-      const popupPromise = page
-        .context()
-        .waitForEvent('page', { timeout: PAYPAL_CHECKOUT_START_TIMEOUT_MS })
-        .catch(() => null);
-      await paypalLink.click();
-      const popup = await popupPromise;
-      if (popup) {
-        await popup.waitForLoadState('domcontentloaded');
-      }
-      return;
-    }
-    if (await debitLink.isVisible().catch(() => false)) {
-      const popupPromise = page
-        .context()
-        .waitForEvent('page', { timeout: PAYPAL_CHECKOUT_START_TIMEOUT_MS })
-        .catch(() => null);
-      await paypalLink.click({ force: true }).catch(async () => {
-        await debitLink.click();
-      });
-      const popup = await popupPromise;
-      if (popup) {
-        await popup.waitForLoadState('domcontentloaded');
-      }
-      return;
-    }
-    await page.waitForTimeout(500);
-  }
+  let linkKind: 'paypal' | 'debit' | '' = '';
+  await expect
+    .poll(
+      async () => {
+        if (await paypalLink.isVisible().catch(() => false)) {
+          linkKind = 'paypal';
+          return true;
+        }
+        if (await debitLink.isVisible().catch(() => false)) {
+          linkKind = 'debit';
+          return true;
+        }
+        return false;
+      },
+      { timeout: 15_000, intervals: [500] }
+    )
+    .toBe(true);
 
   const popupPromise = page
     .context()
     .waitForEvent('page', { timeout: PAYPAL_CHECKOUT_START_TIMEOUT_MS })
     .catch(() => null);
-  await paypalLink.waitFor({ state: 'visible', timeout: 5000 });
-  await paypalLink.click();
+
+  if (linkKind === 'paypal') {
+    await paypalLink.click();
+  } else {
+    await paypalLink.click({ force: true }).catch(async () => {
+      await debitLink.click();
+    });
+  }
+
   const popup = await popupPromise;
   if (popup) {
     await popup.waitForLoadState('domcontentloaded');
@@ -166,49 +160,62 @@ async function resolvePayPalCheckoutSurface(
   page: Page,
   timeoutMs = PAYPAL_POPUP_TIMEOUT_MS
 ): Promise<{ surface: LoginSurface; popup: Page | null }> {
-  const deadline = Date.now() + timeoutMs;
+  let checkoutSurface: { surface: LoginSurface; popup: Page | null } | null = null;
 
-  while (Date.now() < deadline) {
-    const popupPages = page
-      .context()
-      .pages()
-      .filter((p) => p !== page);
-    if (popupPages.length > 0) {
-      const popup = popupPages[popupPages.length - 1];
-      await popup.waitForLoadState('domcontentloaded');
-      return { surface: popup, popup };
-    }
+  await expect
+    .poll(
+      async () => {
+        const popupPages = page
+          .context()
+          .pages()
+          .filter((p) => p !== page);
+        if (popupPages.length > 0) {
+          const popup = popupPages[popupPages.length - 1];
+          await popup.waitForLoadState('domcontentloaded');
+          checkoutSurface = { surface: popup, popup };
+          return true;
+        }
 
-    const continueLink = page.getByRole('link', { name: 'Click to Continue' });
-    if (await continueLink.isVisible().catch(() => false)) {
-      const relaunchPopup = page
-        .context()
-        .waitForEvent('page', { timeout: PAYPAL_POPUP_TIMEOUT_MS })
-        .catch(() => null);
-      await continueLink.click();
-      const launched = await relaunchPopup;
-      if (launched) {
-        await launched.waitForLoadState('domcontentloaded');
-        return { surface: launched, popup: launched };
-      }
-    }
+        const continueLink = page.getByRole('link', { name: 'Click to Continue' });
+        if (await continueLink.isVisible().catch(() => false)) {
+          const relaunchPopup = page
+            .context()
+            .waitForEvent('page', { timeout: PAYPAL_POPUP_TIMEOUT_MS })
+            .catch(() => null);
+          await continueLink.click();
+          const launched = await relaunchPopup;
+          if (launched) {
+            await launched.waitForLoadState('domcontentloaded');
+            checkoutSurface = { surface: launched, popup: launched };
+            return true;
+          }
+        }
 
-    const loginFrame = await findLoginFrame(page);
-    if (loginFrame) {
-      return { surface: loginFrame, popup: null };
-    }
+        const loginFrame = await findLoginFrame(page);
+        if (loginFrame) {
+          checkoutSurface = { surface: loginFrame, popup: null };
+          return true;
+        }
 
-    const paypalFrame = await findPayPalHostedFrame(page);
-    if (paypalFrame) {
-      return { surface: paypalFrame, popup: null };
-    }
+        const paypalFrame = await findPayPalHostedFrame(page);
+        if (paypalFrame) {
+          checkoutSurface = { surface: paypalFrame, popup: null };
+          return true;
+        }
 
-    await page.waitForTimeout(500);
+        return false;
+      },
+      { timeout: timeoutMs, intervals: [500] }
+    )
+    .toBe(true);
+
+  if (!checkoutSurface) {
+    throw new Error(
+      'PayPal checkout did not start (no popup, continue link, or login form). Check sandbox credentials.'
+    );
   }
 
-  throw new Error(
-    'PayPal checkout did not start (no popup, continue link, or login form). Check sandbox credentials.'
-  );
+  return checkoutSurface;
 }
 
 async function clickPayPalConfirm(surface: LoginSurface): Promise<void> {

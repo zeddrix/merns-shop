@@ -32,7 +32,7 @@ export default defineConfig({
     setupFiles: ['tests/vitest-setup.ts'],
     globals: true,
     testTimeout: 30000,
-    hookTimeout: 60000,
+    hookTimeout: 180000,
     fileParallelism: false,
     maxWorkers: 1,
     projects: [

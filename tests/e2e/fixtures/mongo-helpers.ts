@@ -54,6 +54,7 @@ interface MongoUser {
   _id: mongoose.Types.ObjectId;
   email: string;
   name: string;
+  isAdmin?: boolean;
 }
 
 export async function findOrderById(orderId: string): Promise<MongoOrder | null> {
