@@ -6,7 +6,7 @@ import {
 } from '../fixtures/test-helpers';
 import { TEST_USERS } from '../fixtures/test-users';
 
-/** API calls use baseURL (:5020) and Vite proxy — same path as the browser UI. */
+/** API calls use baseURL (:5030) and Vite proxy — same path as the browser UI. */
 test.describe('api security auth', () => {
   test('protected_routes_return_401_without_token', async ({ request }) => {
     const profile = await request.get('/api/users/profile');

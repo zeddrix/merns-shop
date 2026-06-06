@@ -1,5 +1,6 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect, request as playwrightRequest } from '@playwright/test';
+import { E2E_CLIENT_URL } from '../config/e2e-ports';
 import { TEST_USERS } from './test-users';
 
 /** Expands the collapsed navbar on small viewports so header links and search are visible. */
@@ -124,7 +125,7 @@ export async function openProductByExactName(
   name: string,
   searchKeyword?: string
 ): Promise<void> {
-  if (!page.url().includes('localhost:5020') || page.url().includes('auth=login')) {
+  if (!page.url().includes(E2E_CLIENT_URL) || page.url().includes('auth=login')) {
     await page.goto('/');
   }
   await fillSearchAndSubmit(page, searchKeyword ?? name);
@@ -369,7 +370,7 @@ export async function fetchFirstProductId(page: Page): Promise<string> {
   return productId as string;
 }
 
-const E2E_BASE_URL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:5020';
+const E2E_BASE_URL = process.env.PLAYWRIGHT_BASE_URL ?? E2E_CLIENT_URL;
 
 export async function fetchSeededUserId(_page: Page, email: string): Promise<string> {
   const apiContext = await playwrightRequest.newContext({ baseURL: E2E_BASE_URL });

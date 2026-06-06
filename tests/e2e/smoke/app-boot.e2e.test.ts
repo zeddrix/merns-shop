@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { E2E_CLIENT_PORT } from '../config/e2e-ports';
 import {
   assertHomeCatalogHealthy,
   clickProductCardToPdp,
@@ -11,7 +12,7 @@ test.describe('smoke app boot', () => {
     await page.locator('[data-testid="pagination-next"]').click();
     await expect(page).toHaveURL(/\/page\/2/);
     await page.locator('[data-testid="pagination-prev"]').click();
-    expect(page.url()).toMatch(/localhost:5020/);
+    expect(page.url()).toMatch(new RegExp(`localhost:${E2E_CLIENT_PORT}`));
     await expect(page.locator('[data-testid="site-brand"]')).toHaveText("MERN's Shop");
     await expect(page.locator('[data-testid="home-heading"]')).toBeVisible();
 

@@ -1,11 +1,12 @@
 import { execSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { E2E_CLIENT_URL } from '../config/e2e-ports';
 import { assertMongoHealthy, seedDatabase } from '../fixtures/mongo-helpers';
 import { hasPayPalSandboxCreds } from '../fixtures/paypal-env';
 
 const repoRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-const CLIENT_URL = 'http://localhost:5020';
+const CLIENT_URL = E2E_CLIENT_URL;
 
 async function assertPayPalApiConfiguredWhenRequired(): Promise<void> {
   if (!hasPayPalSandboxCreds()) {
@@ -25,7 +26,7 @@ async function assertPayPalApiConfiguredWhenRequired(): Promise<void> {
   const clientId = (await response.text()).trim();
   if (!response.ok || clientId.length < 10) {
     throw new Error(
-      'PayPal E2E preflight failed: PAYPAL_CLIENT_ID is missing on the running API. Add it to `.env` when reusing `pnpm dev`, or stop dev and run with PW_DISABLE_REUSE_SERVER=1 so Playwright loads `.env.test`.'
+      'PayPal E2E preflight failed: PAYPAL_CLIENT_ID is missing on the running API. Add it to `.env.test` when reusing `pnpm dev:e2e`, or run with PW_DISABLE_REUSE_SERVER=1 so Playwright loads `.env.test`.'
     );
   }
 }
