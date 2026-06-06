@@ -49,9 +49,13 @@ Journey files assert the **single canonical happy path** across domains. They mu
 - `tests/e2e/catalog/product-browse-search.e2e.test.ts` — `mobile_search_results_pagination` only (not full mobile catalog)
 - `tests/e2e/admin/admin-products.e2e.test.ts` — `admin_product_list_scrollable_table` mobile admin edit table
 
+### About page
+
+- `tests/e2e/misc/about-page.e2e.test.ts` — footer/header navigation to About, timeline cards, About SEO meta
+
 ### Public SEO
 
-- `tests/e2e/misc/public-seo.e2e.test.ts` — robots.txt, sitemap.xml, login/search/admin robots, filter canonical
+- `tests/e2e/misc/public-seo.e2e.test.ts` — robots.txt, sitemap.xml (including `/about`), login/search/admin robots, filter canonical
 - `tests/e2e/smoke/app-boot.e2e.test.ts` — home default title/description shell (not product JSON-LD)
 - `tests/e2e/catalog/product-browse-search.e2e.test.ts` — product page title, description, JSON-LD, image alt
 

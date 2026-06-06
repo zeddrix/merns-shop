@@ -29,6 +29,7 @@ test.describe('public seo', () => {
     expect(sitemapRes.ok()).toBeTruthy();
     const xml = await sitemapRes.text();
     expect(xml).toContain(`/product/${iphone?._id}</loc>`);
+    expect(xml).toContain('/about</loc>');
   });
 
   test('auth_modal_does_not_force_home_noindex', async ({ page }) => {

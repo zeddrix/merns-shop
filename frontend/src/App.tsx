@@ -25,6 +25,7 @@ import UserEditScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
+import AboutScreen from './screens/AboutScreen';
 
 const appRouteObjects: RouteObject[] = [
   { path: '/order/:id', element: <OrderScreen /> },
@@ -34,6 +35,7 @@ const appRouteObjects: RouteObject[] = [
   { path: '/login', element: <AuthLegacyRedirect mode="login" /> },
   { path: '/register', element: <AuthLegacyRedirect mode="register" /> },
   { path: '/profile', element: <ProfileScreen /> },
+  { path: '/about', element: <AboutScreen /> },
   { path: '/product/:id', element: <ProductScreen /> },
   { path: '/cart/:id?', element: <CartScreen /> },
   { path: '/admin/userlist', element: <UserListScreen /> },

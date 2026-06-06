@@ -45,6 +45,12 @@ export const buildDefaultSitemapEntries = (
     priority: 1
   };
 
+  const about: SitemapUrlEntry = {
+    loc: `${siteUrl}/about`,
+    changefreq: 'monthly',
+    priority: 0.5
+  };
+
   const products: SitemapUrlEntry[] = productPaths.map((product) => ({
     loc: `${siteUrl}/product/${product.id}`,
     lastmod: product.updatedAt?.toISOString(),
@@ -52,5 +58,5 @@ export const buildDefaultSitemapEntries = (
     priority: 0.8
   }));
 
-  return [home, ...products];
+  return [home, about, ...products];
 };

@@ -28,6 +28,7 @@ describe('seo routes integration', () => {
     expect(res.headers['content-type']).toMatch(/xml/);
     expect(res.text).toContain('<urlset');
     expect(res.text).toMatch(/<loc>https?:\/\/[^<]+\/<\/loc>/);
+    expect(res.text).toContain('/about</loc>');
 
     const iphone = await Product.findOne({ name: 'iPhone 15 Pro' }).select('_id');
     expect(iphone).toBeTruthy();

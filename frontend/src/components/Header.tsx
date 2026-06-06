@@ -143,6 +143,9 @@ const Header = () => {
               </Nav.Link>
             </Nav>
             <Nav className="site-nav-actions ms-lg-auto">
+              <Nav.Link as={Link} to="/about" data-testid="nav-about">
+                About
+              </Nav.Link>
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username" align="end">
                   <NavDropdown.Item as={Link} to="/profile" data-testid="nav-profile">

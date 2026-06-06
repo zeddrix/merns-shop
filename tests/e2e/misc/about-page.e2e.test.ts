@@ -1,0 +1,59 @@
+import { test, expect, type Page } from '@playwright/test';
+import { assertHomeCatalogHealthy, assertNoHorizontalOverflow } from '../fixtures/test-helpers';
+import { DESKTOP_VIEWPORT, MOBILE_VIEWPORT } from '../fixtures/viewports';
+
+const assertAboutPageContent = async (page: Page): Promise<void> => {
+  await expect(page).toHaveURL(/\/about$/);
+  await expect(page.locator('[data-testid="about-page"]')).toBeVisible();
+  await expect(page.locator('[data-testid="about-heading"]')).toContainText('About');
+  await expect(page.locator('[data-testid="about-developer"]')).toContainText('Zeddrix Fabian');
+  await expect(page.locator('[data-testid="about-github-link"]')).toHaveAttribute(
+    'href',
+    'https://github.com/zeddrix/merns-shop'
+  );
+};
+
+test.describe('about page', () => {
+  test('about_footer_link_journey', async ({ page }) => {
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await page.locator('[data-testid="footer-about-link"]').click();
+    await assertAboutPageContent(page);
+  });
+
+  test('about_header_link_desktop', async ({ page }) => {
+    await page.setViewportSize(DESKTOP_VIEWPORT);
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await page.locator('[data-testid="nav-about"]').click();
+    await assertAboutPageContent(page);
+  });
+
+  test('about_header_link_mobile', async ({ page }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await page.locator('[data-testid="navbar-toggle"]').click();
+    await page.locator('[data-testid="nav-about"]').click();
+    await assertAboutPageContent(page);
+    await assertNoHorizontalOverflow(page);
+  });
+
+  test('about_timeline_cards_visible', async ({ page }) => {
+    await page.goto('/about');
+    await expect(page.locator('[data-testid="about-timeline-2021"]')).toBeVisible();
+    await expect(page.locator('[data-testid="about-timeline-2026"]')).toBeVisible();
+    await expect(page.locator('[data-testid="about-timeline-2021"]')).toContainText('2021');
+    await expect(page.locator('[data-testid="about-timeline-2021"]')).toContainText(/Udemy|MERN/i);
+    await expect(page.locator('[data-testid="about-timeline-2026"]')).toContainText('2026');
+    await expect(page.locator('[data-testid="about-timeline-2026"]')).toContainText(/ATDD/i);
+  });
+
+  test('about_seo_meta_indexable', async ({ page }) => {
+    await page.goto('/about');
+    await expect(page.locator('[data-testid="about-page"]')).toBeVisible();
+    await expect(page).toHaveTitle(/About/);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index,follow');
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/about$/);
+  });
+});

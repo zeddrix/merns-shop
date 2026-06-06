@@ -81,6 +81,21 @@ export const buildOrganizationJsonLd = (): Record<string, unknown> => ({
   url: getSiteUrl()
 });
 
+export const buildAboutTitle = (): string => `About | ${DISPLAY_BRAND_NAME}`;
+
+export const buildAboutMetaDescription = (): string =>
+  truncateDescription(
+    `Learn how ${DISPLAY_BRAND_NAME} started as a 2021 Udemy MERN learning project and was modernized in 2026 with ATDD and AI-assisted development by Zeddrix Fabian.`
+  );
+
+export const buildAboutJsonLd = (description: string): Record<string, unknown> => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: buildAboutTitle(),
+  description,
+  url: buildCanonicalUrl('/about')
+});
+
 export const buildProductJsonLd = (product: Product): Record<string, unknown> => {
   const lowestVariant = [...product.variants].sort((a, b) => a.price - b.price)[0];
   const price = product.priceFrom ?? lowestVariant?.price ?? 0;
