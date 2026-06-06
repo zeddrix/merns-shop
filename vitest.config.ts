@@ -15,6 +15,8 @@ const frontendResolveAlias = {
   'react-dom': path.join(frontendNodeModules, 'react-dom'),
   'react-dom/client': path.join(frontendNodeModules, 'react-dom/client'),
   'react-router-dom': path.join(frontendNodeModules, 'react-router-dom'),
+  'react-redux': path.join(frontendNodeModules, 'react-redux'),
+  '@reduxjs/toolkit': path.join(frontendNodeModules, '@reduxjs/toolkit'),
   'react-bootstrap': path.join(frontendNodeModules, 'react-bootstrap'),
   bootstrap: path.join(frontendNodeModules, 'bootstrap')
 };
