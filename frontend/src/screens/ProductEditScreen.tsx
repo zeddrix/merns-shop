@@ -6,6 +6,8 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { listProductDetails, updateProduct, productUpdateReset } from '../features/productSlice';
+import { useRequireAdmin } from '../hooks/useRequireAdmin';
+import AuthRequiredGate from '../components/AuthRequiredGate';
 import type { ProductVariant } from '../types';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
@@ -32,7 +34,14 @@ const ProductEditScreen = () => {
   const productUpdate = useAppSelector((state) => state.productUpdate);
   const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate;
 
+  const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+  const isAdmin = useRequireAdmin();
+
   useEffect(() => {
+    if (!isAdmin) {
+      return;
+    }
+
     if (successUpdate) {
       dispatch(productUpdateReset());
       navigate('/admin/productlist');
@@ -50,7 +59,7 @@ const ProductEditScreen = () => {
       setDescription(product.description);
       setVariants(product.variants);
     }
-  }, [dispatch, navigate, productId, product, successUpdate]);
+  }, [dispatch, navigate, productId, product, successUpdate, isAdmin]);
 
   const updateVariant = (index: number, field: keyof ProductVariant, value: string | number) => {
     setVariants((prev) => prev.map((v, i) => (i === index ? { ...v, [field]: value } : v)));
@@ -100,6 +109,18 @@ const ProductEditScreen = () => {
   };
 
   const editCanonicalPath = productId ? `/admin/product/${productId}/edit` : '/admin/productlist';
+
+  if (!isAdmin) {
+    if (!userInfo) {
+      return (
+        <>
+          <SeoPrivateMeta canonicalPath={editCanonicalPath} />
+          <AuthRequiredGate variant="admin" />
+        </>
+      );
+    }
+    return null;
+  }
 
   return (
     <div data-testid="admin-product-edit">

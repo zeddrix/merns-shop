@@ -5,7 +5,8 @@ import {
   logout,
   openAuthModal,
   openMobileNavIfNeeded,
-  openProductByExactName
+  openProductByExactName,
+  registerWithCredentials
 } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { TEST_USERS } from '../fixtures/test-users';
@@ -252,6 +253,47 @@ test.describe('auth login register profile', () => {
     await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
     await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}$`));
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+  });
+
+  test('nav_sign_up_on_pdp_syncs_auth_query', async ({ page }) => {
+    await openProductByExactName(page, 'iPhone 15 Pro');
+    const productPath = new URL(page.url()).pathname;
+
+    await openMobileNavIfNeeded(page);
+    await page.locator('[data-testid="nav-sign-up"]').click();
+
+    await expect(page).toHaveURL(
+      new RegExp(`${productPath.replace(/\//g, '\\/')}\\?.*auth=register`)
+    );
+    await expect(page.url()).toContain(`redirect=${encodeURIComponent(productPath)}`);
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+
+    await page.locator('[data-testid="auth-modal-close"]').click();
+    await expect(page.locator('[data-testid="auth-modal"]')).toHaveCount(0);
+    await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}$`));
+  });
+
+  test('nav_sign_up_on_pdp_register_returns_to_pdp', async ({ page }) => {
+    await openProductByExactName(page, 'iPhone 15 Pro');
+    const productPath = new URL(page.url()).pathname;
+    const unique = Date.now();
+
+    await openMobileNavIfNeeded(page);
+    await page.locator('[data-testid="nav-sign-up"]').click();
+    await expect(page).toHaveURL(
+      new RegExp(`${productPath.replace(/\//g, '\\/')}\\?.*auth=register`)
+    );
+    await registerWithCredentials(
+      page,
+      'PDP Register User',
+      `pdp-register-${unique}@example.com`,
+      '123456'
+    );
+    await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}$`));
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+    await expect(page.locator('[data-testid="register-welcome"]')).toHaveCount(0);
   });
 
   test('login_honors_redirect_query', async ({ page }) => {

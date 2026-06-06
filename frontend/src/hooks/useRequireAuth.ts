@@ -15,9 +15,14 @@ export const useRequireAuth = (): boolean => {
   const navigate = useNavigate();
   const location = useLocation();
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+  const sessionResolved = useAppSelector((state) => state.userLogin.sessionResolved);
   const promptedPathRef = useRef<string | null>(null);
 
   useEffect(() => {
+    if (!sessionResolved) {
+      return;
+    }
+
     if (userInfo) {
       promptedPathRef.current = null;
       return;
@@ -39,7 +44,7 @@ export const useRequireAuth = (): boolean => {
       pathname: location.pathname,
       search: buildAuthSearch('login', gatePath, cleanSearch)
     });
-  }, [location.pathname, location.search, navigate, userInfo]);
+  }, [location.pathname, location.search, navigate, sessionResolved, userInfo]);
 
-  return Boolean(userInfo);
+  return Boolean(sessionResolved && userInfo);
 };

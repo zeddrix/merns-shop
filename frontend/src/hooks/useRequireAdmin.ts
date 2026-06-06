@@ -8,9 +8,14 @@ export const useRequireAdmin = (): boolean => {
   const navigate = useNavigate();
   const location = useLocation();
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+  const sessionResolved = useAppSelector((state) => state.userLogin.sessionResolved);
   const promptedPathRef = useRef<string | null>(null);
 
   useEffect(() => {
+    if (!sessionResolved) {
+      return;
+    }
+
     if (!userInfo) {
       const parsed = parseAuthModalSearch(location.search);
       if (parsed.mode) {
@@ -36,7 +41,7 @@ export const useRequireAdmin = (): boolean => {
     if (!userInfo.isAdmin) {
       navigate('/');
     }
-  }, [location.pathname, location.search, navigate, userInfo]);
+  }, [location.pathname, location.search, navigate, sessionResolved, userInfo]);
 
-  return Boolean(userInfo?.isAdmin);
+  return Boolean(sessionResolved && userInfo?.isAdmin);
 };

@@ -108,6 +108,19 @@ describe('orders integration', () => {
     expect(forbidden.status).toBe(401);
   });
 
+  it('get_order_by_id_requires_auth', async () => {
+    const product = await request(app).get(`/api/products/${productId}`);
+    const order = await request(app)
+      .post('/api/orders')
+      .set('Authorization', `Bearer ${customerToken}`)
+      .send(buildOrderPayload(product.body, productId));
+
+    const orderId = order.body._id as string;
+
+    const unauthenticated = await request(app).get(`/api/orders/${orderId}`);
+    expect(unauthenticated.status).toBe(401);
+  });
+
   it('customer_cannot_pay_other_users_order', async () => {
     const product = await request(app).get(`/api/products/${productId}`);
     const order = await request(app)

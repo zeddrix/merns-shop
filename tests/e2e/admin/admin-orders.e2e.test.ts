@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { loginAsAdmin, createPaidOrderViaApi } from '../fixtures/test-helpers';
+import { loginAs, loginAsAdmin, createPaidOrderViaApi } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findOrderById } from '../fixtures/mongo-helpers';
 
@@ -12,6 +12,13 @@ test.describe('admin orders', () => {
     await loginAsAdmin(page);
     await page.goto('/admin/orderlist');
     await expect(page.locator('[data-testid="admin-order-list"]')).toBeVisible();
+  });
+
+  test('non_admin_blocked_from_admin_order_routes', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await page.goto('/admin/orderlist');
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.locator('[data-testid="admin-order-list"]')).toHaveCount(0);
   });
 
   test('admin_marks_paid_order_delivered', async ({ page }) => {

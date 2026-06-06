@@ -13,6 +13,8 @@ import {
   userUpdateReset,
   userDetailsReset
 } from '../features/userSlice';
+import { useRequireAdmin } from '../hooks/useRequireAdmin';
+import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const UserEditScreen = () => {
@@ -31,7 +33,14 @@ const UserEditScreen = () => {
   const userUpdate = useAppSelector((state) => state.userUpdate);
   const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = userUpdate;
 
+  const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+  const viewerIsAdmin = useRequireAdmin();
+
   useEffect(() => {
+    if (!viewerIsAdmin) {
+      return;
+    }
+
     if (successUpdate) {
       dispatch(userUpdateReset());
       dispatch(userDetailsReset());
@@ -43,7 +52,7 @@ const UserEditScreen = () => {
       setEmail(user.email);
       setIsAdmin(user.isAdmin);
     }
-  }, [dispatch, navigate, userId, user, successUpdate]);
+  }, [dispatch, navigate, userId, user, successUpdate, viewerIsAdmin]);
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
@@ -52,6 +61,18 @@ const UserEditScreen = () => {
   };
 
   const editCanonicalPath = userId ? `/admin/user/${userId}/edit` : '/admin/userlist';
+
+  if (!viewerIsAdmin) {
+    if (!userInfo) {
+      return (
+        <>
+          <SeoPrivateMeta canonicalPath={editCanonicalPath} />
+          <AuthRequiredGate variant="admin" />
+        </>
+      );
+    }
+    return null;
+  }
 
   return (
     <div data-testid="admin-user-edit">

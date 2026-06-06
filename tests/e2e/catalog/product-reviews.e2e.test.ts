@@ -3,11 +3,14 @@ import {
   clickProductCardToPdp,
   fillSearchAndSubmit,
   loginAs,
+  loginWithCredentials,
   openProductByExactName,
+  registerWithCredentials,
   selectAppOption
 } from '../fixtures/test-helpers';
 import { findProductById } from '../fixtures/mongo-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
+import { TEST_USERS } from '../fixtures/test-users';
 
 const IPHONE_15_PRO = 'iPhone 15 Pro';
 const IPAD_AIR_M2 = 'iPad Air (M2)';
@@ -61,6 +64,40 @@ test.describe('product reviews', () => {
     await expect(page).toHaveURL(/\/product\/.*auth=login/);
     await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await expect(page.url()).toContain(new URL(productUrl).pathname);
+  });
+
+  test('guest_review_sign_in_returns_to_pdp_and_shows_form', async ({ page }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+    const productPath = new URL(page.url()).pathname;
+
+    await page.locator('[data-testid="review-sign-in-cta"]').click();
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
+    await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}$`));
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+    await expect(page.locator('[data-testid="review-form"]')).toBeVisible();
+  });
+
+  test('guest_review_sign_in_switch_register_returns_to_pdp', async ({ page }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+    const productPath = new URL(page.url()).pathname;
+    const unique = Date.now();
+
+    await page.locator('[data-testid="review-sign-in-cta"]').click();
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await page.locator('[data-testid="login-register-link"]').click();
+    await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
+    await registerWithCredentials(
+      page,
+      'Review Register User',
+      `review-register-${unique}@example.com`,
+      '123456'
+    );
+    await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}$`));
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+    await expect(page.locator('[data-testid="review-sign-in-cta"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="review-form"]')).toHaveCount(0);
   });
 
   test('seeded_reviews_visible_on_pdp', async ({ page }) => {

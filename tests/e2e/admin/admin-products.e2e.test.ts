@@ -102,8 +102,18 @@ test.describe('admin products', () => {
   });
 
   test('non_admin_blocked_from_admin_product_routes', async ({ page }) => {
+    const productsResponse = await page.request.get('/api/products');
+    expect(productsResponse.ok()).toBeTruthy();
+    const productsBody = (await productsResponse.json()) as {
+      products: Array<{ _id: string }>;
+    };
+    const productId = productsBody.products[0]?._id;
+    expect(productId).toBeTruthy();
+
     await loginAs(page, 'customer');
     await page.goto('/admin/productlist');
+    await expect(page).toHaveURL(/\/$/);
+    await page.goto(`/admin/product/${productId}/edit`);
     await expect(page).toHaveURL(/\/$/);
   });
 

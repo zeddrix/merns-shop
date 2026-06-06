@@ -20,9 +20,10 @@ const AuthRequiredGate = ({ variant }: AuthRequiredGateProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+  const sessionResolved = useAppSelector((state) => state.userLogin.sessionResolved);
   const authModalOpen = useAppSelector((state) => state.authModal.isOpen);
 
-  if (userInfo || authModalOpen) {
+  if (!sessionResolved || userInfo || authModalOpen) {
     return null;
   }
 

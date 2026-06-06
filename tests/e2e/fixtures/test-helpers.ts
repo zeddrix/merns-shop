@@ -363,6 +363,55 @@ export async function createPaidOrderForCredentials(
   return order._id;
 }
 
+export interface GuestDeepLinkAuthGateOptions {
+  reopenSignIn?: boolean;
+  expectedAuthUrl?: RegExp;
+}
+
+/** Guest deep-link to a protected route: modal opens, dismiss shows inline auth gate. */
+export async function assertGuestDeepLinkAuthGate(
+  page: Page,
+  path: string,
+  options?: GuestDeepLinkAuthGateOptions
+): Promise<void> {
+  const pathOnly = path.split('?')[0];
+  const escapedPath = pathOnly.replace(/\//g, '\\/');
+  const defaultAuthUrl = new RegExp(`${escapedPath}\\?auth=login`);
+
+  await page.goto(path);
+  await expect(page).toHaveURL(options?.expectedAuthUrl ?? defaultAuthUrl);
+  await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+  await page.locator('[data-testid="auth-modal-close"]').click();
+  await expect(page.locator('[data-testid="auth-modal"]')).toHaveCount(0);
+  await expect(page).toHaveURL(new RegExp(`${escapedPath}$`));
+  await expect(page.locator('[data-testid="auth-gate"]')).toBeVisible();
+
+  if (options?.reopenSignIn) {
+    await page.locator('[data-testid="auth-gate-sign-in"]').click();
+    await expect(page).toHaveURL(new RegExp(`${escapedPath}\\?auth=login`));
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+  }
+}
+
+export async function registerWithCredentials(
+  page: Page,
+  name: string,
+  email: string,
+  password: string
+): Promise<void> {
+  await page.locator('[data-testid="register-name"]').fill(name);
+  await page.locator('[data-testid="register-email"]').fill(email);
+  await page.locator('[data-testid="register-password"]').fill(password);
+  await page.locator('[data-testid="register-confirm-password"]').fill(password);
+  await Promise.all([
+    page.waitForResponse(
+      (response) => response.url().includes('/api/users') && response.status() === 201
+    ),
+    page.locator('[data-testid="register-submit"]').click()
+  ]);
+  await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+}
+
 export async function loginWithCredentials(
   page: Page,
   email: string,

@@ -14,6 +14,8 @@ export interface AuthState {
   error?: string;
   success?: boolean;
   userInfo?: UserInfo;
+  /** False until loadUserFromSession completes on first app load. */
+  sessionResolved?: boolean;
 }
 
 export interface UserDetailsState {
@@ -183,7 +185,7 @@ export const updateUser = createAsyncThunk(
 
 const userLoginSlice = createSlice({
   name: 'userLogin',
-  initialState: {} as AuthState,
+  initialState: { sessionResolved: false } as AuthState,
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -193,6 +195,7 @@ const userLoginSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.userInfo = action.payload;
+        state.sessionResolved = true;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -200,15 +203,18 @@ const userLoginSlice = createSlice({
       })
       .addCase(loadUserFromSession.fulfilled, (state, action) => {
         state.userInfo = action.payload;
+        state.sessionResolved = true;
       })
       .addCase(loadUserFromSession.rejected, (state) => {
         state.userInfo = undefined;
+        state.sessionResolved = true;
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.userInfo = action.payload;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.userInfo = action.payload;
+        state.sessionResolved = true;
       })
       .addCase(logout.pending, (state) => {
         state.userInfo = undefined;

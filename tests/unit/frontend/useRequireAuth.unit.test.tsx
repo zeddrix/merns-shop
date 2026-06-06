@@ -39,12 +39,15 @@ function DismissAuthButton() {
   );
 }
 
-function TestApp() {
+function TestApp({ sessionResolved = true }: { sessionResolved?: boolean }) {
   const store = configureStore({
     reducer: {
       authModal: authModalReducer,
       userLogin: userLoginReducer,
       userRegister: userRegisterReducer
+    },
+    preloadedState: {
+      userLogin: { sessionResolved }
     }
   });
 
@@ -76,6 +79,15 @@ describe('useRequireAuth', () => {
       root.unmount();
     });
     container.remove();
+  });
+
+  it('does_not_prompt_login_before_session_is_resolved', async () => {
+    await act(async () => {
+      root.render(<TestApp sessionResolved={false} />);
+    });
+
+    const probe = () => container.querySelector('[data-testid="location-probe"]');
+    expect(probe()?.textContent).toBe('/shipping');
   });
 
   it('does_not_reopen_auth_query_after_user_dismisses_modal', async () => {
