@@ -19,7 +19,12 @@ const app = express();
 if (process.env.NODE_ENV !== 'production') {
   app.use(
     cors({
-      origin: ['http://localhost:5020', 'http://127.0.0.1:5020'],
+      origin: [
+        'http://localhost:5020',
+        'http://127.0.0.1:5020',
+        'http://localhost:5030',
+        'http://127.0.0.1:5030'
+      ],
       credentials: true
     })
   );

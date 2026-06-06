@@ -2,6 +2,7 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { E2E_API_PORT, E2E_CLIENT_PORT, E2E_CLIENT_URL } from './tests/e2e/config/e2e-ports.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.join(__dirname, '.env') });
@@ -14,17 +15,20 @@ if (!process.env.MONGO_URI) {
   process.env.MONGO_URI = 'mongodb://127.0.0.1:27017/merns-shop';
 }
 
-const CLIENT_URL = 'http://localhost:5020';
+const CLIENT_URL = E2E_CLIENT_URL;
 const reuseExistingServer = !process.env.CI && process.env.PW_DISABLE_REUSE_SERVER !== '1';
 
-/** Same stack as manual dev: `pnpm dev` → dev:inner (API :5021 + Vite :5020). */
-const devStackCommand = process.env.CI
-  ? 'pnpm run dev:inner'
-  : 'bash scripts/run-with-project-node.sh run dev:inner';
+/** Dedicated E2E stack on :5030/:5031 — separate from manual `pnpm dev` (:5020/:5021). */
+const e2eStackCommand = process.env.CI
+  ? 'pnpm run dev:e2e:inner'
+  : 'bash scripts/run-with-project-node.sh run dev:e2e:inner';
 
 const e2eWebServerEnv: Record<string, string> = {
   NODE_ENV: 'development',
-  PORT: '5021',
+  PORT: String(E2E_API_PORT),
+  VITE_DEV_PORT: String(E2E_CLIENT_PORT),
+  VITE_SITE_URL: E2E_CLIENT_URL,
+  SITE_URL: `http://localhost:${E2E_API_PORT}`,
   MONGO_URI: process.env.MONGO_URI,
   JWT_SECRET: process.env.JWT_SECRET,
   PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID ?? ''
@@ -43,7 +47,7 @@ const config: PlaywrightTestConfig = {
   globalSetup: './tests/e2e/setup/global-setup.ts',
   globalTeardown: './tests/e2e/setup/global-teardown.ts',
   webServer: {
-    command: devStackCommand,
+    command: e2eStackCommand,
     url: `${CLIENT_URL}/api/products`,
     reuseExistingServer,
     timeout: 120000,

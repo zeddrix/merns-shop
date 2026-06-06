@@ -5,6 +5,10 @@ import react from '@vitejs/plugin-react';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
+const apiPort = process.env.PORT ?? '5021';
+const clientPort = Number(process.env.VITE_DEV_PORT ?? 5020);
+const apiOrigin = `http://localhost:${apiPort}`;
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -13,20 +17,20 @@ export default defineConfig({
     }
   },
   server: {
-    port: 5020,
+    port: clientPort,
     strictPort: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:5021',
+        target: apiOrigin,
         changeOrigin: true,
         cookieDomainRewrite: 'localhost'
       },
       '/robots.txt': {
-        target: 'http://localhost:5021',
+        target: apiOrigin,
         changeOrigin: true
       },
       '/sitemap.xml': {
-        target: 'http://localhost:5021',
+        target: apiOrigin,
         changeOrigin: true
       }
     }
