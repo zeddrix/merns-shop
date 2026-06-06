@@ -18,7 +18,7 @@ import {
   truncateDescription
 } from '../utils/seoMeta';
 import ProductVariantPicker from '../components/ProductVariantPicker';
-import AddToCartButton from '../components/AddToCartButton';
+import AddToCartButton, { type AddToCartButtonState } from '../components/AddToCartButton';
 import { capQtyOptions } from '../constants/cartLimits';
 import { firstInStockSku } from '../utils/defaultVariant';
 import { addToCart } from '../features/cartSlice';
@@ -28,7 +28,7 @@ import {
   productReviewCreateReset
 } from '../features/productSlice';
 
-type AddCartButtonState = 'idle' | 'added';
+type AddCartButtonState = AddToCartButtonState;
 
 const ProductScreen = () => {
   const { id } = useParams<{ id: string }>();
@@ -83,6 +83,7 @@ const ProductScreen = () => {
       const defaultSku = firstInStockSku(product.variants);
       setSelectedSku(defaultSku);
       setQty(1);
+      setAddCartState('idle');
     }
   }, [product._id, product.variants, id]);
 
@@ -94,12 +95,25 @@ const ProductScreen = () => {
     return () => window.clearTimeout(timer);
   }, [addCartState]);
 
-  const addToCartHandler = () => {
+  useEffect(() => {
+    if (addCartState !== 'error') {
+      return;
+    }
+    const timer = window.setTimeout(() => setAddCartState('idle'), 2000);
+    return () => window.clearTimeout(timer);
+  }, [addCartState]);
+
+  const addToCartHandler = async () => {
     if (!id || !selectedSku || !selectedVariant || selectedVariant.countInStock === 0) {
       return;
     }
-    void dispatch(addToCart({ id, qty, variantSku: selectedSku }));
-    setAddCartState('added');
+    setAddCartState('loading');
+    try {
+      await dispatch(addToCart({ id, qty, variantSku: selectedSku })).unwrap();
+      setAddCartState('added');
+    } catch {
+      setAddCartState('error');
+    }
   };
 
   const submitHandler = (e: FormEvent) => {

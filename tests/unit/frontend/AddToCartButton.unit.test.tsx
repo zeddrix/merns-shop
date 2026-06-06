@@ -2,10 +2,12 @@ import { describe, expect, it, vi } from 'vitest';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { act } from 'react';
-import AddToCartButton from '../../../frontend/src/components/AddToCartButton';
+import AddToCartButton, {
+  type AddToCartButtonState
+} from '../../../frontend/src/components/AddToCartButton';
 
 describe('AddToCartButton', () => {
-  const renderButton = async (state: 'idle' | 'added', disabled = false) => {
+  const renderButton = async (state: AddToCartButtonState, disabled = false) => {
     const onClick = vi.fn();
     const container = document.createElement('div');
     document.body.appendChild(container);
@@ -47,6 +49,39 @@ describe('AddToCartButton', () => {
     expect(idleLayer?.getAttribute('aria-hidden')).toBe('true');
     expect(successLayer?.getAttribute('aria-hidden')).toBe('false');
     expect(successLayer?.textContent).toBe('Added to cart!');
+
+    root.unmount();
+    container.remove();
+  });
+
+  it('renders_loading_state_with_spinner_and_disabled_button', async () => {
+    const { container, root } = await renderButton('loading');
+
+    const button = container.querySelector(
+      '[data-testid="product-add-cart-loading"]'
+    ) as HTMLButtonElement;
+    expect(button).not.toBeNull();
+    expect(button.disabled).toBe(true);
+    expect(button.classList.contains('product-add-cart-btn--loading')).toBe(true);
+    expect(container.querySelector('[data-testid="product-add-cart-spinner"]')).not.toBeNull();
+
+    const loadingLayer = container.querySelector('.product-add-cart-btn__layer--loading');
+    expect(loadingLayer?.getAttribute('aria-hidden')).toBe('false');
+
+    root.unmount();
+    container.remove();
+  });
+
+  it('renders_error_state_with_product_add_cart_error_testid', async () => {
+    const { container, root } = await renderButton('error');
+
+    const button = container.querySelector('[data-testid="product-add-cart-error"]');
+    expect(button).not.toBeNull();
+    expect(button?.classList.contains('product-add-cart-btn--error')).toBe(true);
+
+    const errorLayer = container.querySelector('.product-add-cart-btn__layer--error');
+    expect(errorLayer?.getAttribute('aria-hidden')).toBe('false');
+    expect(errorLayer?.textContent).toBe("Couldn't add — try again");
 
     root.unmount();
     container.remove();

@@ -12,6 +12,7 @@ import cartReducer, {
   removeFromCart,
   saveShippingAddress,
   rehydrateCart,
+  addToCart,
   cartLineKey
 } from '../../../frontend/src/features/cartSlice';
 
@@ -105,5 +106,32 @@ describe('cartSlice', () => {
     const state = cartReducer(initial, saveShippingAddress(address));
     expect(state.shippingAddress).toEqual(address);
     expect(JSON.parse(localStorage.getItem('shippingAddress') ?? '{}')).toEqual(address);
+  });
+
+  it('addToCart_rejected_leaves_cart_items_unchanged', () => {
+    const initial = {
+      cartItems: [
+        {
+          product: 'abc',
+          variantSku: 'abc-128gb',
+          variantLabel: '128GB',
+          name: 'Test (128GB)',
+          image: '/img.jpg',
+          price: 10,
+          countInStock: 5,
+          qty: 1
+        }
+      ],
+      shippingAddress: {},
+      staleItemsPruned: false
+    };
+
+    const state = cartReducer(initial, {
+      type: addToCart.rejected.type,
+      payload: 'Network error',
+      error: { message: 'Rejected' }
+    });
+
+    expect(state.cartItems).toEqual(initial.cartItems);
   });
 });

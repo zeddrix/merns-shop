@@ -7,6 +7,7 @@ import StaggerGrid, {
   staggerItemVariants
 } from '../components/motion/StaggerGrid';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+import { useScrollToTopOnPageChange } from '../hooks/useScrollToTopOnPageChange';
 import Message from '../components/Message';
 import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
@@ -58,6 +59,8 @@ const HomeScreen = () => {
 
   const apiUnreachable =
     isApiUnreachableMessage(error) || isApiUnreachableMessage(productTopRated.error);
+
+  useScrollToTopOnPageChange('home-heading', page, !loading && !apiUnreachable && !error);
 
   const listParams = {
     keyword: keyword ?? '',
@@ -160,6 +163,7 @@ const HomeScreen = () => {
             page={currentPage ?? 1}
             keyword={keyword ?? ''}
             searchQuery={filterQuery}
+            scrollTargetTestId="home-heading"
           />
         </>
       )}

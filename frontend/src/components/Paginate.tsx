@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Pagination } from 'react-bootstrap';
+import { markPaginationScrollTarget } from '../utils/paginationScroll';
 
 interface PaginateProps {
   pages: number;
@@ -7,6 +8,7 @@ interface PaginateProps {
   isAdmin?: boolean;
   keyword?: string;
   searchQuery?: string;
+  scrollTargetTestId?: string;
 }
 
 const buildPath = (
@@ -46,7 +48,8 @@ const Paginate = ({
   page,
   isAdmin = false,
   keyword = '',
-  searchQuery = ''
+  searchQuery = '',
+  scrollTargetTestId
 }: PaginateProps) => {
   if (pages <= 1) return null;
 
@@ -54,6 +57,12 @@ const Paginate = ({
   const prevPath = buildPath(page - 1, isAdmin, keyword, searchQuery);
   const nextPath = buildPath(page + 1, isAdmin, keyword, searchQuery);
   const ariaLabel = isAdmin ? 'Admin product list pages' : 'Product pages';
+
+  const handlePageNav = () => {
+    if (scrollTargetTestId) {
+      markPaginationScrollTarget(scrollTargetTestId);
+    }
+  };
 
   return (
     <nav aria-label={ariaLabel} className="pagination-section" data-testid="pagination-section">
@@ -65,6 +74,7 @@ const Paginate = ({
           className="pagination-nav-item"
           disabled={page <= 1}
           data-testid="pagination-prev"
+          onClick={page > 1 ? handlePageNav : undefined}
         >
           {page > 1 ? <Link to={prevPath}>&lsaquo; Previous</Link> : <span>&lsaquo; Previous</span>}
         </Pagination.Item>
@@ -80,6 +90,7 @@ const Paginate = ({
               key={item}
               active={item === page}
               data-testid={`pagination-page-${item}`}
+              onClick={item !== page ? handlePageNav : undefined}
             >
               <Link to={buildPath(item, isAdmin, keyword, searchQuery)}>{item}</Link>
             </Pagination.Item>
@@ -89,6 +100,7 @@ const Paginate = ({
           className="pagination-nav-item"
           disabled={page >= pages}
           data-testid="pagination-next"
+          onClick={page < pages ? handlePageNav : undefined}
         >
           {page < pages ? <Link to={nextPath}>Next &rsaquo;</Link> : <span>Next &rsaquo;</span>}
         </Pagination.Item>

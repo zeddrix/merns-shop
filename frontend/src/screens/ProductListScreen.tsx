@@ -14,6 +14,7 @@ import {
   productCreateReset
 } from '../features/productSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
+import { useScrollToTopOnPageChange } from '../hooks/useScrollToTopOnPageChange';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const ProductListScreen = () => {
@@ -38,6 +39,8 @@ const ProductListScreen = () => {
   } = productCreate;
 
   const isAdmin = useRequireAdmin();
+
+  useScrollToTopOnPageChange('admin-product-list-heading', page, !loading);
 
   useEffect(() => {
     dispatch(productCreateReset());
@@ -72,7 +75,7 @@ const ProductListScreen = () => {
       <SeoPrivateMeta canonicalPath="/admin/productlist" />
       <Row className="align-items-center">
         <Col>
-          <h1>Products</h1>
+          <h1 data-testid="admin-product-list-heading">Products</h1>
         </Col>
         <Col className="text-end">
           <Button
@@ -140,7 +143,12 @@ const ProductListScreen = () => {
               ))}
             </tbody>
           </Table>
-          <Paginate pages={pages ?? 1} page={currentPage ?? 1} isAdmin />
+          <Paginate
+            pages={pages ?? 1}
+            page={currentPage ?? 1}
+            isAdmin
+            scrollTargetTestId="admin-product-list-heading"
+          />
         </>
       )}
     </div>

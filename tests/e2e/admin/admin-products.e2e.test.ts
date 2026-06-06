@@ -102,6 +102,27 @@ test.describe('admin products', () => {
     await expect(page).toHaveURL(/\/$/);
   });
 
+  test('admin_pagination_scrolls_to_list_heading', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await loginAsAdmin(page);
+    await page.goto('/admin/productlist');
+    await expect(page.locator('[data-testid="admin-product-list"]')).toBeVisible();
+    await expect(page.locator('[data-testid="pagination"]')).toBeVisible();
+
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.locator('[data-testid="pagination-next"]').click();
+    await expect(page).toHaveURL(/\/admin\/productlist\/2/);
+
+    await expect
+      .poll(async () =>
+        page.locator('[data-testid="admin-product-list-heading"]').evaluate((el) => {
+          const rect = el.getBoundingClientRect();
+          return rect.top >= 0 && rect.top < window.innerHeight;
+        })
+      )
+      .toBe(true);
+  });
+
   test('admin_product_list_scrollable_table', async ({ page }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
     await loginAsAdmin(page);

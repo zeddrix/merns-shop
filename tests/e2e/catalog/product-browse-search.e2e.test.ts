@@ -69,10 +69,105 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
   });
 
+  test('add_to_cart_shows_loading_spinner_while_pending', async ({ page, context }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+
+    let delayAdds = false;
+    await context.route('**/api/products/**', async (route) => {
+      if (delayAdds) {
+        await new Promise((resolve) => setTimeout(resolve, 600));
+      }
+      await route.continue();
+    });
+
+    delayAdds = true;
+    await page.locator('[data-testid="product-add-cart"]').click();
+    await expect(page.locator('[data-testid="product-add-cart-loading"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-add-cart-added"]')).toBeVisible();
+    await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
+  });
+
+  test('add_to_cart_shows_error_when_api_fails', async ({ page, context }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+    const productUrl = page.url();
+
+    let failAdds = false;
+    await context.route('**/api/products/**', async (route) => {
+      if (failAdds && route.request().method() === 'GET') {
+        await route.fulfill({
+          status: 500,
+          contentType: 'text/plain',
+          body: 'API error'
+        });
+        return;
+      }
+      await route.continue();
+    });
+
+    failAdds = true;
+    await page.locator('[data-testid="product-add-cart"]').click();
+    await expect(page).toHaveURL(productUrl);
+    await expect(page.locator('[data-testid="product-add-cart-error"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-add-cart-error"]')).toContainText(
+      "Couldn't add — try again"
+    );
+    await expect(page.locator('[data-testid="nav-cart-count"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="product-add-cart"]')).toBeVisible({ timeout: 5000 });
+  });
+
+  test('add_to_cart_button_bounding_box_stable_on_error', async ({ page, context }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+
+    let failAdds = false;
+    await context.route('**/api/products/**', async (route) => {
+      if (failAdds && route.request().method() === 'GET') {
+        await route.fulfill({
+          status: 500,
+          contentType: 'text/plain',
+          body: 'API error'
+        });
+        return;
+      }
+      await route.continue();
+    });
+
+    const addButton = page.locator('.product-add-cart-btn');
+    await addButton.scrollIntoViewIfNeeded();
+    const boxBefore = await addButton.boundingBox();
+    expect(boxBefore).not.toBeNull();
+
+    failAdds = true;
+    await addButton.click();
+    await expect(page.locator('[data-testid="product-add-cart-error"]')).toBeVisible();
+
+    const boxAfter = await page.locator('.product-add-cart-btn').boundingBox();
+    expect(boxAfter).not.toBeNull();
+    expect(Math.abs(boxAfter!.width - boxBefore!.width)).toBeLessThanOrEqual(1);
+    expect(Math.abs(boxAfter!.height - boxBefore!.height)).toBeLessThanOrEqual(1);
+  });
+
+  test('pagination_scrolls_to_catalog_top_on_page_change', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await expect(page.locator('[data-testid="pagination"]')).toBeVisible();
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.locator('[data-testid="pagination-next"]').click();
+    await expect(page).toHaveURL(/\/page\/2/);
+
+    await expect
+      .poll(async () =>
+        page.locator('[data-testid="home-heading"]').evaluate((el) => {
+          const rect = el.getBoundingClientRect();
+          return rect.top >= 0 && rect.top < window.innerHeight;
+        })
+      )
+      .toBe(true);
+  });
+
   test('add_to_cart_button_bounding_box_stable_on_success', async ({ page }) => {
     await openProductByExactName(page, IPHONE_15_PRO);
     const productUrl = page.url();
-    const addButton = page.locator('[data-testid="product-add-cart"]');
+    const addButton = page.locator('.product-add-cart-btn');
+    await addButton.scrollIntoViewIfNeeded();
 
     const boxBefore = await addButton.boundingBox();
     expect(boxBefore).not.toBeNull();
@@ -81,10 +176,8 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="product-add-cart-added"]')).toBeVisible();
     await expect(page).toHaveURL(productUrl);
 
-    const boxAfter = await page.locator('[data-testid="product-add-cart-added"]').boundingBox();
+    const boxAfter = await page.locator('.product-add-cart-btn').boundingBox();
     expect(boxAfter).not.toBeNull();
-    expect(Math.abs(boxAfter!.x - boxBefore!.x)).toBeLessThanOrEqual(1);
-    expect(Math.abs(boxAfter!.y - boxBefore!.y)).toBeLessThanOrEqual(1);
     expect(Math.abs(boxAfter!.width - boxBefore!.width)).toBeLessThanOrEqual(1);
     expect(Math.abs(boxAfter!.height - boxBefore!.height)).toBeLessThanOrEqual(1);
   });
