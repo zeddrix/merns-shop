@@ -53,29 +53,47 @@ const Paginate = ({
   const visible = getVisiblePages(pages, page);
   const prevPath = buildPath(page - 1, isAdmin, keyword, searchQuery);
   const nextPath = buildPath(page + 1, isAdmin, keyword, searchQuery);
+  const ariaLabel = isAdmin ? 'Admin product list pages' : 'Product pages';
 
   return (
-    <Pagination className="pagination-wrap" size="sm" data-testid="pagination">
-      <Pagination.Item disabled={page <= 1} data-testid="pagination-prev">
-        {page > 1 ? <Link to={prevPath}>Previous</Link> : <span>Previous</span>}
-      </Pagination.Item>
-      {visible.map((item, idx) =>
-        item === 'ellipsis' ? (
-          <Pagination.Ellipsis key={`ellipsis-${idx}`} disabled data-testid="pagination-ellipsis" />
-        ) : (
-          <Pagination.Item
-            key={item}
-            active={item === page}
-            data-testid={`pagination-page-${item}`}
-          >
-            <Link to={buildPath(item, isAdmin, keyword, searchQuery)}>{item}</Link>
-          </Pagination.Item>
-        )
-      )}
-      <Pagination.Item disabled={page >= pages} data-testid="pagination-next">
-        {page < pages ? <Link to={nextPath}>Next</Link> : <span>Next</span>}
-      </Pagination.Item>
-    </Pagination>
+    <nav aria-label={ariaLabel} className="pagination-section" data-testid="pagination-section">
+      <span className="pagination-summary" data-testid="pagination-summary">
+        Page {page} of {pages}
+      </span>
+      <Pagination className="pagination-wrap" data-testid="pagination">
+        <Pagination.Item
+          className="pagination-nav-item"
+          disabled={page <= 1}
+          data-testid="pagination-prev"
+        >
+          {page > 1 ? <Link to={prevPath}>&lsaquo; Previous</Link> : <span>&lsaquo; Previous</span>}
+        </Pagination.Item>
+        {visible.map((item, idx) =>
+          item === 'ellipsis' ? (
+            <Pagination.Ellipsis
+              key={`ellipsis-${idx}`}
+              disabled
+              data-testid="pagination-ellipsis"
+            />
+          ) : (
+            <Pagination.Item
+              key={item}
+              active={item === page}
+              data-testid={`pagination-page-${item}`}
+            >
+              <Link to={buildPath(item, isAdmin, keyword, searchQuery)}>{item}</Link>
+            </Pagination.Item>
+          )
+        )}
+        <Pagination.Item
+          className="pagination-nav-item"
+          disabled={page >= pages}
+          data-testid="pagination-next"
+        >
+          {page < pages ? <Link to={nextPath}>Next &rsaquo;</Link> : <span>Next &rsaquo;</span>}
+        </Pagination.Item>
+      </Pagination>
+    </nav>
   );
 };
 

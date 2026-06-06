@@ -69,6 +69,53 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
   });
 
+  test('add_to_cart_button_bounding_box_stable_on_success', async ({ page }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+    const productUrl = page.url();
+    const addButton = page.locator('[data-testid="product-add-cart"]');
+
+    const boxBefore = await addButton.boundingBox();
+    expect(boxBefore).not.toBeNull();
+
+    await addButton.click();
+    await expect(page.locator('[data-testid="product-add-cart-added"]')).toBeVisible();
+    await expect(page).toHaveURL(productUrl);
+
+    const boxAfter = await page.locator('[data-testid="product-add-cart-added"]').boundingBox();
+    expect(boxAfter).not.toBeNull();
+    expect(Math.abs(boxAfter!.x - boxBefore!.x)).toBeLessThanOrEqual(1);
+    expect(Math.abs(boxAfter!.y - boxBefore!.y)).toBeLessThanOrEqual(1);
+    expect(Math.abs(boxAfter!.width - boxBefore!.width)).toBeLessThanOrEqual(1);
+    expect(Math.abs(boxAfter!.height - boxBefore!.height)).toBeLessThanOrEqual(1);
+  });
+
+  test('pagination_has_spacing_and_detached_controls', async ({ page }) => {
+    await expect(page.locator('[data-testid="pagination-section"]')).toBeVisible();
+    await expect(page.locator('[data-testid="pagination-summary"]')).toBeVisible();
+
+    const sectionStyles = await page
+      .locator('[data-testid="pagination-section"]')
+      .evaluate((el) => {
+        const style = getComputedStyle(el);
+        return {
+          marginTop: parseFloat(style.marginTop),
+          marginBottom: parseFloat(style.marginBottom)
+        };
+      });
+    expect(sectionStyles.marginTop).toBeGreaterThanOrEqual(24);
+    expect(sectionStyles.marginBottom).toBeGreaterThanOrEqual(24);
+
+    const paginationGap = await page.locator('[data-testid="pagination"]').evaluate((el) => {
+      const style = getComputedStyle(el);
+      return parseFloat(style.gap) || parseFloat(style.columnGap);
+    });
+    expect(paginationGap).toBeGreaterThanOrEqual(8);
+
+    await page.locator('[data-testid="pagination-next"]').click();
+    await expect(page).toHaveURL(/\/page\/2/);
+    await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
+  });
+
   test('product_card_media_uniform_height', async ({ page }) => {
     await selectAppOption(page, 'filter-category', 'Electronics');
     await selectAppOption(page, 'filter-subcategory', 'Tablets');

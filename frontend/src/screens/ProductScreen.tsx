@@ -18,6 +18,7 @@ import {
   truncateDescription
 } from '../utils/seoMeta';
 import ProductVariantPicker from '../components/ProductVariantPicker';
+import AddToCartButton from '../components/AddToCartButton';
 import { capQtyOptions } from '../constants/cartLimits';
 import { firstInStockSku } from '../utils/defaultVariant';
 import { addToCart } from '../features/cartSlice';
@@ -244,20 +245,14 @@ const ProductScreen = () => {
                   )}
 
                   <ListGroup.Item>
-                    <Button
+                    <AddToCartButton
+                      state={addCartState}
                       onClick={addToCartHandler}
-                      className={`w-100 btn-cta product-add-cart-btn${addCartState === 'added' ? ' product-add-cart-btn--added' : ''}`}
-                      type="button"
-                      data-testid={
-                        addCartState === 'added' ? 'product-add-cart-added' : 'product-add-cart'
-                      }
                       disabled={
                         allVariantsOutOfStock ||
                         (selectedVariant !== undefined && selectedVariant.countInStock === 0)
                       }
-                    >
-                      {addCartState === 'added' ? 'Added to cart!' : 'Add To Cart'}
-                    </Button>
+                    />
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
