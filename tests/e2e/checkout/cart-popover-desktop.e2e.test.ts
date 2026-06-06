@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {
+  loginAs,
   loginWithCredentials,
   openProductByExactName,
   selectVariantAndAddToCart
@@ -50,5 +51,29 @@ test.describe('desktop cart popover', () => {
     await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
     await expect(page).toHaveURL(/\/shipping/);
     await expect(page.locator('[data-testid="shipping-heading"]')).toBeVisible();
+  });
+
+  test('logged_in_popover_checkout_skips_auth_modal', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+    await openProductByExactName(page, 'iPhone 15 Pro');
+    await selectVariantAndAddToCart(page);
+
+    await page.locator('[data-testid="nav-cart"]').click();
+    await expect(page.locator('[data-testid="cart-popover"]')).toBeVisible();
+    await page.locator('[data-testid="cart-popover-checkout"]').click();
+
+    await expect(page).toHaveURL(/\/shipping/);
+    await expect(page.locator('[data-testid="shipping-heading"]')).toBeVisible();
+    await expect(page.locator('[data-testid="auth-modal"]')).toHaveCount(0);
+  });
+
+  test('empty_cart_popover_shows_empty_state', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('[data-testid="nav-cart"]').click();
+    await expect(page).not.toHaveURL(/\/cart/);
+    await expect(page.locator('[data-testid="cart-popover"]')).toBeVisible();
+    await expect(page.locator('[data-testid="cart-popover-empty"]')).toBeVisible();
+    await expect(page.locator('[data-testid="cart-popover-checkout"]')).toHaveCount(0);
   });
 });

@@ -86,4 +86,10 @@ test.describe('smoke app boot', () => {
       'underline'
     );
   });
+
+  test('unknown_route_falls_back_without_crash', async ({ page }) => {
+    await page.goto('/this-route-does-not-exist');
+    await expect(page.locator('[data-testid="site-brand"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
+  });
 });

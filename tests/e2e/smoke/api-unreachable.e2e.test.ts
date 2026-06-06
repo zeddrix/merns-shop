@@ -1,10 +1,18 @@
 import { test, expect } from '@playwright/test';
-import { assertHomeCatalogHealthy } from '../fixtures/test-helpers';
+import {
+  assertHomeCatalogHealthy,
+  createPaidOrderViaApi,
+  loginAs,
+  loginAsAdmin,
+  openAdminNavDropdown
+} from '../fixtures/test-helpers';
+import { resetE2eDatabase } from '../fixtures/reset-db';
 
 const blockApi = { value: false };
 
 test.describe('api unreachable smoke', () => {
   test.beforeEach(async ({ context, page }) => {
+    await resetE2eDatabase(context);
     blockApi.value = false;
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await context.route(
@@ -72,5 +80,61 @@ test.describe('api unreachable smoke', () => {
 
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
     await expect(page.locator('[data-testid="product-add-cart"]')).toBeVisible();
+  });
+
+  test('profile_api_unreachable_shows_retry', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+    blockApi.value = true;
+    await page.locator('#username').click();
+    await page.locator('[data-testid="nav-profile"]').click();
+    await expect(page).toHaveURL(/\/profile$/);
+    const profileUnreachable = page.locator('[data-testid="profile-api-unreachable"]');
+    await expect(profileUnreachable).toBeVisible();
+    await expect(profileUnreachable).toHaveCount(1);
+    await expect(profileUnreachable.locator('[data-testid="api-unreachable-retry"]')).toBeVisible();
+    blockApi.value = false;
+    await profileUnreachable.locator('[data-testid="api-unreachable-retry"]').click();
+    await expect(page.locator('[data-testid="profile-form"]')).toBeVisible();
+  });
+
+  test('admin_list_api_unreachable_shows_retry', async ({ page }) => {
+    await loginAsAdmin(page);
+    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+    blockApi.value = true;
+    await openAdminNavDropdown(page);
+    await page.locator('[data-testid="nav-admin-products"]').click();
+    await expect(page).toHaveURL(/\/admin\/productlist$/);
+    await expect(page.locator('[data-testid="api-unreachable-message"]')).toBeVisible();
+    blockApi.value = false;
+    await page.locator('[data-testid="api-unreachable-retry"]').click();
+    await expect(page.locator('[data-testid="admin-product-list"]')).toBeVisible();
+  });
+
+  test('order_detail_api_unreachable_shows_retry', async ({ page }) => {
+    const orderId = await createPaidOrderViaApi(page, 'customer');
+    await loginAs(page, 'customer');
+    await page.goto(`/order/${orderId}`);
+    await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
+
+    let blockOrderFetch = false;
+    await page.route(`**/api/orders/${orderId}`, async (route) => {
+      if (blockOrderFetch && route.request().method() === 'GET') {
+        await route.fulfill({
+          status: 500,
+          contentType: 'text/plain',
+          body: 'API unreachable'
+        });
+        return;
+      }
+      await route.continue();
+    });
+
+    blockOrderFetch = true;
+    await page.goto(`/order/${orderId}`);
+    await expect(page.locator('[data-testid="api-unreachable-message"]')).toBeVisible();
+    blockOrderFetch = false;
+    await page.locator('[data-testid="api-unreachable-retry"]').click();
+    await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
   });
 });

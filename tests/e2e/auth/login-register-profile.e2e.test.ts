@@ -331,4 +331,118 @@ test.describe('auth login register profile', () => {
     await openAuthModal(page, 'login');
     await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
   });
+
+  test('legacy_register_route_opens_modal_on_redirect_target', async ({ page }) => {
+    await page.goto('/');
+    const productHref = await page
+      .locator('[data-testid^="product-card-"]')
+      .first()
+      .getAttribute('href');
+    expect(productHref).toBeTruthy();
+
+    await page.goto(`/register?redirect=${encodeURIComponent(productHref as string)}`);
+    await expect(page).toHaveURL(
+      new RegExp(`${(productHref as string).replace(/\//g, '\\/')}\\?.*auth=register`)
+    );
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
+    await expect(
+      page.locator('[data-testid="product-details"], [data-testid="product-list"]')
+    ).toBeVisible();
+  });
+
+  test('profile_password_mismatch_shows_error', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await page.goto('/profile');
+    await expect(page.locator('[data-testid="profile-form"]')).toBeVisible();
+    await page.locator('[data-testid="profile-password"]').fill('654321');
+    await page.locator('[data-testid="profile-confirm-password"]').fill('123456');
+    await page.locator('[data-testid="profile-submit"]').click();
+    await expect(page.locator('[data-testid="alert-message"]')).toContainText(
+      'Passwords do not match'
+    );
+    await expect(page.locator('[data-testid="profile-form"]')).toBeVisible();
+  });
+
+  test('profile_password_update_requires_relogin', async ({ page }) => {
+    const unique = Date.now();
+    const email = `profile-pw-${unique}@example.com`;
+    const oldPassword = '123456';
+    const newPassword = '654321';
+
+    await openAuthModal(page, 'register');
+    await registerWithCredentials(page, 'Password Update User', email, oldPassword);
+
+    await page.goto('/profile');
+    await expect(page.locator('[data-testid="profile-form"]')).toBeVisible();
+    await page.locator('[data-testid="profile-password"]').fill(newPassword);
+    await page.locator('[data-testid="profile-confirm-password"]').fill(newPassword);
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/api/users/profile') && response.status() === 200
+      ),
+      page.locator('[data-testid="profile-submit"]').click()
+    ]);
+    await expect(page.getByText('Profile Updated')).toBeVisible();
+
+    await logout(page);
+    await openAuthModal(page, 'login');
+    await page.locator('[data-testid="login-email"]').fill(email);
+    await page.locator('[data-testid="login-password"]').fill(oldPassword);
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/api/users/login') && response.status() === 401
+      ),
+      page.locator('[data-testid="login-submit"]').click()
+    ]);
+    await expect(page.locator('[data-testid="login-form"]')).toBeVisible();
+
+    await loginWithCredentials(page, email, newPassword);
+    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+  });
+
+  test('profile_email_update_persisted', async ({ page }) => {
+    const unique = Date.now();
+    const email = `profile-email-${unique}@example.com`;
+    const updatedEmail = `profile-email-updated-${unique}@example.com`;
+
+    await openAuthModal(page, 'register');
+    await registerWithCredentials(page, 'Email Update User', email, '123456');
+
+    await page.goto('/profile');
+    await expect(page.locator('[data-testid="profile-form"]')).toBeVisible();
+    await page.locator('[data-testid="profile-email"]').fill(updatedEmail);
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/api/users/profile') && response.status() === 200
+      ),
+      page.locator('[data-testid="profile-submit"]').click()
+    ]);
+    await expect(page.getByText('Profile Updated')).toBeVisible();
+
+    await page.reload();
+    await expect(page.locator('[data-testid="profile-email"]')).toHaveValue(updatedEmail);
+  });
+
+  test('auth_modal_backdrop_dismiss', async ({ page }) => {
+    await page.goto('/?auth=login');
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+    await page.locator('[data-testid="auth-modal-backdrop"]').click({ position: { x: 5, y: 5 } });
+    await expect(page.locator('[data-testid="auth-modal"]')).toHaveCount(0);
+    await expect(page).toHaveURL(/\/$/);
+  });
+
+  test('auth_modal_register_login_switch_on_home', async ({ page }) => {
+    await openAuthModal(page, 'register');
+    await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
+    await page.locator('[data-testid="register-login-link"]').click();
+    await expect(page).toHaveURL(/auth=login/);
+    await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+
+    await page.locator('[data-testid="login-register-link"]').click();
+    await expect(page).toHaveURL(/auth=register/);
+    await expect(page.locator('[data-testid="register-heading"]')).toBeVisible();
+    await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
+  });
 });

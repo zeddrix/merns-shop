@@ -111,4 +111,14 @@ test.describe('responsive layout', () => {
     await expect(page.locator('[data-testid="payment-heading"]')).toBeVisible();
     await assertNoHorizontalOverflow(page);
   });
+
+  test('mobile_place_order_screen_no_horizontal_overflow', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstInStockProductToCart(page);
+    await completeShippingStep(page);
+    await page.locator('[data-testid="payment-method-paypal"]').check();
+    await page.locator('[data-testid="payment-submit"]').click();
+    await expect(page.locator('[data-testid="place-order-screen"]')).toBeVisible();
+    await assertNoHorizontalOverflow(page);
+  });
 });

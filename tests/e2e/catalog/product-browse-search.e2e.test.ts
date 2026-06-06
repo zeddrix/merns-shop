@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import {
   assertHomeCatalogHealthy,
   clickProductCardToPdp,
+  isProductDetailsApiResponse,
   openProductByExactName,
   productCardByExactName,
   fillSearchAndSubmit,
@@ -383,6 +384,71 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="cart-stale-pruned-notice"]')).toBeVisible();
     await page.locator('[data-testid="cart-stale-pruned-dismiss"]').click();
     await expect(page.locator('[data-testid="cart-stale-pruned-notice"]')).toHaveCount(0);
+  });
+
+  test('nav_category_tablets_filters_catalog', async ({ page }) => {
+    await page.locator('[data-testid="nav-category-tablets"]').click();
+    await expect(page).toHaveURL(/category=Electronics/);
+    await expect(page).toHaveURL(/subcategory=Tablets/);
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
+    await expect(page.locator('[data-testid^="product-card-"]').first()).toContainText(
+      /iPad|Galaxy Tab|Tab/
+    );
+  });
+
+  test('carousel_slide_opens_pdp', async ({ page }) => {
+    const carousel = page.locator('[data-testid="product-carousel"]');
+    await expect(carousel).toBeVisible();
+    const activeSlide = page.locator('.carousel-item.active a.product-carousel__slide');
+    await expect(activeSlide).toBeVisible();
+    const caption = await activeSlide.locator('.carousel-caption h2').innerText();
+    const productName = caption.replace(/\s*\(from \$[\d,.]+\)\s*$/, '').trim();
+    await Promise.all([page.waitForURL(/\/product\//), activeSlide.click()]);
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-details"] h3')).toContainText(productName);
+  });
+
+  test('variant_switch_updates_display', async ({ page }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+    await expect(page.locator('[data-testid="product-variant-details"]')).toContainText('128GB');
+
+    const price128 = await page.locator('[data-testid="product-price-display"]').innerText();
+    await selectProductVariant(page, 'iphone-15-pro-256gb');
+    await expect(page.locator('[data-testid="product-variant-details"]')).toContainText('256GB');
+    await expect(page.locator('[data-testid="product-variant-details"]')).not.toContainText(
+      '128GB storage'
+    );
+
+    const price256 = await page.locator('[data-testid="product-price-display"]').innerText();
+    expect(price256).not.toBe(price128);
+  });
+
+  test('pdp_robots_canonical_meta', async ({ page }) => {
+    const response = await page.request.get(
+      `/api/products?keyword=${encodeURIComponent(IPHONE_15_PRO)}`
+    );
+    expect(response.ok()).toBeTruthy();
+    const { products } = (await response.json()) as {
+      products: Array<{ _id: string; name: string }>;
+    };
+    const product =
+      products.find((p) => p.name === IPHONE_15_PRO) ??
+      products.find((p) => p.name.includes('iPhone 15 Pro'));
+    expect(product).toBeTruthy();
+
+    const detailsResponse = page.waitForResponse(isProductDetailsApiResponse);
+    await page.goto(`/product/${product!._id}`);
+    await detailsResponse;
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index,follow');
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      new RegExp(`/product/${product!._id}$`)
+    );
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
+      'content',
+      new RegExp(`/product/${product!._id}$`)
+    );
   });
 
   test('mobile_search_results_pagination', async ({ page }) => {

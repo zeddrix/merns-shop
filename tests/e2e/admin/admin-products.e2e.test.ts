@@ -13,6 +13,56 @@ test.describe('admin products', () => {
   test.beforeEach(async ({ context }) => {
     await resetE2eDatabase(context);
   });
+
+  test('admin_deletes_product_via_ui', async ({ page }) => {
+    const productName = `E2E Delete Product ${Date.now()}`;
+
+    await loginAsAdmin(page);
+    await page.goto('/admin/productlist');
+    await page.locator('[data-testid="admin-create-product"]').click();
+    await page.waitForURL(/\/admin\/product\/([^/]+)\/edit/);
+    const productId = page.url().match(/\/admin\/product\/([^/]+)\/edit/)?.[1];
+    expect(productId).toBeTruthy();
+
+    await page.locator('[data-testid="admin-product-name"]').fill(productName);
+    await page.locator('[data-testid="admin-product-model-key"]').fill(`e2e-delete-${Date.now()}`);
+    await page.locator('[data-testid="admin-product-subcategory"]').fill('Phones');
+    await page
+      .locator('[data-testid="admin-product-description"]')
+      .fill('Product to delete via UI');
+    await page.locator('[data-testid="admin-product-image"]').fill('/images/sample.jpg');
+    await page.locator('[data-testid="admin-variant-label-0"]').fill('128GB');
+    await page.locator('[data-testid="admin-variant-list-price-0"]').fill('199');
+    await page.locator('[data-testid="admin-variant-price-0"]').fill('149');
+    await page.locator('[data-testid="admin-variant-stock-0"]').fill('3');
+    await Promise.all([
+      page.waitForResponse(
+        (response) =>
+          response.url().includes(`/api/products/${productId}`) &&
+          response.request().method() === 'PUT' &&
+          response.ok()
+      ),
+      page.locator('[data-testid="admin-product-submit"]').click()
+    ]);
+    await page.waitForURL('**/admin/productlist');
+    await expect(page.locator(`[data-testid="admin-product-${productId}"]`)).toBeVisible();
+
+    page.once('dialog', (dialog) => dialog.accept());
+    await Promise.all([
+      page.waitForResponse(
+        (response) =>
+          response.url().includes(`/api/products/${productId}`) &&
+          response.request().method() === 'DELETE' &&
+          response.ok()
+      ),
+      page.locator(`[data-testid="admin-product-delete-${productId}"]`).click()
+    ]);
+
+    await expect(page.locator(`[data-testid="admin-product-${productId}"]`)).toHaveCount(0);
+    const deletedProduct = await findProductById(productId as string);
+    expect(deletedProduct).toBeNull();
+  });
+
   test('admin_create_edit_delete_product', async ({ page }) => {
     const productName = `E2E Product ${Date.now()}`;
     const updatedName = `${productName} Updated`;

@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { assertGuestDeepLinkAuthGate } from '../fixtures/test-helpers';
-import { findUserByEmail } from '../fixtures/mongo-helpers';
+import {
+  assertGuestDeepLinkAuthGate,
+  fetchFirstProductId,
+  fetchSeededUserId
+} from '../fixtures/test-helpers';
 import { TEST_USERS } from '../fixtures/test-users';
 
 /** API calls use baseURL (:5020) and Vite proxy — same path as the browser UI. */
@@ -24,17 +27,8 @@ test.describe('api security auth', () => {
   });
 
   test('guest_admin_list_routes_show_auth_gate_after_dismiss', async ({ page }) => {
-    const productsResponse = await page.request.get('/api/products');
-    expect(productsResponse.ok()).toBeTruthy();
-    const productsBody = (await productsResponse.json()) as {
-      products: Array<{ _id: string }>;
-    };
-    const productId = productsBody.products[0]?._id;
-    expect(productId).toBeTruthy();
-
-    const customer = await findUserByEmail(TEST_USERS.customer.email);
-    expect(customer?._id).toBeTruthy();
-    const userId = String(customer?._id);
+    const productId = await fetchFirstProductId(page);
+    const userId = await fetchSeededUserId(page, TEST_USERS.customer.email);
 
     const adminListRoutes = ['/admin/productlist', '/admin/userlist', '/admin/orderlist'] as const;
 
