@@ -1,14 +1,23 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
 import type { NextFunction, Request, Response } from 'express';
 
-vi.mock('../../../backend/models/User.js', () => ({
+const jwtVerify = vi.hoisted(() => vi.fn());
+const findById = vi.hoisted(() => vi.fn());
+
+vi.mock('jsonwebtoken', () => ({
   default: {
-    findById: vi.fn()
+    verify: jwtVerify
   }
 }));
 
-import User from '../../../backend/models/User.js';
-import { admin } from '../../../backend/middleware/authMiddleware.js';
+vi.mock('../../../backend/models/User.js', () => ({
+  default: {
+    findById: findById
+  }
+}));
+
+import { admin, optionalAuth, protect } from '../../../backend/middleware/authMiddleware.js';
+import { AUTH_COOKIE_NAME } from '../../../backend/utils/authCookie.js';
 
 describe('authMiddleware admin', () => {
   it('calls next for admin user', async () => {
@@ -33,8 +42,140 @@ describe('authMiddleware admin', () => {
   });
 });
 
-describe('authMiddleware protect user lookup', () => {
-  it('User.findById is available', () => {
-    expect(User.findById).toBeDefined();
+describe('authMiddleware protect', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    process.env.JWT_SECRET = 'unit-test-secret';
+  });
+
+  it('rejects request without token', async () => {
+    const req = { headers: {}, cookies: {} } as Request;
+    const res = { status: vi.fn().mockReturnThis() } as unknown as Response;
+    const next = vi.fn() as NextFunction;
+
+    await protect(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(next).toHaveBeenCalledWith(
+      expect.objectContaining({ message: 'Not authorized, no token' })
+    );
+  });
+
+  it('attaches user from bearer token', async () => {
+    const userDoc = { _id: '507f1f77bcf86cd799439011', name: 'John', email: 'john@gmail.com' };
+    jwtVerify.mockReturnValue({ id: '507f1f77bcf86cd799439011' });
+    findById.mockReturnValue({
+      select: vi.fn().mockResolvedValue(userDoc)
+    });
+
+    const req = {
+      headers: { authorization: 'Bearer valid-token' },
+      cookies: {}
+    } as Request;
+    const res = {} as Response;
+    const next = vi.fn() as NextFunction;
+
+    await protect(req, res, next);
+
+    expect(req.user).toEqual(userDoc);
+    expect(next).toHaveBeenCalled();
+  });
+
+  it('attaches user from auth cookie', async () => {
+    const userDoc = { _id: '507f1f77bcf86cd799439011', name: 'John', email: 'john@gmail.com' };
+    jwtVerify.mockReturnValue({ id: '507f1f77bcf86cd799439011' });
+    findById.mockReturnValue({
+      select: vi.fn().mockResolvedValue(userDoc)
+    });
+
+    const req = {
+      headers: {},
+      cookies: { [AUTH_COOKIE_NAME]: 'cookie-token' }
+    } as unknown as Request;
+    const res = {} as Response;
+    const next = vi.fn() as NextFunction;
+
+    await protect(req, res, next);
+
+    expect(jwtVerify).toHaveBeenCalledWith('cookie-token', 'unit-test-secret');
+    expect(req.user).toEqual(userDoc);
+    expect(next).toHaveBeenCalled();
+  });
+
+  it('rejects when user is not found', async () => {
+    jwtVerify.mockReturnValue({ id: '507f1f77bcf86cd799439011' });
+    findById.mockReturnValue({
+      select: vi.fn().mockResolvedValue(null)
+    });
+
+    const req = {
+      headers: { authorization: 'Bearer valid-token' },
+      cookies: {}
+    } as Request;
+    const res = { status: vi.fn().mockReturnThis() } as unknown as Response;
+    const next = vi.fn() as NextFunction;
+
+    await protect(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(next).toHaveBeenCalledWith(
+      expect.objectContaining({ message: 'Not authorized, user not found' })
+    );
+  });
+});
+
+describe('authMiddleware optionalAuth', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    process.env.JWT_SECRET = 'unit-test-secret';
+  });
+
+  it('calls next without user when no token', async () => {
+    const req = { headers: {}, cookies: {} } as Request;
+    const res = {} as Response;
+    const next = vi.fn() as NextFunction;
+
+    await optionalAuth(req, res, next);
+
+    expect(req.user).toBeUndefined();
+    expect(next).toHaveBeenCalled();
+  });
+
+  it('attaches user when token is valid', async () => {
+    const userDoc = { _id: '507f1f77bcf86cd799439011', name: 'John', email: 'john@gmail.com' };
+    jwtVerify.mockReturnValue({ id: '507f1f77bcf86cd799439011' });
+    findById.mockReturnValue({
+      select: vi.fn().mockResolvedValue(userDoc)
+    });
+
+    const req = {
+      headers: { authorization: 'Bearer valid-token' },
+      cookies: {}
+    } as Request;
+    const res = {} as Response;
+    const next = vi.fn() as NextFunction;
+
+    await optionalAuth(req, res, next);
+
+    expect(req.user).toEqual(userDoc);
+    expect(next).toHaveBeenCalled();
+  });
+
+  it('continues without user when token is invalid', async () => {
+    jwtVerify.mockImplementation(() => {
+      throw new Error('invalid token');
+    });
+
+    const req = {
+      headers: { authorization: 'Bearer bad-token' },
+      cookies: {}
+    } as Request;
+    const res = {} as Response;
+    const next = vi.fn() as NextFunction;
+
+    await optionalAuth(req, res, next);
+
+    expect(req.user).toBeUndefined();
+    expect(next).toHaveBeenCalled();
   });
 });

@@ -5,7 +5,9 @@ import {
   createOrderSchema,
   payOrderSchema,
   updateUserAdminSchema,
-  productInputSchema
+  productInputSchema,
+  updateProfileSchema,
+  productReviewSchema
 } from '../../../backend/validators/schemas.js';
 
 describe('request validation schemas', () => {
@@ -118,6 +120,36 @@ describe('request validation schemas', () => {
         }
       ]
     });
+    expect(result.success).toBe(true);
+  });
+
+  it('rejects updateProfileSchema with invalid email', () => {
+    const result = updateProfileSchema.safeParse({ email: 'not-an-email' });
+    expect(result.success).toBe(false);
+  });
+
+  it('rejects updateProfileSchema with short password', () => {
+    const result = updateProfileSchema.safeParse({ password: '123' });
+    expect(result.success).toBe(false);
+  });
+
+  it('accepts updateProfileSchema with valid partial fields', () => {
+    const result = updateProfileSchema.safeParse({ name: 'Updated Name' });
+    expect(result.success).toBe(true);
+  });
+
+  it('rejects productReviewSchema with empty comment', () => {
+    const result = productReviewSchema.safeParse({ rating: 5, comment: '' });
+    expect(result.success).toBe(false);
+  });
+
+  it('rejects productReviewSchema with out-of-range rating', () => {
+    const result = productReviewSchema.safeParse({ rating: 6, comment: 'Too high' });
+    expect(result.success).toBe(false);
+  });
+
+  it('accepts valid productReviewSchema payload', () => {
+    const result = productReviewSchema.safeParse({ rating: 4, comment: 'Solid product' });
     expect(result.success).toBe(true);
   });
 });
