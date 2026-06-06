@@ -303,21 +303,23 @@ Each test file should use dedicated users from `tests/e2e/fixtures/test-users.ts
 
 Avoid reusing the same user across parallel tests that mutate profile, orders, or reviews without reset.
 
-### Playwright dev stack (same as manual `pnpm dev`)
+### Playwright dev stack (dedicated E2E ports)
 
-E2E uses **`http://localhost:5020`** as `baseURL` (Vite). UI and `request` API calls go through that origin and the Vite proxy to the API on **5021** — the same path a human browser uses.
+Manual `pnpm dev` uses **5020/5021**. E2E uses a separate stack on **5030/5031** so both can run concurrently without port conflicts.
 
-`playwright.config.ts` starts or reuses the **same command as `pnpm dev`**: `dev:inner` (API + Vite via `concurrently`). Health check waits for `http://localhost:5020/api/products` so both Vite and the API must be up.
+E2E uses **`http://localhost:5030`** as `baseURL` (Vite). UI and `request` API calls go through that origin and the Vite proxy to the API on **5031** — the same path a human browser uses, but on dedicated ports.
 
-| Command                             | When to use                                                            |
-| ----------------------------------- | ---------------------------------------------------------------------- |
-| `pnpm test:e2e`                     | CI / clean run: spawns fresh `dev:inner` (`PW_DISABLE_REUSE_SERVER=1`) |
-| `pnpm test:e2e:dev`                 | Local: reuse an already-running `pnpm dev` on :5020/:5021              |
-| `pnpm dev` then `pnpm test:e2e:dev` | Matches day-to-day dev workflow                                        |
+`playwright.config.ts` starts or reuses **`dev:e2e:inner`** (API + Vite via `concurrently`). Health check waits for `http://localhost:5030/api/products` so both Vite and the API must be up.
 
-Set `PW_DISABLE_REUSE_SERVER=1` to force Playwright to spawn a new stack. Stale processes on 5020/5021 cause flaky auth and API failures.
+| Command                                 | When to use                                                                |
+| --------------------------------------- | -------------------------------------------------------------------------- |
+| `pnpm test:e2e`                         | CI / clean run: spawns fresh `dev:e2e:inner` (`PW_DISABLE_REUSE_SERVER=1`) |
+| `pnpm test:e2e:dev`                     | Local: reuse an already-running `pnpm dev:e2e` on :5030/:5031              |
+| `pnpm dev:e2e` then `pnpm test:e2e:dev` | Iterative E2E workflow without respawning the stack each run               |
 
-**Troubleshooting:** If the homepage shows API error banners, ensure Mongo is running (`docker compose up -d mongo`), `.env` exists with `MONGO_URI` and `PORT=5021`, and `pnpm dev` logs the API as still running (not exited immediately).
+Set `PW_DISABLE_REUSE_SERVER=1` to force Playwright to spawn a new E2E stack. Stale processes on 5030/5031 cause flaky auth and API failures.
+
+**Troubleshooting:** If the homepage shows API error banners, ensure Mongo is running (`docker compose up -d mongo`), `.env.test` exists with `MONGO_URI`, and the E2E API is listening on `PORT=5031`. Manual `pnpm dev` on 5020/5021 does not satisfy the E2E health check.
 
 **Optional env overrides:** `PW_RETRIES` (default `0`), `PW_WORKERS` (default `1`), `PW_PAYPAL_RETRIES` (default `1` for `@paypal` project), `PW_PAYPAL_ONLY=1` (isolated PayPal project run via `pnpm test:e2e:paypal`).
 
@@ -342,7 +344,7 @@ Tests tagged `@paypal` run in a dedicated Playwright **`paypal` project** (worke
 
 Requires `MONGO_URI` in `.env.test`. JWT and PayPal client placeholders are set when missing.
 
-When sandbox credentials are present in `.env.test`, global setup also verifies `GET http://localhost:5020/api/config/paypal` returns a real client ID on the **running** API (reuse `pnpm dev` with `PAYPAL_CLIENT_ID` in `.env`, or let Playwright spawn the stack with `PW_DISABLE_REUSE_SERVER=1`).
+When sandbox credentials are present in `.env.test`, global setup also verifies `GET http://localhost:5030/api/config/paypal` returns a real client ID on the **running** E2E API (reuse `pnpm dev:e2e` with `PAYPAL_CLIENT_ID` in `.env.test`, or let Playwright spawn the stack with `PW_DISABLE_REUSE_SERVER=1`).
 
 ### Real PayPal sandbox checkout (opt-in)
 

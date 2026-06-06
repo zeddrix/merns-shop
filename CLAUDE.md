@@ -33,6 +33,7 @@ After deploying catalog changes to production, run `pnpm db:sync:prod` (safe, no
 
 - Frontend (Vite): http://localhost:5020
 - API (Express): http://localhost:5021
+- E2E (Playwright): http://localhost:5030 (UI) + http://localhost:5031 (API)
 
 ## Testing
 

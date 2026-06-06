@@ -138,11 +138,12 @@ pnpm quality          # format + tsc + eslint
 pnpm quality:fast     # tsc + eslint (CI parity)
 pnpm test:unit
 pnpm test:integration
-pnpm test:e2e         # Spawns same stack as `pnpm dev` (ports 5020 + 5021); needs Mongo
-pnpm test:e2e:dev     # Reuse your running `pnpm dev` (no extra server spawn)
+pnpm test:e2e         # Spawns dedicated E2E stack (ports 5030 + 5031); needs Mongo
+pnpm test:e2e:dev     # Reuse a running `pnpm dev:e2e` on :5030/:5031 (no extra server spawn)
+pnpm dev:e2e          # Start E2E stack manually for iterative test runs
 ```
 
-**E2E preflight:** Mongo must be running before E2E. Playwright seeds the DB in global setup. Tests hit **http://localhost:5020** (UI + proxied `/api/*`), matching manual browsing.
+**E2E preflight:** Mongo must be running before E2E. Playwright seeds the DB in global setup. Tests hit **http://localhost:5030** (UI + proxied `/api/*`). Manual browsing stays on **http://localhost:5020** — both can run at the same time (they share MongoDB, so E2E seed/mutations can still affect manual dev data).
 
 Run a single E2E file:
 
