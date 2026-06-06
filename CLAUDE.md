@@ -18,7 +18,7 @@ pnpm format:check && pnpm quality:fast
 
 ## Development
 
-Requires **Node 22** (see `.nvmrc`). Use `nvm install && nvm use` before `pnpm install`.
+Requires **Node 22** (see `.nvmrc`). Use `nvm install && nvm use` before `pnpm install`. Scripted commands (`pnpm dev`, `pnpm test:unit`, etc.) auto-switch to Node 22 via `scripts/run-with-project-node.sh` when nvm is installed — `engine-strict` is off so pnpm can reach that wrapper.
 
 ```bash
 docker compose up -d mongo

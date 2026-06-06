@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { Table, Form, Button, Row, Col } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
+import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
+import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import { getUserDetails, updateUserProfile } from '../features/userSlice';
 import { listMyOrder } from '../features/orderSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
@@ -77,6 +79,8 @@ const ProfileScreen = () => {
           {success && <Message variant="success">Profile Updated</Message>}
           {loading ? (
             <Loader />
+          ) : error && isApiUnreachableMessage(error) ? (
+            <ApiUnreachablePanel onRetry={() => dispatch(getUserDetails('profile'))} />
           ) : error ? (
             <Message variant="danger">{error}</Message>
           ) : (
@@ -135,6 +139,8 @@ const ProfileScreen = () => {
           <h2>My Orders</h2>
           {loadingOrders ? (
             <Loader />
+          ) : errorOrders && isApiUnreachableMessage(errorOrders) ? (
+            <ApiUnreachablePanel onRetry={() => dispatch(listMyOrder())} />
           ) : errorOrders ? (
             <Message variant="danger">{errorOrders}</Message>
           ) : (

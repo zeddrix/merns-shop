@@ -3,7 +3,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
+import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
+import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import Paginate from '../components/Paginate';
 import {
   listProducts,
@@ -88,6 +90,10 @@ const ProductListScreen = () => {
       {errorCreate && <Message variant="danger">{errorCreate}</Message>}
       {loading ? (
         <Loader />
+      ) : error && isApiUnreachableMessage(error) ? (
+        <ApiUnreachablePanel
+          onRetry={() => dispatch(listProducts({ keyword: '', pageNumber: page }))}
+        />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (

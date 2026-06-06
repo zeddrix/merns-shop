@@ -23,6 +23,11 @@ describe('node version smoke', () => {
     expect(major).toBeGreaterThanOrEqual(22);
   });
 
+  it('engine_strict_disabled_so_nvm_wrapper_can_run', () => {
+    const npmrc = readFileSync('.npmrc', 'utf8');
+    expect(npmrc).toContain('engine-strict=false');
+  });
+
   it('check_node_version_script_exits_nonzero_below_22', () => {
     const result = spawnSync('node', ['scripts/check-node-version.mjs'], {
       env: { ...process.env, NODE_TEST_MAJOR: '20' },

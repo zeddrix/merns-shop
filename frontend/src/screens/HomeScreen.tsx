@@ -8,6 +8,7 @@ import StaggerGrid, {
 } from '../components/motion/StaggerGrid';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 import Message from '../components/Message';
+import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
@@ -19,7 +20,8 @@ import {
   ROBOTS_INDEX_FOLLOW,
   ROBOTS_NOINDEX_FOLLOW
 } from '../constants/seo';
-import { listProducts } from '../features/productSlice';
+import { listProducts, listTopProducts } from '../features/productSlice';
+import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import { isRegisterWelcomeState } from '../utils/authRedirect';
 import { getCatalogSearchString } from '../utils/authModalUrl';
 import {
@@ -45,7 +47,7 @@ const HomeScreen = () => {
 
   const productList = useAppSelector((state) => state.productList);
   const { loading, error, products, page: currentPage, pages } = productList;
-
+  const productTopRated = useAppSelector((state) => state.productTopRated);
   const filterQuery = getCatalogSearchString(location.search);
   const brand = searchParams.get('brand') ?? '';
   const category = searchParams.get('category') ?? '';
@@ -53,6 +55,27 @@ const HomeScreen = () => {
   const minPrice = searchParams.get('minPrice') ?? '';
   const maxPrice = searchParams.get('maxPrice') ?? '';
   const sort = searchParams.get('sort') ?? '';
+
+  const apiUnreachable =
+    isApiUnreachableMessage(error) || isApiUnreachableMessage(productTopRated.error);
+
+  const listParams = {
+    keyword: keyword ?? '',
+    pageNumber: page,
+    brand,
+    category,
+    subcategory,
+    minPrice,
+    maxPrice,
+    sort
+  };
+
+  const handleApiRetry = () => {
+    dispatch(listProducts(listParams));
+    if (!keyword) {
+      dispatch(listTopProducts());
+    }
+  };
 
   useEffect(() => {
     dispatch(
@@ -108,7 +131,9 @@ const HomeScreen = () => {
       ) : null}
       <h1 data-testid="home-heading">Latest Products</h1>
       <CatalogFilters keyword={keyword} />
-      {loading ? (
+      {apiUnreachable ? (
+        <ApiUnreachablePanel onRetry={handleApiRetry} />
+      ) : loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger" data-testid="home-products-error">

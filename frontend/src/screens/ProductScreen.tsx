@@ -4,7 +4,9 @@ import { Row, Col, Image, ListGroup, Card, Button, Form, Badge } from 'react-boo
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Rating from '../components/Rating';
 import Message from '../components/Message';
+import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
+import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import Meta from '../components/Meta';
 import PriceDisplay from '../components/PriceDisplay';
 import AppSelect from '../components/AppSelect';
@@ -132,6 +134,16 @@ const ProductScreen = () => {
       </Link>
       {loading ? (
         <Loader />
+      ) : error && isApiUnreachableMessage(error) ? (
+        <div data-testid="product-api-unreachable">
+          <ApiUnreachablePanel
+            onRetry={() => {
+              if (id) {
+                dispatch(listProductDetails(id));
+              }
+            }}
+          />
+        </div>
       ) : error ? (
         <div data-testid="product-not-found">
           <Message variant="danger">{error}</Message>

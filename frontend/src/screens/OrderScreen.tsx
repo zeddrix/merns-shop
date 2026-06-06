@@ -10,7 +10,9 @@ import { Row, Col, ListGroup, Card, Button } from 'react-bootstrap';
 import OrderLineItem from '../components/OrderLineItem';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
+import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
+import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import {
   getOrderDetails,
   payOrder,
@@ -133,6 +135,17 @@ const OrderScreen = () => {
   }
 
   if (error) {
+    if (isApiUnreachableMessage(error)) {
+      return (
+        <ApiUnreachablePanel
+          onRetry={() => {
+            if (orderId) {
+              dispatch(getOrderDetails(orderId));
+            }
+          }}
+        />
+      );
+    }
     return (
       <Message variant="danger" data-testid="order-details-error">
         {error}

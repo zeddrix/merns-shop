@@ -20,9 +20,10 @@ fi
 
 export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
 if [ ! -s "$NVM_DIR/nvm.sh" ]; then
-  echo "nvm is required for this project (Node 22 from .nvmrc)."
+  echo "merns-shop needs Node 22 (see .nvmrc). Your shell has $(node -v)."
   echo "Install nvm: https://github.com/nvm-sh/nvm"
-  echo "Then in this folder: nvm install && nvm use"
+  echo "Then in this project folder run: nvm install && nvm use"
+  echo "After that, retry: pnpm dev"
   exit 1
 fi
 

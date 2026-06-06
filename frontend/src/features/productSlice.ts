@@ -82,9 +82,11 @@ const productListSlice = createSlice({
       .addCase(listProducts.pending, (state) => {
         state.loading = true;
         state.products = [];
+        state.error = undefined;
       })
       .addCase(listProducts.fulfilled, (state, action) => {
         state.loading = false;
+        state.error = undefined;
         state.products = action.payload.products;
         state.pages = action.payload.pages;
         state.page = action.payload.page;
@@ -268,12 +270,14 @@ const productDetailsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(listProductDetails.pending, (state) => {
+        state.error = undefined;
         if (!state.product._id) {
           state.loading = true;
         }
       })
       .addCase(listProductDetails.fulfilled, (state, action) => {
         state.loading = false;
+        state.error = undefined;
         state.product = action.payload;
       })
       .addCase(listProductDetails.rejected, (state, action) => {
@@ -355,9 +359,11 @@ const productTopRatedSlice = createSlice({
       .addCase(listTopProducts.pending, (state) => {
         state.loading = true;
         state.products = [];
+        state.error = undefined;
       })
       .addCase(listTopProducts.fulfilled, (state, action) => {
         state.loading = false;
+        state.error = undefined;
         state.products = action.payload;
       })
       .addCase(listTopProducts.rejected, (state, action) => {

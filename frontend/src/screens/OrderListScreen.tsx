@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
+import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
+import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import { listOrders } from '../features/orderSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
@@ -32,6 +34,8 @@ const OrderListScreen = () => {
       <h1>Orders</h1>
       {loading ? (
         <Loader />
+      ) : error && isApiUnreachableMessage(error) ? (
+        <ApiUnreachablePanel onRetry={() => dispatch(listOrders())} />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (

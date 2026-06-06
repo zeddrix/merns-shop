@@ -3,7 +3,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
+import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
+import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import FormContainer from '../components/FormContainer';
 import {
   getUserDetails,
@@ -63,6 +65,14 @@ const UserEditScreen = () => {
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading ? (
           <Loader />
+        ) : error && isApiUnreachableMessage(error) ? (
+          <ApiUnreachablePanel
+            onRetry={() => {
+              if (userId) {
+                dispatch(getUserDetails(userId));
+              }
+            }}
+          />
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (

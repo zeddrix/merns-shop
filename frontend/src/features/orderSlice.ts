@@ -184,9 +184,11 @@ const orderDetailsSlice = createSlice({
     builder
       .addCase(getOrderDetails.pending, (state) => {
         state.loading = true;
+        state.error = undefined;
       })
       .addCase(getOrderDetails.fulfilled, (state, action) => {
         state.loading = false;
+        state.error = undefined;
         state.order = action.payload;
       })
       .addCase(getOrderDetails.rejected, (state, action) => {
@@ -250,9 +252,11 @@ const myOrderSlice = createSlice({
     builder
       .addCase(listMyOrder.pending, (state) => {
         state.loading = true;
+        state.error = undefined;
       })
       .addCase(listMyOrder.fulfilled, (state, action) => {
         state.loading = false;
+        state.error = undefined;
         state.orders = action.payload;
       })
       .addCase(listMyOrder.rejected, (state, action) => {
@@ -271,9 +275,11 @@ const orderListSlice = createSlice({
     builder
       .addCase(listOrders.pending, (state) => {
         state.loading = true;
+        state.error = undefined;
       })
       .addCase(listOrders.fulfilled, (state, action) => {
         state.loading = false;
+        state.error = undefined;
         state.orders = action.payload;
       })
       .addCase(listOrders.rejected, (state, action) => {

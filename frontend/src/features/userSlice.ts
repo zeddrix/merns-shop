@@ -249,9 +249,11 @@ const userDetailsSlice = createSlice({
     builder
       .addCase(getUserDetails.pending, (state) => {
         state.loading = true;
+        state.error = undefined;
       })
       .addCase(getUserDetails.fulfilled, (state, action) => {
         state.loading = false;
+        state.error = undefined;
         state.user = action.payload;
       })
       .addCase(getUserDetails.rejected, (state, action) => {
@@ -295,9 +297,11 @@ const userListSlice = createSlice({
     builder
       .addCase(listUsers.pending, (state) => {
         state.loading = true;
+        state.error = undefined;
       })
       .addCase(listUsers.fulfilled, (state, action) => {
         state.loading = false;
+        state.error = undefined;
         state.users = action.payload;
       })
       .addCase(listUsers.rejected, (state, action) => {

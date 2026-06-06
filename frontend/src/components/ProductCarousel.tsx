@@ -5,6 +5,7 @@ import { Carousel, Image } from 'react-bootstrap';
 import Loader from './Loader';
 import Message from './Message';
 import { listTopProducts } from '../features/productSlice';
+import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 
 const ProductCarousel = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +16,10 @@ const ProductCarousel = () => {
   useEffect(() => {
     dispatch(listTopProducts());
   }, [dispatch]);
+
+  if (error && isApiUnreachableMessage(error)) {
+    return null;
+  }
 
   return loading ? (
     <Loader />

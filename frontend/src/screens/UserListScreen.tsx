@@ -3,7 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { Table, Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
+import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
+import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import { listUsers, deleteUser } from '../features/userSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
@@ -48,6 +50,8 @@ const UserListScreen = () => {
       )}
       {loading ? (
         <Loader />
+      ) : error && isApiUnreachableMessage(error) ? (
+        <ApiUnreachablePanel onRetry={() => dispatch(listUsers())} />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
