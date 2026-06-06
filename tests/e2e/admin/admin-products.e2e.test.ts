@@ -1,5 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { fillSearchAndSubmit, loginAs, loginAsAdmin } from '../fixtures/test-helpers';
+import {
+  clickProductCardToPdp,
+  fillSearchAndSubmit,
+  loginAs,
+  loginAsAdmin
+} from '../fixtures/test-helpers';
 import { MOBILE_VIEWPORT } from '../fixtures/viewports';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findProductById } from '../fixtures/mongo-helpers';
@@ -51,7 +56,7 @@ test.describe('admin products', () => {
 
     await fillSearchAndSubmit(page, productName);
     await expect(page.locator(`[data-testid="product-card-${productId}"]`)).toBeVisible();
-    await page.locator(`[data-testid="product-card-${productId}"]`).locator('a').first().click();
+    await clickProductCardToPdp(page.locator(`[data-testid="product-card-${productId}"]`));
     await expect(page.locator('[data-testid="product-variant-picker"]')).toBeVisible();
     await expect(page.locator('input[data-testid^="product-variant-"]')).toHaveCount(2);
     await page.locator('[data-testid="product-go-back"]').click();

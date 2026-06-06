@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { assertHomeCatalogHealthy, fillSearchAndSubmit } from '../fixtures/test-helpers';
+import {
+  assertHomeCatalogHealthy,
+  clickProductCardToPdp,
+  fillSearchAndSubmit
+} from '../fixtures/test-helpers';
 
 test.describe('smoke app boot', () => {
   test('smoke_home_catalog_healthy', async ({ page, request }) => {
@@ -47,7 +51,7 @@ test.describe('smoke app boot', () => {
     await page.goto('/');
     await assertHomeCatalogHealthy(page);
 
-    await page.locator('[data-testid^="product-card-"]').first().locator('a').first().click();
+    await clickProductCardToPdp(page.locator('[data-testid^="product-card-"]').first());
 
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
     await expect(page.locator('[data-testid="product-add-cart"]')).toBeVisible();

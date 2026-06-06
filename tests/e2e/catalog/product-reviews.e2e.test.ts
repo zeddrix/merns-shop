@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {
+  clickProductCardToPdp,
   fillSearchAndSubmit,
   loginAs,
   openProductByExactName,
@@ -40,12 +41,15 @@ test.describe('product reviews', () => {
     expect(response.status()).toBe(201);
 
     await expect(page.getByText('Review submitted successfully')).toBeVisible();
-    await expect(page.getByText('Great product from E2E test')).toBeVisible();
+    await expect(
+      page.locator('[data-testid="review-item"]').filter({ hasText: 'Great product from E2E test' })
+    ).toHaveCount(1);
 
     const dbProduct = await findProductById(productId as string);
     expect(
-      dbProduct?.reviews?.some((review) => review.comment === 'Great product from E2E test')
-    ).toBe(true);
+      dbProduct?.reviews?.filter((review) => review.comment === 'Great product from E2E test')
+        .length
+    ).toBe(1);
   });
 
   test('guest_no_write_review_section', async ({ page }) => {
@@ -62,7 +66,7 @@ test.describe('product reviews', () => {
   test('zero_review_product_shows_empty_state', async ({ page }) => {
     await page.goto('/');
     await fillSearchAndSubmit(page, 'Amazon Echo');
-    await page.locator('[data-testid^="product-card-"]').first().locator('a').first().click();
+    await clickProductCardToPdp(page.locator('[data-testid^="product-card-"]').first());
     await expect(page.getByText('No Reviews')).toBeVisible();
     await expect(page.locator('[data-testid="review-item"]')).toHaveCount(0);
   });

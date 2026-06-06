@@ -1,4 +1,4 @@
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { TEST_USERS } from './test-users';
 
@@ -101,6 +101,23 @@ export async function searchProducts(page: Page, keyword: string): Promise<void>
   await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
 }
 
+/** Locates a catalog card whose title exactly matches `name` (not partial substring matches). */
+export function productCardByExactName(page: Page, name: string) {
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return page
+    .locator('[data-testid^="product-card-"]')
+    .filter({ has: page.locator('strong', { hasText: new RegExp(`^${escaped}$`) }) })
+    .first();
+}
+
+/** Clicks a catalog card price area to open the PDP (proves whole-card navigation). */
+export async function clickProductCardToPdp(card: Locator): Promise<void> {
+  await Promise.all([
+    card.page().waitForURL(/\/product\//),
+    card.locator('[data-testid="product-price-display"]').click()
+  ]);
+}
+
 /** Search and open a product PDP by exact catalog name (avoids partial matches like Pro vs Pro Max). */
 export async function openProductByExactName(
   page: Page,
@@ -112,11 +129,10 @@ export async function openProductByExactName(
   }
   await fillSearchAndSubmit(page, searchKeyword ?? name);
   await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
+  const card = productCardByExactName(page, name);
+  await expect(card).toBeVisible();
   const detailsResponse = page.waitForResponse(isProductDetailsApiResponse);
-  await Promise.all([
-    page.waitForURL(/\/product\//),
-    page.getByRole('link', { name, exact: true }).first().click()
-  ]);
+  await Promise.all([page.waitForURL(/\/product\//), clickProductCardToPdp(card)]);
   await detailsResponse;
   await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
 }
@@ -189,7 +205,7 @@ export async function addFirstInStockProductToCart(
     .locator('[data-testid^="product-card-"]')
     .filter({ hasNot: page.locator('text=Out of stock') })
     .first();
-  await inStockCard.locator('a').first().click();
+  await clickProductCardToPdp(inStockCard);
   await selectVariantAndAddToCart(page);
 }
 

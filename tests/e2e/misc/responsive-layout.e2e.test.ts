@@ -3,6 +3,7 @@ import {
   addFirstInStockProductToCart,
   assertHomeCatalogHealthy,
   assertNoHorizontalOverflow,
+  clickProductCardToPdp,
   completeShippingStep,
   loginAs,
   selectAppOption,
@@ -29,7 +30,7 @@ test.describe('responsive layout', () => {
       )
       .toBe(true);
 
-    await page.locator('[data-testid^="product-card-"]').first().locator('a').first().click();
+    await clickProductCardToPdp(page.locator('[data-testid^="product-card-"]').first());
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
   });
 
@@ -78,13 +79,11 @@ test.describe('responsive layout', () => {
   test('mobile_product_variant_add_to_cart', async ({ page }) => {
     await page.goto('/');
     await assertHomeCatalogHealthy(page);
-    await page
+    const inStockCard = page
       .locator('[data-testid^="product-card-"]')
       .filter({ hasNot: page.locator('text=Out of stock') })
-      .first()
-      .locator('a')
-      .first()
-      .click();
+      .first();
+    await clickProductCardToPdp(inStockCard);
     await selectVariantAndAddToCart(page);
     await page.locator('[data-testid="nav-cart"]').click();
     await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();

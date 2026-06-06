@@ -14,24 +14,22 @@ const Product = ({ product }: ProductProps) => {
 
   return (
     <Card
-      className="my-3 p-3 rounded h-100 product-card"
+      as={Link}
+      to={`/product/${product._id}`}
+      className="my-3 p-3 rounded h-100 product-card text-decoration-none text-dark"
       data-testid={`product-card-${product._id}`}
     >
-      <Link to={`/product/${product._id}`} className="product-card__link">
-        <div className="product-card__media" data-testid="catalog-card-media">
-          <img src={product.image} alt={product.name} loading="lazy" />
-        </div>
-      </Link>
+      <div className="product-card__media" data-testid="catalog-card-media">
+        <img src={product.image} alt={product.name} loading="lazy" />
+      </div>
 
       <Card.Body className="d-flex flex-column">
         <Badge bg="secondary" className="mb-2 align-self-start">
           {product.brand}
         </Badge>
-        <Link to={`/product/${product._id}`} className="text-decoration-none text-dark">
-          <Card.Title as="div">
-            <strong>{product.name}</strong>
-          </Card.Title>
-        </Link>
+        <Card.Title as="div">
+          <strong>{product.name}</strong>
+        </Card.Title>
         <Card.Text as="div" className="text-muted small">
           {product.subcategory}
         </Card.Text>

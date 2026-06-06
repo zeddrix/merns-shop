@@ -1,31 +1,22 @@
 import { useLayoutEffect } from 'react';
-import { usePrefersReducedMotion } from './usePrefersReducedMotion';
 import {
   consumePaginationScrollTarget,
   hasPaginationScrollTarget
 } from '../utils/paginationScroll';
+import { useScrollIntoViewOnKeyChange } from './useScrollIntoViewOnKeyChange';
 
 export function useScrollToTopOnPageChange(
   scrollTargetTestId: string,
   pageKey: string,
   contentReady = true
 ): void {
-  const prefersReducedMotion = usePrefersReducedMotion();
+  const scrollReady = contentReady && hasPaginationScrollTarget(scrollTargetTestId);
+
+  useScrollIntoViewOnKeyChange(scrollTargetTestId, pageKey, scrollReady);
 
   useLayoutEffect(() => {
-    if (!contentReady || !hasPaginationScrollTarget(scrollTargetTestId)) {
-      return;
+    if (scrollReady) {
+      consumePaginationScrollTarget(scrollTargetTestId);
     }
-
-    const target = document.querySelector(`[data-testid="${scrollTargetTestId}"]`);
-    if (!target) {
-      return;
-    }
-
-    consumePaginationScrollTarget(scrollTargetTestId);
-    target.scrollIntoView({
-      behavior: prefersReducedMotion ? 'auto' : 'smooth',
-      block: 'start'
-    });
-  }, [pageKey, scrollTargetTestId, prefersReducedMotion, contentReady]);
+  }, [pageKey, scrollTargetTestId, scrollReady]);
 }

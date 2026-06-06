@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test';
 import {
   assertHomeCatalogHealthy,
+  clickProductCardToPdp,
   openProductByExactName,
+  productCardByExactName,
   fillSearchAndSubmit,
   searchProducts,
   selectAppOption,
@@ -21,7 +23,8 @@ test.describe('catalog browse and search', () => {
   test('product_browse_search', async ({ page }) => {
     await searchProducts(page, IPHONE_15_PRO);
     await expect(page.locator('[data-testid="product-savings-badge"]').first()).toBeVisible();
-    await page.getByRole('link', { name: IPHONE_15_PRO, exact: true }).first().click();
+    const card = productCardByExactName(page, IPHONE_15_PRO);
+    await clickProductCardToPdp(card);
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
     await expect(page).toHaveTitle(/iPhone 15 Pro/);
     await expect(page.locator('meta[name="description"][content*="Titanium"]')).toHaveAttribute(
@@ -144,6 +147,33 @@ test.describe('catalog browse and search', () => {
     expect(boxAfter).not.toBeNull();
     expect(Math.abs(boxAfter!.width - boxBefore!.width)).toBeLessThanOrEqual(1);
     expect(Math.abs(boxAfter!.height - boxBefore!.height)).toBeLessThanOrEqual(1);
+  });
+
+  test('product_card_whole_surface_navigates_to_pdp', async ({ page }) => {
+    await page.locator('[data-testid="pagination-next"]').click();
+    await expect(page).toHaveURL(/\/page\/2/);
+    const card = page.locator('[data-testid^="product-card-"]').first();
+    await clickProductCardToPdp(card);
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+  });
+
+  test('product_card_nav_from_scrolled_catalog_scrolls_pdp_into_view', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.locator('[data-testid="pagination-next"]').click();
+    await expect(page).toHaveURL(/\/page\/2/);
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    const card = page.locator('[data-testid^="product-card-"]').first();
+    await clickProductCardToPdp(card);
+    await expect(page).toHaveURL(/\/product\//);
+
+    await expect
+      .poll(async () =>
+        page.locator('[data-testid="product-details"]').evaluate((el) => {
+          const rect = el.getBoundingClientRect();
+          return rect.top >= 0 && rect.top < window.innerHeight;
+        })
+      )
+      .toBe(true);
   });
 
   test('pagination_scrolls_to_catalog_top_on_page_change', async ({ page }) => {
@@ -287,7 +317,7 @@ test.describe('catalog browse and search', () => {
 
   test('all_variants_oos_no_default', async ({ page }) => {
     await searchProducts(page, 'Amazon Echo');
-    await page.locator('[data-testid^="product-card-"]').first().locator('a').first().click();
+    await clickProductCardToPdp(page.locator('[data-testid^="product-card-"]').first());
     await expect(page.locator('[data-testid="product-variant-picker"]')).toBeVisible();
     await expect(page.locator('input[data-testid^="product-variant-"]')).toHaveCount(2);
     await expect(page.locator('input[data-testid^="product-variant-"]:checked')).toHaveCount(0);
@@ -296,7 +326,7 @@ test.describe('catalog browse and search', () => {
 
   test('out_of_stock_disables_add_to_cart', async ({ page }) => {
     await searchProducts(page, 'Amazon Echo');
-    await page.locator('[data-testid^="product-card-"]').first().locator('a').first().click();
+    await clickProductCardToPdp(page.locator('[data-testid^="product-card-"]').first());
     await expect(page.locator('[data-testid="product-variant-picker"]')).toBeVisible();
     await expect(page.locator('input[data-testid^="product-variant-"]')).toHaveCount(2);
     await expect(page.locator('input[data-testid^="product-variant-"]:checked')).toHaveCount(0);

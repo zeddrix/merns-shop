@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { searchProducts } from '../fixtures/test-helpers';
+import { searchProducts, productCardByExactName } from '../fixtures/test-helpers';
 
 test.describe('catalog product image integrity', () => {
   test.beforeEach(async ({ page }) => {
@@ -12,7 +12,7 @@ test.describe('catalog product image integrity', () => {
 
     for (const name of products) {
       await searchProducts(page, name);
-      const card = page.getByRole('link', { name, exact: true }).first();
+      const card = productCardByExactName(page, name);
       await expect(card).toBeVisible();
       const media = card.locator('[data-testid="catalog-card-media"] img');
       await expect(media).toBeVisible();
@@ -25,14 +25,14 @@ test.describe('catalog product image integrity', () => {
 
   test('samsung_m_series_distinct_src', async ({ page }) => {
     await searchProducts(page, 'Galaxy M32');
-    const m32Card = page.getByRole('link', { name: 'Galaxy M32', exact: true }).first();
+    const m32Card = productCardByExactName(page, 'Galaxy M32');
     await expect(m32Card).toBeVisible();
     const m32Src = await m32Card
       .locator('[data-testid="catalog-card-media"] img')
       .getAttribute('src');
 
     await searchProducts(page, 'Galaxy M54');
-    const m54Card = page.getByRole('link', { name: 'Galaxy M54', exact: true }).first();
+    const m54Card = productCardByExactName(page, 'Galaxy M54');
     await expect(m54Card).toBeVisible();
     const m54Src = await m54Card
       .locator('[data-testid="catalog-card-media"] img')

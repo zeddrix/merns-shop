@@ -17,6 +17,7 @@ export const importSeedData = async (): Promise<ImportSeedResult> => {
   assertDestructiveSeedAllowed(process.env.MONGO_URI);
 
   await Order.deleteMany();
+  await Product.deleteMany();
   await User.deleteMany();
 
   const createdUsers = await User.insertMany(users);

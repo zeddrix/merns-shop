@@ -22,6 +22,7 @@ import AddToCartButton, { type AddToCartButtonState } from '../components/AddToC
 import { capQtyOptions } from '../constants/cartLimits';
 import { firstInStockSku } from '../utils/defaultVariant';
 import { addToCart } from '../features/cartSlice';
+import { useScrollIntoViewOnKeyChange } from '../hooks/useScrollIntoViewOnKeyChange';
 import {
   listProductDetails,
   createProductReview,
@@ -57,6 +58,10 @@ const ProductScreen = () => {
   const maxQty = capQtyOptions(selectedVariant?.countInStock ?? 0);
 
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
+
+  const productContentReady =
+    Boolean(id) && !loading && !error && !isApiUnreachableMessage(error) && product._id === id;
+  useScrollIntoViewOnKeyChange('product-details', id ?? '', productContentReady);
 
   useEffect(() => {
     if (successProductReview && id) {
