@@ -116,8 +116,9 @@ tests/unit/backend/
 ├── authMiddleware.unit.test.ts    # protect, admin middleware
 ├── errorMiddleware.unit.test.ts   # notFound, errorHandler
 ├── generateToken.unit.test.ts     # JWT signing
-├── orderController.unit.test.ts   # order handler logic (mocked models)
-└── productController.unit.test.ts # product/review handler logic (mocked models)
+├── orderController.unit.test.ts   # order access helpers (mocked documents)
+├── productQuery.unit.test.ts      # list filter/sort/pagination utilities
+└── validateMiddleware.unit.test.ts # express-validator middleware wiring
 ```
 
 ## Conventions
@@ -145,4 +146,4 @@ Run unit tests before integration/E2E when changing controller or middleware log
 | Full login → profile with real MongoDB                     | ❌   | ✅ `auth.integration.test.ts`    |
 | `generateToken` returns valid JWT shape                    | ✅   | ❌                               |
 | POST `/api/orders` persists order                          | ❌   | ✅ `orders.integration.test.ts`  |
-| `productController` branch when product not found (mocked) | ✅   | Optional duplicate — prefer unit |
+| `productQuery` filter/sort/pagination (mocked) | ✅ `productQuery.unit.test.ts` | Optional duplicate — prefer unit |

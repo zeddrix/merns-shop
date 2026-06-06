@@ -274,9 +274,10 @@ When 3+ assertions all require navigating to the same page:
 **Commands:**
 
 - All default specs: `pnpm test:e2e`
-- Single worker (recommended for DB-mutating suites): `pnpm test:e2e:one`
+- Single worker (recommended for DB-mutating suites): `pnpm test:e2e:one` (chromium project only — avoids running the full suite when a file also contains `@paypal` tests)
 - Journey-only specs: `pnpm test:e2e:journeys`
 - Single file: `pnpm test:e2e:one -- tests/e2e/checkout/cart-shipping-payment.e2e.test.ts`
+- Single `@paypal` file: `pnpm test:e2e:paypal -- tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts`
 
 ### When to use serial vs parallel
 
@@ -356,8 +357,8 @@ PAYPAL_SANDBOX_BUYER_PASSWORD=your-sandbox-buyer-password
 
 ```bash
 pnpm test:e2e:paypal
-# or single file:
-pnpm test:e2e:one -- tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts
+# PayPal sandbox (uses @paypal project — not test:e2e:one):
+pnpm test:e2e:paypal -- tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts
 ```
 
 PayPal UI varies by region; headed mode may be required for sandbox login. Do not mock PayPal success in these specs.
@@ -368,30 +369,30 @@ API security tests in `tests/e2e/misc/api-security-auth.e2e.test.ts` remain isol
 
 Prefer **failing loudly** when seed data or MongoDB is wrong. Only skip when the **feature or environment is unavailable** (missing PayPal sandbox credentials, no local MongoDB).
 
-| File                                                                                                                    | Skip condition                                 | How to run                                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts`                                                                 | Missing `PAYPAL_SANDBOX_BUYER_*`               | Configure `.env.test`, run `pnpm test:e2e:paypal`                                                                        |
-| `tests/e2e/journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts` (`guest_completes_paypal_payment_when_opt_in`) | Missing sandbox creds or `PW_RUN_PAYPAL` unset | `PW_RUN_PAYPAL=1 pnpm test:e2e` (canonical PayPal spec: `paypal-sandbox-payment.e2e.test.ts`; runs in `@paypal` project) |
+| File                                                                                                             | Skip condition                                 | How to run                                                                                                               |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `tests/e2e/checkout/paypal-sandbox-payment.e2e.test.ts`                                                          | Missing `PAYPAL_SANDBOX_BUYER_*`               | Configure `.env.test`, run `pnpm test:e2e:paypal`                                                                        |
+| `tests/e2e/journeys/journey-guest-purchase-lifecycle.e2e.test.ts` (`guest_completes_paypal_payment_when_opt_in`) | Missing sandbox creds or `PW_RUN_PAYPAL` unset | `PW_RUN_PAYPAL=1 pnpm test:e2e` (canonical PayPal spec: `paypal-sandbox-payment.e2e.test.ts`; runs in `@paypal` project) |
 
 **Do not use runtime `test.skip` for missing seed rows** — global setup seeds via `pnpm db:seed`; fix `MONGO_URI` or run `pnpm db:seed` manually.
 
 ### Shop E2E file map
 
-| File                                                           | Domain                              |
-| -------------------------------------------------------------- | ----------------------------------- |
-| `smoke/app-boot.e2e.test.ts`                                   | App boots, homepage loads           |
-| `auth/login-register-profile.e2e.test.ts`                      | Login, register, profile update     |
-| `catalog/product-browse-search.e2e.test.ts`                    | Home list, search, pagination       |
-| `catalog/product-reviews.e2e.test.ts`                          | Review submit and display           |
-| `checkout/cart-shipping-payment.e2e.test.ts`                   | Cart qty, shipping, payment method  |
-| `checkout/paypal-sandbox-payment.e2e.test.ts`                  | Real PayPal sandbox (opt-in)        |
-| `admin/admin-products.e2e.test.ts`                             | Admin product CRUD                  |
-| `admin/admin-orders.e2e.test.ts`                               | Admin order list and delivery       |
-| `admin/admin-users.e2e.test.ts`                                | Admin user list and edit            |
-| `misc/api-security-auth.e2e.test.ts`                           | 401/403 API isolation               |
-| `journeys/journey-guest-purchase-paypal-lifecycle.e2e.test.ts` | Guest checkout golden path          |
-| `journeys/journey-admin-product-lifecycle.e2e.test.ts`         | Admin create → catalog visibility   |
-| `journeys/journey-admin-order-fulfillment.e2e.test.ts`         | Admin order fulfillment golden path |
+| File                                                    | Domain                              |
+| ------------------------------------------------------- | ----------------------------------- |
+| `smoke/app-boot.e2e.test.ts`                            | App boots, homepage loads           |
+| `auth/login-register-profile.e2e.test.ts`               | Login, register, profile update     |
+| `catalog/product-browse-search.e2e.test.ts`             | Home list, search, pagination       |
+| `catalog/product-reviews.e2e.test.ts`                   | Review submit and display           |
+| `checkout/cart-shipping-payment.e2e.test.ts`            | Cart qty, shipping, payment method  |
+| `checkout/paypal-sandbox-payment.e2e.test.ts`           | Real PayPal sandbox (opt-in)        |
+| `admin/admin-products.e2e.test.ts`                      | Admin product CRUD                  |
+| `admin/admin-orders.e2e.test.ts`                        | Admin order list and delivery       |
+| `admin/admin-users.e2e.test.ts`                         | Admin user list and edit            |
+| `misc/api-security-auth.e2e.test.ts`                    | 401/403 API isolation               |
+| `journeys/journey-guest-purchase-lifecycle.e2e.test.ts` | Guest checkout golden path          |
+| `journeys/journey-admin-product-lifecycle.e2e.test.ts`  | Admin create → catalog visibility   |
+| `journeys/journey-admin-order-fulfillment.e2e.test.ts`  | Admin order fulfillment golden path |
 
 ### Deterministic waits (mandatory)
 
