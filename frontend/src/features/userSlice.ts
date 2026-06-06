@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { axios } from '../api/http';
 import type { User, UserInfo } from '../types';
-import { getErrorMessage } from '../utils/getErrorMessage';
+import { getErrorMessage, isApiUnreachableError } from '../utils/getErrorMessage';
 import { hasSession } from '../utils/requireSession';
 import { clearCartItems } from './cartSlice';
 
@@ -43,7 +43,10 @@ export const loadUserFromSession = createAsyncThunk(
     try {
       const { data } = await axios.get<UserInfo>('/api/users/profile');
       return data;
-    } catch {
+    } catch (error) {
+      if (isApiUnreachableError(error)) {
+        return rejectWithValue('API unreachable');
+      }
       return rejectWithValue('No active session');
     }
   }
@@ -205,9 +208,11 @@ const userLoginSlice = createSlice({
         state.userInfo = action.payload;
         state.sessionResolved = true;
       })
-      .addCase(loadUserFromSession.rejected, (state) => {
-        state.userInfo = undefined;
+      .addCase(loadUserFromSession.rejected, (state, action) => {
         state.sessionResolved = true;
+        if (action.payload !== 'API unreachable') {
+          state.userInfo = undefined;
+        }
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.userInfo = action.payload;

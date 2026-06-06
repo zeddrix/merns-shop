@@ -47,7 +47,8 @@ const appRouteObjects: RouteObject[] = [
   { path: '/search/:keyword', element: <HomeScreen /> },
   { path: '/page/:pageNumber', element: <HomeScreen /> },
   { path: '/search/:keyword/page/:pageNumber', element: <HomeScreen /> },
-  { path: '/', element: <HomeScreen /> }
+  { path: '/', element: <HomeScreen /> },
+  { path: '*', element: <HomeScreen /> }
 ];
 
 const AppRoutes = () => {

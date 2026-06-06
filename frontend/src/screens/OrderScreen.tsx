@@ -168,7 +168,7 @@ const OrderScreen = () => {
       <Row>
         <Col xs={12} lg={8}>
           <ListGroup variant="flush">
-            <ListGroup.Item>
+            <ListGroup.Item data-testid="order-shipping">
               <h2>Shipping</h2>
               <p>
                 <strong>Name: </strong> {displayOrder.user.name}
@@ -225,7 +225,7 @@ const OrderScreen = () => {
           </ListGroup>
         </Col>
         <Col md={4}>
-          <Card>
+          <Card data-testid="order-summary">
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <h2>Order Summary</h2>

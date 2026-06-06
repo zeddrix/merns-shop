@@ -28,8 +28,10 @@ const UserListScreen = () => {
     if (!isAdmin || location.pathname !== '/admin/userlist') {
       return;
     }
-    dispatch(listUsers());
-  }, [dispatch, isAdmin, location.pathname, successDelete]);
+    if (users.length === 0 || successDelete) {
+      dispatch(listUsers());
+    }
+  }, [dispatch, isAdmin, location.pathname, successDelete, users.length]);
 
   if (!isAdmin) {
     if (!userInfo) {

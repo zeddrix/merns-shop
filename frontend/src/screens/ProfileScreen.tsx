@@ -75,19 +75,35 @@ const ProfileScreen = () => {
     }
   };
 
+  const profileApiUnreachable = Boolean(error && isApiUnreachableMessage(error));
+  const ordersApiUnreachable = Boolean(errorOrders && isApiUnreachableMessage(errorOrders));
+  const showSharedApiUnreachable = profileApiUnreachable || ordersApiUnreachable;
+
+  const retryProfileData = () => {
+    if (profileApiUnreachable) {
+      dispatch(getUserDetails('profile'));
+    }
+    if (ordersApiUnreachable) {
+      dispatch(listMyOrder());
+    }
+  };
+
   return (
     <>
       <SeoPrivateMeta canonicalPath="/profile" />
       <Row data-testid="profile-screen">
+        {showSharedApiUnreachable && (
+          <Col xs={12} className="mb-3">
+            <ApiUnreachablePanel data-testid="profile-api-unreachable" onRetry={retryProfileData} />
+          </Col>
+        )}
         <Col xs={12} md={3} className="mb-3 mb-md-0">
           <h2>User Profile</h2>
           {message && <Message variant="danger">{message}</Message>}
           {success && <Message variant="success">Profile Updated</Message>}
           {loading ? (
             <Loader />
-          ) : error && isApiUnreachableMessage(error) ? (
-            <ApiUnreachablePanel onRetry={() => dispatch(getUserDetails('profile'))} />
-          ) : error ? (
+          ) : profileApiUnreachable ? null : error ? (
             <Message variant="danger">{error}</Message>
           ) : (
             <Form onSubmit={submitHandler} data-testid="profile-form">
@@ -145,9 +161,7 @@ const ProfileScreen = () => {
           <h2>My Orders</h2>
           {loadingOrders ? (
             <Loader />
-          ) : errorOrders && isApiUnreachableMessage(errorOrders) ? (
-            <ApiUnreachablePanel onRetry={() => dispatch(listMyOrder())} />
-          ) : errorOrders ? (
+          ) : ordersApiUnreachable ? null : errorOrders ? (
             <Message variant="danger">{errorOrders}</Message>
           ) : (
             <Table
