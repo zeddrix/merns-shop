@@ -27,12 +27,12 @@ export const importSeedData = async (): Promise<ImportSeedResult> => {
   }
 
   const catalog = buildSeedCatalog(adminUser._id);
-  const products = await syncCatalogProducts(catalog, { reviewerUserId: adminUser._id });
+  const products = await Product.insertMany(catalog);
   await insertSeedOrders(createdUsers, products);
 
   return {
     users: createdUsers.map((user) => ({ _id: user._id, email: user.email })),
-    products
+    products: products as unknown as IProductDocument[]
   };
 };
 

@@ -55,19 +55,23 @@ const makeExisting = (overrides: Record<string, unknown> = {}) => ({
   reviews: [],
   variants: baseSeed().variants,
   user: reviewerId,
-  set: vi.fn(function (this: ReturnType<typeof makeExisting>, key: string, value: unknown) {
-    Object.assign(this, { [key]: value });
-  }),
-  save: vi.fn().mockResolvedValue(undefined),
   ...overrides
 });
 
-vi.mock('../../../backend/models/Product.js', () => ({
-  default: {
-    findOne: vi.fn(),
-    create: vi.fn()
+vi.mock('../../../backend/models/Product.js', () => {
+  class MockProduct {
+    validate = vi.fn().mockResolvedValue(undefined);
+
+    constructor(_data: Record<string, unknown>) {}
   }
-}));
+
+  const ProductModel =
+    MockProduct as unknown as typeof import('../../../backend/models/Product.js').default;
+  ProductModel.find = vi.fn();
+  ProductModel.bulkWrite = vi.fn();
+
+  return { default: ProductModel };
+});
 
 describe('catalogSync', () => {
   beforeEach(() => {
@@ -76,25 +80,42 @@ describe('catalogSync', () => {
 
   it('upserts_new_product_by_model_key', async () => {
     const created = { _id: new Types.ObjectId(), modelKey: 'iphone-15-pro' };
-    vi.mocked(Product.findOne).mockResolvedValue(null);
-    vi.mocked(Product.create).mockResolvedValue(created as never);
+    vi.mocked(Product.find)
+      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce([created as never]);
 
     const result = await syncCatalogProducts([baseSeed()], { reviewerUserId: reviewerId });
 
-    expect(Product.create).toHaveBeenCalled();
+    expect(Product.bulkWrite).toHaveBeenCalledWith(
+      [
+        expect.objectContaining({
+          updateOne: expect.objectContaining({
+            filter: { modelKey: 'iphone-15-pro' },
+            update: expect.objectContaining({
+              $set: expect.objectContaining({ name: 'iPhone 15 Pro' }),
+              $setOnInsert: expect.objectContaining({ modelKey: 'iphone-15-pro' })
+            })
+          })
+        })
+      ],
+      { ordered: false }
+    );
     expect(result).toHaveLength(1);
     expect(result[0]).toBe(created);
   });
 
   it('updates_description_without_changing_id', async () => {
     const existing = makeExisting();
-    vi.mocked(Product.findOne).mockResolvedValue(existing as never);
+    const updated = { ...existing, description: 'Updated seed description for QA.' };
+    vi.mocked(Product.find)
+      .mockResolvedValueOnce([existing as never])
+      .mockResolvedValueOnce([updated as never]);
 
     const result = await syncCatalogProducts([baseSeed()], { reviewerUserId: reviewerId });
 
-    expect(existing.description).toBe('Updated seed description for QA.');
-    expect(existing.save).toHaveBeenCalled();
+    expect(Product.bulkWrite).toHaveBeenCalled();
     expect(result[0]._id).toBe(existing._id);
+    expect(result[0].description).toBe('Updated seed description for QA.');
   });
 
   it('preserves_customer_reviews_when_syncing', async () => {
@@ -109,14 +130,24 @@ describe('catalogSync', () => {
       rating: 4,
       numReviews: 1
     });
-    vi.mocked(Product.findOne).mockResolvedValue(existing as never);
+    const synced = {
+      ...existing,
+      description: 'Updated seed description for QA.'
+    };
+    vi.mocked(Product.find)
+      .mockResolvedValueOnce([existing as never])
+      .mockResolvedValueOnce([synced as never]);
 
-    await syncCatalogProducts([baseSeed()], { reviewerUserId: reviewerId });
+    const result = await syncCatalogProducts([baseSeed()], { reviewerUserId: reviewerId });
 
-    expect(existing.reviews).toEqual([customerReview]);
-    expect(existing.rating).toBe(4);
-    expect(existing.numReviews).toBe(1);
-    expect(existing.description).toBe('Updated seed description for QA.');
+    const bulkCall = vi.mocked(Product.bulkWrite).mock.calls[0]?.[0] as unknown as Array<{
+      updateOne: { update: { $set: { reviews: unknown[] } } };
+    }>;
+    expect(bulkCall?.[0]?.updateOne.update.$set.reviews).toEqual([customerReview]);
+    expect(result[0].reviews).toEqual([customerReview]);
+    expect(result[0].rating).toBe(4);
+    expect(result[0].numReviews).toBe(1);
+    expect(result[0].description).toBe('Updated seed description for QA.');
   });
 
   it('replaces_seed_only_reviews_when_no_customer_reviews', async () => {
@@ -130,15 +161,24 @@ describe('catalogSync', () => {
         }
       ]
     });
-    vi.mocked(Product.findOne).mockResolvedValue(existing as never);
+    const synced = {
+      ...existing,
+      description: 'Updated seed description for QA.',
+      reviews: baseSeed().reviews,
+      rating: 4.5,
+      numReviews: 2
+    };
+    vi.mocked(Product.find)
+      .mockResolvedValueOnce([existing as never])
+      .mockResolvedValueOnce([synced as never]);
 
-    await syncCatalogProducts([baseSeed()], { reviewerUserId: reviewerId });
+    const result = await syncCatalogProducts([baseSeed()], { reviewerUserId: reviewerId });
 
-    expect(existing.reviews).toHaveLength(1);
-    expect((existing.reviews as Array<{ comment: string }>)[0]?.comment).toBe(
+    expect(result[0].reviews).toHaveLength(1);
+    expect((result[0].reviews as Array<{ comment: string }>)[0]?.comment).toBe(
       'Seed review comment'
     );
-    expect(existing.rating).toBe(4.5);
-    expect(existing.numReviews).toBe(2);
+    expect(result[0].rating).toBe(4.5);
+    expect(result[0].numReviews).toBe(2);
   });
 });

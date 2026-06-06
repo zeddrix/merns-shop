@@ -71,5 +71,11 @@ export const buildProductSort = (sort?: string): Record<string, 1 | -1> => {
   }
 };
 
+export const isPriceSort = (sort?: string): sort is 'price-asc' | 'price-desc' =>
+  sort === 'price-asc' || sort === 'price-desc';
+
+export const getPriceSortDirection = (sort: 'price-asc' | 'price-desc'): 1 | -1 =>
+  sort === 'price-asc' ? 1 : -1;
+
 /** @deprecated Use buildProductListFilter */
 export const buildKeywordFilter = (keyword?: string) => buildProductListFilter({ keyword });

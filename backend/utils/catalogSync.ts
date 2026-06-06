@@ -24,55 +24,88 @@ const hasCustomerReviews = (
   reviewerUserId: Types.ObjectId
 ): boolean => reviews.some((review) => review.user.toString() !== reviewerUserId.toString());
 
-const applyCatalogFields = (
-  existing: IProductDocument,
+const buildSyncedProductFields = (
+  existing: IProductDocument | null,
   seed: SeedCatalogProduct,
   reviewerUserId: Types.ObjectId
-): void => {
-  const keepReviews = hasCustomerReviews(existing.reviews, reviewerUserId);
+): Record<string, unknown> => {
+  const keepReviews = existing !== null && hasCustomerReviews(existing.reviews, reviewerUserId);
   const reviews = keepReviews ? existing.reviews : (seed.reviews ?? []);
   const stats = keepReviews
     ? recomputeRating(reviews as SeedReview[])
     : { rating: seed.rating, numReviews: seed.numReviews };
 
-  existing.name = seed.name;
-  existing.image = seed.image;
-  existing.brand = seed.brand;
-  existing.category = seed.category;
-  existing.subcategory = seed.subcategory;
-  existing.releaseYear = seed.releaseYear;
-  existing.description = seed.description;
-  existing.condition = seed.condition;
-  existing.variants = seed.variants as IProductDocument['variants'];
-  existing.reviews = reviews as IProductDocument['reviews'];
-  existing.rating = stats.rating;
-  existing.numReviews = stats.numReviews;
+  return {
+    name: seed.name,
+    image: seed.image,
+    brand: seed.brand,
+    category: seed.category,
+    subcategory: seed.subcategory,
+    releaseYear: seed.releaseYear,
+    description: seed.description,
+    condition: seed.condition,
+    variants: seed.variants,
+    reviews,
+    rating: stats.rating,
+    numReviews: stats.numReviews
+  };
 };
 
 export const syncCatalogProducts = async (
   seedProducts: SeedCatalogProduct[],
   options: CatalogSyncOptions
 ): Promise<IProductDocument[]> => {
-  const synced: IProductDocument[] = [];
-
-  for (const seed of seedProducts) {
-    const existing = await Product.findOne({ modelKey: seed.modelKey });
-
-    if (!existing) {
-      const created = await Product.create({
-        ...seed,
-        user: seed.user ?? options.reviewerUserId
-      });
-      synced.push(created);
-      continue;
-    }
-
-    applyCatalogFields(existing, seed, options.reviewerUserId);
-    await existing.save();
-    synced.push(existing);
+  if (seedProducts.length === 0) {
+    return [];
   }
 
-  return synced;
+  const modelKeys = seedProducts.map((seed) => seed.modelKey);
+  const existingProducts = await Product.find({ modelKey: { $in: modelKeys } });
+  const existingByModelKey = new Map(
+    existingProducts.map((product) => [product.modelKey, product])
+  );
+
+  const bulkOps = [];
+
+  for (const seed of seedProducts) {
+    const existing = existingByModelKey.get(seed.modelKey) ?? null;
+    const fields = buildSyncedProductFields(existing, seed, options.reviewerUserId);
+    const userId = seed.user ?? options.reviewerUserId;
+
+    const candidate = new Product({
+      ...fields,
+      user: userId,
+      modelKey: seed.modelKey
+    });
+    await candidate.validate();
+
+    bulkOps.push({
+      updateOne: {
+        filter: { modelKey: seed.modelKey },
+        update: {
+          $set: fields,
+          $setOnInsert: {
+            user: userId,
+            modelKey: seed.modelKey
+          }
+        },
+        upsert: true
+      }
+    });
+  }
+
+  await Product.bulkWrite(bulkOps, { ordered: false });
+
+  const syncedProducts = await Product.find({ modelKey: { $in: modelKeys } });
+  const syncedByModelKey = new Map(syncedProducts.map((product) => [product.modelKey, product]));
+
+  return seedProducts.map((seed) => {
+    const product = syncedByModelKey.get(seed.modelKey);
+    if (!product) {
+      throw new Error(`Catalog sync failed for modelKey ${seed.modelKey}`);
+    }
+    return product;
+  });
 };
 
 export const averageRatingFromSeedReviews = averageRating;

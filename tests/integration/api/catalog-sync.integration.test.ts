@@ -4,9 +4,8 @@ import app from '../../../backend/app.js';
 import User from '../../../backend/models/User.js';
 import Product from '../../../backend/models/Product.js';
 import Order from '../../../backend/models/Order.js';
-import { connectTestDb, disconnectTestDb } from '../helpers/db.js';
+import { connectTestDb, disconnectTestDb, resetTestDb } from '../helpers/db.js';
 import { syncCatalogOnly, syncFixturesOnly } from '../../../backend/utils/importSeedData.js';
-import { importSeedData } from '../../../backend/utils/importSeedData.js';
 
 describe('catalog sync integration', () => {
   beforeAll(async () => {
@@ -18,10 +17,7 @@ describe('catalog sync integration', () => {
   });
 
   beforeEach(async () => {
-    await Order.deleteMany();
-    await Product.deleteMany();
-    await User.deleteMany();
-    await importSeedData();
+    await resetTestDb();
   });
 
   it('sync_updates_iphone_description_and_reviews_without_deleting_users', async () => {

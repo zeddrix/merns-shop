@@ -5,7 +5,9 @@ import {
   PRODUCTS_PER_PAGE,
   buildProductListFilter,
   buildProductSort,
-  calculateTotalPages
+  calculateTotalPages,
+  getPriceSortDirection,
+  isPriceSort
 } from '../utils/productQuery.js';
 import { enrichProductForList } from '../utils/productVariants.js';
 import { userCanReviewProduct } from '../utils/reviewEligibility.js';
@@ -33,12 +35,25 @@ const getProducts = asyncHandler(async (req: Request, res: Response) => {
     maxPrice: Number.isFinite(maxPrice) ? maxPrice : undefined
   });
 
-  const sort = buildProductSort(req.query.sort ? String(req.query.sort) : undefined);
+  const sortKey = req.query.sort ? String(req.query.sort) : undefined;
   const count = await Product.countDocuments(filter);
-  const products = await Product.find(filter)
-    .sort(sort)
-    .limit(PRODUCTS_PER_PAGE)
-    .skip(PRODUCTS_PER_PAGE * (page - 1));
+
+  let products;
+  if (isPriceSort(sortKey)) {
+    products = await Product.aggregate([
+      { $match: filter },
+      { $addFields: { priceFromSort: { $min: '$variants.price' } } },
+      { $sort: { priceFromSort: getPriceSortDirection(sortKey) } },
+      { $skip: PRODUCTS_PER_PAGE * (page - 1) },
+      { $limit: PRODUCTS_PER_PAGE }
+    ]);
+  } else {
+    const sort = buildProductSort(sortKey);
+    products = await Product.find(filter)
+      .sort(sort)
+      .limit(PRODUCTS_PER_PAGE)
+      .skip(PRODUCTS_PER_PAGE * (page - 1));
+  }
 
   res.json({
     products: products.map((p) => toListProduct(p)),
