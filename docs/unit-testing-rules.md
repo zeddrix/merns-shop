@@ -140,10 +140,10 @@ Run unit tests before integration/E2E when changing controller or middleware log
 
 ## What Belongs Here vs Integration
 
-| Scenario                                                   | Unit | Integration                      |
-| ---------------------------------------------------------- | ---- | -------------------------------- |
-| `admin` middleware rejects non-admin                       | ✅   | ❌                               |
-| Full login → profile with real MongoDB                     | ❌   | ✅ `auth.integration.test.ts`    |
-| `generateToken` returns valid JWT shape                    | ✅   | ❌                               |
-| POST `/api/orders` persists order                          | ❌   | ✅ `orders.integration.test.ts`  |
+| Scenario                                       | Unit                           | Integration                      |
+| ---------------------------------------------- | ------------------------------ | -------------------------------- |
+| `admin` middleware rejects non-admin           | ✅                             | ❌                               |
+| Full login → profile with real MongoDB         | ❌                             | ✅ `auth.integration.test.ts`    |
+| `generateToken` returns valid JWT shape        | ✅                             | ❌                               |
+| POST `/api/orders` persists order              | ❌                             | ✅ `orders.integration.test.ts`  |
 | `productQuery` filter/sort/pagination (mocked) | ✅ `productQuery.unit.test.ts` | Optional duplicate — prefer unit |
