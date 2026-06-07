@@ -4,11 +4,13 @@ import { DISPLAY_BRAND_NAME } from '../constants/brand';
 import { DEVELOPER_NAME } from '../constants/seo';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer data-testid="site-footer">
       <Container>
         <Row>
-          <Col className="text-center py-2">
+          <Col className="text-center py-3">
             <Link to="/about" data-testid="footer-about-link">
               About
             </Link>
@@ -16,10 +18,11 @@ const Footer = () => {
             <Link to="/about" data-testid="footer-developer-link">
               Developed by {DEVELOPER_NAME}
             </Link>
+            {' · '}
+            <span data-testid="footer-copyright">
+              Copyright &copy; {currentYear} {DISPLAY_BRAND_NAME}
+            </span>
           </Col>
-        </Row>
-        <Row>
-          <Col className="text-center py-3">Copyright &copy; {DISPLAY_BRAND_NAME}</Col>
         </Row>
       </Container>
     </footer>

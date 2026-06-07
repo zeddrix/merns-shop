@@ -57,6 +57,24 @@ test.describe('about page', () => {
     await expect(page.locator('[data-testid="about-timeline-2026"]')).toContainText(/ATDD/i);
   });
 
+  test('about_connect_links_are_navigable_anchors', async ({ page }) => {
+    await page.goto('/about');
+    await expect(page.locator('[data-testid="about-page"]')).toBeVisible();
+
+    for (const testId of ['about-linkedin-link', 'about-portfolio-link', 'about-github-link']) {
+      const link = page.locator(`[data-testid="${testId}"]`);
+      await expect(link).toHaveAttribute('target', '_blank');
+      const href = await link.getAttribute('href');
+      expect(href).toBeTruthy();
+    }
+
+    const githubPopup = page.waitForEvent('popup');
+    await page.locator('[data-testid="about-github-link"]').click();
+    const popup = await githubPopup;
+    await expect(popup).toHaveURL('https://github.com/zeddrix/merns-shop');
+    await popup.close();
+  });
+
   test('about_seo_meta_indexable', async ({ page }) => {
     await page.goto('/about');
     await expect(page.locator('[data-testid="about-page"]')).toBeVisible();

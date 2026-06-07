@@ -28,6 +28,21 @@ test.describe('smoke app boot', () => {
       /\/images\/og-default\.webp/
     );
     await expect(page.locator('[data-testid="footer-developer-link"]')).toBeVisible();
+    await expect(page.locator('[data-testid="footer-about-link"]')).toHaveAttribute(
+      'href',
+      '/about'
+    );
+    await expect(page.locator('[data-testid="footer-developer-link"]')).toHaveAttribute(
+      'href',
+      '/about'
+    );
+    const currentYear = new Date().getFullYear();
+    await expect(page.locator('[data-testid="site-footer"]')).toContainText(
+      `Copyright © ${currentYear} MERN's Shop`
+    );
+    await expect(page.locator('[data-testid="site-footer"]')).toContainText(
+      'About · Developed by Zeddrix Fabian'
+    );
     const jsonLdScripts = page.locator('script[type="application/ld+json"]');
     const jsonLdTexts = await jsonLdScripts.allTextContents();
     const hasPerson = jsonLdTexts.some((raw) => {
@@ -105,6 +120,9 @@ test.describe('smoke app boot', () => {
     await page.goto('/this-route-does-not-exist');
     await expect(page.locator('[data-testid="site-brand"]')).toBeVisible();
     await expect(page.locator('[data-testid="not-found-page"]')).toBeVisible();
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,nofollow');
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+      'content',
+      'noindex,nofollow'
+    );
   });
 });
