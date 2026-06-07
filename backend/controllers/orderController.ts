@@ -13,6 +13,7 @@ import {
   assertOrderOwnerOrAdmin,
   OrderAccessError
 } from '../utils/orderAccess.js';
+import { sendOrderNotification } from '../services/pushService.js';
 
 const resolveOrderItems = async (
   orderItems: Array<{ product: string; qty: number; variantSku: string }>
@@ -150,6 +151,15 @@ const updateOrderToPaid = asyncHandler(async (req: Request, res: Response) => {
 
   const updatedOrder = await order.save();
 
+  await sendOrderNotification({
+    userId: order.user,
+    orderId: String(order._id),
+    type: 'order_paid',
+    title: 'Payment confirmed',
+    body: `Your order #${String(order._id).slice(-6)} has been paid.`,
+    url: `/order/${String(order._id)}`
+  });
+
   res.json(updatedOrder);
 });
 
@@ -175,6 +185,15 @@ const updateOrderToDelivered = asyncHandler(async (req: Request, res: Response) 
   order.deliveredAt = new Date();
 
   const updatedOrder = await order.save();
+
+  await sendOrderNotification({
+    userId: order.user,
+    orderId: String(order._id),
+    type: 'order_delivered',
+    title: 'Order delivered',
+    body: `Your order #${String(order._id).slice(-6)} has been delivered.`,
+    url: `/order/${String(order._id)}`
+  });
 
   res.json(updatedOrder);
 });

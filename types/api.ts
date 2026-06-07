@@ -102,3 +102,29 @@ export interface ProductMetaResponse {
   categories: string[];
   subcategories: string[];
 }
+
+export interface ApiNotificationPreference {
+  pushEnabled: boolean;
+  orderPaid: boolean;
+  orderDelivered: boolean;
+}
+
+export interface ApiPushSubscriptionPayload {
+  endpoint: string;
+  expirationTime: number | null;
+  keys: {
+    p256dh: string;
+    auth: string;
+  };
+}
+
+export interface ApiNotification {
+  _id: string;
+  type: 'order_paid' | 'order_delivered';
+  title: string;
+  body: string;
+  url: string;
+  orderId?: string;
+  read: boolean;
+  createdAt: string;
+}
