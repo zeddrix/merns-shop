@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {
+  addFirstProductToCart,
   loginAs,
   loginWithCredentials,
   logout,
@@ -99,8 +100,8 @@ test.describe('auth login register profile', () => {
     await openAuthModal(page, 'register');
     await page.locator('[data-testid="register-name"]').fill('Invalid User');
     await page.locator('[data-testid="register-email"]').fill('invalid@example.com');
-    await page.locator('[data-testid="register-password"]').fill('123456');
-    await page.locator('[data-testid="register-confirm-password"]').fill('654321');
+    await page.locator('[data-testid="register-password"]').fill('TestPass1!');
+    await page.locator('[data-testid="register-confirm-password"]').fill('WrongPass1!');
     await page.locator('[data-testid="register-submit"]').click();
 
     await expect(page.locator('[data-testid="register-password-mismatch"]')).toBeVisible();
@@ -109,7 +110,7 @@ test.describe('auth login register profile', () => {
     expect(registerRequested).toBe(false);
   });
 
-  test('register_validation_requires_min_password_length', async ({ page }) => {
+  test('register_validation_requires_strong_password', async ({ page }) => {
     let registerRequested = false;
     page.on('request', (request) => {
       if (request.method() === 'POST' && request.url().includes('/api/users')) {
@@ -118,23 +119,45 @@ test.describe('auth login register profile', () => {
     });
 
     await openAuthModal(page, 'register');
-    await page.locator('[data-testid="register-name"]').fill('Short Password User');
-    await page.locator('[data-testid="register-email"]').fill('short@example.com');
+    await page.locator('[data-testid="register-name"]').fill('Weak Password User');
+    await page.locator('[data-testid="register-email"]').fill('weak@example.com');
     await page.locator('[data-testid="register-password"]').fill('12345');
     await page.locator('[data-testid="register-confirm-password"]').fill('12345');
     await page.locator('[data-testid="register-submit"]').click();
 
-    await expect(page.locator('[data-testid="register-password-too-short"]')).toBeVisible();
+    await expect(page.locator('[data-testid="register-password-weak"]')).toBeVisible();
     await expect(page.locator('[data-testid="register-form"]')).toBeVisible();
     expect(registerRequested).toBe(false);
+  });
+
+  test('register_blur_empty_email_shows_field_error', async ({ page }) => {
+    await openAuthModal(page, 'register');
+    await page.locator('[data-testid="register-email"]').fill('not-an-email');
+    await page.locator('[data-testid="register-name"]').click();
+    await expect(page.locator('[data-testid="register-email-error"]')).toBeVisible();
+  });
+
+  test('register_strong_password_checklist_updates_as_user_types', async ({ page }) => {
+    await openAuthModal(page, 'register');
+    await page.locator('[data-testid="register-password"]').fill('T');
+    await expect(page.locator('[data-testid="password-hint-upper"]')).toHaveClass(
+      /password-strength-hints__met/
+    );
+    await page.locator('[data-testid="register-password"]').fill('TestPass1!');
+    await expect(page.locator('[data-testid="password-hint-length"]')).toHaveClass(
+      /password-strength-hints__met/
+    );
+    await expect(page.locator('[data-testid="password-hint-digit"]')).toHaveClass(
+      /password-strength-hints__met/
+    );
   });
 
   test('register_duplicate_email_shows_error', async ({ page }) => {
     await openAuthModal(page, 'register');
     await page.locator('[data-testid="register-name"]').fill('Duplicate User');
     await page.locator('[data-testid="register-email"]').fill(TEST_USERS.customer.email);
-    await page.locator('[data-testid="register-password"]').fill('123456');
-    await page.locator('[data-testid="register-confirm-password"]').fill('123456');
+    await page.locator('[data-testid="register-password"]').fill('TestPass1!');
+    await page.locator('[data-testid="register-confirm-password"]').fill('TestPass1!');
     await Promise.all([
       page.waitForResponse(
         (response) => response.url().includes('/api/users') && response.status() === 400
@@ -146,19 +169,12 @@ test.describe('auth login register profile', () => {
     await expect(page.locator('[data-testid="nav-sign-up"]')).toBeVisible();
   });
 
-  test('checkout_step_sign_in_includes_redirect', async ({ page }) => {
-    await loginAs(page, 'customer');
-    await page.goto('/shipping');
-    const signInHref = await page
-      .locator('[data-testid="checkout-step-signin"]')
-      .getAttribute('href');
-    const signUpHref = await page
-      .locator('[data-testid="checkout-step-sign-up"]')
-      .getAttribute('href');
-    expect(signInHref).toContain('auth=login');
-    expect(signInHref).toContain('redirect=%2Fshipping');
-    expect(signUpHref).toContain('auth=register');
-    expect(signUpHref).toContain('redirect=%2Fshipping');
+  test('cart_checkout_auth_redirect_targets_checkout', async ({ page }) => {
+    await addFirstProductToCart(page);
+    await page.goto('/cart');
+    await page.locator('[data-testid="cart-checkout"]').click();
+    await expect(page).toHaveURL(/auth=login/);
+    expect(page.url()).toContain(encodeURIComponent('/checkout'));
   });
 
   test('login_does_not_store_userInfo_in_localStorage', async ({ page }) => {
@@ -186,8 +202,8 @@ test.describe('auth login register profile', () => {
     await openAuthModal(page, 'register');
     await page.locator('[data-testid="register-name"]').fill('Welcome User');
     await page.locator('[data-testid="register-email"]').fill(`welcome-${unique}@example.com`);
-    await page.locator('[data-testid="register-password"]').fill('123456');
-    await page.locator('[data-testid="register-confirm-password"]').fill('123456');
+    await page.locator('[data-testid="register-password"]').fill('TestPass1!');
+    await page.locator('[data-testid="register-confirm-password"]').fill('TestPass1!');
     await Promise.all([
       page.waitForResponse(
         (response) => response.url().includes('/api/users') && response.status() === 201
@@ -289,7 +305,7 @@ test.describe('auth login register profile', () => {
       page,
       'PDP Register User',
       `pdp-register-${unique}@example.com`,
-      '123456'
+      'TestPass1!'
     );
     await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}$`));
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
@@ -306,19 +322,19 @@ test.describe('auth login register profile', () => {
 
   test('register_honors_redirect_query', async ({ page }) => {
     const unique = Date.now();
-    await page.goto(`/?auth=register&redirect=${encodeURIComponent('/shipping')}`);
+    await page.goto(`/?auth=register&redirect=${encodeURIComponent('/checkout')}`);
     await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await page.locator('[data-testid="register-name"]').fill('Redirect User');
     await page.locator('[data-testid="register-email"]').fill(`redirect-${unique}@example.com`);
-    await page.locator('[data-testid="register-password"]').fill('123456');
-    await page.locator('[data-testid="register-confirm-password"]').fill('123456');
+    await page.locator('[data-testid="register-password"]').fill('TestPass1!');
+    await page.locator('[data-testid="register-confirm-password"]').fill('TestPass1!');
     await Promise.all([
       page.waitForResponse(
         (response) => response.url().includes('/api/users') && response.status() === 201
       ),
       page.locator('[data-testid="register-submit"]').click()
     ]);
-    await expect(page).toHaveURL(/\/shipping/);
+    await expect(page).toHaveURL(/\/checkout/);
   });
 
   test('seeded_customer_login_shows_profile_and_orders', async ({ page }) => {
@@ -355,8 +371,8 @@ test.describe('auth login register profile', () => {
     await loginAs(page, 'customer');
     await page.goto('/profile');
     await expect(page.locator('[data-testid="profile-form"]')).toBeVisible();
-    await page.locator('[data-testid="profile-password"]').fill('654321');
-    await page.locator('[data-testid="profile-confirm-password"]').fill('123456');
+    await page.locator('[data-testid="profile-password"]').fill('NewPass1!');
+    await page.locator('[data-testid="profile-confirm-password"]').fill('WrongPass1!');
     await page.locator('[data-testid="profile-submit"]').click();
     await expect(page.locator('[data-testid="alert-message"]')).toContainText(
       'Passwords do not match'
@@ -367,8 +383,8 @@ test.describe('auth login register profile', () => {
   test('profile_password_update_requires_relogin', async ({ page }) => {
     const unique = Date.now();
     const email = `profile-pw-${unique}@example.com`;
-    const oldPassword = '123456';
-    const newPassword = '654321';
+    const oldPassword = 'TestPass1!';
+    const newPassword = 'NewPass1!';
 
     await openAuthModal(page, 'register');
     await registerWithCredentials(page, 'Password Update User', email, oldPassword);
@@ -407,7 +423,7 @@ test.describe('auth login register profile', () => {
     const updatedEmail = `profile-email-updated-${unique}@example.com`;
 
     await openAuthModal(page, 'register');
-    await registerWithCredentials(page, 'Email Update User', email, '123456');
+    await registerWithCredentials(page, 'Email Update User', email, 'TestPass1!');
 
     await page.goto('/profile');
     await expect(page.locator('[data-testid="profile-form"]')).toBeVisible();

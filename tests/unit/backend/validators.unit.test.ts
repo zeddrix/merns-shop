@@ -128,9 +128,14 @@ describe('request validation schemas', () => {
     expect(result.success).toBe(false);
   });
 
-  it('rejects updateProfileSchema with short password', () => {
-    const result = updateProfileSchema.safeParse({ password: '123' });
+  it('rejects updateProfileSchema with weak password', () => {
+    const result = updateProfileSchema.safeParse({ password: '123456' });
     expect(result.success).toBe(false);
+  });
+
+  it('accepts updateProfileSchema with strong password', () => {
+    const result = updateProfileSchema.safeParse({ password: 'TestPass1!' });
+    expect(result.success).toBe(true);
   });
 
   it('accepts updateProfileSchema with valid partial fields', () => {

@@ -91,7 +91,7 @@ test.describe('product reviews', () => {
       page,
       'Review Register User',
       `review-register-${unique}@example.com`,
-      '123456'
+      'TestPass1!'
     );
     await expect(page).toHaveURL(new RegExp(`${productPath.replace(/\//g, '\\/')}$`));
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();

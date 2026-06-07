@@ -1,7 +1,10 @@
 import { z } from 'zod';
+import { strongPasswordSchema } from '../../shared/validators/auth.js';
+
 export {
   loginUserSchema,
   registerUserSchema,
+  strongPasswordSchema,
   type LoginUserInput,
   type RegisterUserInput
 } from '../../shared/validators/auth.js';
@@ -12,9 +15,18 @@ export const updateProfileSchema = z
     email: z.string().trim().email().optional(),
     password: z.string().optional()
   })
-  .refine((data) => !data.password || data.password.length >= 6, {
-    message: 'Password must be at least 6 characters',
-    path: ['password']
+  .superRefine((data, ctx) => {
+    if (!data.password) {
+      return;
+    }
+    const result = strongPasswordSchema.safeParse(data.password);
+    if (!result.success) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: result.error.issues[0]?.message ?? 'Password does not meet strength requirements',
+        path: ['password']
+      });
+    }
   });
 
 export const productReviewSchema = z.object({

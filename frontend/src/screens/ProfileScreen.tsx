@@ -1,10 +1,14 @@
-import { useState, useEffect, FormEvent } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Table, Form, Button, Row, Col } from 'react-bootstrap';
+import { profileFormSchema, type ProfileFormInput } from '@shared/validators/auth';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
 import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
+import PasswordStrengthHints from '../components/PasswordStrengthHints';
 import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import { getUserDetails, updateUserProfile } from '../features/userSlice';
 import { listMyOrder } from '../features/orderSlice';
@@ -14,12 +18,6 @@ import SeoPrivateMeta from '../components/SeoPrivateMeta';
 
 const ProfileScreen = () => {
   const isAuthenticated = useRequireAuth();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState<string | null>(null);
-
   const dispatch = useAppDispatch();
 
   const userDetails = useAppSelector((state) => state.userDetails);
@@ -33,6 +31,25 @@ const ProfileScreen = () => {
   const myOrder = useAppSelector((state) => state.myOrder);
   const { loading: loadingOrders, error: errorOrders, orders } = myOrder;
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors }
+  } = useForm<ProfileFormInput>({
+    resolver: zodResolver(profileFormSchema),
+    mode: 'onTouched',
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    }
+  });
+
+  const passwordValue = watch('password');
+
   useEffect(() => {
     if (!userInfo) {
       return;
@@ -45,10 +62,14 @@ const ProfileScreen = () => {
     }
 
     if (!success) {
-      setName(user.name);
-      setEmail(user.email);
+      reset({
+        name: user.name,
+        email: user.email,
+        password: '',
+        confirmPassword: ''
+      });
     }
-  }, [dispatch, userInfo, user._id, user.name, user.email, success]);
+  }, [dispatch, userInfo, user._id, user.name, user.email, success, reset]);
 
   if (!isAuthenticated) {
     return (
@@ -59,20 +80,15 @@ const ProfileScreen = () => {
     );
   }
 
-  const submitHandler = (e: FormEvent) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage('Passwords do not match');
-    } else {
-      dispatch(
-        updateUserProfile({
-          id: user._id,
-          name,
-          email,
-          password
-        })
-      );
-    }
+  const onSubmit = (data: ProfileFormInput) => {
+    dispatch(
+      updateUserProfile({
+        id: user._id,
+        name: data.name,
+        email: data.email,
+        password: data.password
+      })
+    );
   };
 
   const profileApiUnreachable = Boolean(error && isApiUnreachableMessage(error));
@@ -88,6 +104,9 @@ const ProfileScreen = () => {
     }
   };
 
+  const passwordMismatch =
+    errors.confirmPassword?.message === 'Passwords do not match' ? errors.confirmPassword : null;
+
   return (
     <>
       <SeoPrivateMeta canonicalPath="/profile" />
@@ -99,23 +118,32 @@ const ProfileScreen = () => {
         )}
         <Col xs={12} md={3} className="mb-3 mb-md-0">
           <h2>User Profile</h2>
-          {message && <Message variant="danger">{message}</Message>}
+          {passwordMismatch && (
+            <Message variant="danger" data-testid="alert-message">
+              {passwordMismatch.message}
+            </Message>
+          )}
           {success && <Message variant="success">Profile Updated</Message>}
           {loading ? (
             <Loader />
           ) : profileApiUnreachable ? null : error ? (
             <Message variant="danger">{error}</Message>
           ) : (
-            <Form onSubmit={submitHandler} data-testid="profile-form">
+            <Form onSubmit={handleSubmit(onSubmit)} data-testid="profile-form" noValidate>
               <Form.Group controlId="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter name"
-                  value={name}
                   data-testid="profile-name"
-                  onChange={(e) => setName(e.target.value)}
+                  isInvalid={Boolean(errors.name)}
+                  {...register('name')}
                 />
+                {errors.name && (
+                  <Form.Control.Feedback type="invalid">
+                    {errors.name.message}
+                  </Form.Control.Feedback>
+                )}
               </Form.Group>
 
               <Form.Group controlId="email">
@@ -123,10 +151,15 @@ const ProfileScreen = () => {
                 <Form.Control
                   type="email"
                   placeholder="Enter email"
-                  value={email}
                   data-testid="profile-email"
-                  onChange={(e) => setEmail(e.target.value)}
+                  isInvalid={Boolean(errors.email)}
+                  {...register('email')}
                 />
+                {errors.email && (
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email.message}
+                  </Form.Control.Feedback>
+                )}
               </Form.Group>
 
               <Form.Group controlId="password">
@@ -134,10 +167,16 @@ const ProfileScreen = () => {
                 <Form.Control
                   type="password"
                   placeholder="Enter password"
-                  value={password}
                   data-testid="profile-password"
-                  onChange={(e) => setPassword(e.target.value)}
+                  isInvalid={Boolean(errors.password)}
+                  {...register('password')}
                 />
+                <PasswordStrengthHints password={passwordValue} />
+                {errors.password && !passwordMismatch && (
+                  <Form.Control.Feedback type="invalid">
+                    {errors.password.message}
+                  </Form.Control.Feedback>
+                )}
               </Form.Group>
 
               <Form.Group controlId="confirmPassword">
@@ -145,10 +184,15 @@ const ProfileScreen = () => {
                 <Form.Control
                   type="password"
                   placeholder="Confirm password"
-                  value={confirmPassword}
                   data-testid="profile-confirm-password"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  isInvalid={Boolean(errors.confirmPassword)}
+                  {...register('confirmPassword')}
                 />
+                {errors.confirmPassword && !passwordMismatch && (
+                  <Form.Control.Feedback type="invalid">
+                    {errors.confirmPassword.message}
+                  </Form.Control.Feedback>
+                )}
               </Form.Group>
 
               <Button type="submit" variant="primary" data-testid="profile-submit">

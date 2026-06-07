@@ -31,7 +31,7 @@ describe('auth integration', () => {
     const res = await request(app).post('/api/users').send({
       name: 'Test User',
       email: 'test@example.com',
-      password: '123456'
+      password: 'TestPass1!'
     });
     expect(res.status).toBe(201);
     expect(res.body.token).toBeUndefined();
@@ -42,7 +42,7 @@ describe('auth integration', () => {
     const res = await request(app).post('/api/users').send({
       name: 'Duplicate User',
       email: 'john@gmail.com',
-      password: '123456'
+      password: 'TestPass1!'
     });
     expect(res.status).toBe(400);
     expect(res.body.message).toMatch(/already exists/i);

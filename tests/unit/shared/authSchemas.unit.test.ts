@@ -2,7 +2,9 @@ import { describe, expect, it } from 'vitest';
 import {
   loginUserSchema,
   registerFormSchema,
-  registerUserSchema
+  registerUserSchema,
+  strongPasswordSchema,
+  profileFormSchema
 } from '../../../shared/validators/auth';
 
 describe('shared auth schemas', () => {
@@ -10,7 +12,7 @@ describe('shared auth schemas', () => {
     const result = registerUserSchema.safeParse({
       name: '',
       email: 'user@example.com',
-      password: '123456'
+      password: 'TestPass1!'
     });
     expect(result.success).toBe(false);
   });
@@ -19,12 +21,12 @@ describe('shared auth schemas', () => {
     const result = registerUserSchema.safeParse({
       name: 'User',
       email: 'not-an-email',
-      password: '123456'
+      password: 'TestPass1!'
     });
     expect(result.success).toBe(false);
   });
 
-  it('registerUserSchema rejects short password', () => {
+  it('registerUserSchema rejects weak password', () => {
     const result = registerUserSchema.safeParse({
       name: 'User',
       email: 'user@example.com',
@@ -33,12 +35,27 @@ describe('shared auth schemas', () => {
     expect(result.success).toBe(false);
   });
 
+  it('registerUserSchema accepts strong password', () => {
+    const result = registerUserSchema.safeParse({
+      name: 'User',
+      email: 'user@example.com',
+      password: 'TestPass1!'
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it('strongPasswordSchema requires mixed character classes', () => {
+    expect(strongPasswordSchema.safeParse('TestPass1!').success).toBe(true);
+    expect(strongPasswordSchema.safeParse('testpass1!').success).toBe(false);
+    expect(strongPasswordSchema.safeParse('TestPass!').success).toBe(false);
+  });
+
   it('registerFormSchema rejects mismatched passwords', () => {
     const result = registerFormSchema.safeParse({
       name: 'User',
       email: 'user@example.com',
-      password: '123456',
-      confirmPassword: '654321'
+      password: 'TestPass1!',
+      confirmPassword: 'WrongPass1!'
     });
     expect(result.success).toBe(false);
     if (!result.success) {
@@ -46,6 +63,26 @@ describe('shared auth schemas', () => {
         true
       );
     }
+  });
+
+  it('profileFormSchema allows empty password', () => {
+    const result = profileFormSchema.safeParse({
+      name: 'User',
+      email: 'user@example.com',
+      password: '',
+      confirmPassword: ''
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it('profileFormSchema rejects weak non-empty password', () => {
+    const result = profileFormSchema.safeParse({
+      name: 'User',
+      email: 'user@example.com',
+      password: '123456',
+      confirmPassword: '123456'
+    });
+    expect(result.success).toBe(false);
   });
 
   it('loginUserSchema requires password', () => {

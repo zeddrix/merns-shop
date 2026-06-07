@@ -16,7 +16,7 @@ test.describe('journey customer auth profile lifecycle', () => {
   test('customer_registers_logs_in_updates_profile_and_sees_orders', async ({ page }) => {
     const unique = Date.now();
     const email = `journey-user-${unique}@example.com`;
-    const password = '123456';
+    const password = 'TestPass1!';
 
     await page.goto('/?auth=register');
     await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();

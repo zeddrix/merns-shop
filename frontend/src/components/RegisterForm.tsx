@@ -7,10 +7,18 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { register } from '../features/userSlice';
 import Message from './Message';
 import Loader from './Loader';
+import PasswordStrengthHints from './PasswordStrengthHints';
 
 interface RegisterFormProps {
   onSwitchToLogin: () => void;
 }
+
+const requiredMark = (
+  <span className="text-danger" aria-hidden="true">
+    {' '}
+    *
+  </span>
+);
 
 const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
   const dispatch = useAppDispatch();
@@ -20,10 +28,12 @@ const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
   const {
     register: registerField,
     handleSubmit,
-    formState: { errors }
+    watch,
+    formState: { errors, touchedFields, dirtyFields }
   } = useForm<RegisterFormInput>({
     resolver: zodResolver(registerFormSchema),
-    mode: 'onBlur',
+    mode: 'onTouched',
+    criteriaMode: 'all',
     defaultValues: {
       name: '',
       email: '',
@@ -31,6 +41,8 @@ const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
       confirmPassword: ''
     }
   });
+
+  const passwordValue = watch('password');
 
   useEffect(() => {
     nameRef.current?.focus();
@@ -40,8 +52,8 @@ const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
     dispatch(register({ name: data.name, email: data.email, password: data.password }));
   };
 
-  const passwordTooShort =
-    errors.password?.message === 'Password must be at least 6 characters' ? errors.password : null;
+  const passwordWeak =
+    errors.password && touchedFields.password && dirtyFields.password ? errors.password : null;
   const passwordMismatch =
     errors.confirmPassword?.message === 'Passwords do not match' ? errors.confirmPassword : null;
 
@@ -55,9 +67,9 @@ const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
           {passwordMismatch.message}
         </Message>
       )}
-      {passwordTooShort && (
-        <Message variant="danger" data-testid="register-password-too-short">
-          {passwordTooShort.message}
+      {passwordWeak && (
+        <Message variant="danger" data-testid="register-password-weak">
+          {passwordWeak.message}
         </Message>
       )}
       {error && (
@@ -73,7 +85,10 @@ const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
         noValidate
       >
         <Form.Group controlId="register-name" className="auth-modal-field">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>
+            Name
+            {requiredMark}
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter name"
@@ -93,7 +108,10 @@ const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
         </Form.Group>
 
         <Form.Group controlId="register-email" className="auth-modal-field">
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label>
+            Email Address
+            {requiredMark}
+          </Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
@@ -109,7 +127,10 @@ const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
         </Form.Group>
 
         <Form.Group controlId="register-password" className="auth-modal-field">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>
+            Password
+            {requiredMark}
+          </Form.Label>
           <Form.Control
             type="password"
             placeholder="Enter password"
@@ -117,7 +138,8 @@ const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
             isInvalid={Boolean(errors.password)}
             {...registerField('password')}
           />
-          {errors.password && !passwordTooShort && (
+          <PasswordStrengthHints password={passwordValue} />
+          {errors.password && !passwordWeak && (
             <Form.Control.Feedback type="invalid" data-testid="register-password-error">
               {errors.password.message}
             </Form.Control.Feedback>
@@ -125,7 +147,10 @@ const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
         </Form.Group>
 
         <Form.Group controlId="register-confirm-password" className="auth-modal-field">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>
+            Confirm Password
+            {requiredMark}
+          </Form.Label>
           <Form.Control
             type="password"
             placeholder="Confirm password"

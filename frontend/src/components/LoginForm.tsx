@@ -24,7 +24,7 @@ const LoginForm = ({ onSwitchToRegister, showCheckoutHint }: LoginFormProps) => 
     formState: { errors }
   } = useForm<LoginUserInput>({
     resolver: zodResolver(loginUserSchema),
-    mode: 'onBlur',
+    mode: 'onTouched',
     defaultValues: {
       email: '',
       password: ''
