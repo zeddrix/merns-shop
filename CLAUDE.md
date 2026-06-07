@@ -45,6 +45,17 @@ pnpm test:e2e:one -- tests/e2e/smoke/app-boot.e2e.test.ts
 
 See `docs/e2e-testing-rules.md`, `docs/unit-testing-rules.md`, and `docs/integration-testing-rules.md`.
 
+### PWA E2E (production build on port 5040)
+
+```bash
+pnpm test:e2e:pwa
+# faster iteration after a build:
+pnpm build:pwa:e2e && pnpm serve:pwa:e2e
+PWA_SERVER_RUNNING=1 pnpm test:e2e:pwa:prebuilt
+```
+
+Regular `pnpm test:e2e` uses the dev stack (:5030/:5031) and excludes `tests/e2e/pwa/*`.
+
 ## Deployment
 
 Production uses **MongoDB Atlas M0 + Render free**. See [`docs/deployment-atlas-render.md`](docs/deployment-atlas-render.md).

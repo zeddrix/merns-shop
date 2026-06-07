@@ -409,6 +409,44 @@ Do **not** use `page.waitForTimeout()` in E2E specs. It hides race conditions an
 
 Helpers in `tests/e2e/fixtures/test-helpers.ts`: `loginAs`, `loginAsAdmin`, `addFirstProductToCart`, `completeShippingStep`, `completePaymentStep`. Add new domain helpers there instead of inline sleeps.
 
+### PWA E2E file map
+
+PWA specs live under `tests/e2e/pwa/` and run only via `playwright.pwa.config.ts` (port **5040**, production Express build). Regular `playwright.config.ts` ignores `pwa.*` files and sets `serviceWorkers: 'block'`.
+
+| File                                   | Domain                                           |
+| -------------------------------------- | ------------------------------------------------ |
+| `pwa-install-and-manifest.e2e.test.ts` | Manifest, icons, install banner                  |
+| `pwa-offline-shell.e2e.test.ts`        | Offline banner, cached shell, cart offline       |
+| `pwa-update-and-recovery.e2e.test.ts`  | SW update banner and reload                      |
+| `pwa-order-push.e2e.test.ts`           | Order paid/delivered push + in-app notifications |
+
+### PWA / offline E2E commands
+
+**Option A — auto build (CI default):**
+
+```bash
+pnpm test:e2e:pwa
+```
+
+**Option B — prebuilt (local iteration):**
+
+```bash
+pnpm build:pwa:e2e
+PORT=5040 NODE_ENV=production node dist/backend/server.js
+# separate terminal:
+PWA_SERVER_RUNNING=1 pnpm test:e2e:pwa:prebuilt
+```
+
+Push stack:
+
+| Layer       | File                                                                                                     |
+| ----------- | -------------------------------------------------------------------------------------------------------- |
+| Integration | `tests/integration/api/push.integration.test.ts`, `tests/integration/api/order-push.integration.test.ts` |
+| PWA E2E     | `tests/e2e/pwa/pwa-order-push.e2e.test.ts`                                                               |
+| Dev UI      | `tests/e2e/auth/login-register-profile.e2e.test.ts` (`push_settings_save_preferences`)                   |
+
+PWA-only timed waits belong in `tests/e2e/pwa/pwa-test-helpers.ts` only.
+
 **Gate:** `rg 'waitForTimeout' tests/e2e` should return no matches (except comments documenting the ban).
 
 ### Helper functions over inline setup
