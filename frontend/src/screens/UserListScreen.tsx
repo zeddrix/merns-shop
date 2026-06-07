@@ -28,10 +28,8 @@ const UserListScreen = () => {
     if (!isAdmin || location.pathname !== '/admin/userlist') {
       return;
     }
-    if (users.length === 0 || successDelete) {
-      dispatch(listUsers());
-    }
-  }, [dispatch, isAdmin, location.pathname, successDelete, users.length]);
+    dispatch(listUsers());
+  }, [dispatch, isAdmin, location.pathname, successDelete]);
 
   if (!isAdmin) {
     if (!userInfo) {
@@ -67,38 +65,33 @@ const UserListScreen = () => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className="table-sm">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>EMAIL</th>
-              <th>ADMIN</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
+        <>
+          <div className="d-md-none" data-testid="admin-user-cards">
             {users.map((user) => (
-              <tr key={user._id} data-testid={`admin-user-${user._id}`}>
-                <td>{user._id}</td>
-                <td data-testid={`admin-user-name-${user._id}`}>{user.name}</td>
-                <td>
-                  <a href={`mailto:${user.email}`}>{user.email}</a>
-                </td>
-                <td>
-                  {user.isAdmin ? (
-                    <i className="fas fa-check" style={{ color: 'green' }}></i>
-                  ) : (
-                    <i className="fas fa-times" style={{ color: 'red' }}></i>
-                  )}
-                </td>
-                <td>
+              <div
+                key={user._id}
+                className="admin-user-card"
+                data-testid={`admin-user-card-${user._id}`}
+              >
+                <div className="admin-user-card__row">
+                  <span className="admin-user-card__label">Name</span>
+                  <span data-testid={`admin-user-card-name-${user._id}`}>{user.name}</span>
+                </div>
+                <div className="admin-user-card__row">
+                  <span className="admin-user-card__label">Email</span>
+                  <span>{user.email}</span>
+                </div>
+                <div className="admin-user-card__row">
+                  <span className="admin-user-card__label">Admin</span>
+                  <span>{user.isAdmin ? 'Yes' : 'No'}</span>
+                </div>
+                <div className="admin-user-card__actions">
                   <Link
                     to={`/admin/user/${user._id}/edit`}
                     className="btn btn-light btn-sm"
-                    data-testid={`admin-user-edit-${user._id}`}
+                    data-testid={`admin-user-card-edit-${user._id}`}
                   >
-                    <i className="fas fa-edit"></i>
+                    <i className="fas fa-edit"></i> Edit
                   </Link>
                   <Button
                     variant="danger"
@@ -108,11 +101,57 @@ const UserListScreen = () => {
                   >
                     <i className="fas fa-trash"></i>
                   </Button>
-                </td>
-              </tr>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </Table>
+          </div>
+          <Table striped bordered hover responsive className="table-sm d-none d-md-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>ADMIN</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user._id} data-testid={`admin-user-${user._id}`}>
+                  <td>{user._id}</td>
+                  <td data-testid={`admin-user-name-${user._id}`}>{user.name}</td>
+                  <td>
+                    <a href={`mailto:${user.email}`}>{user.email}</a>
+                  </td>
+                  <td>
+                    {user.isAdmin ? (
+                      <i className="fas fa-check" style={{ color: 'green' }}></i>
+                    ) : (
+                      <i className="fas fa-times" style={{ color: 'red' }}></i>
+                    )}
+                  </td>
+                  <td>
+                    <Link
+                      to={`/admin/user/${user._id}/edit`}
+                      className="btn btn-light btn-sm"
+                      data-testid={`admin-user-edit-${user._id}`}
+                    >
+                      <i className="fas fa-edit"></i>
+                    </Link>
+                    <Button
+                      variant="danger"
+                      className="btn-sm"
+                      data-testid={`admin-user-delete-${user._id}`}
+                      onClick={() => deleteHandler(user._id)}
+                    >
+                      <i className="fas fa-trash"></i>
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </>
       )}
     </div>
   );

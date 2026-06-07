@@ -8,7 +8,7 @@ import {
   selectAppOption,
   selectVariantAndAddToCart
 } from '../fixtures/test-helpers';
-import { MOBILE_VIEWPORT } from '../fixtures/viewports';
+import { MOBILE_VIEWPORT, TABLET_VIEWPORT } from '../fixtures/viewports';
 
 test.describe('responsive layout', () => {
   test.beforeEach(async ({ page }) => {
@@ -109,8 +109,72 @@ test.describe('responsive layout', () => {
     await addFirstInStockProductToCart(page);
     await page.goto('/checkout');
     await expect(page.locator('[data-testid="checkout-progress"]')).toBeVisible();
+    await expect(page.locator('[data-testid="checkout-progress-order-details"]')).toBeVisible();
+    await expect(page.locator('[data-testid="checkout-progress-payment"]')).toBeVisible();
     await page.locator('[data-testid="checkout-address"]').fill('123 Mobile St');
     await page.locator('[data-testid="checkout-city"]').fill('Testville');
+    await expect(page.locator('[data-testid="checkout-summary-card"]')).toBeVisible();
+    await assertNoHorizontalOverflow(page);
+  });
+
+  test('mobile_footer_links_accessible', async ({ page }) => {
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await page.locator('[data-testid="site-footer"]').scrollIntoViewIfNeeded();
+    await expect(page.locator('[data-testid="footer-about-link"]')).toBeVisible();
+    await page.locator('[data-testid="footer-about-link"]').click();
+    await expect(page).toHaveURL(/\/about/);
+    await page.goto('/');
+    await page.locator('[data-testid="site-footer"]').scrollIntoViewIfNeeded();
+    await expect(page.locator('[data-testid="footer-developer-link"]')).toBeVisible();
+    await expect(page.locator('[data-testid="footer-copyright"]')).toBeVisible();
+    await assertNoHorizontalOverflow(page);
+  });
+
+  test('mobile_footer_no_overflow_at_320px', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await page.locator('[data-testid="site-footer"]').scrollIntoViewIfNeeded();
+    await expect(page.locator('[data-testid="footer-about-link"]')).toBeVisible();
+    await assertNoHorizontalOverflow(page);
+  });
+
+  test('mobile_viewport_meta_includes_safe_area', async ({ page }) => {
+    await page.goto('/');
+    const viewportContent = await page.locator('meta[name="viewport"]').getAttribute('content');
+    expect(viewportContent).toContain('viewport-fit=cover');
+  });
+});
+
+test.describe('responsive layout tablet', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.setViewportSize(TABLET_VIEWPORT);
+  });
+
+  test('tablet_home_catalog_and_pdp', async ({ page }) => {
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await assertNoHorizontalOverflow(page);
+    await clickProductCardToPdp(page.locator('[data-testid^="product-card-"]').first());
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+    await assertNoHorizontalOverflow(page);
+  });
+
+  test('tablet_nav_desktop_search_absent', async ({ page }) => {
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await expect(page.locator('[data-testid="nav-search-open"]')).toBeHidden();
+    await page.locator('[data-testid="navbar-toggle"]').click();
+    await expect(page.locator('[data-testid="search-input"]')).toBeVisible();
+    await expect(page.locator('[data-testid="search-overlay"]')).toHaveCount(0);
+  });
+
+  test('tablet_checkout_form_visible', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstInStockProductToCart(page);
+    await page.goto('/checkout');
+    await expect(page.locator('[data-testid="checkout-form"]')).toBeVisible();
     await expect(page.locator('[data-testid="checkout-summary-card"]')).toBeVisible();
     await assertNoHorizontalOverflow(page);
   });

@@ -7,18 +7,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer data-testid="site-footer">
+    <footer className="site-footer" data-testid="site-footer">
       <Container>
         <Row>
-          <Col className="text-center py-3">
+          <Col className="site-footer__inner py-3">
             <Link to="/about" data-testid="footer-about-link">
               About
             </Link>
-            {' · '}
             <Link to="/about" data-testid="footer-developer-link">
               Developed by {DEVELOPER_NAME}
             </Link>
-            {' · '}
             <span data-testid="footer-copyright">
               Copyright &copy; {currentYear} {DISPLAY_BRAND_NAME}
             </span>

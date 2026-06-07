@@ -49,52 +49,109 @@ const OrderListScreen = () => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className="table-sm">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>USER</th>
-              <th>DATE</th>
-              <th>TOTAL</th>
-              <th>PAID</th>
-              <th>DELIVERED</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
+        <>
+          <div className="d-md-none" data-testid="admin-order-cards">
             {orders.map((order) => (
-              <tr key={order._id} data-testid={`admin-order-${order._id}`}>
-                <td>{order._id}</td>
-                <td>{order.user?.name}</td>
-                <td>{order.createdAt.substring(0, 10)}</td>
-                <td>${order.totalPrice}</td>
-                <td>
-                  {order.isPaid && order.paidAt ? (
-                    order.paidAt.substring(0, 10)
-                  ) : (
-                    <i className="fas fa-times" style={{ color: 'red' }}></i>
-                  )}
-                </td>
-                <td>
-                  {order.isDelivered && order.deliveredAt ? (
-                    order.deliveredAt.substring(0, 10)
-                  ) : (
-                    <i className="fas fa-times" style={{ color: 'red' }}></i>
-                  )}
-                </td>
-                <td>
+              <div
+                key={order._id}
+                className="admin-order-card"
+                data-testid={`admin-order-card-${order._id}`}
+              >
+                <div className="admin-order-card__row">
+                  <span className="admin-order-card__label">Order</span>
+                  <span>{order._id}</span>
+                </div>
+                <div className="admin-order-card__row">
+                  <span className="admin-order-card__label">User</span>
+                  <span>{order.user?.name}</span>
+                </div>
+                <div className="admin-order-card__row">
+                  <span className="admin-order-card__label">Date</span>
+                  <span>{order.createdAt.substring(0, 10)}</span>
+                </div>
+                <div className="admin-order-card__row">
+                  <span className="admin-order-card__label">Total</span>
+                  <span>${order.totalPrice}</span>
+                </div>
+                <div className="admin-order-card__row">
+                  <span className="admin-order-card__label">Paid</span>
+                  <span>
+                    {order.isPaid && order.paidAt ? (
+                      order.paidAt.substring(0, 10)
+                    ) : (
+                      <i className="fas fa-times" style={{ color: 'red' }} />
+                    )}
+                  </span>
+                </div>
+                <div className="admin-order-card__row">
+                  <span className="admin-order-card__label">Delivered</span>
+                  <span>
+                    {order.isDelivered && order.deliveredAt ? (
+                      order.deliveredAt.substring(0, 10)
+                    ) : (
+                      <i className="fas fa-times" style={{ color: 'red' }} />
+                    )}
+                  </span>
+                </div>
+                <div className="admin-order-card__actions">
                   <Link
                     to={`/order/${order._id}`}
                     className="btn btn-light btn-sm"
-                    data-testid={`admin-order-details-${order._id}`}
+                    data-testid={`admin-order-card-details-${order._id}`}
                   >
                     Details
                   </Link>
-                </td>
-              </tr>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </Table>
+          </div>
+          <Table striped bordered hover responsive className="table-sm d-none d-md-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>USER</th>
+                <th>DATE</th>
+                <th>TOTAL</th>
+                <th>PAID</th>
+                <th>DELIVERED</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order._id} data-testid={`admin-order-${order._id}`}>
+                  <td>{order._id}</td>
+                  <td>{order.user?.name}</td>
+                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>${order.totalPrice}</td>
+                  <td>
+                    {order.isPaid && order.paidAt ? (
+                      order.paidAt.substring(0, 10)
+                    ) : (
+                      <i className="fas fa-times" style={{ color: 'red' }}></i>
+                    )}
+                  </td>
+                  <td>
+                    {order.isDelivered && order.deliveredAt ? (
+                      order.deliveredAt.substring(0, 10)
+                    ) : (
+                      <i className="fas fa-times" style={{ color: 'red' }}></i>
+                    )}
+                  </td>
+                  <td>
+                    <Link
+                      to={`/order/${order._id}`}
+                      className="btn btn-light btn-sm"
+                      data-testid={`admin-order-details-${order._id}`}
+                    >
+                      Details
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </>
       )}
     </div>
   );

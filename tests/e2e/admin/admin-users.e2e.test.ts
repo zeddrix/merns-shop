@@ -9,6 +9,7 @@ import {
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findUserByEmail } from '../fixtures/mongo-helpers';
 import { TEST_USERS } from '../fixtures/test-users';
+import { MOBILE_VIEWPORT } from '../fixtures/viewports';
 
 test.describe('admin users', () => {
   test.beforeEach(async ({ context }) => {
@@ -90,6 +91,34 @@ test.describe('admin users', () => {
     await adminRow.locator('[data-testid^="admin-user-delete-"]').click();
     await expect(page.getByText('Admin cannot delete their own account')).toBeVisible();
     await expect(adminRow).toBeVisible();
+  });
+
+  test('mobile_admin_users_list_cards', async ({ page }) => {
+    const janeId = await fetchSeededUserId(page, TEST_USERS.jane.email);
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await loginAsAdmin(page);
+    await page.goto('/admin/userlist');
+    await expect(page.locator(`[data-testid="admin-user-card-${janeId}"]`)).toBeVisible();
+    await page
+      .locator(
+        `[data-testid="admin-user-card-${janeId}"] [data-testid="admin-user-card-edit-${janeId}"]`
+      )
+      .click();
+    await expect(page.locator('[data-testid="admin-user-name"]')).toBeVisible();
+    await page.locator('[data-testid="admin-user-name"]').fill('Jane Mobile');
+    await Promise.all([
+      page.waitForResponse(
+        (response) =>
+          response.url().includes(`/api/users/${janeId}`) &&
+          response.request().method() === 'PUT' &&
+          response.status() === 200
+      ),
+      page.locator('[data-testid="admin-user-submit"]').click()
+    ]);
+    await page.waitForURL('**/admin/userlist');
+    await expect(page.locator(`[data-testid="admin-user-card-${janeId}"]`)).toContainText(
+      'Jane Mobile'
+    );
   });
 
   test('non_admin_blocked_from_admin_user_routes', async ({ page }) => {

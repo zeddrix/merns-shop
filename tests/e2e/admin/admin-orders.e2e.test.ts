@@ -7,6 +7,7 @@ import {
 } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { findOrderById } from '../fixtures/mongo-helpers';
+import { MOBILE_VIEWPORT } from '../fixtures/viewports';
 
 test.describe('admin orders', () => {
   test.beforeEach(async ({ context }) => {
@@ -66,6 +67,30 @@ test.describe('admin orders', () => {
     await expect(page.locator('[data-testid="order-deliver"]')).toHaveCount(0);
   });
 
+  test('mobile_admin_orders_list_cards', async ({ page }) => {
+    const orderId = await createPaidOrderViaApi(page, 'customer');
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await loginAsAdmin(page);
+    await page.goto('/admin/orderlist');
+    await expect(page.locator(`[data-testid="admin-order-card-${orderId}"]`)).toBeVisible();
+    await page
+      .locator(
+        `[data-testid="admin-order-card-${orderId}"] [data-testid="admin-order-card-details-${orderId}"]`
+      )
+      .click();
+    await expect(page).toHaveURL(new RegExp(`/order/${orderId}$`));
+    await expect(page.locator('[data-testid="order-deliver"]')).toBeVisible();
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/deliver') && response.status() === 200
+      ),
+      page.locator('[data-testid="order-deliver"]').click()
+    ]);
+    await expect(page.locator('[data-testid="order-delivered-message"]')).toBeVisible();
+    const dbOrder = await findOrderById(orderId);
+    expect(dbOrder?.isDelivered).toBe(true);
+  });
+
   test('admin_order_list_details_link', async ({ page }) => {
     const orderId = await createPaidOrderViaApi(page, 'customer');
     const dbOrder = await findOrderById(orderId);
@@ -81,7 +106,11 @@ test.describe('admin orders', () => {
         response.ok()
     );
     await expect(page.locator(`[data-testid="admin-order-${orderId}"]`)).toBeVisible();
-    await page.locator(`[data-testid="admin-order-details-${orderId}"]`).click();
+    await page
+      .locator(
+        `[data-testid="admin-order-${orderId}"] [data-testid="admin-order-details-${orderId}"]`
+      )
+      .click();
     await expect(page).toHaveURL(new RegExp(`/order/${orderId}$`));
     await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
     await expect(page.locator('[data-testid="order-paid-message"]')).toBeVisible();
