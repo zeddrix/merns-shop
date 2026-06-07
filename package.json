@@ -87,6 +87,7 @@
     "build:pwa:e2e": "bash scripts/run-with-project-node.sh run build:inner",
     "serve:pwa:e2e": "PORT=5040 NODE_ENV=production bash scripts/run-with-project-node.sh exec node dist/backend/server.js",
     "icons:pwa": "bash scripts/run-with-project-node.sh exec node scripts/generate-pwa-icons.mjs",
+    "readme:screenshots": "bash scripts/run-with-project-node.sh exec node scripts/capture-readme-screenshots.mjs",
     "test:e2e:ui": "playwright test --ui",
     "verify:inner": "pnpm format:check && pnpm quality:fast && pnpm test:unit:inner && pnpm test:integration:inner && pnpm build:inner",
     "verify": "bash scripts/run-with-project-node.sh run verify:inner",

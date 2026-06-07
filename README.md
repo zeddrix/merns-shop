@@ -2,7 +2,37 @@
 
 > A portfolio-grade electronics e-commerce demo — full-stack MERN, PWA-ready, and built with acceptance test-driven development.
 
+[![CI](https://github.com/zeddrix/merns-shop/actions/workflows/ci.yml/badge.svg)](https://github.com/zeddrix/merns-shop/actions/workflows/ci.yml)
+[![Live demo](https://img.shields.io/website?url=https://merns-shop.onrender.com&label=live%20demo&up_message=online&down_message=cold%20start)](https://merns-shop.onrender.com/)
+[![Render](https://img.shields.io/badge/hosted%20on-Render-46E3B7?logo=render&logoColor=white)](https://merns-shop.onrender.com/)
+
+**Core:** [![MERN](https://img.shields.io/badge/MERN-full--stack-007ACC?logo=javascript&logoColor=white)](README.md#tech-stack) [![Node.js](https://img.shields.io/badge/Node.js-22+-339933?logo=node.js&logoColor=white)](https://nodejs.org/) [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![pnpm](https://img.shields.io/badge/pnpm-9+-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
+
+**Frontend:** [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/) [![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/) [![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-2.6-764ABC?logo=redux&logoColor=white)](https://redux-toolkit.js.org/) [![React Router](https://img.shields.io/badge/React%20Router-6-CA4245?logo=reactrouter&logoColor=white)](https://reactrouter.com/) [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/) [![Framer Motion](https://img.shields.io/badge/Framer%20Motion-12-0055FF?logo=framer&logoColor=white)](https://www.framer.com/motion/) [![react-hook-form](https://img.shields.io/badge/react--hook--form-7.77-EC5990?logo=reacthookform&logoColor=white)](https://react-hook-form.com/) [![Zod](https://img.shields.io/badge/Zod-3.24-3E67B1?logo=zod&logoColor=white)](https://zod.dev/) [![Axios](https://img.shields.io/badge/Axios-1.8-5A29E4?logo=axios&logoColor=white)](https://axios-http.com/)
+
+**Backend:** [![Express](https://img.shields.io/badge/Express-5-000000?logo=express&logoColor=white)](https://expressjs.com/) [![Mongoose](https://img.shields.io/badge/Mongoose-9-880000?logo=mongoose&logoColor=white)](https://mongoosejs.com/) [![MongoDB](https://img.shields.io/badge/MongoDB-7%20%2F%20Atlas%20M0-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/atlas) [![JWT](https://img.shields.io/badge/JWT-httpOnly%20cookie-000000?logo=jsonwebtokens&logoColor=white)](README.md#checkout-and-auth) [![Helmet](https://img.shields.io/badge/Helmet-8-000000)](README.md#tech-stack) [![web-push](https://img.shields.io/badge/web--push-3.6-4285F4)](README.md#pwa-and-notifications)
+
+**PWA & UX:** [![PWA](https://img.shields.io/badge/PWA-installable-5A0FC8?logo=pwa&logoColor=white)](README.md#pwa-and-notifications) [![Workbox](https://img.shields.io/badge/Workbox-7.4-4285F4?logo=googlechrome&logoColor=white)](README.md#pwa-and-notifications) [![vite-plugin-pwa](https://img.shields.io/badge/vite--plugin--pwa-1.3-646CFF?logo=vite&logoColor=white)](README.md#pwa-and-notifications) [![Font Awesome](https://img.shields.io/badge/Font%20Awesome-6.7-528DD7?logo=fontawesome&logoColor=white)](README.md#responsive-ui-and-motion)
+
+**Payments & SEO:** [![PayPal](https://img.shields.io/badge/PayPal-sandbox-003087?logo=paypal&logoColor=white)](README.md#checkout-and-auth) [![SEO](https://img.shields.io/badge/SEO-sitemap%20%2B%20JSON--LD-0F9D58?logo=googlesearchconsole&logoColor=white)](docs/seo.md) [![react-helmet-async](https://img.shields.io/badge/react--helmet--async-3.0-61DAFB?logo=react&logoColor=black)](docs/seo.md)
+
+**Testing:** [![Playwright](https://img.shields.io/badge/Playwright-1.57-2EAD33?logo=playwright&logoColor=white)](docs/e2e-testing-rules.md) [![Vitest](https://img.shields.io/badge/Vitest-3.0-6E9F18?logo=vitest&logoColor=white)](docs/unit-testing-rules.md) [![Supertest](https://img.shields.io/badge/Supertest-7.1-000000)](docs/integration-testing-rules.md) [![ATDD](https://img.shields.io/badge/ATDD-acceptance%20tests-007ACC)](docs/e2e-testing-rules.md)
+
+**DevOps:** [![Docker](https://img.shields.io/badge/Docker-MongoDB%207-2496ED?logo=docker&logoColor=white)](docker-compose.yml) [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI-2088FF?logo=githubactions&logoColor=white)](.github/workflows/ci.yml) [![Git LFS](https://img.shields.io/badge/Git%20LFS-catalog%20images-F05133?logo=gitlfs&logoColor=white)](frontend/public/images/catalog/ATTRIBUTION.md)
+
+**Catalog pipeline:** [![Sharp](https://img.shields.io/badge/Sharp-WebP%20conversion-99CC00)](scripts/fetch-catalog-images.mjs) [![Wikimedia harvest](https://img.shields.io/badge/catalog%3Asources-Wikimedia%20resolve-006699)](package.json) [![Official harvest](https://img.shields.io/badge/catalog%3Aharvest-official-006699)](scripts/harvest-official-catalog-sources.mjs) [![Image audit](https://img.shields.io/badge/catalog%3Aaudit-relevance%20scraper-006699)](scripts/audit-catalog-image-relevance.mjs) [![Web curate](https://img.shields.io/badge/catalog%3Acurate-search-image%20scraper-006699)](scripts/search-curate-catalog-images.mjs)
+
 **[Live demo](https://merns-shop.onrender.com/)** · **[Source](https://github.com/zeddrix/merns-shop)** · Built by **[Zeddrix Fabian](https://www.linkedin.com/in/zeddrix-fabian-30a18029a/)**
+
+---
+
+## Screenshots
+
+| Homepage | Product page | Admin products |
+| -------- | ------------ | -------------- |
+| ![MERN's Shop homepage — product catalog and carousel](docs/images/readme/homepage.png) | ![Product detail page with variant picker and reviews](docs/images/readme/product-page.png) | ![Admin product list with CRUD actions](docs/images/readme/admin-products.png) |
+
+Regenerate locally: `pnpm readme:screenshots` (requires `pnpm dev` and MongoDB). See [`docs/images/readme/ATTRIBUTION.md`](docs/images/readme/ATTRIBUTION.md).
 
 ---
 
@@ -223,6 +253,12 @@ The storefront uses **Bootstrap 5** breakpoints plus shared CSS tokens in [`fron
 - **E2E:** mobile viewport journeys in [`tests/e2e/misc/responsive-layout.e2e.test.ts`](tests/e2e/misc/responsive-layout.e2e.test.ts).
 
 ### Quality and tests
+
+Regenerate README screenshots (requires `pnpm dev` and MongoDB):
+
+```bash
+pnpm readme:screenshots
+```
 
 ```bash
 pnpm quality          # format + tsc + eslint
