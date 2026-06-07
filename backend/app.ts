@@ -1,4 +1,5 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -13,6 +14,10 @@ import orderRoutes from './routes/orderRoutes.js';
 import seoRoutes from './routes/seoRoutes.js';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontendDistDir = path.join(__dirname, '..', '..', 'frontend', 'dist');
 
 const app = express();
 
@@ -53,10 +58,10 @@ app.use(seoRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(seoBotMiddleware);
-  app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
+  app.use(express.static(frontendDistDir));
 
   app.get('/{*splat}', (_req, res) =>
-    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+    res.sendFile(path.resolve(frontendDistDir, 'index.html'))
   );
 } else if (process.env.NODE_ENV !== 'test') {
   app.get('/', (_req, res) => {
