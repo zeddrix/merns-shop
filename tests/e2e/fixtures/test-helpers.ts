@@ -1,6 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect, request as playwrightRequest } from '@playwright/test';
 import { E2E_CLIENT_URL } from '../config/e2e-ports';
+import { PWA_E2E_URL } from '../config/pwa-ports';
 import { TEST_USERS } from './test-users';
 
 /** Expands the collapsed navbar on small viewports so header links and search are visible. */
@@ -306,7 +307,8 @@ export async function createPaidOrderViaApi(
 
 export async function createUnpaidOrderViaApi(
   page: Page,
-  user: keyof typeof TEST_USERS = 'customer'
+  user: keyof typeof TEST_USERS = 'customer',
+  clearSessionAfter = true
 ): Promise<string> {
   const creds = TEST_USERS[user];
   const loginResponse = await page.request.post('/api/users/login', {
@@ -350,26 +352,41 @@ export async function createUnpaidOrderViaApi(
   expect(orderResponse.status()).toBe(201);
   const order = (await orderResponse.json()) as ApiOrderResponse;
 
-  await page.context().clearCookies();
+  if (clearSessionAfter) {
+    await page.context().clearCookies();
+  }
 
   return order._id;
 }
 
-export async function deliverOrderViaApi(page: Page, orderId: string): Promise<void> {
+export async function deliverOrderViaApi(
+  page: Page,
+  orderId: string,
+  clearSessionAfter = true
+): Promise<void> {
   const adminCreds = TEST_USERS.admin;
-  const loginResponse = await page.request.post('/api/users/login', {
-    data: { email: adminCreds.email, password: adminCreds.password }
-  });
-  expect(loginResponse.ok()).toBeTruthy();
-  const authToken = extractAuthTokenFromLoginResponse(loginResponse.headers()['set-cookie']);
-  const authHeaders = authHeadersFromToken(authToken);
+  const baseURL = resolveApiBaseUrl(page);
+  const apiContext = await playwrightRequest.newContext({ baseURL });
 
-  const deliverResponse = await page.request.put(`/api/orders/${orderId}/deliver`, {
-    headers: authHeaders
-  });
-  expect(deliverResponse.ok()).toBeTruthy();
+  try {
+    const loginResponse = await apiContext.post('/api/users/login', {
+      data: { email: adminCreds.email, password: adminCreds.password }
+    });
+    expect(loginResponse.ok()).toBeTruthy();
+    const authToken = extractAuthTokenFromLoginResponse(loginResponse.headers()['set-cookie']);
+    const authHeaders = authHeadersFromToken(authToken);
 
-  await page.context().clearCookies();
+    const deliverResponse = await apiContext.put(`/api/orders/${orderId}/deliver`, {
+      headers: authHeaders
+    });
+    expect(deliverResponse.ok()).toBeTruthy();
+  } finally {
+    await apiContext.dispose();
+  }
+
+  if (clearSessionAfter) {
+    await page.context().clearCookies();
+  }
 }
 
 /** Opens the Admin nav dropdown so admin menu links are visible. */
@@ -390,6 +407,18 @@ export async function fetchFirstProductId(page: Page): Promise<string> {
 }
 
 const E2E_BASE_URL = process.env.PLAYWRIGHT_BASE_URL ?? E2E_CLIENT_URL;
+
+function resolveApiBaseUrl(page: Page): string {
+  try {
+    const origin = new URL(page.url()).origin;
+    if (origin && origin !== 'null' && !origin.startsWith('about:')) {
+      return origin;
+    }
+  } catch {
+    // fall through to configured default
+  }
+  return process.env.PWA_SERVER_RUNNING === '1' ? PWA_E2E_URL : E2E_BASE_URL;
+}
 
 export async function fetchSeededUserId(_page: Page, email: string): Promise<string> {
   const apiContext = await playwrightRequest.newContext({ baseURL: E2E_BASE_URL });
@@ -556,4 +585,88 @@ export async function loginWithCredentials(
     page.locator('[data-testid="login-submit"]').click()
   ]);
   await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
+}
+
+export async function payOrderViaApi(
+  page: Page,
+  orderId: string,
+  user: keyof typeof TEST_USERS = 'customer'
+): Promise<void> {
+  const creds = TEST_USERS[user];
+  const loginResponse = await page.request.post('/api/users/login', {
+    data: { email: creds.email, password: creds.password }
+  });
+  expect(loginResponse.ok()).toBeTruthy();
+  const authToken = extractAuthTokenFromLoginResponse(loginResponse.headers()['set-cookie']);
+  const payResponse = await page.request.put(`/api/orders/${orderId}/pay`, {
+    headers: authHeadersFromToken(authToken),
+    data: {
+      id: 'e2e-payment-id',
+      status: 'COMPLETED',
+      update_time: new Date().toISOString(),
+      payer: { email_address: creds.email }
+    }
+  });
+  expect(payResponse.status()).toBe(200);
+}
+
+export async function deliverE2ePushViaServiceWorker(
+  page: Page,
+  payload: { title: string; body: string; url?: string; tag?: string }
+): Promise<void> {
+  await page.evaluate(async (data) => {
+    const registration = await navigator.serviceWorker.ready;
+    const worker = navigator.serviceWorker.controller ?? registration.active;
+    if (!worker) {
+      throw new Error('No service worker controller for e2e-deliver-push');
+    }
+    worker.postMessage({ type: 'e2e-deliver-push', payload: data });
+  }, payload);
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() => {
+          const win = window as Window & { __e2eLastPush?: { title?: string } };
+          return win.__e2eLastPush?.title ?? null;
+        }),
+      { timeout: 10000 }
+    )
+    .toBe(payload.title);
+}
+
+export async function tryEnsureRealPushSubscription(
+  page: Page,
+  vapidPublicKey: string
+): Promise<boolean> {
+  try {
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send('Browser.setPermission', {
+      permission: { name: 'notifications' },
+      setting: 'granted',
+      origin: new URL(page.url()).origin
+    });
+
+    await page.evaluate(async (publicKey) => {
+      const registration = await navigator.serviceWorker.ready;
+      const key = Uint8Array.from(atob(publicKey.replace(/-/g, '+').replace(/_/g, '/')), (char) =>
+        char.charCodeAt(0)
+      );
+      let subscription = await registration.pushManager.getSubscription();
+      if (!subscription) {
+        subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: key
+        });
+      }
+      await fetch('/api/push/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(subscription.toJSON())
+      });
+    }, vapidPublicKey);
+    return true;
+  } catch {
+    return false;
+  }
 }

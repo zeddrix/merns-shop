@@ -92,3 +92,74 @@ export async function findUserByEmail(email: string): Promise<MongoUser | null> 
       .findOne({ email }) as Promise<MongoUser | null>;
   });
 }
+
+export async function clearPushSubscriptions(userId: string): Promise<void> {
+  await withMongoConnection(async () => {
+    if (!mongoose.connection.db) {
+      throw new Error('Mongo connection unavailable');
+    }
+    await mongoose.connection.db
+      .collection('pushsubscriptions')
+      .deleteMany({ user: new mongoose.Types.ObjectId(userId) });
+    await mongoose.connection.db
+      .collection('notificationpreferences')
+      .deleteMany({ user: new mongoose.Types.ObjectId(userId) });
+    await mongoose.connection.db
+      .collection('notifications')
+      .deleteMany({ user: new mongoose.Types.ObjectId(userId) });
+  });
+}
+
+export async function seedPushSubscription(userId: string, endpoint: string): Promise<void> {
+  await withMongoConnection(async () => {
+    if (!mongoose.connection.db) {
+      throw new Error('Mongo connection unavailable');
+    }
+    await mongoose.connection.db.collection('pushsubscriptions').updateOne(
+      { endpoint },
+      {
+        $set: {
+          user: new mongoose.Types.ObjectId(userId),
+          endpoint,
+          expirationTime: null,
+          keys: {
+            p256dh: 'e2e-p256dh-key',
+            auth: 'e2e-auth-secret'
+          }
+        }
+      },
+      { upsert: true }
+    );
+    await mongoose.connection.db.collection('notificationpreferences').updateOne(
+      { user: new mongoose.Types.ObjectId(userId) },
+      {
+        $set: {
+          pushEnabled: true,
+          orderPaid: true,
+          orderDelivered: true
+        }
+      },
+      { upsert: true }
+    );
+  });
+}
+
+interface MongoNotification {
+  _id: mongoose.Types.ObjectId;
+  type: string;
+  title: string;
+  body: string;
+  user: mongoose.Types.ObjectId;
+}
+
+export async function findNotificationsByUserId(userId: string): Promise<MongoNotification[]> {
+  return withMongoConnection(async () => {
+    if (!mongoose.connection.db) {
+      throw new Error('Mongo connection unavailable');
+    }
+    return mongoose.connection.db
+      .collection('notifications')
+      .find({ user: new mongoose.Types.ObjectId(userId) })
+      .toArray() as Promise<MongoNotification[]>;
+  });
+}
