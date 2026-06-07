@@ -11,6 +11,7 @@ import {
 } from '../fixtures/test-helpers';
 import { resetE2eDatabase } from '../fixtures/reset-db';
 import { TEST_USERS } from '../fixtures/test-users';
+import { MOBILE_VIEWPORT } from '../fixtures/viewports';
 
 test.describe('auth login register profile', () => {
   test.beforeEach(async ({ context }) => {
@@ -346,6 +347,42 @@ test.describe('auth login register profile', () => {
     await logout(page);
     await openAuthModal(page, 'login');
     await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
+  });
+
+  test('mobile_profile_orders_card_layout', async ({ page }) => {
+    await page.setViewportSize(MOBILE_VIEWPORT);
+    await loginAs(page, 'customer');
+    await page.goto('/profile');
+    await expect(page.locator('[data-testid="profile-screen"]')).toBeVisible();
+    const firstOrderCard = page.locator('[data-testid^="profile-order-card-"]').first();
+    await expect(firstOrderCard).toBeVisible();
+    await expect(page.locator('[data-testid="my-orders-table"]')).toBeHidden();
+    const detailsLink = firstOrderCard.locator('[data-testid^="profile-order-details-"]');
+    await detailsLink.click();
+    await expect(page).toHaveURL(/\/order\//);
+    await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
+  });
+
+  test('push_settings_save_preferences', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await page.goto('/profile');
+    await expect(page.locator('[data-testid="push-settings"]')).toBeVisible();
+    await page.locator('[data-testid="push-settings-order-paid"]').uncheck();
+    await Promise.all([
+      page.waitForResponse(
+        (response) =>
+          response.url().includes('/api/push/preferences') &&
+          response.request().method() === 'PUT' &&
+          response.status() === 200
+      ),
+      page.locator('[data-testid="push-settings-save"]').click()
+    ]);
+    await expect(page.locator('[data-testid="push-settings-message"]')).toBeVisible();
+    await page.reload();
+    await expect(page.locator('[data-testid="push-settings-order-paid"]')).not.toBeChecked();
+    await page.locator('[data-testid="push-settings-order-paid"]').check();
+    await page.locator('[data-testid="push-settings-save"]').click();
+    await expect(page.locator('[data-testid="push-settings-message"]')).toBeVisible();
   });
 
   test('legacy_register_route_opens_modal_on_redirect_target', async ({ page }) => {

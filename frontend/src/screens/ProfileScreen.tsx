@@ -15,6 +15,7 @@ import { listMyOrder } from '../features/orderSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
 import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
+import PushNotificationSettings from '../components/PushNotificationSettings';
 
 const ProfileScreen = () => {
   const isAuthenticated = useRequireAuth();
@@ -200,6 +201,7 @@ const ProfileScreen = () => {
               </Button>
             </Form>
           )}
+          <PushNotificationSettings />
         </Col>
         <Col xs={12} md={9}>
           <h2>My Orders</h2>
@@ -208,57 +210,110 @@ const ProfileScreen = () => {
           ) : ordersApiUnreachable ? null : errorOrders ? (
             <Message variant="danger">{errorOrders}</Message>
           ) : (
-            <Table
-              striped
-              bordered
-              hover
-              responsive
-              className="table-sm"
-              data-testid="my-orders-table"
-            >
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>DATE</th>
-                  <th>TOTAL</th>
-                  <th>PAID</th>
-                  <th>DELIVERED</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
+            <>
+              <div className="d-md-none" data-testid="my-orders-cards">
                 {orders.map((order) => (
-                  <tr key={order._id} data-testid={`my-order-${order._id}`}>
-                    <td>{order._id}</td>
-                    <td>{order.createdAt.substring(0, 10)}</td>
-                    <td>{order.totalPrice}</td>
-                    <td>
-                      {order.isPaid && order.paidAt ? (
-                        order.paidAt.substring(0, 10)
-                      ) : (
-                        <i className="fas fa-times" style={{ color: 'red' }}></i>
-                      )}
-                    </td>
-                    <td data-testid={`my-order-delivered-${order._id}`}>
-                      {order.isDelivered && order.deliveredAt ? (
-                        order.deliveredAt.substring(0, 10)
-                      ) : (
-                        <i className="fas fa-times" style={{ color: 'red' }}></i>
-                      )}
-                    </td>
-                    <td>
+                  <div
+                    key={order._id}
+                    className="profile-order-card"
+                    data-testid={`profile-order-card-${order._id}`}
+                  >
+                    <div className="profile-order-card__row">
+                      <span className="profile-order-card__label">Order</span>
+                      <span>{order._id}</span>
+                    </div>
+                    <div className="profile-order-card__row">
+                      <span className="profile-order-card__label">Date</span>
+                      <span>{order.createdAt.substring(0, 10)}</span>
+                    </div>
+                    <div className="profile-order-card__row">
+                      <span className="profile-order-card__label">Total</span>
+                      <span>${order.totalPrice}</span>
+                    </div>
+                    <div className="profile-order-card__row">
+                      <span className="profile-order-card__label">Paid</span>
+                      <span>
+                        {order.isPaid && order.paidAt ? (
+                          order.paidAt.substring(0, 10)
+                        ) : (
+                          <i className="fas fa-times" style={{ color: 'red' }} />
+                        )}
+                      </span>
+                    </div>
+                    <div className="profile-order-card__row">
+                      <span className="profile-order-card__label">Delivered</span>
+                      <span data-testid={`my-order-delivered-${order._id}`}>
+                        {order.isDelivered && order.deliveredAt ? (
+                          order.deliveredAt.substring(0, 10)
+                        ) : (
+                          <i className="fas fa-times" style={{ color: 'red' }} />
+                        )}
+                      </span>
+                    </div>
+                    <div className="profile-order-card__actions">
                       <Link
                         to={`/order/${order._id}`}
                         className="btn btn-light btn-sm"
-                        data-testid={`my-order-details-${order._id}`}
+                        data-testid={`profile-order-details-${order._id}`}
                       >
                         Details
                       </Link>
-                    </td>
-                  </tr>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </Table>
+              </div>
+              <Table
+                striped
+                bordered
+                hover
+                responsive
+                className="table-sm d-none d-md-table"
+                data-testid="my-orders-table"
+              >
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>DATE</th>
+                    <th>TOTAL</th>
+                    <th>PAID</th>
+                    <th>DELIVERED</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
+                    <tr key={order._id} data-testid={`my-order-${order._id}`}>
+                      <td>{order._id}</td>
+                      <td>{order.createdAt.substring(0, 10)}</td>
+                      <td>{order.totalPrice}</td>
+                      <td>
+                        {order.isPaid && order.paidAt ? (
+                          order.paidAt.substring(0, 10)
+                        ) : (
+                          <i className="fas fa-times" style={{ color: 'red' }}></i>
+                        )}
+                      </td>
+                      <td data-testid={`my-order-delivered-${order._id}`}>
+                        {order.isDelivered && order.deliveredAt ? (
+                          order.deliveredAt.substring(0, 10)
+                        ) : (
+                          <i className="fas fa-times" style={{ color: 'red' }}></i>
+                        )}
+                      </td>
+                      <td>
+                        <Link
+                          to={`/order/${order._id}`}
+                          className="btn btn-light btn-sm"
+                          data-testid={`my-order-details-${order._id}`}
+                        >
+                          Details
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </>
           )}
         </Col>
       </Row>

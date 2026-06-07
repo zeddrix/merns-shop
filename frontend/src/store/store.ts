@@ -27,6 +27,7 @@ import {
   orderListReducer
 } from '../features/orderSlice';
 import { authModalReducer } from '../features/authModalSlice';
+import { pushReducer } from '../features/pushSlice';
 import type { CartItem, ShippingAddress } from '../types';
 
 const cartItemsFromStorage = (): CartItem[] => {
@@ -62,7 +63,8 @@ export const store = configureStore({
     orderDeliver: orderDeliverReducer,
     myOrder: myOrderReducer,
     orderList: orderListReducer,
-    authModal: authModalReducer
+    authModal: authModalReducer,
+    push: pushReducer
   },
   preloadedState: {
     cart: {
