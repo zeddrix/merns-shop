@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline — MERN's Shop</title>
+    <meta name="theme-color" content="#212529" />
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+        color: #212529;
+        text-align: center;
+        padding: 1.5rem;
+      }
+      .panel {
+        max-width: 28rem;
+        background: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        padding: 2rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      }
+      a {
+        color: #0d6efd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="panel" data-testid="offline-fallback-screen">
+      <h1>You're offline</h1>
+      <p>
+        This page isn't available without a connection. Your cart is still saved on this device.
+      </p>
+      <p><a href="/">Return home</a> · <a href="/cart">View cart</a></p>
+    </div>
+  </body>
+</html>

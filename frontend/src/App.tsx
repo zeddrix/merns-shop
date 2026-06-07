@@ -9,6 +9,10 @@ import { useAuthBootstrap } from './features/authBootstrap';
 import { useCartBootstrap } from './features/cartBootstrap';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import OfflineBanner from './components/OfflineBanner';
+import PwaInstallBanner from './components/PwaInstallBanner';
+import PwaManager from './components/PwaManager';
+import NotificationBell from './components/NotificationBell';
 import PageTransition from './components/motion/PageTransition';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
@@ -63,8 +67,12 @@ const AppRoutes = () => {
 
   return (
     <>
+      <PwaManager />
+      <OfflineBanner />
+      <PwaInstallBanner />
       <ScrollToTop />
       <Header />
+      <NotificationBell />
       <main className="py-3">
         <Container>
           {routeElement ? (

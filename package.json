@@ -82,6 +82,11 @@
     "test:e2e:misc": "PW_DISABLE_REUSE_SERVER=1 PW_WORKERS=1 playwright test tests/e2e/misc",
     "test:e2e:paypal": "PW_DISABLE_REUSE_SERVER=1 PW_PAYPAL_ONLY=1 PW_WORKERS=1 playwright test --project=paypal",
     "test:e2e:journeys": "PW_DISABLE_REUSE_SERVER=1 PW_WORKERS=1 playwright test tests/e2e/journeys",
+    "test:e2e:pwa": "PW_DISABLE_REUSE_SERVER=1 PW_WORKERS=1 playwright test --config playwright.pwa.config.ts",
+    "test:e2e:pwa:prebuilt": "PWA_SERVER_RUNNING=1 PW_WORKERS=1 playwright test --config playwright.pwa.config.ts",
+    "build:pwa:e2e": "bash scripts/run-with-project-node.sh run build:inner",
+    "serve:pwa:e2e": "PORT=5040 NODE_ENV=production bash scripts/run-with-project-node.sh exec node dist/backend/server.js",
+    "icons:pwa": "bash scripts/run-with-project-node.sh exec node scripts/generate-pwa-icons.mjs",
     "test:e2e:ui": "playwright test --ui",
     "verify:inner": "pnpm format:check && pnpm quality:fast && pnpm test:unit:inner && pnpm test:integration:inner && pnpm build:inner",
     "verify": "bash scripts/run-with-project-node.sh run verify:inner",
@@ -109,6 +114,7 @@
     "lodash": "^4.17.21",
     "mongoose": "^9.0.0",
     "morgan": "^1.10.0",
+    "web-push": "^3.6.7",
     "zod": "^3.24.2"
   },
   "devDependencies": {
@@ -121,6 +127,7 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.13.10",
     "@types/supertest": "^6.0.3",
+    "@types/web-push": "^3.6.4",
     "concurrently": "^9.1.2",
     "eslint": "^9.39.2",
     "eslint-plugin-react-hooks": "^5.2.0",
