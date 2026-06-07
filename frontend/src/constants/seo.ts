@@ -26,7 +26,7 @@ export const ROBOTS_NOINDEX_FOLLOW = 'noindex,follow';
 export const ROBOTS_NOINDEX_NOFOLLOW = 'noindex,nofollow';
 
 export const ABOUT_KEYWORDS =
-  'Zeddrix Fabian, MERN stack, React, TypeScript, portfolio, e-commerce';
+  'Zeddrix Fabian, MERN stack, React, TypeScript, portfolio, e-commerce, PWA, Playwright, Render, MongoDB Atlas';
 
 const DEV_SITE_URL = 'http://localhost:5020';
 

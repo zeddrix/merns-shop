@@ -1,26 +1,113 @@
-# Mern's Shop
+# MERN's Shop
 
-MERN e-commerce demo — TypeScript, Express 5, Mongoose 9, Vite, React 19, Redux Toolkit, PayPal sandbox.
+> A portfolio-grade electronics e-commerce demo — full-stack MERN, PWA-ready, and built with acceptance test-driven development.
 
-**Live demo:** [https://merns-shop.onrender.com/](https://merns-shop.onrender.com/)
+**[Live demo](https://merns-shop.onrender.com/)** · **[Source](https://github.com/zeddrix/merns-shop)** · Built by **[Zeddrix Fabian](https://www.linkedin.com/in/zeddrix-fabian-30a18029a/)**
 
-**Developed by [Zeddrix Fabian](https://www.linkedin.com/in/zeddrix-fabian-30a18029a/)** — [portfolio](https://github.com/zeddrix/portfolio) · [source](https://github.com/zeddrix/merns-shop)
+---
 
-## Requirements
+## What this is
+
+MERN's Shop is a production-style online store for phones, tablets, TVs, and consoles — not a minimal CRUD tutorial. It demonstrates how a real e-commerce app handles catalog browsing, checkout, payments, admin operations, progressive web app behavior, and SEO for crawlers.
+
+[Zeddrix Fabian](https://www.linkedin.com/in/zeddrix-fabian-30a18029a/) built it as a portfolio centerpiece: a live, deployable app that shows end-to-end full-stack skills from database design through responsive UI, automated testing, and cloud deployment.
+
+The project started in 2021 as a Udemy MERN course exercise and was fully modernized in 2026 with TypeScript, React 19, Vite, Express 5, PWA support, web push notifications, and a comprehensive Playwright + Vitest test suite.
+
+## Highlights
+
+### Storefront
+
+- **~170 parent products** with **500+ variants** (Apple, Samsung, Vivo, Xiaomi, Sony)
+- Brand, category, price, and savings filters; variant picker on product pages
+- Product reviews, search, pagination, and responsive layouts from phone to desktop
+
+### Checkout and auth
+
+- Guest and registered customer flows through cart, shipping, payment, and order confirmation
+- **PayPal sandbox** checkout integration
+- Session auth via **httpOnly cookies** (no JWT in `localStorage`)
+- Customer registration, profile management, and order history
+
+### Admin
+
+- Full admin panel: **products**, **orders**, and **users** CRUD
+- Order fulfillment workflow and user privilege management
+
+### PWA and notifications
+
+- Installable progressive web app with offline shell and service-worker update recovery
+- **Web push notifications** for order status updates and in-app notification bell
+
+### SEO
+
+- Canonical URLs, Open Graph tags, dynamic `sitemap.xml`, JSON-LD structured data, and crawler-friendly HTML
+
+### Quality
+
+- **Acceptance test-driven development (ATDD)** with Playwright E2E journey specs
+- Vitest unit and integration test suites; CI quality gates (Prettier, TypeScript, ESLint)
+
+## Tech stack
+
+| Layer            | Technology                  | Version           |
+| ---------------- | --------------------------- | ----------------- |
+| Runtime          | Node.js                     | 22+ (`.nvmrc`)    |
+| Package manager  | pnpm                        | 9+                |
+| Language         | TypeScript                  | ^5.8.2            |
+| Backend          | Express                     | ^5.1.0            |
+| ODM              | Mongoose                    | ^9.0.0            |
+| Database (local) | MongoDB                     | 7 (Docker)        |
+| Database (prod)  | MongoDB Atlas               | M0                |
+| Frontend         | React                       | ^19.0.0           |
+| Bundler          | Vite                        | ^6.2.3            |
+| State            | Redux Toolkit               | ^2.6.1            |
+| UI               | Bootstrap / react-bootstrap | ^5.3.3 / ^2.10.9  |
+| Forms            | react-hook-form + Zod       | ^7.77.0 / ^3.24.2 |
+| Payments         | PayPal JS SDK (sandbox)     | ^8.8.2            |
+| PWA              | vite-plugin-pwa + Workbox   | ^1.3.0 / ^7.4.1   |
+| Push             | web-push                    | ^3.6.7            |
+| Motion           | Framer Motion               | ^12.9.2           |
+| Testing          | Vitest + Playwright         | ^3.0.9 / ^1.57.0  |
+| Hosting          | Render                      | free web service  |
+
+## Deployed on
+
+Production runs on **[MongoDB Atlas M0](https://www.mongodb.com/atlas)** (database) and **[Render](https://render.com/)** (free-tier web service).
+
+- **Live app:** [https://merns-shop.onrender.com/](https://merns-shop.onrender.com/)
+- **Deployment guide:** [`docs/deployment-atlas-render.md`](docs/deployment-atlas-render.md)
+
+The free Render tier may cold-start after ~15 minutes of idle time; the first request can take 30–60 seconds.
+
+## About the developer
+
+**[Zeddrix Fabian](https://www.linkedin.com/in/zeddrix-fabian-30a18029a/)** is a software developer who builds full-stack web applications with the MERN stack. MERN's Shop is his featured portfolio project — from original 2021 learning exercise to a 2026 modernization with modern TypeScript tooling and rigorous automated testing.
+
+- [LinkedIn](https://www.linkedin.com/in/zeddrix-fabian-30a18029a/)
+- [Portfolio on GitHub](https://github.com/zeddrix/portfolio)
+- [MERN's Shop source](https://github.com/zeddrix/merns-shop)
+- [About page on the live app](https://merns-shop.onrender.com/about)
+
+---
+
+## Developer guide
+
+### Requirements
 
 - **Node.js 22+** (use `nvm use` — see [`.nvmrc`](.nvmrc))
 - **pnpm 9+**
 - **Docker** (local MongoDB only)
 - **Git LFS** (catalog product photos — required for clone/commit)
 
-## Quick start (local development)
+### Quick start (local development)
 
-### 1. Prerequisites
+#### 1. Prerequisites
 
 This repo needs **Node 22 only here** — your other projects can keep Node 20 as the global default.
 
 ```bash
-cd /path/to/beamazedd-shop
+cd /path/to/merns-shop
 nvm install      # one-time: installs Node 22 from .nvmrc
 nvm use          # this terminal only (does not change nvm default)
 node -v          # should print v22.x
@@ -62,7 +149,7 @@ docker compose ps
 # or: mongosh "mongodb://127.0.0.1:27017/merns-shop" --eval "db.runCommand({ ping: 1 })"
 ```
 
-### 2. Install and configure
+#### 2. Install and configure
 
 ```bash
 nvm use          # required before install if your default is Node 20
@@ -74,7 +161,7 @@ pnpm catalog:validate   # all catalog WebP paths exist and meet size thresholds
 pnpm db:seed
 ```
 
-### 3. Run the app
+#### 3. Run the app
 
 **Recommended — API + Vite together:**
 
@@ -98,7 +185,7 @@ Seeded users: see [`docs/test-users.md`](docs/test-users.md).
 
 Auth uses an **httpOnly cookie** (no JWT in `localStorage`).
 
-### Customer sign-up
+#### Customer sign-up
 
 New shoppers can create an account at **http://localhost:5020/register** (also linked from **Sign Up** in the header and from the login screen).
 
@@ -113,7 +200,7 @@ After a successful sign-up, the API sets the same session cookie as login and th
 
 E2E coverage: `tests/e2e/auth/login-register-profile.e2e.test.ts`, `tests/e2e/checkout/cart-shipping-payment.e2e.test.ts`, and `tests/e2e/journeys/journey-customer-auth-profile-lifecycle.e2e.test.ts`.
 
-### Gadget catalog (offline-first)
+#### Gadget catalog (offline-first)
 
 - **~170 parent products** with **500+ variants** (Apple, Samsung, Vivo, Xiaomi, Sony) live in [`backend/data/catalog/`](backend/data/catalog/).
 - Each product has nested **variants** (storage, screen size, etc.) with **MSRP `listPrice`** and tiered **second-hand `price`** (see [`backend/data/catalog/pricing.ts`](backend/data/catalog/pricing.ts)).
@@ -122,11 +209,11 @@ E2E coverage: `tests/e2e/auth/login-register-profile.e2e.test.ts`, `tests/e2e/ch
 - Validate catalog data: `pnpm catalog:validate`
 - Storefront: brand/category filters, savings badges, variant picker on product pages.
 
-## SEO
+### SEO
 
 Canonical URLs, Open Graph, `robots.txt`, dynamic `sitemap.xml`, JSON-LD, and crawler HTML are configured via `VITE_SITE_URL` and `SITE_URL`. See [`docs/seo.md`](docs/seo.md).
 
-## Responsive UI and motion
+### Responsive UI and motion
 
 The storefront uses **Bootstrap 5** breakpoints plus shared CSS tokens in [`frontend/src/index.css`](frontend/src/index.css) for spacing, touch targets, and carousel scaling on phone/tablet/desktop.
 
@@ -135,7 +222,7 @@ The storefront uses **Bootstrap 5** breakpoints plus shared CSS tokens in [`fron
 - **Icons:** Font Awesome is bundled via `@fortawesome/fontawesome-free` (no CDN dependency).
 - **E2E:** mobile viewport journeys in [`tests/e2e/misc/responsive-layout.e2e.test.ts`](tests/e2e/misc/responsive-layout.e2e.test.ts).
 
-## Quality and tests
+### Quality and tests
 
 ```bash
 pnpm quality          # format + tsc + eslint
@@ -155,7 +242,7 @@ Run a single E2E file:
 pnpm test:e2e:one -- tests/e2e/smoke/app-boot.e2e.test.ts
 ```
 
-### PayPal sandbox E2E
+#### PayPal sandbox E2E
 
 Add to `.env.test`:
 
@@ -174,18 +261,18 @@ PW_RUN_PAYPAL=1 pnpm test:e2e # full suite + journey PayPal opt-in test
 
 **CI PayPal job:** set repository variable `ENABLE_PAYPAL_E2E=true` and secrets `PAYPAL_CLIENT_ID`, `PAYPAL_SANDBOX_BUYER_EMAIL`, `PAYPAL_SANDBOX_BUYER_PASSWORD`.
 
-### Verification gates
+#### Verification gates
 
 | Command            | What it runs                                                     |
 | ------------------ | ---------------------------------------------------------------- |
 | `pnpm verify`      | format, quality, unit, integration, build                        |
 | `pnpm verify:full` | above + full E2E (PayPal project once when creds in `.env.test`) |
 
-## Deployment
+### Deployment
 
 Production uses **MongoDB Atlas M0** and **Render**. Complete local verification first, then follow [`docs/deployment-atlas-render.md`](docs/deployment-atlas-render.md) (ISSUE-015 repo rename + Atlas + Render are manual steps).
 
-## Database
+### Database
 
 Local and test environments use:
 

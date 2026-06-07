@@ -57,6 +57,37 @@ test.describe('about page', () => {
     await expect(page.locator('[data-testid="about-timeline-2026"]')).toContainText(/ATDD/i);
   });
 
+  test('about_app_highlights_visible', async ({ page }) => {
+    await page.goto('/about');
+    const highlights = page.locator('[data-testid="about-highlights"]');
+    await expect(highlights).toBeVisible();
+    await expect(highlights).toContainText(/Storefront/i);
+    await expect(highlights).toContainText(/Checkout/i);
+    await expect(highlights).toContainText(/Admin/i);
+    await expect(highlights).toContainText(/PWA/i);
+  });
+
+  test('about_tech_stack_visible', async ({ page }) => {
+    await page.goto('/about');
+    const stack = page.locator('[data-testid="about-tech-stack"]');
+    await expect(stack).toBeVisible();
+    await expect(stack).toContainText('React');
+    await expect(stack).toContainText('19');
+    await expect(stack).toContainText('Express');
+    await expect(stack).toContainText('5');
+    await expect(stack).toContainText('MongoDB');
+    await expect(stack).toContainText('Vite');
+    await expect(stack).toContainText('Playwright');
+  });
+
+  test('about_deployment_visible', async ({ page }) => {
+    await page.goto('/about');
+    const deployment = page.locator('[data-testid="about-deployment"]');
+    await expect(deployment).toBeVisible();
+    await expect(deployment).toContainText(/MongoDB Atlas/i);
+    await expect(deployment).toContainText(/Render/i);
+  });
+
   test('about_connect_links_are_navigable_anchors', async ({ page }) => {
     await page.goto('/about');
     await expect(page.locator('[data-testid="about-page"]')).toBeVisible();

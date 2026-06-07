@@ -92,7 +92,16 @@ export const buildPersonJsonLd = (): Record<string, unknown> => ({
   url: buildCanonicalUrl('/about'),
   sameAs: buildDeveloperSameAs(),
   jobTitle: 'Software Developer',
-  knowsAbout: ['MERN stack', 'React', 'TypeScript', 'Node.js', 'MongoDB']
+  knowsAbout: [
+    'MERN stack',
+    'React',
+    'TypeScript',
+    'Node.js',
+    'MongoDB',
+    'PWA',
+    'Playwright',
+    'Express 5'
+  ]
 });
 
 const personAuthorRef = (): Record<string, unknown> => ({
@@ -133,7 +142,7 @@ export const buildAboutTitle = (): string =>
 
 export const buildAboutMetaDescription = (): string =>
   buildMetaDescription(
-    `${DEVELOPER_NAME} built ${DISPLAY_BRAND_NAME} as a MERN stack portfolio e-commerce demo — TypeScript, React 19, Vite, Express, MongoDB, and ATDD.`
+    `${DEVELOPER_NAME} built ${DISPLAY_BRAND_NAME} — a full-stack electronics store with PWA, push notifications, PayPal checkout, admin CRUD, and Playwright ATDD.`
   );
 
 export const buildAboutJsonLd = (description: string): Record<string, unknown>[] => [
