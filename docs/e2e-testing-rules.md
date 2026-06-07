@@ -36,9 +36,11 @@ When checking checkout, order, or admin list pages, verify ALL relevant elements
 
 **Minimum for checkout / order verification:**
 
-- Checkout steps (`checkout-step-signin`, `checkout-step-shipping`, `checkout-step-payment`, `checkout-step-place-order`)
+- Unified checkout page (`checkout-screen`, `checkout-heading`, `checkout-progress`, `checkout-form`)
+- Checkout address fields (`checkout-address`, `checkout-city`, `checkout-postal-code`, `checkout-country`, `checkout-country-search`, `checkout-country-option-*`)
+- Order summary and submit (`checkout-summary-card`, `checkout-items-price`, `checkout-place-order-submit`)
 - Cart line items and totals when applicable (`cart-item-*`, `cart-checkout`)
-- Order screen heading and payment state (`order-screen`, `order-heading`, `paypal-buttons-ready` when unpaid and SDK loaded)
+- Order screen after place order (`order-screen`, `order-heading`, `paypal-buttons-ready` when unpaid and SDK loaded)
 - Admin order/product rows when testing fulfillment (`admin-order-*`, `admin-product-*`)
 
 **Minimum for catalog verification:**
@@ -184,13 +186,11 @@ This app uses React Bootstrap (`Form`, `Button`, `Nav`, `Table`) and a custom `A
 ### Multi-step journey: action → result → consequence
 
 ```typescript
-test('guest checkout: cart → shipping → payment → place order', async ({ page }) => {
+test('guest checkout: cart → unified checkout → place order', async ({ page }) => {
   await addFirstProductToCart(page);
   await page.locator('[data-testid="nav-cart"]').click();
   await page.locator('[data-testid="cart-checkout"]').click();
-  await completeShippingStep(page);
-  await completePaymentStep(page);
-  await page.locator('[data-testid="place-order-submit"]').click();
+  await completeCheckoutStep(page);
 
   await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
   await expect(page.locator('[data-testid="order-heading"]')).toBeVisible();

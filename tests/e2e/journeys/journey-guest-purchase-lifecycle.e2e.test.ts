@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import {
   addFirstProductToCart,
   completeShippingStep,
-  completePaymentStep,
   guestCheckoutPlaceUnpaidOrder,
   loginWithCredentials
 } from '../fixtures/test-helpers';
@@ -28,15 +27,14 @@ test.describe('journey guest purchase lifecycle', () => {
     await expect(page).toHaveURL(/auth=login/);
     await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
-    await expect(page).toHaveURL(/\/shipping/);
+    await expect(page).toHaveURL(/\/checkout/);
 
     await completeShippingStep(page);
-    await completePaymentStep(page);
     await Promise.all([
       page.waitForResponse(
         (response) => response.url().includes('/api/orders') && response.status() === 201
       ),
-      page.locator('[data-testid="place-order-submit"]').click()
+      page.locator('[data-testid="checkout-place-order-submit"]').click()
     ]);
 
     await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();

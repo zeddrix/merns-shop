@@ -2,8 +2,7 @@
 import { test, expect } from '@playwright/test';
 import {
   addFirstProductToCart,
-  completeShippingStep,
-  completePaymentStep,
+  completeCheckoutStep,
   loginWithCredentials,
   loginAs,
   selectAppOption
@@ -85,7 +84,7 @@ async function addProductViaCartDeepLink(
 }
 
 test.describe('checkout cart shipping payment', () => {
-  test('cart_qty_shipping_payment_persisted', async ({ page }) => {
+  test('cart_qty_checkout_form_persisted', async ({ page }) => {
     await addFirstProductToCart(page);
     await page.goto('/cart');
     await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
@@ -98,14 +97,11 @@ test.describe('checkout cart shipping payment', () => {
     await expect(page).toHaveURL(/auth=login/);
     await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
     await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
-    await expect(page).toHaveURL(/\/shipping/);
+    await expect(page).toHaveURL(/\/checkout/);
 
-    await completeShippingStep(page);
-    await expect(page.locator('[data-testid="payment-heading"]')).toBeVisible();
-
-    await completePaymentStep(page);
-    await expect(page.locator('[data-testid="place-order-screen"]')).toBeVisible();
-    await expect(page.getByText('PayPal')).toBeVisible();
+    await completeCheckoutStep(page);
+    await expect(page.locator('[data-testid="checkout-payment-note"]')).toContainText('PayPal');
+    await expect(page.locator('[data-testid="checkout-summary-card"]')).toBeVisible();
   });
 
   test('cart_remove_item_updates_total', async ({ page }) => {
@@ -124,26 +120,29 @@ test.describe('checkout cart shipping payment', () => {
     await expect(page.locator('[data-testid="cart-checkout"]')).toHaveCount(0);
   });
 
-  test('payment_paypal_selected_persists', async ({ page }) => {
+  test('checkout_payment_method_defaults_paypal_on_order', async ({ page }) => {
     await loginAs(page, 'customer');
     await addFirstProductToCart(page);
-    await completeShippingStep(page);
-    await page.locator('[data-testid="payment-method-paypal"]').check();
-    await page.locator('[data-testid="payment-submit"]').click();
-    await expect(page.locator('[data-testid="place-order-screen"]')).toBeVisible();
-    await page.goto('/payment');
-    await expect(page.locator('[data-testid="payment-method-paypal"]')).toBeChecked();
+    await completeCheckoutStep(page);
+
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/api/orders') && response.status() === 201
+      ),
+      page.locator('[data-testid="checkout-place-order-submit"]').click()
+    ]);
+
+    await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
+    await expect(page.getByText('PayPal')).toBeVisible();
   });
 
-  test('checkout_step_sign_up_from_shipping_breadcrumb', async ({ page }) => {
+  test('checkout_progress_hides_sign_in_sign_up', async ({ page }) => {
     await loginAs(page, 'customer');
-    await page.goto('/shipping');
-    await expect(page.locator('[data-testid="shipping-heading"]')).toBeVisible();
-    const signUpHref = await page
-      .locator('[data-testid="checkout-step-sign-up"]')
-      .getAttribute('href');
-    expect(signUpHref).toContain('auth=register');
-    expect(signUpHref).toContain('redirect=%2Fshipping');
+    await page.goto('/checkout');
+    await expect(page.locator('[data-testid="checkout-progress"]')).toBeVisible();
+    await expect(page.locator('[data-testid="checkout-step-signin"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="checkout-step-sign-up"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="checkout-progress-order-details"]')).toBeVisible();
   });
 
   test('checkout_sign_up_honors_cart_redirect', async ({ page }) => {
@@ -162,8 +161,8 @@ test.describe('checkout cart shipping payment', () => {
 
     await page.locator('[data-testid="register-name"]').fill('Checkout Signup User');
     await page.locator('[data-testid="register-email"]').fill(email);
-    await page.locator('[data-testid="register-password"]').fill('123456');
-    await page.locator('[data-testid="register-confirm-password"]').fill('123456');
+    await page.locator('[data-testid="register-password"]').fill('TestPass1!');
+    await page.locator('[data-testid="register-confirm-password"]').fill('TestPass1!');
     await Promise.all([
       page.waitForResponse(
         (response) => response.url().includes('/api/users') && response.status() === 201
@@ -171,17 +170,54 @@ test.describe('checkout cart shipping payment', () => {
       page.locator('[data-testid="register-submit"]').click()
     ]);
 
-    await expect(page).toHaveURL(/\/shipping/);
-    await expect(page.locator('[data-testid="shipping-heading"]')).toBeVisible();
+    await expect(page).toHaveURL(/\/checkout/);
+    await expect(page.locator('[data-testid="checkout-heading"]')).toBeVisible();
   });
 
-  test('shipping_requires_all_fields', async ({ page }) => {
+  test('checkout_submit_blocked_until_shipping_valid', async ({ page }) => {
     await loginAs(page, 'customer');
-    await page.goto('/shipping');
-    await page.locator('[data-testid="shipping-address"]').fill('');
-    await page.locator('[data-testid="shipping-submit"]').click();
-    await expect(page.locator('[data-testid="shipping-form"]')).toBeVisible();
-    await expect(page).toHaveURL(/\/shipping/);
+    await addFirstProductToCart(page);
+    await page.goto('/checkout');
+    await page.locator('[data-testid="checkout-address"]').fill('');
+    await page.locator('[data-testid="checkout-place-order-submit"]').click();
+    await expect(page.locator('[data-testid="checkout-address-error"]')).toBeVisible();
+    await expect(page).toHaveURL(/\/checkout/);
+  });
+
+  test('checkout_country_shows_placeholder_before_selection', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstProductToCart(page);
+    await page.goto('/checkout');
+    await expect(page.locator('[data-testid="checkout-country-trigger"]')).toContainText(
+      'Select country'
+    );
+    await selectAppOption(page, 'checkout-country', 'United States', 'united');
+    await expect(page.locator('[data-testid="checkout-country-trigger"]')).toContainText(
+      'United States'
+    );
+  });
+
+  test('checkout_country_searchable_select_filters_and_selects', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstProductToCart(page);
+    await page.goto('/checkout');
+    await page.locator('[data-testid="checkout-address"]').fill('Lot 3 Test St');
+    await page.locator('[data-testid="checkout-city"]').fill('Tanza');
+    await page.locator('[data-testid="checkout-postal-code"]').fill('4108');
+    await selectAppOption(page, 'checkout-country', 'Philippines', 'phil');
+    await expect(page.locator('[data-testid="checkout-country-trigger"]')).toContainText(
+      'Philippines'
+    );
+
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/api/orders') && response.status() === 201
+      ),
+      page.locator('[data-testid="checkout-place-order-submit"]').click()
+    ]);
+
+    await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
+    await expect(page.locator('[data-testid="order-shipping"]')).toContainText('Philippines');
   });
 
   test('cart_deep_link_adds_variant_qty', async ({ page }) => {
@@ -194,102 +230,77 @@ test.describe('checkout cart shipping payment', () => {
     await expect(page.locator('[data-testid="nav-cart-count"]')).toHaveText('2');
   });
 
-  test('logged_in_customer_places_order', async ({ page }) => {
+  test('logged_in_customer_completes_unified_checkout_places_order', async ({ page }) => {
     await loginAs(page, 'customer');
     await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
     const { productId, variantSku } = await fetchInStockProduct(page);
     await addProductViaCartDeepLink(page, productId, variantSku);
     await page.locator('[data-testid="cart-checkout"]').click();
-    await expect(page).toHaveURL(/\/shipping/);
-    await completeShippingStep(page);
-    await completePaymentStep(page);
-    await expect(page.locator('[data-testid="place-order-screen"]')).toBeVisible();
-    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
-    await expect(page.locator('[data-testid="place-order-submit"]')).toBeEnabled();
+    await expect(page).toHaveURL(/\/checkout/);
+    await completeCheckoutStep(page);
+    await expect(page.locator('[data-testid="checkout-place-order-submit"]')).toBeEnabled();
 
     await Promise.all([
       page.waitForResponse(
         (response) => response.url().includes('/api/orders') && response.status() === 201
       ),
-      page.locator('[data-testid="place-order-submit"]').click()
+      page.locator('[data-testid="checkout-place-order-submit"]').click()
     ]);
 
     await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
     await expect(page.locator('[data-testid="order-heading"]')).toBeVisible();
   });
 
-  test('place_order_shows_shipping_fee_for_low_subtotal', async ({ page }) => {
+  test('checkout_shows_shipping_fee_for_low_subtotal', async ({ page }) => {
     await loginAs(page, 'customer');
-    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
     const { productId, variantSku } = await fetchCheapInStockProduct(page);
     await addProductViaCartDeepLink(page, productId, variantSku);
-    await page.locator('[data-testid="cart-checkout"]').click();
-    await completeShippingStep(page);
-    await completePaymentStep(page);
+    await page.goto('/checkout');
 
-    await expect(page.locator('[data-testid="place-order-screen"]')).toBeVisible();
     const itemsPrice = Number(
-      (await page.locator('[data-testid="place-order-items-price"]').innerText()).replace('$', '')
+      (await page.locator('[data-testid="checkout-items-price"]').innerText()).replace('$', '')
     );
     expect(itemsPrice).toBeLessThanOrEqual(100);
-    await expect(page.locator('[data-testid="place-order-shipping-price"]')).toHaveText('$100.00');
-    await expect(page.locator('[data-testid="place-order-tax-price"]')).toBeVisible();
-    await expect(page.locator('[data-testid="place-order-total-price"]')).toBeVisible();
+    await expect(page.locator('[data-testid="checkout-shipping-price"]')).toHaveText('$100.00');
+    await expect(page.locator('[data-testid="checkout-tax-price"]')).toBeVisible();
+    await expect(page.locator('[data-testid="checkout-total-price"]')).toBeVisible();
   });
 
-  test('place_order_free_shipping_for_high_subtotal', async ({ page }) => {
+  test('checkout_free_shipping_for_high_subtotal', async ({ page }) => {
     await loginAs(page, 'customer');
-    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
     const { productId, variantSku } = await fetchHighSubtotalInStockProduct(page);
     await addProductViaCartDeepLink(page, productId, variantSku);
-    await page.locator('[data-testid="cart-checkout"]').click();
-    await completeShippingStep(page);
-    await completePaymentStep(page);
+    await page.goto('/checkout');
 
-    await expect(page.locator('[data-testid="place-order-screen"]')).toBeVisible();
     const itemsPrice = Number(
-      (await page.locator('[data-testid="place-order-items-price"]').innerText()).replace('$', '')
+      (await page.locator('[data-testid="checkout-items-price"]').innerText()).replace('$', '')
     );
     expect(itemsPrice).toBeGreaterThan(100);
-    await expect(page.locator('[data-testid="place-order-shipping-price"]')).toHaveText('$0.00');
+    await expect(page.locator('[data-testid="checkout-shipping-price"]')).toHaveText('$0.00');
   });
 
-  test('checkout_breadcrumb_navigates_to_shipping_from_payment', async ({ page }) => {
+  test('unified_checkout_no_multi_page_breadcrumb', async ({ page }) => {
     await loginAs(page, 'customer');
     await addFirstProductToCart(page);
-    await completeShippingStep(page);
-    await expect(page.locator('[data-testid="payment-heading"]')).toBeVisible();
-
-    await page.locator('[data-testid="checkout-step-shipping"]').click();
-    await expect(page).toHaveURL(/\/shipping/);
-    await expect(page.locator('[data-testid="shipping-heading"]')).toBeVisible();
-    await expect(page.locator('[data-testid="checkout-steps"]')).toBeVisible();
+    await page.goto('/checkout');
+    await expect(page.locator('[data-testid="checkout-form"]')).toBeVisible();
+    await expect(page.locator('[data-testid="checkout-summary-card"]')).toBeVisible();
+    await expect(page.locator('[data-testid="payment-heading"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="shipping-heading"]')).toHaveCount(0);
   });
 
-  test('logged_in_deep_link_placeorder_without_shipping_redirects', async ({ page }) => {
+  test('legacy_shipping_route_redirects_to_checkout', async ({ page }) => {
     await loginAs(page, 'customer');
-    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
-    await Promise.all([
-      page.waitForResponse(
-        (response) => response.url().includes('/api/users/profile') && response.ok()
-      ),
-      page.goto('/placeorder')
-    ]);
-    await expect(page).toHaveURL(/\/shipping/);
-    await expect(page.locator('[data-testid="shipping-heading"]')).toBeVisible();
-    await expect(page.locator('[data-testid="place-order-screen"]')).toHaveCount(0);
+    await addFirstProductToCart(page);
+    await page.goto('/shipping');
+    await expect(page).toHaveURL(/\/checkout/);
+    await expect(page.locator('[data-testid="checkout-heading"]')).toBeVisible();
   });
 
-  test('empty_cart_blocks_place_order_submit', async ({ page }) => {
+  test('empty_cart_blocks_checkout_submit', async ({ page }) => {
     await loginAs(page, 'customer');
-    await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
-    await completeShippingStep(page);
-    await completePaymentStep(page);
-
-    await expect(page.locator('[data-testid="place-order-screen"]')).toBeVisible();
-    await expect(page.locator('[data-testid="place-order-submit"]')).toBeDisabled();
-    await page.locator('[data-testid="place-order-submit"]').click({ force: true });
-    await expect(page).toHaveURL(/\/placeorder/);
-    await expect(page.locator('[data-testid="order-screen"]')).toHaveCount(0);
+    await page.goto('/checkout');
+    await expect(page.locator('[data-testid="checkout-empty"]')).toBeVisible();
+    await expect(page.locator('[data-testid="checkout-place-order-submit"]')).toHaveCount(0);
   });
 });

@@ -108,6 +108,14 @@ describe('cartSlice', () => {
     expect(JSON.parse(localStorage.getItem('shippingAddress') ?? '{}')).toEqual(address);
   });
 
+  it('rehydrates_paymentMethod_from_localStorage_on_init', async () => {
+    localStorage.setItem('paymentMethod', JSON.stringify('PayPal'));
+    vi.resetModules();
+    const { default: freshCartReducer } = await import('../../../frontend/src/features/cartSlice');
+    const state = freshCartReducer(undefined, { type: '@@INIT' });
+    expect(state.paymentMethod).toBe('PayPal');
+  });
+
   it('addToCart_rejected_leaves_cart_items_unchanged', () => {
     const initial = {
       cartItems: [

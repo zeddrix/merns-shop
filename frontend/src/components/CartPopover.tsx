@@ -20,10 +20,10 @@ const CartPopover = ({ onClose }: CartPopoverProps) => {
   const checkoutHandler = () => {
     onClose();
     if (userInfo) {
-      navigate('/shipping');
+      navigate('/checkout');
     } else {
       navigate(
-        buildAuthUrl(location.pathname, 'login', '/shipping', stripAuthSearch(location.search))
+        buildAuthUrl(location.pathname, 'login', '/checkout', stripAuthSearch(location.search))
       );
     }
   };

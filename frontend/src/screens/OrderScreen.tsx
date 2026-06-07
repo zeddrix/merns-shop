@@ -24,6 +24,7 @@ import { useRequireAuth } from '../hooks/useRequireAuth';
 import AuthRequiredGate from '../components/AuthRequiredGate';
 import type { Order, PaymentResult } from '../types';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
+import CheckoutProgress from '../components/CheckoutProgress';
 
 const addDecimals = (num: number) => {
   return (Math.round(num * 100) / 100).toFixed(2);
@@ -164,6 +165,7 @@ const OrderScreen = () => {
   return (
     <div data-testid="order-screen">
       <SeoPrivateMeta canonicalPath={`/order/${displayOrder._id}`} />
+      <CheckoutProgress activeStep={2} />
       <h1 data-testid="order-heading">Order {displayOrder._id}</h1>
       <Row>
         <Col xs={12} lg={8}>

@@ -20,9 +20,22 @@ const shippingAddressFromStorage = (): ShippingAddress => {
   return stored ? (JSON.parse(stored) as ShippingAddress) : {};
 };
 
+const paymentMethodFromStorage = (): string | undefined => {
+  const stored = localStorage.getItem('paymentMethod');
+  if (!stored) {
+    return undefined;
+  }
+  try {
+    return JSON.parse(stored) as string;
+  } catch {
+    return undefined;
+  }
+};
+
 const initialState: CartState = {
   cartItems: cartItemsFromStorage(),
   shippingAddress: shippingAddressFromStorage(),
+  paymentMethod: paymentMethodFromStorage(),
   staleItemsPruned: false
 };
 

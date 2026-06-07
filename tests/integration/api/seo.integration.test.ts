@@ -19,6 +19,7 @@ describe('seo routes integration', () => {
     expect(res.status).toBe(200);
     expect(res.text).toContain('Disallow: /admin');
     expect(res.text).toContain('Disallow: /cart');
+    expect(res.text).toContain('Disallow: /checkout');
     expect(res.text).toMatch(/Sitemap: https?:\/\//);
   });
 

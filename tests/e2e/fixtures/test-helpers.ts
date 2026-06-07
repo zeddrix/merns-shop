@@ -14,8 +14,16 @@ export const isProductDetailsApiResponse = (response: {
   response.status() === 200;
 
 /** Clicks a custom AppSelect trigger then an option (replaces native selectOption). */
-export async function selectAppOption(page: Page, testId: string, value: string): Promise<void> {
+export async function selectAppOption(
+  page: Page,
+  testId: string,
+  value: string,
+  search?: string
+): Promise<void> {
   await page.locator(`[data-testid="${testId}-trigger"]`).click();
+  if (search) {
+    await page.locator(`[data-testid="${testId}-search"]`).fill(search);
+  }
   await page.locator(`[data-testid="${testId}-option-${value}"]`).click();
 }
 
@@ -63,6 +71,15 @@ export async function assertHomeCatalogHealthy(page: Page): Promise<void> {
   await expect(page.locator('[data-testid="home-carousel-error"]')).toHaveCount(0);
   await expect(page.locator('[data-testid="home-products-error"]')).toHaveCount(0);
   await expect(page.locator('[data-testid="product-carousel"]')).toBeVisible();
+  await page.locator('[data-testid="product-list"]').first().waitFor({ state: 'visible' });
+  await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
+}
+
+/** Filtered catalog without carousel — subcategory or filter query active. */
+export async function assertFilteredCatalogHealthy(page: Page): Promise<void> {
+  await expect(page.locator('[data-testid="home-carousel-error"]')).toHaveCount(0);
+  await expect(page.locator('[data-testid="home-products-error"]')).toHaveCount(0);
+  await expect(page.locator('[data-testid="product-carousel"]')).toHaveCount(0);
   await page.locator('[data-testid="product-list"]').first().waitFor({ state: 'visible' });
   await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
 }
@@ -215,24 +232,27 @@ export async function addFirstProductToCart(page: Page): Promise<void> {
   await addFirstInStockProductToCart(page);
 }
 
-export async function completeShippingStep(page: Page): Promise<void> {
-  await page.goto('/shipping');
-  await expect(page.locator('[data-testid="shipping-heading"]')).toBeVisible();
-  await page.locator('[data-testid="shipping-address"]').fill('123 Test St');
-  await page.locator('[data-testid="shipping-city"]').fill('Testville');
-  await page.locator('[data-testid="shipping-postal-code"]').fill('12345');
-  await page.locator('[data-testid="shipping-country"]').fill('United States');
-  await Promise.all([
-    page.waitForURL(/\/payment/),
-    page.locator('[data-testid="shipping-submit"]').click()
-  ]);
-  await expect(page.locator('[data-testid="payment-heading"]')).toBeVisible();
+export async function completeCheckoutStep(
+  page: Page,
+  country = 'United States',
+  countrySearch?: string
+): Promise<void> {
+  await page.goto('/checkout');
+  await expect(page.locator('[data-testid="checkout-heading"]')).toBeVisible();
+  await page.locator('[data-testid="checkout-address"]').fill('123 Test St');
+  await page.locator('[data-testid="checkout-city"]').fill('Testville');
+  await page.locator('[data-testid="checkout-postal-code"]').fill('12345');
+  await selectAppOption(page, 'checkout-country', country, countrySearch);
 }
 
+/** @deprecated Use completeCheckoutStep — unified checkout has no separate shipping route. */
+export async function completeShippingStep(page: Page): Promise<void> {
+  await completeCheckoutStep(page);
+}
+
+/** @deprecated Unified checkout — payment is implicit; use checkout-place-order-submit instead. */
 export async function completePaymentStep(page: Page): Promise<void> {
-  await page.locator('[data-testid="payment-method-paypal"]').check();
-  await page.locator('[data-testid="payment-submit"]').click();
-  await page.locator('[data-testid="place-order-screen"]').waitFor({ state: 'visible' });
+  await expect(page.locator('[data-testid="checkout-screen"]')).toBeVisible();
 }
 
 /** Guest checkout from cart through place order to unpaid order screen. Returns order id. */
@@ -243,14 +263,13 @@ export async function guestCheckoutPlaceUnpaidOrder(page: Page): Promise<string>
   await expect(page).toHaveURL(/auth=login/);
   await expect(page.locator('[data-testid="auth-modal"]')).toBeVisible();
   await loginWithCredentials(page, TEST_USERS.customer.email, TEST_USERS.customer.password);
-  await completeShippingStep(page);
-  await completePaymentStep(page);
+  await completeCheckoutStep(page);
 
   await Promise.all([
     page.waitForResponse(
       (response) => response.url().includes('/api/orders') && response.status() === 201
     ),
-    page.locator('[data-testid="place-order-submit"]').click()
+    page.locator('[data-testid="checkout-place-order-submit"]').click()
   ]);
 
   await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
@@ -475,6 +494,8 @@ export async function createPaidOrderForCredentials(
 export interface GuestDeepLinkAuthGateOptions {
   reopenSignIn?: boolean;
   expectedAuthUrl?: RegExp;
+  /** Path after client-side redirects (e.g. legacy /shipping → /checkout). */
+  resolvedPath?: string;
 }
 
 /** Guest deep-link to a protected route: modal opens, dismiss shows inline auth gate. */
@@ -483,7 +504,7 @@ export async function assertGuestDeepLinkAuthGate(
   path: string,
   options?: GuestDeepLinkAuthGateOptions
 ): Promise<void> {
-  const pathOnly = path.split('?')[0];
+  const pathOnly = options?.resolvedPath ?? path.split('?')[0];
   const escapedPath = pathOnly.replace(/\//g, '\\/');
   const defaultAuthUrl = new RegExp(`${escapedPath}\\?auth=login`);
 

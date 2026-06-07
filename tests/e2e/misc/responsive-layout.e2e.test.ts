@@ -4,7 +4,6 @@ import {
   assertHomeCatalogHealthy,
   assertNoHorizontalOverflow,
   clickProductCardToPdp,
-  completeShippingStep,
   loginAs,
   selectAppOption,
   selectVariantAndAddToCart
@@ -48,6 +47,8 @@ test.describe('responsive layout', () => {
     await page.locator('[data-testid="navbar-toggle"]').click();
     await page.locator('[data-testid="nav-category-phones"]').click();
     await expect(page).toHaveURL(/subcategory=Phones/);
+    await expect(page.locator('[data-testid="product-carousel"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
     await assertNoHorizontalOverflow(page);
   });
 
@@ -73,7 +74,7 @@ test.describe('responsive layout', () => {
     await expect(page.locator('[data-testid="cart-checkout"]')).toBeVisible();
 
     await page.locator('[data-testid="cart-checkout"]').click();
-    await expect(page).toHaveURL(/\/shipping/);
+    await expect(page).toHaveURL(/\/checkout/);
   });
 
   test('mobile_product_variant_add_to_cart', async ({ page }) => {
@@ -103,22 +104,14 @@ test.describe('responsive layout', () => {
     await expect(page.locator('[data-testid="nav-login"]')).toBeVisible();
   });
 
-  test('mobile_checkout_steps_shipping_visible', async ({ page }) => {
+  test('mobile_unified_checkout_form_and_summary_visible', async ({ page }) => {
     await loginAs(page, 'customer');
     await addFirstInStockProductToCart(page);
-    await completeShippingStep(page);
-    await expect(page.locator('[data-testid="checkout-steps"]')).toBeVisible();
-    await expect(page.locator('[data-testid="payment-heading"]')).toBeVisible();
-    await assertNoHorizontalOverflow(page);
-  });
-
-  test('mobile_place_order_screen_no_horizontal_overflow', async ({ page }) => {
-    await loginAs(page, 'customer');
-    await addFirstInStockProductToCart(page);
-    await completeShippingStep(page);
-    await page.locator('[data-testid="payment-method-paypal"]').check();
-    await page.locator('[data-testid="payment-submit"]').click();
-    await expect(page.locator('[data-testid="place-order-screen"]')).toBeVisible();
+    await page.goto('/checkout');
+    await expect(page.locator('[data-testid="checkout-progress"]')).toBeVisible();
+    await page.locator('[data-testid="checkout-address"]').fill('123 Mobile St');
+    await page.locator('[data-testid="checkout-city"]').fill('Testville');
+    await expect(page.locator('[data-testid="checkout-summary-card"]')).toBeVisible();
     await assertNoHorizontalOverflow(page);
   });
 });

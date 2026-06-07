@@ -40,4 +40,80 @@ describe('AppSelect', () => {
     root.unmount();
     container.remove();
   });
+
+  it('searchable_filters_options', async () => {
+    const onChange = vi.fn();
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    const root = createRoot(container);
+
+    await act(async () => {
+      root.render(
+        <AppSelect
+          searchable
+          value=""
+          data-testid="country-select"
+          onChange={onChange}
+          options={[
+            { value: 'Philippines', label: 'Philippines' },
+            { value: 'United States', label: 'United States' }
+          ]}
+        />
+      );
+    });
+
+    await act(async () => {
+      container
+        .querySelector('[data-testid="country-select-trigger"]')
+        ?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+
+    const search = container.querySelector(
+      '[data-testid="country-select-search"]'
+    ) as HTMLInputElement;
+    await act(async () => {
+      const setValue = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set;
+      setValue?.call(search, 'phil');
+      search.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    expect(
+      container.querySelector('[data-testid="country-select-option-Philippines"]')
+    ).not.toBeNull();
+    expect(
+      container.querySelector('[data-testid="country-select-option-United States"]')
+    ).toBeNull();
+
+    root.unmount();
+    container.remove();
+  });
+
+  it('shows_placeholder_when_value_empty', async () => {
+    const onChange = vi.fn();
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    const root = createRoot(container);
+
+    await act(async () => {
+      root.render(
+        <AppSelect
+          value=""
+          placeholder="Select country…"
+          data-testid="country-select"
+          onChange={onChange}
+          options={[
+            { value: 'Philippines', label: 'Philippines' },
+            { value: 'United States', label: 'United States' }
+          ]}
+        />
+      );
+    });
+
+    const trigger = container.querySelector('[data-testid="country-select-trigger"]');
+    expect(trigger?.textContent).toContain('Select country…');
+    expect(trigger?.textContent).not.toContain('Philippines');
+
+    root.unmount();
+    container.remove();
+  });
 });

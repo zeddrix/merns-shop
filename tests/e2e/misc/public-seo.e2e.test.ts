@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {
+  assertFilteredCatalogHealthy,
   assertHomeCatalogHealthy,
   fillSearchAndSubmit,
   loginAsAdmin
@@ -13,6 +14,7 @@ test.describe('public seo', () => {
     expect(response.ok()).toBeTruthy();
     const body = await response.text();
     expect(body).toContain('Disallow: /admin');
+    expect(body).toContain('Disallow: /checkout');
     expect(body).not.toContain('Disallow: /login');
     expect(body).not.toContain('Disallow: /register');
     expect(body).toMatch(/Sitemap: https?:\/\//);
@@ -49,7 +51,7 @@ test.describe('public seo', () => {
 
   test('filter_query_canonical_root', async ({ page }) => {
     await page.goto('/?brand=Apple');
-    await assertHomeCatalogHealthy(page);
+    await assertFilteredCatalogHealthy(page);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/$/);
   });
 

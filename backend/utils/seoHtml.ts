@@ -162,6 +162,7 @@ Allow: /product/
 Disallow: /admin
 Disallow: /cart
 Disallow: /profile
+Disallow: /checkout
 Disallow: /shipping
 Disallow: /payment
 Disallow: /placeorder

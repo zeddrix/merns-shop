@@ -37,9 +37,9 @@ const CartScreen = () => {
 
   const checkoutHandler = () => {
     if (userInfo) {
-      navigate('/shipping');
+      navigate('/checkout');
     } else {
-      navigate(buildAuthUrl('/cart', 'login', '/shipping'));
+      navigate(buildAuthUrl('/cart', 'login', '/checkout'));
     }
   };
 
