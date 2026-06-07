@@ -173,7 +173,7 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
   });
 
-  test('product_card_nav_from_scrolled_catalog_scrolls_pdp_into_view', async ({ page }) => {
+  test('product_card_nav_from_scrolled_catalog_resets_scroll_to_top', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.locator('[data-testid="pagination-next"]').click();
     await expect(page).toHaveURL(/\/page\/2/);
@@ -181,15 +181,9 @@ test.describe('catalog browse and search', () => {
     const card = page.locator('[data-testid^="product-card-"]').first();
     await clickProductCardToPdp(card);
     await expect(page).toHaveURL(/\/product\//);
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
 
-    await expect
-      .poll(async () =>
-        page.locator('[data-testid="product-details"]').evaluate((el) => {
-          const rect = el.getBoundingClientRect();
-          return rect.top >= 0 && rect.top < window.innerHeight;
-        })
-      )
-      .toBe(true);
+    await expect.poll(async () => page.evaluate(() => window.scrollY)).toBe(0);
   });
 
   test('pagination_scrolls_to_catalog_top_on_page_change', async ({ page }) => {
@@ -399,10 +393,30 @@ test.describe('catalog browse and search', () => {
     await page.locator('[data-testid="nav-category-tablets"]').click();
     await expect(page).toHaveURL(/category=Electronics/);
     await expect(page).toHaveURL(/subcategory=Tablets/);
+    await expect(page.locator('[data-testid="product-carousel"]')).toHaveCount(0);
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
     await expect(page.locator('[data-testid^="product-card-"]').first()).toContainText(
       /iPad|Galaxy Tab|Tab/
     );
+  });
+
+  test('subcategory_nav_hides_carousel_shows_filtered_catalog', async ({ page }) => {
+    await expect(page.locator('[data-testid="product-carousel"]')).toBeVisible();
+    await page.locator('[data-testid="nav-category-tvs"]').click();
+    await expect(page).toHaveURL(/subcategory=TVs/);
+    await expect(page.locator('[data-testid="product-carousel"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="home-heading"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
+    await expect(page.locator('[data-testid^="product-card-"]').first()).toBeVisible();
+  });
+
+  test('pdp_out_of_stock_shows_red_status_label', async ({ page }) => {
+    await fillSearchAndSubmit(page, 'Amazon Echo');
+    await clickProductCardToPdp(page.locator('[data-testid^="product-card-"]').first());
+    await expect(page.locator('[data-testid="product-stock-status"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-stock-status"]')).toHaveText('Out of stock');
+    await expect(page.locator('[data-testid="product-stock-status"]')).toHaveClass(/text-danger/);
+    await expect(page.locator('[data-testid="product-add-cart"]')).toBeDisabled();
   });
 
   test('carousel_slide_opens_pdp', async ({ page }) => {

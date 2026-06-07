@@ -60,6 +60,9 @@ const HomeScreen = () => {
 
   useScrollToTopOnPageChange('home-heading', page, !loading && !apiUnreachable && !error);
 
+  const hasFilterQuery = Boolean(brand || category || subcategory || minPrice || maxPrice || sort);
+  const showCarousel = !keyword && !hasFilterQuery;
+
   const listParams = {
     keyword: keyword ?? '',
     pageNumber: page,
@@ -73,7 +76,7 @@ const HomeScreen = () => {
 
   const handleApiRetry = () => {
     dispatch(listProducts(listParams));
-    if (!keyword) {
+    if (showCarousel) {
       dispatch(listTopProducts());
     }
   };
@@ -93,7 +96,6 @@ const HomeScreen = () => {
     );
   }, [dispatch, keyword, page, brand, category, subcategory, minPrice, maxPrice, sort]);
 
-  const hasFilterQuery = Boolean(brand || category || subcategory || minPrice || maxPrice || sort);
   const canonicalPath = buildHomeCanonicalPath({
     keyword,
     pageNumber: page,
@@ -118,13 +120,13 @@ const HomeScreen = () => {
         robots={robots}
         jsonLd={jsonLd}
       />
-      {!keyword ? (
+      {showCarousel ? (
         <ProductCarousel />
-      ) : (
+      ) : keyword ? (
         <Link to="/" className="btn btn-light" data-testid="search-go-back">
           Go Back
         </Link>
-      )}
+      ) : null}
       {registerWelcome ? (
         <Message variant="success" data-testid="register-welcome">
           Welcome, {registerWelcome}

@@ -1,4 +1,4 @@
-const PAGINATION_SCROLL_TARGET_KEY = 'merns-shop.pagination-scroll-target';
+export const PAGINATION_SCROLL_TARGET_KEY = 'merns-shop.pagination-scroll-target';
 
 export function markPaginationScrollTarget(scrollTargetTestId: string): void {
   sessionStorage.setItem(PAGINATION_SCROLL_TARGET_KEY, scrollTargetTestId);

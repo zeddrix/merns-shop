@@ -25,7 +25,7 @@ import { capQtyOptions } from '../constants/cartLimits';
 import { firstInStockSku } from '../utils/defaultVariant';
 import { addToCart } from '../features/cartSlice';
 import { buildAuthUrl, stripAuthSearch } from '../utils/authModalUrl';
-import { useScrollIntoViewOnKeyChange } from '../hooks/useScrollIntoViewOnKeyChange';
+import { OUT_OF_STOCK_LABEL } from '../constants/stock';
 import {
   listProductDetails,
   createProductReview,
@@ -64,10 +64,6 @@ const ProductScreen = () => {
 
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
   const currentPath = `${location.pathname}${stripAuthSearch(location.search)}`;
-
-  const productContentReady =
-    Boolean(id) && !loading && !error && !isApiUnreachableMessage(error) && product._id === id;
-  useScrollIntoViewOnKeyChange('product-details', id ?? '', productContentReady);
 
   useEffect(() => {
     if (successProductReview && id) {
@@ -250,11 +246,27 @@ const ProductScreen = () => {
                     />
                   </ListGroup.Item>
 
-                  {selectedVariant && (
+                  {allVariantsOutOfStock && (
+                    <ListGroup.Item>
+                      <span className="text-danger" data-testid="product-stock-status">
+                        {OUT_OF_STOCK_LABEL}
+                      </span>
+                    </ListGroup.Item>
+                  )}
+
+                  {selectedVariant && !allVariantsOutOfStock && (
                     <ListGroup.Item>
                       <Row>
                         <Col>Status:</Col>
-                        <Col>{selectedVariant.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Col>
+                        <Col>
+                          {selectedVariant.countInStock > 0 ? (
+                            'In Stock'
+                          ) : (
+                            <span className="text-danger" data-testid="product-stock-status">
+                              {OUT_OF_STOCK_LABEL}
+                            </span>
+                          )}
+                        </Col>
                       </Row>
                     </ListGroup.Item>
                   )}

@@ -16,9 +16,11 @@ import CartScreen from './screens/CartScreen';
 import AuthLegacyRedirect from './components/AuthLegacyRedirect';
 import AuthModalHost from './components/AuthModalHost';
 import ProfileScreen from './screens/ProfileScreen';
+import CheckoutScreen from './screens/CheckoutScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import ScrollToTop from './components/ScrollToTop';
 import OrderScreen from './screens/OrderScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
@@ -30,6 +32,7 @@ import NotFoundScreen from './screens/NotFoundScreen';
 
 const appRouteObjects: RouteObject[] = [
   { path: '/order/:id', element: <OrderScreen /> },
+  { path: '/checkout', element: <CheckoutScreen /> },
   { path: '/shipping', element: <ShippingScreen /> },
   { path: '/payment', element: <PaymentScreen /> },
   { path: '/placeorder', element: <PlaceOrderScreen /> },
@@ -60,6 +63,7 @@ const AppRoutes = () => {
 
   return (
     <>
+      <ScrollToTop />
       <Header />
       <main className="py-3">
         <Container>
