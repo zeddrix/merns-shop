@@ -32,6 +32,10 @@ test.describe('catalog browse and search', () => {
       'content',
       /Titanium design/i
     );
+    await expect(page.locator('meta[name="description"]').first()).toHaveAttribute(
+      'content',
+      /Zeddrix Fabian/
+    );
     const jsonLdRaw = await page
       .locator('script[type="application/ld+json"]')
       .first()
@@ -354,6 +358,11 @@ test.describe('catalog browse and search', () => {
   test('stale_product_id_shows_not_found_recovery', async ({ page }) => {
     await page.goto('/product/000000000000000000000000');
     await expect(page.locator('[data-testid="product-not-found"]')).toBeVisible();
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
+    await expect(page.locator('meta[name="description"]').first()).toHaveAttribute(
+      'content',
+      /Zeddrix Fabian/
+    );
     await page.locator('[data-testid="product-go-back"]').click();
     await expect(page).toHaveURL(/\/$/);
     await expect(page.locator('[data-testid="home-heading"]')).toBeVisible();

@@ -66,6 +66,15 @@ describe('seo bot integration (production middleware)', () => {
     expect(res.text).toContain('schema.org');
   });
 
+  it('serves about bot HTML for Googlebot on /about', async () => {
+    const res = await request(prodLikeApp).get('/about').set('User-Agent', GOOGLEBOT_UA);
+
+    expect(res.status).toBe(200);
+    expect(res.headers['content-type']).toMatch(/html/);
+    expect(res.text).toContain('Zeddrix Fabian');
+    expect(res.text).toContain('"@type":"Person"');
+  });
+
   it('serves product bot HTML for Googlebot on /product/:id', async () => {
     const iphone = await Product.findOne({ name: 'iPhone 15 Pro' }).select('_id name');
     expect(iphone).toBeTruthy();

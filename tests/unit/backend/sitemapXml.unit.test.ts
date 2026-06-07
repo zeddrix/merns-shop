@@ -22,6 +22,7 @@ describe('sitemapXml', () => {
     expect(entries).toHaveLength(3);
     expect(entries[0]?.loc).toMatch(/\/$/);
     expect(entries[1]?.loc).toMatch(/\/about$/);
+    expect(entries[1]?.priority).toBe(0.9);
     expect(entries[2]?.loc).toContain('/product/prod1');
   });
 });

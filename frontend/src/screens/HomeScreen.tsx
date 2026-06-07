@@ -15,12 +15,7 @@ import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import CatalogFilters from '../components/CatalogFilters';
 import Meta from '../components/Meta';
-import {
-  DEFAULT_META_DESCRIPTION,
-  DEFAULT_META_TITLE,
-  ROBOTS_INDEX_FOLLOW,
-  ROBOTS_NOINDEX_FOLLOW
-} from '../constants/seo';
+import { DEFAULT_META_TITLE, ROBOTS_INDEX_FOLLOW, ROBOTS_NOINDEX_FOLLOW } from '../constants/seo';
 import { listProducts, listTopProducts } from '../features/productSlice';
 import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import { isRegisterWelcomeState } from '../utils/authRedirect';
@@ -28,7 +23,10 @@ import { getCatalogSearchString } from '../utils/authModalUrl';
 import {
   buildHomeCanonicalPath,
   buildOrganizationJsonLd,
+  buildPersonJsonLd,
+  buildSearchMetaDescription,
   buildSearchTitle,
+  DEFAULT_META_DESCRIPTION,
   buildWebsiteJsonLd
 } from '../utils/seoMeta';
 
@@ -102,11 +100,11 @@ const HomeScreen = () => {
     hasFilterQuery
   });
   const metaTitle = keyword ? buildSearchTitle(keyword) : DEFAULT_META_TITLE;
-  const metaDescription = keyword
-    ? `Browse results for "${keyword}" at our electronics store.`
-    : DEFAULT_META_DESCRIPTION;
+  const metaDescription = keyword ? buildSearchMetaDescription(keyword) : DEFAULT_META_DESCRIPTION;
   const robots = keyword ? ROBOTS_NOINDEX_FOLLOW : ROBOTS_INDEX_FOLLOW;
-  const jsonLd = keyword ? undefined : [buildWebsiteJsonLd(), buildOrganizationJsonLd()];
+  const jsonLd = keyword
+    ? undefined
+    : [buildWebsiteJsonLd(), buildOrganizationJsonLd(), buildPersonJsonLd()];
   const reducedMotion = usePrefersReducedMotion();
   const listKey = `${keyword ?? ''}-${page}-${filterQuery}`;
   const itemVariants = staggerItemVariants(reducedMotion);

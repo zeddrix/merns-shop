@@ -5,11 +5,19 @@ import { DESKTOP_VIEWPORT, MOBILE_VIEWPORT } from '../fixtures/viewports';
 const assertAboutPageContent = async (page: Page): Promise<void> => {
   await expect(page).toHaveURL(/\/about$/);
   await expect(page.locator('[data-testid="about-page"]')).toBeVisible();
-  await expect(page.locator('[data-testid="about-heading"]')).toContainText('About');
+  await expect(page.locator('[data-testid="about-heading"]')).toContainText('Zeddrix Fabian');
   await expect(page.locator('[data-testid="about-developer"]')).toContainText('Zeddrix Fabian');
   await expect(page.locator('[data-testid="about-github-link"]')).toHaveAttribute(
     'href',
     'https://github.com/zeddrix/merns-shop'
+  );
+  await expect(page.locator('[data-testid="about-linkedin-link"]')).toHaveAttribute(
+    'href',
+    /linkedin\.com\/in\/zeddrix-fabian/
+  );
+  await expect(page.locator('[data-testid="about-portfolio-link"]')).toHaveAttribute(
+    'href',
+    'https://github.com/zeddrix/portfolio'
   );
 };
 
@@ -17,7 +25,7 @@ test.describe('about page', () => {
   test('about_footer_link_journey', async ({ page }) => {
     await page.goto('/');
     await assertHomeCatalogHealthy(page);
-    await page.locator('[data-testid="footer-about-link"]').click();
+    await page.locator('[data-testid="footer-developer-link"]').click();
     await assertAboutPageContent(page);
   });
 
@@ -52,8 +60,26 @@ test.describe('about page', () => {
   test('about_seo_meta_indexable', async ({ page }) => {
     await page.goto('/about');
     await expect(page.locator('[data-testid="about-page"]')).toBeVisible();
-    await expect(page).toHaveTitle(/About/);
+    await expect(page).toHaveTitle(/Zeddrix Fabian/);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index,follow');
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/about$/);
+    await expect(page.locator('meta[name="description"]').first()).toHaveAttribute(
+      'content',
+      /MERN|portfolio/i
+    );
+    await expect(page.locator('meta[name="description"]').first()).toHaveAttribute(
+      'content',
+      /Zeddrix Fabian/
+    );
+    await expect(page.locator('meta[name="keywords"]')).toHaveAttribute(
+      'content',
+      /Zeddrix Fabian/
+    );
+    const jsonLdTexts = await page.locator('script[type="application/ld+json"]').allTextContents();
+    const hasPerson = jsonLdTexts.some((raw) => {
+      const parsed = JSON.parse(raw) as { '@type'?: string; name?: string };
+      return parsed['@type'] === 'Person' && parsed.name === 'Zeddrix Fabian';
+    });
+    expect(hasPerson).toBe(true);
   });
 });

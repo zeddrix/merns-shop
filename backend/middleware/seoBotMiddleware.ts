@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import Product from '../models/Product.js';
-import { buildHomeBotHtml, buildProductBotHtml } from '../utils/seoHtml.js';
+import { buildAboutBotHtml, buildHomeBotHtml, buildProductBotHtml } from '../utils/seoHtml.js';
 import { isSeoBot } from '../utils/seoBots.js';
 
 export const seoBotMiddleware = asyncHandler(
@@ -14,6 +14,12 @@ export const seoBotMiddleware = asyncHandler(
     if (req.path === '/' || req.path === '') {
       res.type('html');
       res.send(buildHomeBotHtml());
+      return;
+    }
+
+    if (req.path === '/about' || req.path === '/about/') {
+      res.type('html');
+      res.send(buildAboutBotHtml());
       return;
     }
 

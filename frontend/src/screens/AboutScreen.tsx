@@ -1,9 +1,13 @@
 import Meta from '../components/Meta';
 import { DISPLAY_BRAND_NAME } from '../constants/brand';
-import { ROBOTS_INDEX_FOLLOW } from '../constants/seo';
+import {
+  ABOUT_KEYWORDS,
+  DEVELOPER_GITHUB_REPO_URL,
+  DEVELOPER_LINKEDIN_URL,
+  DEVELOPER_PORTFOLIO_URL,
+  ROBOTS_INDEX_FOLLOW
+} from '../constants/seo';
 import { buildAboutJsonLd, buildAboutMetaDescription, buildAboutTitle } from '../utils/seoMeta';
-
-const GITHUB_REPO_URL = 'https://github.com/zeddrix/merns-shop';
 
 const AboutScreen = () => {
   const metaTitle = buildAboutTitle();
@@ -16,14 +20,52 @@ const AboutScreen = () => {
         description={metaDescription}
         canonicalPath="/about"
         robots={ROBOTS_INDEX_FOLLOW}
+        keywords={ABOUT_KEYWORDS}
         jsonLd={buildAboutJsonLd(metaDescription)}
       />
       <div className="about-page" data-testid="about-page">
-        <h1 data-testid="about-heading">About This Project</h1>
+        <h1 data-testid="about-heading">About Zeddrix Fabian</h1>
         <p className="about-intro">
-          {DISPLAY_BRAND_NAME} is a dummy MERN e-commerce shop built for my portfolio. It was
-          developed by <span data-testid="about-developer">Zeddrix Fabian</span>.
+          {DISPLAY_BRAND_NAME} is a MERN stack portfolio e-commerce demo built by{' '}
+          <span data-testid="about-developer">Zeddrix Fabian</span>. It showcases TypeScript, React
+          19, Vite, Express, MongoDB, Redux Toolkit, and acceptance test-driven development.
         </p>
+
+        <section className="about-profiles" data-testid="about-profiles">
+          <h2>Connect</h2>
+          <ul>
+            <li>
+              <a
+                data-testid="about-linkedin-link"
+                href={DEVELOPER_LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Zeddrix Fabian on LinkedIn
+              </a>
+            </li>
+            <li>
+              <a
+                data-testid="about-portfolio-link"
+                href={DEVELOPER_PORTFOLIO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Zeddrix Fabian portfolio on GitHub
+              </a>
+            </li>
+            <li>
+              <a
+                data-testid="about-github-link"
+                href={DEVELOPER_GITHUB_REPO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                MERN&apos;s Shop source on GitHub
+              </a>
+            </li>
+          </ul>
+        </section>
 
         <div className="about-timeline">
           <article
@@ -52,17 +94,6 @@ const AboutScreen = () => {
             </p>
           </article>
         </div>
-
-        <p className="about-source">
-          <a
-            data-testid="about-github-link"
-            href={GITHUB_REPO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View source on GitHub
-          </a>
-        </p>
       </div>
     </>
   );

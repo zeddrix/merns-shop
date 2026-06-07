@@ -53,13 +53,26 @@ test.describe('public seo', () => {
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/$/);
   });
 
-  test('admin_noindex', async ({ page }) => {
+  test('home_meta_includes_developer', async ({ page }) => {
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await expect(page.locator('meta[name="description"]').first()).toHaveAttribute(
+      'content',
+      /Developed by Zeddrix Fabian/
+    );
+  });
+
+  test('admin_private_meta_includes_developer', async ({ page }) => {
     await loginAsAdmin(page);
     await page.goto('/admin/productlist');
     await expect(page.locator('[data-testid="admin-product-list"]')).toBeVisible();
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
       'content',
       'noindex,nofollow'
+    );
+    await expect(page.locator('meta[name="description"]').first()).toHaveAttribute(
+      'content',
+      /Zeddrix Fabian/
     );
   });
 });

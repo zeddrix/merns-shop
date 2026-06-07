@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { Types } from 'mongoose';
 import {
+  buildAboutBotHtml,
   buildProductBotHtml,
   buildRobotsTxt,
   buildSeoHtmlDocument
@@ -43,9 +44,19 @@ describe('seoHtml utilities', () => {
     expect(robots).toMatch(/Sitemap: https?:\/\//);
   });
 
-  it('buildProductBotHtml includes product name in og:title', () => {
+  it('buildProductBotHtml includes product name and developer in description', () => {
     const html = buildProductBotHtml(sampleProduct);
     expect(html).toContain('iPhone 15 Pro');
     expect(html).toContain('og:title');
+    expect(html).toContain('Zeddrix Fabian');
+    expect(html).toContain('Titanium design');
+  });
+
+  it('buildAboutBotHtml includes Person JSON-LD and developer in title', () => {
+    const html = buildAboutBotHtml();
+    expect(html).toContain('Zeddrix Fabian');
+    expect(html).toContain('"@type":"Person"');
+    expect(html).toContain('linkedin.com/in/zeddrix-fabian');
+    expect(html).toContain('/images/og-default.webp');
   });
 });

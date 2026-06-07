@@ -11,11 +11,13 @@ import Meta from '../components/Meta';
 import PriceDisplay from '../components/PriceDisplay';
 import AppSelect from '../components/AppSelect';
 import ProductVariantDetails from '../components/ProductVariantDetails';
+import { ROBOTS_NOINDEX_FOLLOW } from '../constants/seo';
 import {
   buildProductJsonLd,
+  buildProductMetaDescription,
+  buildProductNotFoundMetaDescription,
   buildProductTitle,
-  productOgImageUrl,
-  truncateDescription
+  productOgImageUrl
 } from '../utils/seoMeta';
 import ProductVariantPicker from '../components/ProductVariantPicker';
 import AddToCartButton, { type AddToCartButtonState } from '../components/AddToCartButton';
@@ -170,6 +172,12 @@ const ProductScreen = () => {
         </div>
       ) : error ? (
         <div data-testid="product-not-found">
+          <Meta
+            title={buildProductTitle('Product Not Found')}
+            description={buildProductNotFoundMetaDescription()}
+            canonicalPath={id ? `/product/${id}` : '/product'}
+            robots={ROBOTS_NOINDEX_FOLLOW}
+          />
           <Message variant="danger">{error}</Message>
           <p className="mt-3 mb-0">
             This product may have been removed or the link is out of date after a catalog refresh.
@@ -182,7 +190,7 @@ const ProductScreen = () => {
         <>
           <Meta
             title={buildProductTitle(product.name)}
-            description={truncateDescription(product.description)}
+            description={buildProductMetaDescription(product.description)}
             canonicalPath={`/product/${product._id}`}
             ogImage={productOgImageUrl(product)}
             ogType="product"

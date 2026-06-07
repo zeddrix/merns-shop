@@ -2,6 +2,10 @@
 
 MERN e-commerce demo — TypeScript, Express 5, Mongoose 9, Vite, React 19, Redux Toolkit, PayPal sandbox.
 
+**Live demo:** [https://merns-shop.onrender.com/](https://merns-shop.onrender.com/)
+
+**Developed by [Zeddrix Fabian](https://www.linkedin.com/in/zeddrix-fabian-30a18029a/)** — [portfolio](https://github.com/zeddrix/portfolio) · [source](https://github.com/zeddrix/merns-shop)
+
 ## Requirements
 
 - **Node.js 22+** (use `nvm use` — see [`.nvmrc`](.nvmrc))

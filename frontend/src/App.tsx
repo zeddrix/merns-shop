@@ -26,6 +26,7 @@ import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import AboutScreen from './screens/AboutScreen';
+import NotFoundScreen from './screens/NotFoundScreen';
 
 const appRouteObjects: RouteObject[] = [
   { path: '/order/:id', element: <OrderScreen /> },
@@ -48,7 +49,7 @@ const appRouteObjects: RouteObject[] = [
   { path: '/page/:pageNumber', element: <HomeScreen /> },
   { path: '/search/:keyword/page/:pageNumber', element: <HomeScreen /> },
   { path: '/', element: <HomeScreen /> },
-  { path: '*', element: <HomeScreen /> }
+  { path: '*', element: <NotFoundScreen /> }
 ];
 
 const AppRoutes = () => {

@@ -1,11 +1,8 @@
 import { Helmet } from 'react-helmet-async';
-import {
-  DEFAULT_META_DESCRIPTION,
-  DEFAULT_META_TITLE,
-  ROBOTS_INDEX_FOLLOW
-} from '../constants/seo';
+import { DEFAULT_META_TITLE, DEVELOPER_NAME, ROBOTS_INDEX_FOLLOW } from '../constants/seo';
 import {
   buildCanonicalUrl,
+  DEFAULT_META_DESCRIPTION,
   defaultOgImageUrl,
   type JsonLdValue,
   type RobotsDirective
@@ -19,6 +16,7 @@ interface MetaProps {
   robots?: RobotsDirective;
   ogImage?: string;
   ogType?: 'website' | 'product';
+  keywords?: string;
   jsonLd?: JsonLdValue;
 }
 
@@ -29,6 +27,7 @@ const Meta = ({
   robots = ROBOTS_INDEX_FOLLOW,
   ogImage,
   ogType = 'website',
+  keywords,
   jsonLd
 }: MetaProps) => {
   const canonicalUrl = buildCanonicalUrl(canonicalPath);
@@ -39,9 +38,12 @@ const Meta = ({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="author" content={DEVELOPER_NAME} />
+      {keywords ? <meta name="keywords" content={keywords} /> : null}
       <meta name="robots" content={robots} />
       <link rel="canonical" href={canonicalUrl} />
       <meta property="og:site_name" content={DISPLAY_BRAND_NAME} />
+      <meta property="og:locale" content="en_US" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />

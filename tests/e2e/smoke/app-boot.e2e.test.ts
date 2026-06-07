@@ -20,8 +20,21 @@ test.describe('smoke app boot', () => {
     await expect(page).toHaveTitle(/Welcome to MERN's Shop/);
     await expect(page.locator('meta[name="description"]').first()).toHaveAttribute(
       'content',
-      /Shop phones/i
+      /Zeddrix Fabian/
     );
+    await expect(page.locator('meta[name="author"]')).toHaveAttribute('content', 'Zeddrix Fabian');
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+      'content',
+      /\/images\/og-default\.webp/
+    );
+    await expect(page.locator('[data-testid="footer-developer-link"]')).toBeVisible();
+    const jsonLdScripts = page.locator('script[type="application/ld+json"]');
+    const jsonLdTexts = await jsonLdScripts.allTextContents();
+    const hasPerson = jsonLdTexts.some((raw) => {
+      const parsed = JSON.parse(raw) as { '@type'?: string; name?: string };
+      return parsed['@type'] === 'Person' && parsed.name === 'Zeddrix Fabian';
+    });
+    expect(hasPerson).toBe(true);
     await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', /favicon\.ico/);
 
     const response = await request.get('/api/products');
@@ -88,9 +101,10 @@ test.describe('smoke app boot', () => {
     );
   });
 
-  test('unknown_route_falls_back_without_crash', async ({ page }) => {
+  test('unknown_route_shows_not_found_without_crash', async ({ page }) => {
     await page.goto('/this-route-does-not-exist');
     await expect(page.locator('[data-testid="site-brand"]')).toBeVisible();
-    await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
+    await expect(page.locator('[data-testid="not-found-page"]')).toBeVisible();
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,nofollow');
   });
 });

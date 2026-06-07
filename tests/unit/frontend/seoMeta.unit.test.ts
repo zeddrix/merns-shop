@@ -1,12 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import {
+  buildAboutMetaDescription,
   buildCanonicalUrl,
+  buildDeveloperSameAs,
   buildHomeCanonicalPath,
+  buildMetaDescription,
+  buildPersonJsonLd,
   buildProductJsonLd,
+  buildProductMetaDescription,
   buildProductTitle,
+  buildSearchMetaDescription,
   buildSearchTitle,
+  DEFAULT_META_DESCRIPTION,
+  defaultOgImageUrl,
   truncateDescription
 } from '../../../frontend/src/utils/seoMeta';
+import { DEVELOPER_LINKEDIN_URL, DEVELOPER_NAME } from '../../../frontend/src/constants/seo';
 import type { Product } from '../../../frontend/src/types';
 
 const sampleProduct: Product = {
@@ -44,6 +53,35 @@ describe('seoMeta utilities', () => {
     expect(result.endsWith('…')).toBe(true);
   });
 
+  it('buildMetaDescription appends developer attribution suffix', () => {
+    const result = buildMetaDescription('Shop electronics at great prices.');
+    expect(result).toContain('Developed by Zeddrix Fabian');
+    expect(result.length).toBeLessThanOrEqual(155);
+  });
+
+  it('buildMetaDescription skips duplicate attribution when name already present', () => {
+    const about = buildAboutMetaDescription();
+    expect(about).toContain(DEVELOPER_NAME);
+    expect(about.match(/Developed by Zeddrix Fabian/g)?.length ?? 0).toBeLessThanOrEqual(1);
+  });
+
+  it('buildSearchMetaDescription includes keyword and developer', () => {
+    const result = buildSearchMetaDescription('iPhone');
+    expect(result).toContain('iPhone');
+    expect(result).toContain('Zeddrix Fabian');
+  });
+
+  it('buildProductMetaDescription preserves product copy and developer', () => {
+    const result = buildProductMetaDescription('Titanium design and A17 Pro chip.');
+    expect(result).toContain('Titanium');
+    expect(result).toContain('Zeddrix Fabian');
+    expect(result.length).toBeLessThanOrEqual(155);
+  });
+
+  it('DEFAULT_META_DESCRIPTION includes developer attribution', () => {
+    expect(DEFAULT_META_DESCRIPTION).toContain('Zeddrix Fabian');
+  });
+
   it('buildSearchTitle includes keyword and brand', () => {
     expect(buildSearchTitle('iPhone')).toContain('iPhone');
     expect(buildSearchTitle('iPhone')).toContain("MERN's Shop");
@@ -74,5 +112,23 @@ describe('seoMeta utilities', () => {
     const offers = jsonLd.offers as Record<string, unknown>;
     expect(offers['@type']).toBe('Offer');
     expect(offers.priceCurrency).toBe('USD');
+  });
+
+  it('buildPersonJsonLd includes sameAs profiles', () => {
+    const jsonLd = buildPersonJsonLd();
+    expect(jsonLd['@type']).toBe('Person');
+    expect(jsonLd.name).toBe(DEVELOPER_NAME);
+    const sameAs = jsonLd.sameAs as string[];
+    expect(sameAs).toContain('https://github.com/zeddrix/merns-shop');
+    expect(sameAs).toContain('https://github.com/zeddrix/portfolio');
+    expect(sameAs).toContain(DEVELOPER_LINKEDIN_URL);
+  });
+
+  it('buildDeveloperSameAs returns three profile URLs', () => {
+    expect(buildDeveloperSameAs()).toHaveLength(3);
+  });
+
+  it('defaultOgImageUrl points to branded share image', () => {
+    expect(defaultOgImageUrl()).toMatch(/\/images\/og-default\.webp$/);
   });
 });

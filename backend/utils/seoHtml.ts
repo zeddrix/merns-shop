@@ -1,6 +1,11 @@
 import {
   DEFAULT_META_DESCRIPTION,
   DEFAULT_META_TITLE,
+  DEFAULT_OG_IMAGE_PATH,
+  buildAboutMetaDescription,
+  buildAboutTitle,
+  buildMetaDescription,
+  buildPersonJsonLd,
   getSiteUrl,
   toAbsoluteUrl
 } from '../config/seo.js';
@@ -25,14 +30,18 @@ export interface SeoHtmlDocumentOptions {
   ogImage?: string;
   ogType?: 'website' | 'product';
   robots?: string;
+  author?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 export const buildSeoHtmlDocument = (options: SeoHtmlDocumentOptions): string => {
   const canonicalUrl = toAbsoluteUrl(options.canonicalPath);
-  const imageUrl = options.ogImage ?? toAbsoluteUrl('/favicon.ico');
+  const imageUrl = options.ogImage ?? toAbsoluteUrl(DEFAULT_OG_IMAGE_PATH);
   const robots = options.robots ?? 'index,follow';
   const ogType = options.ogType ?? 'website';
+  const authorMeta = options.author
+    ? `<meta name="author" content="${escapeHtml(options.author)}"/>`
+    : '';
   const jsonLdEntries = options.jsonLd
     ? Array.isArray(options.jsonLd)
       ? options.jsonLd
@@ -50,9 +59,11 @@ export const buildSeoHtmlDocument = (options: SeoHtmlDocumentOptions): string =>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>${escapeHtml(options.title)}</title>
 <meta name="description" content="${escapeHtml(options.description)}"/>
+${authorMeta}
 <meta name="robots" content="${escapeHtml(robots)}"/>
 <link rel="canonical" href="${escapeHtml(canonicalUrl)}"/>
 <meta property="og:site_name" content="${escapeHtml(DISPLAY_BRAND_NAME)}"/>
+<meta property="og:locale" content="en_US"/>
 <meta property="og:title" content="${escapeHtml(options.title)}"/>
 <meta property="og:description" content="${escapeHtml(options.description)}"/>
 <meta property="og:url" content="${escapeHtml(canonicalUrl)}"/>
@@ -70,19 +81,53 @@ ${jsonLdScripts}
 </html>`;
 };
 
+const personAuthorRef = (): Record<string, unknown> => ({
+  '@type': 'Person',
+  name: 'Zeddrix Fabian',
+  url: toAbsoluteUrl('/about')
+});
+
 export const buildHomeBotHtml = (): string =>
   buildSeoHtmlDocument({
     title: DEFAULT_META_TITLE,
     description: DEFAULT_META_DESCRIPTION,
     canonicalPath: '/',
     ogType: 'website',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: DISPLAY_BRAND_NAME,
-      url: getSiteUrl()
-    }
+    author: 'Zeddrix Fabian',
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: DISPLAY_BRAND_NAME,
+        url: getSiteUrl(),
+        author: personAuthorRef()
+      },
+      buildPersonJsonLd()
+    ]
   });
+
+export const buildAboutBotHtml = (): string => {
+  const description = buildAboutMetaDescription();
+  return buildSeoHtmlDocument({
+    title: buildAboutTitle(),
+    description,
+    canonicalPath: '/about',
+    ogType: 'website',
+    author: 'Zeddrix Fabian',
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: buildAboutTitle(),
+        description,
+        url: toAbsoluteUrl('/about'),
+        author: personAuthorRef(),
+        mainEntity: buildPersonJsonLd()
+      },
+      buildPersonJsonLd()
+    ]
+  });
+};
 
 export const buildProductBotHtml = (product: IProductDocument): string => {
   const lowestVariant = [...product.variants].sort((a, b) => a.price - b.price)[0];
@@ -90,10 +135,11 @@ export const buildProductBotHtml = (product: IProductDocument): string => {
 
   return buildSeoHtmlDocument({
     title: `${product.name} | ${DISPLAY_BRAND_NAME}`,
-    description: truncateDescription(product.description),
+    description: buildMetaDescription(product.description),
     canonicalPath: `/product/${product._id.toString()}`,
     ogImage: toAbsoluteUrl(product.image),
     ogType: 'product',
+    author: 'Zeddrix Fabian',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'Product',
@@ -124,3 +170,5 @@ Disallow: /order
 Sitemap: ${siteUrl}/sitemap.xml
 `;
 };
+
+export { buildMetaDescription, truncateDescription };

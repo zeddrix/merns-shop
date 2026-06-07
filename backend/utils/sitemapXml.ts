@@ -48,7 +48,7 @@ export const buildDefaultSitemapEntries = (
   const about: SitemapUrlEntry = {
     loc: `${siteUrl}/about`,
     changefreq: 'monthly',
-    priority: 0.5
+    priority: 0.9
   };
 
   const products: SitemapUrlEntry[] = productPaths.map((product) => ({

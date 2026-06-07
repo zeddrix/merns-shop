@@ -60,9 +60,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(seoBotMiddleware);
   app.use(express.static(frontendDistDir));
 
-  app.get('/{*splat}', (_req, res) =>
-    res.sendFile(path.resolve(frontendDistDir, 'index.html'))
-  );
+  app.get('/{*splat}', (_req, res) => res.sendFile(path.resolve(frontendDistDir, 'index.html')));
 } else if (process.env.NODE_ENV !== 'test') {
   app.get('/', (_req, res) => {
     res.send('API is running...');

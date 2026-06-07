@@ -40,4 +40,10 @@ describe('seo routes integration', () => {
     expect(res.status).toBe(200);
     expect(res.headers['x-content-type-options']).toBe('nosniff');
   });
+
+  it('GET /sitemap.xml lists about page at high priority', async () => {
+    const res = await request(app).get('/sitemap.xml');
+    expect(res.status).toBe(200);
+    expect(res.text).toMatch(/\/about<\/loc>[\s\S]*<priority>0\.9<\/priority>/);
+  });
 });
