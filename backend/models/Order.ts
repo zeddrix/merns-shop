@@ -120,6 +120,9 @@ const OrderSchema = new Schema<IOrderDocument>(
   }
 );
 
+OrderSchema.index({ user: 1, createdAt: -1 });
+OrderSchema.index({ user: 1, isDelivered: 1, 'orderItems.product': 1 });
+
 const Order = mongoose.model<IOrderDocument, IOrderModel>('Order', OrderSchema);
 
 export default Order;

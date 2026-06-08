@@ -12,12 +12,26 @@ import {
 import { enrichProductForList } from '../utils/productVariants.js';
 import { userCanReviewProduct } from '../utils/reviewEligibility.js';
 import { findProductByIdOrModelKey } from '../utils/productResolve.js';
+import {
+  PRODUCT_LIST_PROJECT,
+  PRODUCT_LIST_SELECT,
+  type ProductListLean
+} from '../utils/productListProjection.js';
+import { getFromCache, setInCache, bustCacheKey } from '../utils/memoryCache.js';
 
-const toListProduct = (product: {
-  toObject?: () => Record<string, unknown>;
-  variants: unknown[];
-}) => {
-  const plain = product.toObject ? product.toObject() : product;
+const TOP_PRODUCTS_CACHE_KEY = 'products-top';
+const TOP_PRODUCTS_CACHE_TTL_MS = 120_000;
+
+const bustProductListCaches = (): void => {
+  bustCacheKey('product-meta');
+  bustCacheKey('products-top');
+  bustCacheKey('sitemap-xml');
+};
+
+const toListProduct = (
+  product: ProductListLean | { toObject?: () => Record<string, unknown>; variants: unknown[] }
+) => {
+  const plain = 'toObject' in product && product.toObject ? product.toObject() : product;
   return enrichProductForList(plain as Parameters<typeof enrichProductForList>[0]);
 };
 
@@ -45,14 +59,17 @@ const getProducts = asyncHandler(async (req: Request, res: Response) => {
       { $addFields: { priceFromSort: { $min: '$variants.price' } } },
       { $sort: { priceFromSort: getPriceSortDirection(sortKey) } },
       { $skip: PRODUCTS_PER_PAGE * (page - 1) },
-      { $limit: PRODUCTS_PER_PAGE }
+      { $limit: PRODUCTS_PER_PAGE },
+      { $project: PRODUCT_LIST_PROJECT }
     ]);
   } else {
     const sort = buildProductSort(sortKey);
     products = await Product.find(filter)
+      .select(PRODUCT_LIST_SELECT)
       .sort(sort)
       .limit(PRODUCTS_PER_PAGE)
-      .skip(PRODUCTS_PER_PAGE * (page - 1));
+      .skip(PRODUCTS_PER_PAGE * (page - 1))
+      .lean();
   }
 
   res.json({
@@ -93,6 +110,7 @@ const deleteProduct = asyncHandler(async (req: Request, res: Response) => {
 
   if (product) {
     await product.deleteOne();
+    bustProductListCaches();
     res.json({ msg: 'Product removed' });
   } else {
     res.status(404);
@@ -122,6 +140,7 @@ const createProduct = asyncHandler(async (req: Request, res: Response) => {
   });
 
   const createdProduct = await product.save();
+  bustProductListCaches();
   res.status(201).json(toListProduct(createdProduct));
 });
 
@@ -156,6 +175,7 @@ const updateProduct = asyncHandler(async (req: Request, res: Response) => {
     product.variants = variants;
 
     const updatedProduct = await product.save();
+    bustProductListCaches();
     res.json(toListProduct(updatedProduct));
   } else {
     res.status(404);
@@ -211,8 +231,20 @@ const createProductReview = asyncHandler(async (req: Request, res: Response) => 
 });
 
 const getTopProducts = asyncHandler(async (_req: Request, res: Response) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(3);
-  res.json(products.map((p) => toListProduct(p)));
+  const cached = getFromCache<ReturnType<typeof toListProduct>[]>(TOP_PRODUCTS_CACHE_KEY);
+  if (cached) {
+    res.json(cached);
+    return;
+  }
+
+  const products = await Product.find({})
+    .select(PRODUCT_LIST_SELECT)
+    .sort({ rating: -1 })
+    .limit(3)
+    .lean();
+  const payload = products.map((p) => toListProduct(p));
+  setInCache(TOP_PRODUCTS_CACHE_KEY, payload, TOP_PRODUCTS_CACHE_TTL_MS);
+  res.json(payload);
 });
 
 export {

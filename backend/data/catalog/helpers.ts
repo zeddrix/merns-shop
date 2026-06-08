@@ -3,6 +3,14 @@ import type { CatalogParentDraft, CatalogVariantDraft } from './types.js';
 export const catalogImage = (brand: string, slug: string): string =>
   `/images/catalog/${brand.toLowerCase()}/${slug}.webp`;
 
+/** Responsive variants are derived at build time: `{base}-400.webp`, `{base}-800.webp`, full `{base}.webp`. */
+export const catalogImageVariant = (basePath: string, width: 400 | 800 | 1200): string => {
+  if (width >= 1200) {
+    return basePath;
+  }
+  return basePath.replace(/\.webp$/i, `-${width}.webp`);
+};
+
 export const storageVariants = (
   modelKey: string,
   tiers: Array<{ gb: number; listPrice: number }>,

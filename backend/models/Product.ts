@@ -149,6 +149,8 @@ const ProductSchema = new Schema<IProductDocument>(
 ProductSchema.index({ brand: 1, category: 1, subcategory: 1 });
 ProductSchema.index({ modelKey: 1 }, { unique: true });
 ProductSchema.index({ 'variants.sku': 1 });
+ProductSchema.index({ name: 'text', brand: 'text', description: 'text' });
+ProductSchema.index({ rating: -1 });
 
 const Product = mongoose.model<IProductDocument, IProductModel>('Product', ProductSchema);
 

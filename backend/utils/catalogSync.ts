@@ -3,6 +3,7 @@ import Product, { type IProductDocument } from '../models/Product.js';
 import type { SeedReview } from '../data/catalog/types.js';
 import type { SeedCatalogProduct } from '../data/buildSeedCatalog.js';
 import { averageRating } from '../data/catalog/review-seeds.js';
+import { bustCacheKey } from './memoryCache.js';
 
 export interface CatalogSyncOptions {
   reviewerUserId: Types.ObjectId;
@@ -95,6 +96,10 @@ export const syncCatalogProducts = async (
   }
 
   await Product.bulkWrite(bulkOps, { ordered: false });
+
+  bustCacheKey('product-meta');
+  bustCacheKey('products-top');
+  bustCacheKey('sitemap-xml');
 
   const syncedProducts = await Product.find({ modelKey: { $in: modelKeys } });
   const syncedByModelKey = new Map(syncedProducts.map((product) => [product.modelKey, product]));

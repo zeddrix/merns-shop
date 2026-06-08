@@ -20,14 +20,16 @@ export const buildProductListFilter = (params: ProductListQueryParams): ProductF
   const filter: ProductFilter = {};
 
   if (params.keyword) {
-    const regex = { $regex: params.keyword, $options: 'i' };
-    filter.$or = [
-      { name: regex },
-      { brand: regex },
-      { description: regex },
-      { 'variants.label': regex },
-      { 'variants.sku': regex }
-    ];
+    const keyword = params.keyword.trim();
+    const looksLikeSku = /^[a-z0-9-]+$/i.test(keyword) && keyword.includes('-');
+
+    if (looksLikeSku) {
+      const skuRegex = { $regex: keyword, $options: 'i' };
+      filter.$or = [{ 'variants.sku': skuRegex }, { 'variants.label': skuRegex }];
+    } else {
+      const searchTerms = keyword.includes(' ') ? `"${keyword.replace(/"/g, '')}"` : keyword;
+      filter.$text = { $search: searchTerms };
+    }
   }
 
   if (params.brand) {

@@ -3,9 +3,12 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import compression from 'compression';
+import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import { createPrecompressedStatic } from './middleware/precompressedStatic.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import { seoBotMiddleware } from './middleware/seoBotMiddleware.js';
 import productRoutes from './routes/productRoutes.js';
@@ -21,6 +24,10 @@ const __dirname = path.dirname(__filename);
 const frontendDistDir = path.join(__dirname, '..', '..', 'frontend', 'dist');
 
 const app = express();
+
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
+  app.set('trust proxy', 1);
+}
 
 if (process.env.NODE_ENV !== 'production') {
   app.use(
@@ -39,6 +46,19 @@ if (process.env.NODE_ENV !== 'production') {
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+app.use(compression());
+
+const isTestEnv = process.env.NODE_ENV === 'test';
+
+const apiLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: () => Number(process.env.API_RATE_LIMIT_MAX ?? (isTestEnv ? 10_000 : 100)),
+  standardHeaders: true,
+  legacyHeaders: false
+});
+
+app.use('/api', apiLimiter);
 
 app.use(express.json());
 app.use(cookieParser());
@@ -60,6 +80,19 @@ app.use(seoRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(seoBotMiddleware);
+  app.use(
+    '/assets',
+    ...createPrecompressedStatic(path.join(frontendDistDir, 'assets'), {
+      maxAge: '1y',
+      immutable: true
+    })
+  );
+  app.use(
+    '/images/catalog',
+    express.static(path.join(frontendDistDir, 'images/catalog'), {
+      maxAge: '7d'
+    })
+  );
   app.use(express.static(frontendDistDir));
 
   app.get('/{*splat}', (_req, res) => res.sendFile(path.resolve(frontendDistDir, 'index.html')));
