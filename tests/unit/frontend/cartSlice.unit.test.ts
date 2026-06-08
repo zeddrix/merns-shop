@@ -37,7 +37,8 @@ describe('cartSlice', () => {
         }
       ],
       shippingAddress: {},
-      staleItemsPruned: false
+      staleItemsPruned: false,
+      rehydrating: false
     };
 
     const state = cartReducer(initial, removeFromCart(cartLineKey('abc', 'abc-128gb')));
@@ -110,7 +111,12 @@ describe('cartSlice', () => {
       countInStock: 5,
       qty: 1
     };
-    const initial = { cartItems: [], shippingAddress: {}, staleItemsPruned: false };
+    const initial = {
+      cartItems: [],
+      shippingAddress: {},
+      staleItemsPruned: false,
+      rehydrating: false
+    };
 
     const state = cartReducer(initial, {
       type: rehydrateCart.fulfilled.type,
@@ -123,7 +129,12 @@ describe('cartSlice', () => {
   });
 
   it('saves shipping address to state and localStorage', () => {
-    const initial = { cartItems: [], shippingAddress: {}, staleItemsPruned: false };
+    const initial = {
+      cartItems: [],
+      shippingAddress: {},
+      staleItemsPruned: false,
+      rehydrating: false
+    };
     const address = {
       address: '123 St',
       city: 'City',
@@ -159,7 +170,8 @@ describe('cartSlice', () => {
         }
       ],
       shippingAddress: {},
-      staleItemsPruned: false
+      staleItemsPruned: false,
+      rehydrating: false
     };
 
     const state = cartReducer(initial, {

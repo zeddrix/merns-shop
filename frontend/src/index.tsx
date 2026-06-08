@@ -1,5 +1,16 @@
 import './api/http';
+import { clearFetchCacheForTests } from './utils/fetchCache';
 import { StrictMode } from 'react';
+
+declare global {
+  interface Window {
+    __e2eClearFetchCache?: () => void;
+  }
+}
+
+if (import.meta.env.DEV) {
+  window.__e2eClearFetchCache = clearFetchCacheForTests;
+}
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';

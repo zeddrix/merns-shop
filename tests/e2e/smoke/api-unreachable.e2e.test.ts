@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import {
   assertHomeCatalogHealthy,
+  clearClientFetchCache,
   createPaidOrderViaApi,
   loginAs,
   loginAsAdmin,
@@ -102,6 +103,7 @@ test.describe('api unreachable smoke', () => {
     await loginAsAdmin(page);
     await expect(page.locator('[data-testid="nav-login"]')).toBeHidden();
     blockApi.value = true;
+    await clearClientFetchCache(page);
     await openAdminNavDropdown(page);
     await page.locator('[data-testid="nav-admin-products"]').click();
     await expect(page).toHaveURL(/\/admin\/productlist$/);

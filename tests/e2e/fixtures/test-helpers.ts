@@ -1,5 +1,6 @@
-import type { Locator, Page } from '@playwright/test';
+import type { BrowserContext, Locator, Page } from '@playwright/test';
 import { expect, request as playwrightRequest } from '@playwright/test';
+import { SLOW_SERVER_SESSION_WARMED_KEY } from '../../../frontend/src/constants/slowServerNotice';
 import { E2E_CLIENT_URL } from '../config/e2e-ports';
 import { PWA_E2E_URL } from '../config/pwa-ports';
 import { TEST_USERS } from './test-users';
@@ -80,8 +81,44 @@ export async function assertNoHorizontalOverflow(page: Page): Promise<void> {
   expect(overflows).toBe(false);
 }
 
+/** Delays catalog API responses to simulate free-tier cold-start UX in E2E. */
+export interface DelayedCatalogApiOptions {
+  delayMs: number;
+  enabled: { value: boolean };
+}
+
+export async function registerDelayedCatalogApi(
+  context: BrowserContext,
+  options: DelayedCatalogApiOptions
+): Promise<void> {
+  await context.route('**/api/products**', async (route) => {
+    if (options.enabled.value) {
+      await new Promise((resolve) => setTimeout(resolve, options.delayMs));
+    }
+    await route.continue();
+  });
+}
+
+/** Clears slow-server session warmed flag before the next navigation (E2E isolation). */
+export async function installSlowServerSessionReset(page: Page): Promise<void> {
+  await page.addInitScript((key) => {
+    sessionStorage.removeItem(key);
+  }, SLOW_SERVER_SESSION_WARMED_KEY);
+}
+
+/** Clears slow-server session warmed flag on the current document (requires app origin). */
+export async function clearSlowServerSessionWarmed(page: Page): Promise<void> {
+  await page.evaluate((key) => sessionStorage.removeItem(key), SLOW_SERVER_SESSION_WARMED_KEY);
+}
+
+/** Clears in-memory catalog fetch cache so blocked API routes surface unreachable UI. */
+export async function clearClientFetchCache(page: Page): Promise<void> {
+  await page.evaluate(() => window.__e2eClearFetchCache?.());
+}
+
 /** Home catalog loaded with carousel, products, and no API error banners. */
 export async function assertHomeCatalogHealthy(page: Page): Promise<void> {
+  await expect(page.locator('[data-testid="slow-server-banner"]')).toHaveCount(0);
   await expect(page.locator('[data-testid="home-carousel-error"]')).toHaveCount(0);
   await expect(page.locator('[data-testid="home-products-error"]')).toHaveCount(0);
   await expect(page.locator('[data-testid="product-carousel"]')).toBeVisible();
@@ -91,6 +128,7 @@ export async function assertHomeCatalogHealthy(page: Page): Promise<void> {
 
 /** Filtered catalog without carousel — subcategory or filter query active. */
 export async function assertFilteredCatalogHealthy(page: Page): Promise<void> {
+  await expect(page.locator('[data-testid="slow-server-banner"]')).toHaveCount(0);
   await expect(page.locator('[data-testid="home-carousel-error"]')).toHaveCount(0);
   await expect(page.locator('[data-testid="home-products-error"]')).toHaveCount(0);
   await expect(page.locator('[data-testid="product-carousel"]')).toHaveCount(0);

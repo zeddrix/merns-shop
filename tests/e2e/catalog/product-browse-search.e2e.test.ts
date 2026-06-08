@@ -5,6 +5,7 @@ import {
   isProductDetailsApiResponse,
   openProductByExactName,
   productCardByExactName,
+  registerDelayedCatalogApi,
   fillSearchAndSubmit,
   searchProducts,
   selectAppOption,
@@ -91,15 +92,10 @@ test.describe('catalog browse and search', () => {
   test('add_to_cart_shows_loading_spinner_while_pending', async ({ page, context }) => {
     await openProductByExactName(page, IPHONE_15_PRO);
 
-    let delayAdds = false;
-    await context.route('**/api/products/**', async (route) => {
-      if (delayAdds) {
-        await new Promise((resolve) => setTimeout(resolve, 600));
-      }
-      await route.continue();
-    });
+    const delayAdds = { value: false };
+    await registerDelayedCatalogApi(context, { delayMs: 600, enabled: delayAdds });
 
-    delayAdds = true;
+    delayAdds.value = true;
     await page.locator('[data-testid="product-add-cart"]').click();
     await expect(page.locator('[data-testid="product-add-cart-loading"]')).toBeVisible();
     await expect(page.locator('[data-testid="product-add-cart-added"]')).toBeVisible();
