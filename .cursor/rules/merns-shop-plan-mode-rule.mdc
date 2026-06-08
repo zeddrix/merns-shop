@@ -1,0 +1,58 @@
+---
+alwaysApply: true
+---
+
+IN PLAN MODE: I want a PLAN only (no implementation yet).
+
+Create a single, seamless, comprehensive, and highly specific ATDD execution plan for this scope: <scope here>.
+
+Hard requirements for the plan:
+1) Must be issue-by-issue exhaustive. For EVERY identified gap/bug/improvement, include:
+   - Issue ID + short title
+   - Root cause summary
+   - Exact production files to change
+   - Exact existing test files/spec blocks to update (or justify new file)
+   - Exact new/updated E2E test scenarios (Given/When/Then style)
+   - Exact acceptance criteria (what must be true to mark done)
+
+2) ATDD sequencing is mandatory per issue:
+   - E2E acceptance tests first (red specs written; no need to run red)
+   - Production changes
+   - Green validation for related E2E
+   - Unit/integration backfill only where needed
+
+3) Must strictly follow:
+   - docs/e2e-testing-rules.md
+   - docs/unit-testing-rules.md
+   - docs/integration-testing-rules.md
+   - CLAUDE.md quality rules
+
+4) Include a “Test Refactor Compliance” section:
+   - Which existing E2E tests are shallow/non-compliant
+   - How each will be merged/refactored to comply (>=2 user actions + meaningful outcomes, stable data-testid selectors, no brittle waits, state isolation)
+
+5) Include execution commands in order:
+   - quality gate first (`pnpm quality`)
+   - related E2E runs (file-by-file)
+   - related unit/integration runs
+   - full related verification sequence
+
+6) Include migration handling decision tree:
+   - if schema changes needed -> exact migration workflow (local apply, seed sync, safe prod apply)
+   - if not needed -> explicitly state “no migration expected” and verification step
+
+7) Include Definition of Done checklist:
+   - per issue DoD
+   - global DoD (all related tests green, quality clean, behavior parity validated)
+
+8) No generic wording. No placeholders like “update tests as needed”.
+   - Must name concrete files and concrete scenario names.
+   - If uncertain, state assumption explicitly and ask only critical questions.
+
+Output format (strict):
+A) Scope and assumptions
+B) Issue matrix (one block per issue)
+C) Detailed execution sequence (ordered steps)
+D) Command plan
+E) Risk/rollback notes
+F) Definition of done
