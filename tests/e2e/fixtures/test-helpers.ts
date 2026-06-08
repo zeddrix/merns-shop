@@ -39,6 +39,19 @@ export async function openMobileNavIfNeeded(page: Page): Promise<void> {
   }
 }
 
+/** Expands the catalog filters panel on mobile/tablet when the toggle is shown. */
+export async function openCatalogFiltersIfNeeded(page: Page): Promise<void> {
+  const toggle = page.locator('[data-testid="catalog-filters-toggle"]');
+  if ((await toggle.count()) === 0 || !(await toggle.isVisible())) {
+    return;
+  }
+  const brandTrigger = page.locator('[data-testid="filter-brand-trigger"]');
+  if (!(await brandTrigger.isVisible())) {
+    await toggle.click();
+    await expect(brandTrigger).toBeVisible();
+  }
+}
+
 /** Opens the desktop search overlay or mobile nav search when the input is not visible. */
 export async function openSearchIfNeeded(page: Page): Promise<void> {
   await openMobileNavIfNeeded(page);

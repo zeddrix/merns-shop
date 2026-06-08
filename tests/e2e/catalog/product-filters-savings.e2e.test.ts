@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { fillSearchAndSubmit, selectAppOption } from '../fixtures/test-helpers';
+import {
+  fillSearchAndSubmit,
+  openCatalogFiltersIfNeeded,
+  selectAppOption
+} from '../fixtures/test-helpers';
 
 const parsePriceFrom = async (card: ReturnType<import('@playwright/test').Page['locator']>) => {
   const text = await card.locator('[data-testid="product-price-display"]').innerText();
@@ -18,6 +22,7 @@ test.describe('catalog filters and savings', () => {
   });
 
   test('filter_brand_apple_shows_iphones', async ({ page }) => {
+    await openCatalogFiltersIfNeeded(page);
     await selectAppOption(page, 'filter-brand', 'Apple');
     await selectAppOption(page, 'filter-subcategory', 'Phones');
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
@@ -45,6 +50,7 @@ test.describe('catalog filters and savings', () => {
   });
 
   test('sort_price_low_to_high', async ({ page }) => {
+    await openCatalogFiltersIfNeeded(page);
     await selectAppOption(page, 'filter-sort', 'price-asc');
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
     const first = page.locator('[data-testid^="product-card-"]').first();
@@ -57,6 +63,7 @@ test.describe('catalog filters and savings', () => {
   });
 
   test('filter_max_price_limits_results', async ({ page }) => {
+    await openCatalogFiltersIfNeeded(page);
     await page.locator('[data-testid="filter-max-price"]').fill('50');
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
     const firstPrice = await parsePriceFrom(page.locator('[data-testid^="product-card-"]').first());
@@ -64,6 +71,7 @@ test.describe('catalog filters and savings', () => {
   });
 
   test('filter_min_price_narrows_results', async ({ page }) => {
+    await openCatalogFiltersIfNeeded(page);
     await page.locator('[data-testid="filter-min-price"]').fill('500');
     await expect(page).toHaveURL(/minPrice=500/);
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
@@ -72,6 +80,7 @@ test.describe('catalog filters and savings', () => {
   });
 
   test('filter_clear_resets_query', async ({ page }) => {
+    await openCatalogFiltersIfNeeded(page);
     await selectAppOption(page, 'filter-brand', 'Apple');
     await expect(page).toHaveURL(/brand=Apple/);
     await expect(page.locator('[data-testid="filter-clear"]')).toBeVisible();
@@ -82,6 +91,7 @@ test.describe('catalog filters and savings', () => {
   });
 
   test('sort_price_desc_orders_results', async ({ page }) => {
+    await openCatalogFiltersIfNeeded(page);
     await selectAppOption(page, 'filter-sort', 'price-desc');
     await expect(page).toHaveURL(/sort=price-desc/);
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();

@@ -153,8 +153,20 @@ test.describe('responsive layout', () => {
     await page.goto('/');
     await assertHomeCatalogHealthy(page);
     await page.locator('[data-testid="site-footer"]').scrollIntoViewIfNeeded();
-    await expect(page.locator('[data-testid="footer-about-link"]')).toBeVisible();
+    await expect(page.locator('[data-testid="footer-developer-link"]')).toBeVisible();
     await assertNoHorizontalOverflow(page);
+  });
+
+  test('mobile_catalog_filters_toggle', async ({ page }) => {
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await expect(page.locator('[data-testid="catalog-filters-toggle"]')).toBeVisible();
+    await expect(page.locator('[data-testid="filter-brand-trigger"]')).toBeHidden();
+    await page.locator('[data-testid="catalog-filters-toggle"]').click();
+    await expect(page.locator('[data-testid="filter-brand-trigger"]')).toBeVisible();
+    await selectAppOption(page, 'filter-brand', 'Apple');
+    await expect(page).toHaveURL(/brand=Apple/);
+    await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
   });
 
   test('mobile_viewport_meta_includes_safe_area', async ({ page }) => {
@@ -176,6 +188,14 @@ test.describe('responsive layout tablet', () => {
     await clickProductCardToPdp(page.locator('[data-testid^="product-card-"]').first());
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
     await assertNoHorizontalOverflow(page);
+  });
+
+  test('tablet_catalog_filters_toggle', async ({ page }) => {
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await expect(page.locator('[data-testid="catalog-filters-toggle"]')).toBeVisible();
+    await page.locator('[data-testid="catalog-filters-toggle"]').click();
+    await expect(page.locator('[data-testid="filter-brand-trigger"]')).toBeVisible();
   });
 
   test('tablet_nav_desktop_search_absent', async ({ page }) => {
