@@ -1430,30 +1430,6 @@ strong {
   }
 }
 
-.pwa-install-hint-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 1300;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.45);
-}
-
-.pwa-install-hint-panel {
-  max-width: 22rem;
-  padding: 1rem 1.25rem;
-  border-radius: var(--radius-md);
-  background: #fff;
-  box-shadow: var(--shadow-md);
-}
-
-.pwa-install-hint-message {
-  margin-bottom: 0.75rem;
-  color: var(--color-text);
-}
-
 .pwa-update-banner__inner {
   display: flex;
   flex-direction: column;
@@ -1481,12 +1457,12 @@ strong {
 @media (min-width: 576px) {
   .pwa-update-banner__inner {
     flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
+    justify-content: center;
+    text-align: center;
   }
 
   .pwa-update-banner__actions {
-    justify-content: flex-end;
+    justify-content: center;
   }
 }
 

@@ -13,6 +13,11 @@ export function registerAppServiceWorker(): void {
     onNeedRefresh() {
       needRefreshHandler?.();
     },
+    onRegisterError(error) {
+      if (import.meta.env.DEV) {
+        console.error('[PWA] Service worker registration failed:', error);
+      }
+    },
     immediate: true
   });
 }

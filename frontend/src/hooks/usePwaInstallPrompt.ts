@@ -26,11 +26,22 @@ export const detectPwaInstalled = (): boolean => {
   return Boolean(nav.standalone);
 };
 
+export const hasServiceWorkerController = (): boolean => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+  return Boolean(navigator.serviceWorker?.controller);
+};
+
 export const isInstallCapableBrowser = (): boolean => {
   if (typeof window === 'undefined') {
     return false;
   }
-  return 'serviceWorker' in navigator && Boolean(document.querySelector('link[rel="manifest"]'));
+  return (
+    'serviceWorker' in navigator &&
+    Boolean(document.querySelector('link[rel="manifest"]')) &&
+    hasServiceWorkerController()
+  );
 };
 
 const readEarlyDeferredPrompt = (): BeforeInstallPromptEvent | null => {
@@ -53,6 +64,7 @@ export const usePwaInstallPrompt = () => {
   );
   const [isInstalled, setIsInstalled] = useState(() => detectPwaInstalled());
   const [installedCheckDone, setInstalledCheckDone] = useState(false);
+  const [swControlling, setSwControlling] = useState(() => hasServiceWorkerController());
   const [bannerDismissed, setBannerDismissed] = useState(() => readBannerDismissed());
 
   useEffect(() => {
@@ -83,6 +95,13 @@ export const usePwaInstallPrompt = () => {
 
     void resolveInstalledState();
 
+    const syncDeferredPromptFromWindow = () => {
+      const prompt = readEarlyDeferredPrompt();
+      if (prompt) {
+        setDeferredPrompt(prompt);
+      }
+    };
+
     const capturePrompt = (event: Event) => {
       event.preventDefault();
       const promptEvent = event as BeforeInstallPromptEvent;
@@ -91,10 +110,7 @@ export const usePwaInstallPrompt = () => {
     };
 
     const earlyCaptureHandler = () => {
-      const prompt = readEarlyDeferredPrompt();
-      if (prompt) {
-        setDeferredPrompt(prompt);
-      }
+      syncDeferredPromptFromWindow();
     };
 
     const simulateHandler = () => {
@@ -129,6 +145,30 @@ export const usePwaInstallPrompt = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!('serviceWorker' in navigator)) {
+      return;
+    }
+
+    const handleControllerReady = () => {
+      setSwControlling(true);
+      const prompt = readEarlyDeferredPrompt();
+      if (prompt) {
+        setDeferredPrompt(prompt);
+      }
+    };
+
+    const serviceWorker = navigator.serviceWorker;
+    serviceWorker.addEventListener('controllerchange', handleControllerReady);
+    void serviceWorker.ready.then(() => {
+      handleControllerReady();
+    });
+
+    return () => {
+      serviceWorker.removeEventListener('controllerchange', handleControllerReady);
+    };
+  }, []);
+
   const install = useCallback(async () => {
     if (!deferredPrompt) {
       return;
@@ -145,8 +185,10 @@ export const usePwaInstallPrompt = () => {
   }, []);
 
   const hasNativePrompt = Boolean(deferredPrompt);
-  const showInstallButton = installedCheckDone && !isInstalled && isInstallCapableBrowser();
-  const showInstallBanner = showInstallButton && hasNativePrompt && !bannerDismissed;
+  const installEnvironmentReady = isInstallCapableBrowser() && swControlling;
+  const showInstallButton =
+    installedCheckDone && !isInstalled && installEnvironmentReady && hasNativePrompt;
+  const showInstallBanner = showInstallButton && !bannerDismissed;
 
   return {
     hasNativePrompt,
