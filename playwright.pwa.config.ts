@@ -50,7 +50,9 @@ const config: PlaywrightTestConfig = {
       VAPID_PUBLIC_KEY: process.env.VAPID_PUBLIC_KEY ?? E2E_VAPID_PUBLIC_KEY,
       VAPID_PRIVATE_KEY: process.env.VAPID_PRIVATE_KEY ?? E2E_VAPID_PRIVATE_KEY,
       VAPID_SUBJECT: process.env.VAPID_SUBJECT ?? E2E_VAPID_SUBJECT,
-      PUSH_ENABLED: 'true'
+      PUSH_ENABLED: 'true',
+      API_RATE_LIMIT_MAX: '10000',
+      AUTH_RATE_LIMIT_MAX: '10000'
     }
   },
   testDir: 'tests/e2e',

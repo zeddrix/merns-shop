@@ -41,7 +41,9 @@ const e2eWebServerEnv: Record<string, string> = {
   VAPID_PUBLIC_KEY: process.env.VAPID_PUBLIC_KEY ?? E2E_VAPID_PUBLIC_KEY,
   VAPID_PRIVATE_KEY: process.env.VAPID_PRIVATE_KEY ?? E2E_VAPID_PRIVATE_KEY,
   VAPID_SUBJECT: process.env.VAPID_SUBJECT ?? E2E_VAPID_SUBJECT,
-  PUSH_ENABLED: process.env.PUSH_ENABLED ?? 'true'
+  PUSH_ENABLED: process.env.PUSH_ENABLED ?? 'true',
+  API_RATE_LIMIT_MAX: process.env.API_RATE_LIMIT_MAX ?? '10000',
+  AUTH_RATE_LIMIT_MAX: process.env.AUTH_RATE_LIMIT_MAX ?? '10000'
 };
 
 function readEnvInt(name: string, fallback: number): number {
