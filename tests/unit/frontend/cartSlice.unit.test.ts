@@ -71,6 +71,34 @@ describe('cartSlice', () => {
     expect(result.payload).toEqual({ cartItems: [], pruned: true });
   });
 
+  it('rehydrateCart_skips_api_validation_when_offline', async () => {
+    const cartItem = {
+      product: 'offline-product-id',
+      variantSku: 'offline-128gb',
+      variantLabel: '128GB',
+      name: 'Offline (128GB)',
+      image: '/img.jpg',
+      price: 10,
+      countInStock: 5,
+      qty: 1
+    };
+
+    vi.stubGlobal('navigator', { onLine: false });
+
+    const dispatch = vi.fn();
+    const getState = vi.fn(() => ({
+      cart: { cartItems: [cartItem] }
+    }));
+
+    const thunk = rehydrateCart();
+    const result = await thunk(dispatch, getState, undefined);
+
+    expect(axiosGet).not.toHaveBeenCalled();
+    expect(result.payload).toEqual({ cartItems: [cartItem], pruned: false });
+
+    vi.unstubAllGlobals();
+  });
+
   it('rehydrateCart_keeps_valid_items', () => {
     const validItem = {
       product: 'live-product-id',

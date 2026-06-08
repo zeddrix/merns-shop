@@ -139,6 +139,29 @@ describe('products integration', () => {
     expect(Array.isArray(res.body)).toBe(true);
   });
 
+  it('list response excludes heavy fields used only on detail pages', async () => {
+    const res = await request(app).get('/api/products?pageNumber=1');
+    expect(res.status).toBe(200);
+    expect(res.body.products.length).toBeGreaterThan(0);
+
+    for (const product of res.body.products) {
+      expect(product.description).toBeUndefined();
+      expect(product.reviews).toBeUndefined();
+      expect(product.name).toBeDefined();
+      expect(product.image).toBeDefined();
+      expect(product.variants.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('list payload is materially smaller than full product detail', async () => {
+    const list = await request(app).get('/api/products?pageNumber=1');
+    const first = list.body.products[0];
+    const detail = await request(app).get(`/api/products/${first._id}`);
+    const listBytes = Buffer.byteLength(JSON.stringify(first));
+    const detailBytes = Buffer.byteLength(JSON.stringify(detail.body));
+    expect(listBytes).toBeLessThan(detailBytes * 0.5);
+  });
+
   it('returns embedded reviews on seeded product detail', async () => {
     const list = await request(app).get('/api/products?keyword=iPhone%2015%20Pro');
     expect(list.status).toBe(200);

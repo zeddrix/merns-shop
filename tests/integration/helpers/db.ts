@@ -29,11 +29,13 @@ export async function resetTestDb(): Promise<void> {
     await connectTestDb();
 
     const { importSeedData } = await import('../../../backend/utils/importSeedData.js');
+    const Product = (await import('../../../backend/models/Product.js')).default;
 
     let lastError: unknown;
     for (let attempt = 1; attempt <= SEED_MAX_ATTEMPTS; attempt += 1) {
       try {
         await importSeedData();
+        await Product.syncIndexes();
         return;
       } catch (error) {
         lastError = error;

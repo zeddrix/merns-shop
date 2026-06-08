@@ -7,9 +7,22 @@ describe('generateToken', () => {
     process.env.JWT_SECRET = 'unit-test-secret';
   });
 
-  it('returns a valid JWT containing user id', () => {
-    const token = generateToken('507f1f77bcf86cd799439011');
-    const decoded = jwt.verify(token, 'unit-test-secret') as { id: string };
+  it('returns a valid JWT containing user claims', () => {
+    const token = generateToken({
+      _id: '507f1f77bcf86cd799439011',
+      name: 'John',
+      email: 'john@gmail.com',
+      isAdmin: false
+    });
+    const decoded = jwt.verify(token, 'unit-test-secret') as {
+      id: string;
+      name: string;
+      email: string;
+      isAdmin: boolean;
+    };
     expect(decoded.id).toBe('507f1f77bcf86cd799439011');
+    expect(decoded.name).toBe('John');
+    expect(decoded.email).toBe('john@gmail.com');
+    expect(decoded.isAdmin).toBe(false);
   });
 });

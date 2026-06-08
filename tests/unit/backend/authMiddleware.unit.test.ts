@@ -2,17 +2,10 @@ import { describe, expect, it, vi, beforeEach } from 'vitest';
 import type { NextFunction, Request, Response } from 'express';
 
 const jwtVerify = vi.hoisted(() => vi.fn());
-const findById = vi.hoisted(() => vi.fn());
 
 vi.mock('jsonwebtoken', () => ({
   default: {
     verify: jwtVerify
-  }
-}));
-
-vi.mock('../../../backend/models/User.js', () => ({
-  default: {
-    findById: findById
   }
 }));
 
@@ -61,11 +54,12 @@ describe('authMiddleware protect', () => {
     );
   });
 
-  it('attaches user from bearer token', async () => {
-    const userDoc = { _id: '507f1f77bcf86cd799439011', name: 'John', email: 'john@gmail.com' };
-    jwtVerify.mockReturnValue({ id: '507f1f77bcf86cd799439011' });
-    findById.mockReturnValue({
-      select: vi.fn().mockResolvedValue(userDoc)
+  it('attaches user from bearer token claims without database lookup', async () => {
+    jwtVerify.mockReturnValue({
+      id: '507f1f77bcf86cd799439011',
+      name: 'John',
+      email: 'john@gmail.com',
+      isAdmin: false
     });
 
     const req = {
@@ -77,15 +71,21 @@ describe('authMiddleware protect', () => {
 
     await protect(req, res, next);
 
-    expect(req.user).toEqual(userDoc);
+    expect(req.user).toEqual({
+      _id: '507f1f77bcf86cd799439011',
+      name: 'John',
+      email: 'john@gmail.com',
+      isAdmin: false
+    });
     expect(next).toHaveBeenCalled();
   });
 
-  it('attaches user from auth cookie', async () => {
-    const userDoc = { _id: '507f1f77bcf86cd799439011', name: 'John', email: 'john@gmail.com' };
-    jwtVerify.mockReturnValue({ id: '507f1f77bcf86cd799439011' });
-    findById.mockReturnValue({
-      select: vi.fn().mockResolvedValue(userDoc)
+  it('attaches user from auth cookie claims', async () => {
+    jwtVerify.mockReturnValue({
+      id: '507f1f77bcf86cd799439011',
+      name: 'John',
+      email: 'john@gmail.com',
+      isAdmin: true
     });
 
     const req = {
@@ -98,15 +98,12 @@ describe('authMiddleware protect', () => {
     await protect(req, res, next);
 
     expect(jwtVerify).toHaveBeenCalledWith('cookie-token', 'unit-test-secret');
-    expect(req.user).toEqual(userDoc);
+    expect(req.user?.isAdmin).toBe(true);
     expect(next).toHaveBeenCalled();
   });
 
-  it('rejects when user is not found', async () => {
+  it('rejects when token payload is incomplete', async () => {
     jwtVerify.mockReturnValue({ id: '507f1f77bcf86cd799439011' });
-    findById.mockReturnValue({
-      select: vi.fn().mockResolvedValue(null)
-    });
 
     const req = {
       headers: { authorization: 'Bearer valid-token' },
@@ -119,7 +116,7 @@ describe('authMiddleware protect', () => {
 
     expect(res.status).toHaveBeenCalledWith(401);
     expect(next).toHaveBeenCalledWith(
-      expect.objectContaining({ message: 'Not authorized, user not found' })
+      expect.objectContaining({ message: 'Not authorized, token failed' })
     );
   });
 });
@@ -142,10 +139,11 @@ describe('authMiddleware optionalAuth', () => {
   });
 
   it('attaches user when token is valid', async () => {
-    const userDoc = { _id: '507f1f77bcf86cd799439011', name: 'John', email: 'john@gmail.com' };
-    jwtVerify.mockReturnValue({ id: '507f1f77bcf86cd799439011' });
-    findById.mockReturnValue({
-      select: vi.fn().mockResolvedValue(userDoc)
+    jwtVerify.mockReturnValue({
+      id: '507f1f77bcf86cd799439011',
+      name: 'John',
+      email: 'john@gmail.com',
+      isAdmin: false
     });
 
     const req = {
@@ -157,7 +155,7 @@ describe('authMiddleware optionalAuth', () => {
 
     await optionalAuth(req, res, next);
 
-    expect(req.user).toEqual(userDoc);
+    expect(req.user?.email).toBe('john@gmail.com');
     expect(next).toHaveBeenCalled();
   });
 

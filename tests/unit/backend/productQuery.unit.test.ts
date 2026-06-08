@@ -15,8 +15,13 @@ describe('productQuery utilities', () => {
     expect(calculateTotalPages(0, PRODUCTS_PER_PAGE)).toBe(1);
   });
 
-  it('builds keyword filter across name and variants', () => {
+  it('builds text index filter for general keywords', () => {
     const filter = buildProductListFilter({ keyword: 'iPhone' });
+    expect(filter.$text).toEqual({ $search: 'iPhone' });
+  });
+
+  it('builds sku regex filter for sku-like keywords', () => {
+    const filter = buildProductListFilter({ keyword: 'apple-iphone-15-128' });
     expect(filter.$or).toBeDefined();
   });
 

@@ -77,7 +77,9 @@ describe('orders integration', () => {
       .get('/api/orders/myorders')
       .set('Authorization', `Bearer ${customerToken}`);
     expect(myOrders.status).toBe(200);
-    expect(myOrders.body.length).toBeGreaterThan(0);
+    expect(Array.isArray(myOrders.body.orders)).toBe(true);
+    expect(myOrders.body.orders.length).toBeGreaterThan(0);
+    expect(myOrders.body.page).toBe(1);
   });
 
   it('create_order_rejects_tampered_total_price via server-side pricing', async () => {
@@ -162,7 +164,54 @@ describe('orders integration', () => {
   it('admin can list orders', async () => {
     const res = await request(app).get('/api/orders').set('Authorization', `Bearer ${adminToken}`);
     expect(res.status).toBe(200);
-    expect(Array.isArray(res.body)).toBe(true);
+    expect(Array.isArray(res.body.orders)).toBe(true);
+    expect(res.body.total).toBeGreaterThan(0);
+  });
+
+  it('paginates admin orders by page and limit', async () => {
+    const pageOne = await request(app)
+      .get('/api/orders?page=1&limit=1')
+      .set('Authorization', `Bearer ${adminToken}`);
+    expect(pageOne.status).toBe(200);
+    expect(pageOne.body.orders).toHaveLength(1);
+    expect(pageOne.body.pages).toBeGreaterThanOrEqual(1);
+  });
+
+  it('creates multi-item order with batched product lookup', async () => {
+    const list = await request(app).get('/api/products?pageNumber=1');
+    const inStock = list.body.products.filter((p: { inStock?: boolean }) => p.inStock !== false);
+    expect(inStock.length).toBeGreaterThan(1);
+
+    const first = inStock[0];
+    const second = inStock[1];
+    const firstProduct = await request(app).get(`/api/products/${first._id}`);
+    const secondProduct = await request(app).get(`/api/products/${second._id}`);
+    const firstVariant = firstProduct.body.variants.find(
+      (v: { countInStock: number }) => v.countInStock > 0
+    );
+    const secondVariant = secondProduct.body.variants.find(
+      (v: { countInStock: number }) => v.countInStock > 0
+    );
+
+    const order = await request(app)
+      .post('/api/orders')
+      .set('Authorization', `Bearer ${customerToken}`)
+      .send({
+        orderItems: [
+          { product: first._id, qty: 1, variantSku: firstVariant.sku },
+          { product: second._id, qty: 1, variantSku: secondVariant.sku }
+        ],
+        shippingAddress: {
+          address: '123 St',
+          city: 'City',
+          postalCode: '12345',
+          country: 'US'
+        },
+        paymentMethod: 'PayPal'
+      });
+
+    expect(order.status).toBe(201);
+    expect(order.body.orderItems).toHaveLength(2);
   });
 
   it('pay_with_missing_payer_returns_400', async () => {
