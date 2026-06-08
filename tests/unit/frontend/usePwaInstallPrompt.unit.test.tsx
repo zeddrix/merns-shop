@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { act } from 'react';
 import {
   detectPwaInstalled,
+  hasServiceWorkerController,
   isInstallCapableBrowser,
   INSTALL_BANNER_DISMISSED_KEY,
   usePwaInstallPrompt
@@ -123,6 +124,26 @@ describe('detectPwaInstalled', () => {
   });
 });
 
+let controllerChangeHandlers: Array<() => void> = [];
+
+function mockServiceWorker(controller: object | null) {
+  controllerChangeHandlers = [];
+  Object.defineProperty(window.navigator, 'serviceWorker', {
+    configurable: true,
+    value: {
+      controller,
+      ready: Promise.resolve({} as ServiceWorkerRegistration),
+      addEventListener: (event: string, handler: () => void) => {
+        if (event === 'controllerchange') {
+          controllerChangeHandlers.push(handler);
+        }
+      },
+      removeEventListener: vi.fn()
+    },
+    writable: true
+  });
+}
+
 describe('usePwaInstallPrompt', () => {
   let container: HTMLDivElement;
   let root: ReturnType<typeof createRoot>;
@@ -147,11 +168,7 @@ describe('usePwaInstallPrompt', () => {
       addEventListener: vi.fn(),
       removeEventListener: vi.fn()
     }));
-    Object.defineProperty(window.navigator, 'serviceWorker', {
-      configurable: true,
-      value: {},
-      writable: true
-    });
+    mockServiceWorker({});
     Object.defineProperty(window.navigator, 'getInstalledRelatedApps', {
       configurable: true,
       value: vi.fn().mockResolvedValue([]),
@@ -183,8 +200,15 @@ describe('usePwaInstallPrompt', () => {
     });
   };
 
-  it('isInstallCapableBrowser_requires_manifest_link_and_service_worker', () => {
+  it('isInstallCapableBrowser_requires_manifest_sw_api_and_controller', () => {
+    mockServiceWorker({});
     expect(isInstallCapableBrowser()).toBe(true);
+    expect(hasServiceWorkerController()).toBe(true);
+
+    mockServiceWorker(null);
+    expect(isInstallCapableBrowser()).toBe(false);
+
+    mockServiceWorker({});
     document.head.innerHTML = '';
     expect(isInstallCapableBrowser()).toBe(false);
   });
@@ -205,14 +229,64 @@ describe('usePwaInstallPrompt', () => {
     expect(probe.getAttribute('data-has-native-prompt')).toBe('true');
   });
 
-  it('returns_not_installed_when_related_apps_empty', async () => {
+  it('showInstallButton_false_without_native_prompt', async () => {
+    await renderHookProbe();
+
+    const probe = await waitForProbe(
+      container,
+      (element) => element.getAttribute('data-is-installed') === 'false'
+    );
+    expect(probe.getAttribute('data-show-install-button')).toBe('false');
+  });
+
+  it('showInstallButton_true_when_native_prompt_available', async () => {
+    const mockPrompt = {
+      prompt: vi.fn().mockResolvedValue(undefined),
+      userChoice: Promise.resolve({ outcome: 'dismissed' as const })
+    } as unknown as BeforeInstallPromptEvent;
+    window.__deferredInstallPrompt = mockPrompt;
+
     await renderHookProbe();
 
     const probe = await waitForProbe(
       container,
       (element) => element.getAttribute('data-show-install-button') === 'true'
     );
-    expect(probe.getAttribute('data-is-installed')).toBe('false');
+    expect(probe.getAttribute('data-has-native-prompt')).toBe('true');
+  });
+
+  it('resyncs_prompt_when_service_worker_controller_becomes_ready', async () => {
+    mockServiceWorker(null);
+
+    await renderHookProbe();
+
+    await waitForProbe(
+      container,
+      (element) => element.getAttribute('data-is-installed') === 'false'
+    );
+    expect(latestHook?.showInstallButton).toBe(false);
+
+    const mockPrompt = {
+      prompt: vi.fn().mockResolvedValue(undefined),
+      userChoice: Promise.resolve({ outcome: 'dismissed' as const })
+    } as unknown as BeforeInstallPromptEvent;
+    window.__deferredInstallPrompt = mockPrompt;
+    Object.defineProperty(navigator.serviceWorker, 'controller', {
+      configurable: true,
+      value: {}
+    });
+
+    await act(async () => {
+      for (const handler of controllerChangeHandlers) {
+        handler();
+      }
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    });
+
+    await waitForProbe(
+      container,
+      (element) => element.getAttribute('data-show-install-button') === 'true'
+    );
   });
 
   it('returns_installed_when_related_apps_has_entry', async () => {
@@ -278,11 +352,7 @@ describe('PwaInstallProvider', () => {
   beforeEach(() => {
     localStorage.clear();
     document.head.innerHTML = '<link rel="manifest" href="/manifest.webmanifest" />';
-    Object.defineProperty(window.navigator, 'serviceWorker', {
-      configurable: true,
-      value: {},
-      writable: true
-    });
+    mockServiceWorker({});
     Object.defineProperty(window.navigator, 'getInstalledRelatedApps', {
       configurable: true,
       value: vi.fn().mockResolvedValue([]),
@@ -317,8 +387,6 @@ describe('PwaInstallProvider', () => {
       );
     });
 
-    await waitForContextProbe(container, 'showInstallButton', true);
-
     const mockPrompt = {
       prompt: vi.fn().mockResolvedValue(undefined),
       userChoice: Promise.resolve({ outcome: 'dismissed' as const })
@@ -330,6 +398,7 @@ describe('PwaInstallProvider', () => {
       window.dispatchEvent(new Event('test-simulate-installable'));
     });
 
+    await waitForContextProbe(container, 'showInstallButton', true);
     await waitForContextProbe(container, 'showInstallBanner', true);
   });
 });

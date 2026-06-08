@@ -55,7 +55,17 @@ test.describe('PWA manifest and install', () => {
     await expect(page.locator('link[rel="manifest"]')).toHaveCount(1);
   });
 
-  test('pwa_install_icon_visible_when_not_installed_no_prompt', async ({ page }) => {
+  test('pwa_install_prerequisites_sw_controls_page', async ({ page }) => {
+    await page.goto('/');
+    await waitForSWAndCaching(page);
+
+    await expect(page.locator('link[rel="manifest"]')).toHaveCount(1);
+    await expect
+      .poll(async () => page.evaluate(() => navigator.serviceWorker?.controller !== null))
+      .toBe(true);
+  });
+
+  test('pwa_install_icon_hidden_when_not_installed_no_prompt', async ({ page }) => {
     await page.goto('/');
     await assertHomeCatalogHealthy(page);
     await page.locator('[data-testid="nav-about"]').click();
@@ -63,7 +73,7 @@ test.describe('PWA manifest and install', () => {
     await page.locator('[data-testid="site-brand"]').click();
     await expect(page.locator('[data-testid="home-heading"]')).toBeVisible();
 
-    await expect(page.locator('[data-testid="pwa-install-header-button"]')).toBeVisible();
+    await expect(page.locator('[data-testid="pwa-install-header-button"]')).toHaveCount(0);
     await expect(page.locator('[data-testid="pwa-install-banner"]')).toHaveCount(0);
   });
 
@@ -75,12 +85,18 @@ test.describe('PWA manifest and install', () => {
 
     await expect(page.locator('[data-testid="pwa-install-header-button"]')).toBeVisible();
     await expect(page.locator('[data-testid="pwa-install-banner"]')).toBeVisible();
-    await page.locator('[data-testid="pwa-install-button"]').click();
+    await page.locator('[data-testid="pwa-install-header-button"]').click();
     await expect
       .poll(async () => page.evaluate(() => Boolean(window.__e2ePromptCalled)))
       .toBe(true);
+    await page.evaluate(() => {
+      window.__e2ePromptCalled = false;
+    });
+    await simulateInstallable(page);
     await page.locator('[data-testid="pwa-install-header-button"]').click();
-    await expect(page.locator('[data-testid="pwa-install-hint"]')).toBeVisible();
+    await expect
+      .poll(async () => page.evaluate(() => Boolean(window.__e2ePromptCalled)))
+      .toBe(true);
   });
 
   test('pwa_install_banner_dismiss_hides_banner_keeps_icon', async ({ page }) => {
@@ -104,20 +120,6 @@ test.describe('PWA manifest and install', () => {
     await expect
       .poll(async () => page.evaluate(() => Boolean(window.__e2ePromptCalled)))
       .toBe(true);
-    await page.locator('[data-testid="pwa-install-header-button"]').click();
-    await expect(page.locator('[data-testid="pwa-install-hint"]')).toBeVisible();
-  });
-
-  test('pwa_install_hint_shown_when_icon_clicked_without_prompt', async ({ page }) => {
-    await page.goto('/');
-    await assertHomeCatalogHealthy(page);
-
-    await expect(page.locator('[data-testid="pwa-install-header-button"]')).toBeVisible();
-    await page.locator('[data-testid="pwa-install-header-button"]').click();
-    await expect(page.locator('[data-testid="pwa-install-hint"]')).toBeVisible();
-    await expect(page.locator('[data-testid="pwa-install-hint"]')).toContainText(/Install MERN/i);
-    await page.locator('[data-testid="pwa-install-hint-close"]').click();
-    await expect(page.locator('[data-testid="pwa-install-hint"]')).toHaveCount(0);
   });
 
   test('pwa_install_header_hidden_in_standalone', async ({ page }) => {

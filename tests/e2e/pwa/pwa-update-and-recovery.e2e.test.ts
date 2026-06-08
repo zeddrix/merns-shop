@@ -41,26 +41,33 @@ test.describe('PWA update lifecycle', () => {
     await expect(page.locator('[data-testid="pwa-update-dismiss"]')).toBeVisible();
 
     const layout = await page.evaluate(() => {
+      const banner = document.querySelector('[data-testid="pwa-update-banner"]');
       const message = document.querySelector('[data-testid="pwa-update-message"]');
       const actions = document.querySelector('[data-testid="pwa-update-actions"]');
-      if (!message || !actions) {
+      if (!banner || !message || !actions) {
         return null;
       }
+      const bannerBox = banner.getBoundingClientRect();
       const messageBox = message.getBoundingClientRect();
       const actionsBox = actions.getBoundingClientRect();
+      const groupLeft = messageBox.left;
+      const groupRight = actionsBox.right;
+      const groupCenter = (groupLeft + groupRight) / 2;
+      const bannerCenter = (bannerBox.left + bannerBox.right) / 2;
       return {
-        messageLeft: messageBox.left,
-        actionsRight: actionsBox.right,
-        actionsLeft: actionsBox.left,
-        messageRight: messageBox.right,
-        sameRow: Math.abs(messageBox.top - actionsBox.top) < 24
+        sameRow: Math.abs(messageBox.top - actionsBox.top) < 24,
+        verticallyCentered:
+          Math.abs(
+            messageBox.top + messageBox.height / 2 - (bannerBox.top + bannerBox.height / 2)
+          ) < 24,
+        groupCentered: Math.abs(groupCenter - bannerCenter) < 48
       };
     });
 
     expect(layout).not.toBeNull();
     expect(layout?.sameRow).toBe(true);
-    expect(layout!.messageLeft).toBeLessThan(layout!.actionsLeft);
-    expect(layout!.actionsRight).toBeGreaterThan(layout!.messageRight);
+    expect(layout?.verticallyCentered).toBe(true);
+    expect(layout?.groupCentered).toBe(true);
 
     await page.locator('[data-testid="pwa-update-dismiss"]').click();
     await expect(page.locator('[data-testid="pwa-update-banner"]')).toHaveCount(0);
