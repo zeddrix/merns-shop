@@ -28,22 +28,15 @@ test.describe('smoke app boot', () => {
       /\/images\/og-default\.webp/
     );
     await expect(page.locator('[data-testid="footer-developer-link"]')).toBeVisible();
-    await expect(page.locator('[data-testid="footer-about-link"]')).toHaveAttribute(
-      'href',
-      '/about'
-    );
     await expect(page.locator('[data-testid="footer-developer-link"]')).toHaveAttribute(
       'href',
       '/about'
     );
     const currentYear = new Date().getFullYear();
     await expect(page.locator('[data-testid="site-footer"]')).toContainText(
-      `Copyright © ${currentYear} MERN's Shop`
+      `Copyright Zeddrix Fabian © ${currentYear} MERN's Shop`
     );
-    await expect(page.locator('[data-testid="footer-about-link"]')).toHaveText('About');
-    await expect(page.locator('[data-testid="footer-developer-link"]')).toHaveText(
-      'Developed by Zeddrix Fabian'
-    );
+    await expect(page.locator('[data-testid="footer-about-link"]')).toHaveCount(0);
     const jsonLdScripts = page.locator('script[type="application/ld+json"]');
     const jsonLdTexts = await jsonLdScripts.allTextContents();
     const hasPerson = jsonLdTexts.some((raw) => {

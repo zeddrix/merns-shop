@@ -11,14 +11,12 @@ const Footer = () => {
       <Container>
         <Row>
           <Col className="site-footer__inner py-3">
-            <Link to="/about" data-testid="footer-about-link">
-              About
-            </Link>
-            <Link to="/about" data-testid="footer-developer-link">
-              Developed by {DEVELOPER_NAME}
-            </Link>
             <span data-testid="footer-copyright">
-              Copyright &copy; {currentYear} {DISPLAY_BRAND_NAME}
+              Copyright{' '}
+              <Link to="/about" data-testid="footer-developer-link">
+                {DEVELOPER_NAME}
+              </Link>{' '}
+              &copy; {currentYear} {DISPLAY_BRAND_NAME}
             </span>
           </Col>
         </Row>

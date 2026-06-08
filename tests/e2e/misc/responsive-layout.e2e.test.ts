@@ -138,13 +138,14 @@ test.describe('responsive layout', () => {
     await page.goto('/');
     await assertHomeCatalogHealthy(page);
     await page.locator('[data-testid="site-footer"]').scrollIntoViewIfNeeded();
-    await expect(page.locator('[data-testid="footer-about-link"]')).toBeVisible();
-    await page.locator('[data-testid="footer-about-link"]').click();
-    await expect(page).toHaveURL(/\/about/);
-    await page.goto('/');
-    await page.locator('[data-testid="site-footer"]').scrollIntoViewIfNeeded();
     await expect(page.locator('[data-testid="footer-developer-link"]')).toBeVisible();
-    await expect(page.locator('[data-testid="footer-copyright"]')).toBeVisible();
+    await expect(page.locator('[data-testid="footer-about-link"]')).toHaveCount(0);
+    const currentYear = new Date().getFullYear();
+    await expect(page.locator('[data-testid="footer-copyright"]')).toContainText(
+      `Copyright Zeddrix Fabian © ${currentYear} MERN's Shop`
+    );
+    await page.locator('[data-testid="footer-developer-link"]').click();
+    await expect(page).toHaveURL(/\/about/);
     await assertNoHorizontalOverflow(page);
   });
 
