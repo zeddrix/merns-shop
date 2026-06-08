@@ -43,6 +43,18 @@ test.describe('responsive layout', () => {
     await assertHomeCatalogHealthy(page);
 
     await page.locator('[data-testid="navbar-toggle"]').click();
+    const phonesLeft = await page
+      .locator('[data-testid="nav-category-phones"]')
+      .evaluate((el) => el.getBoundingClientRect().left);
+    const aboutLeft = await page
+      .locator('[data-testid="nav-about"]')
+      .evaluate((el) => el.getBoundingClientRect().left);
+    const signUpLeft = await page
+      .locator('[data-testid="nav-sign-up"]')
+      .evaluate((el) => el.getBoundingClientRect().left);
+    expect(Math.abs(phonesLeft - aboutLeft)).toBeLessThan(2);
+    expect(Math.abs(aboutLeft - signUpLeft)).toBeLessThan(2);
+
     await page.locator('[data-testid="search-input"]').fill('iPhone');
     await page.locator('[data-testid="search-submit"]').click();
     await expect(page).toHaveURL(/\/search\/iPhone/);

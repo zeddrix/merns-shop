@@ -784,7 +784,25 @@ strong {
 
 @media (max-width: 991.98px) {
   .site-nav-categories {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    margin-left: 0;
+  }
+
+  .site-navbar-collapse .site-nav-categories,
+  .site-navbar-collapse .site-nav-actions {
+    align-items: stretch;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .site-navbar-collapse .navbar-nav .nav-link {
+    width: 100%;
+    text-align: left;
+  }
+
+  .site-navbar-collapse {
+    padding-top: 0.25rem;
+    padding-bottom: 0.5rem;
   }
 }
 
