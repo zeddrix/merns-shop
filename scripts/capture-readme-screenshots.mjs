@@ -71,8 +71,19 @@ async function main() {
     await capture(page, 'product-page.png');
 
     await loginAdmin(page);
-    await page.goto(`${BASE_URL}/admin/productlist`);
+    await Promise.all([
+      page.waitForResponse(
+        (response) =>
+          response.url().includes('/api/products') &&
+          response.request().method() === 'GET' &&
+          response.ok()
+      ),
+      page.goto(`${BASE_URL}/admin/productlist`)
+    ]);
     await page.locator('[data-testid="admin-product-list"]').waitFor({ state: 'visible' });
+    await page.locator('[data-testid="admin-product-list"] tbody tr').first().waitFor({
+      state: 'visible'
+    });
     await capture(page, 'admin-products.png');
   } finally {
     await browser.close();

@@ -12,7 +12,7 @@
 
 **Backend:** [![Express](https://img.shields.io/badge/Express-5-000000?logo=express&logoColor=white)](https://expressjs.com/) [![Mongoose](https://img.shields.io/badge/Mongoose-9-880000?logo=mongoose&logoColor=white)](https://mongoosejs.com/) [![MongoDB](https://img.shields.io/badge/MongoDB-7%20%2F%20Atlas%20M0-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/atlas) [![JWT](https://img.shields.io/badge/JWT-httpOnly%20cookie-000000?logo=jsonwebtokens&logoColor=white)](README.md#checkout-and-auth) [![Helmet](https://img.shields.io/badge/Helmet-8-000000)](README.md#tech-stack) [![web-push](https://img.shields.io/badge/web--push-3.6-4285F4)](README.md#pwa-and-notifications)
 
-**PWA & UX:** [![PWA](https://img.shields.io/badge/PWA-installable-5A0FC8?logo=pwa&logoColor=white)](README.md#pwa-and-notifications) [![Workbox](https://img.shields.io/badge/Workbox-7.4-4285F4?logo=googlechrome&logoColor=white)](README.md#pwa-and-notifications) [![vite-plugin-pwa](https://img.shields.io/badge/vite--plugin--pwa-1.3-646CFF?logo=vite&logoColor=white)](README.md#pwa-and-notifications) [![Font Awesome](https://img.shields.io/badge/Font%20Awesome-6.7-528DD7?logo=fontawesome&logoColor=white)](README.md#responsive-ui-and-motion)
+**PWA & UX:** [![PWA](https://img.shields.io/badge/PWA-installable-5A0FC8?logo=googlechrome&logoColor=white)](README.md#pwa-and-notifications) [![Workbox](https://img.shields.io/badge/Workbox-7.4-4285F4?logo=googlechrome&logoColor=white)](README.md#pwa-and-notifications) [![vite-plugin-pwa](https://img.shields.io/badge/vite--plugin--pwa-1.3-646CFF?logo=vite&logoColor=white)](README.md#pwa-and-notifications) [![Font Awesome](https://img.shields.io/badge/Font%20Awesome-6.7-528DD7?logo=fontawesome&logoColor=white)](README.md#responsive-ui-and-motion)
 
 **Payments & SEO:** [![PayPal](https://img.shields.io/badge/PayPal-sandbox-003087?logo=paypal&logoColor=white)](README.md#checkout-and-auth) [![SEO](https://img.shields.io/badge/SEO-sitemap%20%2B%20JSON--LD-0F9D58?logo=googlesearchconsole&logoColor=white)](docs/seo.md) [![react-helmet-async](https://img.shields.io/badge/react--helmet--async-3.0-61DAFB?logo=react&logoColor=black)](docs/seo.md)
 
@@ -234,7 +234,7 @@ E2E coverage: `tests/e2e/auth/login-register-profile.e2e.test.ts`, `tests/e2e/ch
 
 - **~170 parent products** with **500+ variants** (Apple, Samsung, Vivo, Xiaomi, Sony) live in [`backend/data/catalog/`](backend/data/catalog/).
 - Each product has nested **variants** (storage, screen size, etc.) with **MSRP `listPrice`** and tiered **second-hand `price`** (see [`backend/data/catalog/pricing.ts`](backend/data/catalog/pricing.ts)).
-- Images are **WebP** files under [`frontend/public/images/catalog/`](frontend/public/images/catalog/) (Git LFS). Sources and licenses are listed in [`catalog-image-manifest.json`](catalog-image-manifest.json). See [`frontend/public/images/catalog/ATTRIBUTION.md`](frontend/public/images/catalog/ATTRIBUTION.md).
+- Images are **WebP** files under [`frontend/public/images/catalog/`](frontend/public/images/catalog/) (Git LFS). Sources and licenses are listed in [`catalog/images/manifest.json`](catalog/images/manifest.json). See [`frontend/public/images/catalog/ATTRIBUTION.md`](frontend/public/images/catalog/ATTRIBUTION.md).
 - Refresh images: `pnpm catalog:sources` (Wikimedia Commons URLs) then `pnpm catalog:images` (download + convert).
 - Validate catalog data: `pnpm catalog:validate`
 - Storefront: brand/category filters, savings badges, variant picker on product pages.
