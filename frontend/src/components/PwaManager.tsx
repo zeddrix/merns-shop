@@ -26,7 +26,14 @@ const PwaManager = () => {
   return (
     <PwaUpdateBanner
       onReload={() => {
-        void updateSWRef.current?.(true);
+        void (async () => {
+          const registration = await navigator.serviceWorker?.getRegistration();
+          const hadWaitingWorker = Boolean(registration?.waiting);
+          await updateSWRef.current?.(true);
+          if (!hadWaitingWorker) {
+            window.location.reload();
+          }
+        })();
       }}
       onDismiss={() => setNeedRefresh(false)}
     />

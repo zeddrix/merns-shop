@@ -139,13 +139,18 @@ self.addEventListener('notificationclick', (event: NotificationEvent) => {
   );
 });
 
-if (self.location.hostname === 'localhost' || self.location.hostname === '127.0.0.1') {
-  self.addEventListener('message', (event: ExtendableMessageEvent) => {
-    if (event.data?.type === 'e2e-deliver-push' && event.data.payload) {
-      const payload = event.data.payload as PushPayload;
-      event.waitUntil(deliverPushPayloadToClients(payload));
-    }
-  });
-}
+self.addEventListener('message', (event: ExtendableMessageEvent) => {
+  if (event.data?.type === 'SKIP_WAITING') {
+    void self.skipWaiting();
+    return;
+  }
+
+  const isLocalhost =
+    self.location.hostname === 'localhost' || self.location.hostname === '127.0.0.1';
+  if (isLocalhost && event.data?.type === 'e2e-deliver-push' && event.data.payload) {
+    const payload = event.data.payload as PushPayload;
+    event.waitUntil(deliverPushPayloadToClients(payload));
+  }
+});
 
 export {};
