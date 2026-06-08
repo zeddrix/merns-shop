@@ -904,9 +904,11 @@ strong {
 }
 
 .pagination-wrap .pagination-nav-item .page-link {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1;
 }
 
 .pagination-wrap .page-link:focus-visible {

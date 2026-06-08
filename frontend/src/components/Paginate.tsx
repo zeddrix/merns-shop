@@ -76,7 +76,13 @@ const Paginate = ({
           data-testid="pagination-prev"
           onClick={page > 1 ? handlePageNav : undefined}
         >
-          {page > 1 ? <Link to={prevPath}>&lsaquo; Previous</Link> : <span>&lsaquo; Previous</span>}
+          {page > 1 ? (
+            <Link to={prevPath} aria-label="Previous page">
+              &lsaquo;
+            </Link>
+          ) : (
+            <span aria-label="Previous page">&lsaquo;</span>
+          )}
         </Pagination.Item>
         {visible.map((item, idx) =>
           item === 'ellipsis' ? (
@@ -102,7 +108,13 @@ const Paginate = ({
           data-testid="pagination-next"
           onClick={page < pages ? handlePageNav : undefined}
         >
-          {page < pages ? <Link to={nextPath}>Next &rsaquo;</Link> : <span>Next &rsaquo;</span>}
+          {page < pages ? (
+            <Link to={nextPath} aria-label="Next page">
+              &rsaquo;
+            </Link>
+          ) : (
+            <span aria-label="Next page">&rsaquo;</span>
+          )}
         </Pagination.Item>
       </Pagination>
     </nav>
