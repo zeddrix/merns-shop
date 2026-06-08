@@ -44,12 +44,12 @@ Same as `scripts/pre-deploy-verify.sh` — includes the full Playwright suite.
 
 ### What each gate catches
 
-| Gate | Catches |
-|------|---------|
-| `pnpm quality` | Formatting, lint, type errors (incl. backend build tsconfig) |
-| `pnpm predeploy` | **Production Vite build**, backend emit, missing undeclared imports, bundle issues |
-| `pnpm verify` | Above + unit/integration regressions |
-| `pnpm verify:full` | Above + E2E |
+| Gate               | Catches                                                                            |
+| ------------------ | ---------------------------------------------------------------------------------- |
+| `pnpm quality`     | Formatting, lint, type errors (incl. backend build tsconfig)                       |
+| `pnpm predeploy`   | **Production Vite build**, backend emit, missing undeclared imports, bundle issues |
+| `pnpm verify`      | Above + unit/integration regressions                                               |
+| `pnpm verify:full` | Above + E2E                                                                        |
 
 **Lesson:** Type-only checks can pass while **`pnpm build`** fails (e.g. importing a package that is not a direct dependency, or a prod-only `tsconfig.build.json` path). Always run **`pnpm predeploy`** before pushing deploy-related work.
 
