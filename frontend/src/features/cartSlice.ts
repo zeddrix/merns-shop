@@ -8,6 +8,7 @@ export interface CartState {
   shippingAddress: ShippingAddress;
   paymentMethod?: string;
   staleItemsPruned: boolean;
+  rehydrating: boolean;
 }
 
 const cartItemsFromStorage = (): CartItem[] => {
@@ -36,7 +37,8 @@ const initialState: CartState = {
   cartItems: cartItemsFromStorage(),
   shippingAddress: shippingAddressFromStorage(),
   paymentMethod: paymentMethodFromStorage(),
-  staleItemsPruned: false
+  staleItemsPruned: false,
+  rehydrating: false
 };
 
 const cartLineKey = (productId: string, variantSku: string) => `${productId}:${variantSku}`;
@@ -137,11 +139,19 @@ const cartSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(rehydrateCart.fulfilled, (state, action) => {
-      state.cartItems = action.payload.cartItems;
-      state.staleItemsPruned = action.payload.pruned;
-      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
-    });
+    builder
+      .addCase(rehydrateCart.pending, (state) => {
+        state.rehydrating = true;
+      })
+      .addCase(rehydrateCart.fulfilled, (state, action) => {
+        state.rehydrating = false;
+        state.cartItems = action.payload.cartItems;
+        state.staleItemsPruned = action.payload.pruned;
+        localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+      })
+      .addCase(rehydrateCart.rejected, (state) => {
+        state.rehydrating = false;
+      });
     builder.addCase(addToCart.fulfilled, (state, action) => {
       const item = action.payload;
       const key = cartLineKey(item.product, item.variantSku);

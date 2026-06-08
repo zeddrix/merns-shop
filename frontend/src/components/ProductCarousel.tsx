@@ -9,7 +9,11 @@ import { PDP_CATALOG_SIZES } from '../utils/catalogImage';
 import { listTopProducts } from '../features/productSlice';
 import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 
-const ProductCarousel = () => {
+interface ProductCarouselProps {
+  suppressLoadingIndicator?: boolean;
+}
+
+const ProductCarousel = ({ suppressLoadingIndicator = false }: ProductCarouselProps) => {
   const dispatch = useAppDispatch();
 
   const productTopRated = useAppSelector((state) => state.productTopRated);
@@ -24,7 +28,9 @@ const ProductCarousel = () => {
   }
 
   return loading ? (
-    <Loader />
+    suppressLoadingIndicator ? null : (
+      <Loader />
+    )
   ) : error ? (
     <Message variant="danger" data-testid="home-carousel-error">
       {error}

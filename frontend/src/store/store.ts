@@ -28,6 +28,7 @@ import {
 } from '../features/orderSlice';
 import { authModalReducer } from '../features/authModalSlice';
 import { pushReducer } from '../features/pushSlice';
+import catalogMetaReducer from '../features/catalogMetaSlice';
 import type { CartItem, ShippingAddress } from '../types';
 
 const cartItemsFromStorage = (): CartItem[] => {
@@ -64,13 +65,15 @@ export const store = configureStore({
     myOrder: myOrderReducer,
     orderList: orderListReducer,
     authModal: authModalReducer,
-    push: pushReducer
+    push: pushReducer,
+    catalogMeta: catalogMetaReducer
   },
   preloadedState: {
     cart: {
       cartItems: cartItemsFromStorage(),
       shippingAddress: shippingAddressFromStorage(),
-      staleItemsPruned: false
+      staleItemsPruned: false,
+      rehydrating: false
     },
     userLogin: {}
   },

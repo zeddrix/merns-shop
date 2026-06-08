@@ -55,13 +55,20 @@ const HomeScreen = () => {
   const maxPrice = searchParams.get('maxPrice') ?? '';
   const sort = searchParams.get('sort') ?? '';
 
-  const apiUnreachable =
-    isApiUnreachableMessage(error) || isApiUnreachableMessage(productTopRated.error);
-
-  useScrollToTopOnPageChange('home-heading', page, !loading && !apiUnreachable && !error);
-
   const hasFilterQuery = Boolean(brand || category || subcategory || minPrice || maxPrice || sort);
   const showCarousel = !keyword && !hasFilterQuery;
+
+  const carouselApiUnreachable = isApiUnreachableMessage(productTopRated.error);
+  const apiUnreachable = isApiUnreachableMessage(error) || carouselApiUnreachable;
+  const carouselPending =
+    showCarousel && Boolean(productTopRated.loading) && !carouselApiUnreachable;
+  const homeCatalogPending = Boolean(loading) || carouselPending;
+
+  useScrollToTopOnPageChange(
+    'home-heading',
+    page,
+    !homeCatalogPending && !apiUnreachable && !error
+  );
 
   const listParams = {
     keyword: keyword ?? '',
@@ -127,7 +134,7 @@ const HomeScreen = () => {
         preloadImage={lcpPreloadImage}
       />
       {showCarousel ? (
-        <ProductCarousel />
+        <ProductCarousel suppressLoadingIndicator />
       ) : keyword ? (
         <Link to="/" className="btn btn-light" data-testid="search-go-back">
           Go Back
@@ -142,8 +149,8 @@ const HomeScreen = () => {
       <CatalogFilters keyword={keyword} />
       {apiUnreachable ? (
         <ApiUnreachablePanel onRetry={handleApiRetry} />
-      ) : loading ? (
-        <Loader />
+      ) : homeCatalogPending ? (
+        <Loader testId="home-catalog-loader" />
       ) : error ? (
         <Message variant="danger" data-testid="home-products-error">
           {error}

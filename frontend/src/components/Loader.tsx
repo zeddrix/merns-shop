@@ -1,11 +1,15 @@
 import { Spinner } from 'react-bootstrap';
 
-const Loader = () => {
+interface LoaderProps {
+  testId?: string;
+}
+
+const Loader = ({ testId = 'page-loader' }: LoaderProps) => {
   return (
     <Spinner
       animation="border"
       role="status"
-      data-testid="page-loader"
+      data-testid={testId}
       className="loader-fade-in"
       style={{
         width: '100px',

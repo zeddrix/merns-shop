@@ -1383,6 +1383,11 @@ strong {
   padding-right: env(safe-area-inset-right, 0);
 }
 
+.slow-server-banner {
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
+
 .pwa-update-banner {
   padding-left: env(safe-area-inset-left, 0);
   padding-right: env(safe-area-inset-right, 0);

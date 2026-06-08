@@ -11,6 +11,7 @@ import { useCartBootstrap } from './features/cartBootstrap';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import OfflineBanner from './components/OfflineBanner';
+import SlowServerBanner from './components/SlowServerBanner';
 import PwaInstallBanner from './components/PwaInstallBanner';
 import PwaManager from './components/PwaManager';
 import { PwaInstallProvider } from './context/PwaInstallContext';
@@ -76,6 +77,7 @@ const AppRoutes = () => {
     <PwaInstallProvider>
       <PwaManager />
       <OfflineBanner />
+      <SlowServerBanner />
       <PwaInstallBanner />
       <ScrollToTop />
       <Header />
