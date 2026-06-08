@@ -7,6 +7,7 @@ import { clearStaleItemsNotice } from '../features/cartSlice';
 import SearchBox from './SearchBox';
 import SearchOverlay from './SearchOverlay';
 import CartPopover from './CartPopover';
+import PwaInstallButton from './PwaInstallButton';
 import { DISPLAY_BRAND_NAME } from '../constants/brand';
 import { useIsDesktop } from '../hooks/useIsDesktop';
 import AppIcon from './icons/AppIcon';
@@ -98,6 +99,7 @@ const Header = () => {
                 <AppIcon icon={faSearch} />
               </button>
             </div>
+            <PwaInstallButton />
             <div className="cart-nav-wrap" ref={cartWrapRef}>
               <Nav.Link
                 as={Link}

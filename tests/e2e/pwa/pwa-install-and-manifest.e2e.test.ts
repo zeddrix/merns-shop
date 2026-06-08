@@ -46,7 +46,7 @@ test.describe('PWA manifest and install', () => {
     await expect(page.locator('link[rel="manifest"]')).toHaveCount(1);
   });
 
-  test('pwa_install_banner_simulated', async ({ page }) => {
+  test('pwa_install_header_button_simulated', async ({ page }) => {
     await page.goto('/');
     await waitForPwaMilliseconds(page, 2000, 'pwa lifecycle');
 
@@ -59,8 +59,25 @@ test.describe('PWA manifest and install', () => {
       window.dispatchEvent(new Event('test-simulate-installable'));
     });
 
-    await expect(page.locator('[data-testid="pwa-install-banner"]')).toBeVisible();
-    await page.locator('[data-testid="pwa-install-dismiss"]').click();
+    await expect(page.locator('[data-testid="pwa-install-header-button"]')).toBeVisible();
     await expect(page.locator('[data-testid="pwa-install-banner"]')).toHaveCount(0);
+    await page.locator('[data-testid="pwa-install-header-button"]').click();
+  });
+
+  test('pwa_install_header_hidden_in_standalone', async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(window, 'matchMedia', {
+        writable: true,
+        value: (query: string) => ({
+          matches: query === '(display-mode: standalone)',
+          media: query,
+          addEventListener: () => undefined,
+          removeEventListener: () => undefined
+        })
+      });
+    });
+    await page.goto('/');
+    await waitForPwaMilliseconds(page, 500, 'standalone check');
+    await expect(page.locator('[data-testid="pwa-install-header-button"]')).toHaveCount(0);
   });
 });
