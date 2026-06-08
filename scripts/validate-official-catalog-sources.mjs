@@ -1,11 +1,8 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { isPollutedOfficialUrl } from './is-polluted-official-url.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.join(__dirname, '..');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
+const officialPath = catalogImagePaths.sources.official;
 
 const raw = JSON.parse(fs.readFileSync(officialPath, 'utf8'));
 const entries = raw.entries ?? raw;

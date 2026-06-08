@@ -3,11 +3,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import { toCatalogWebp, validateCatalogImageFile } from './catalog-image-quality.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
 const publicDir = path.join(root, 'frontend/public');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
+const manifestPath = catalogImagePaths.manifest;
 
 const shouldFetch = process.argv.includes('--fetch');
 const shouldForce = process.argv.includes('--force');

@@ -1,10 +1,7 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.join(__dirname, '..');
-const reviewPath = path.join(root, 'catalog-image-agent-visual-review.json');
+const reviewPath = catalogImagePaths.reviews.agentVisualReview;
 
 const batchArg = process.argv.find((a) => a.startsWith('--batch='));
 const batchFile = process.argv.find((a) => a.endsWith('.json') && !a.startsWith('--'));

@@ -1,19 +1,17 @@
 import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
-import path from 'node:path';
+import { catalogImagePaths } from '../../../scripts/catalog-image-paths.mjs';
 
 describe('catalog official sources', () => {
   it('official sources JSON uses entries map shape', () => {
-    const filePath = path.join(process.cwd(), 'catalog-image-official-sources.json');
-    const raw = JSON.parse(fs.readFileSync(filePath, 'utf8')) as {
+    const raw = JSON.parse(fs.readFileSync(catalogImagePaths.sources.official, 'utf8')) as {
       entries: Record<string, unknown>;
     };
     expect(raw.entries).toBeTypeOf('object');
   });
 
   it('iphone-15-pro uses Apple CDN sourceUrl', () => {
-    const filePath = path.join(process.cwd(), 'catalog-image-official-sources.json');
-    const raw = JSON.parse(fs.readFileSync(filePath, 'utf8')) as {
+    const raw = JSON.parse(fs.readFileSync(catalogImagePaths.sources.official, 'utf8')) as {
       entries: Record<string, { sourceUrl: string; brand: string }>;
     };
     const entry = raw.entries['iphone-15-pro'];
@@ -22,8 +20,7 @@ describe('catalog official sources', () => {
   });
 
   it('covers Apple Samsung and Sony catalog parents', () => {
-    const filePath = path.join(process.cwd(), 'catalog-image-official-sources.json');
-    const raw = JSON.parse(fs.readFileSync(filePath, 'utf8')) as {
+    const raw = JSON.parse(fs.readFileSync(catalogImagePaths.sources.official, 'utf8')) as {
       entries: Record<string, { brand: string }>;
     };
     const counts = { Apple: 0, Samsung: 0, Sony: 0, Vivo: 0, Xiaomi: 0, Amazon: 0 };

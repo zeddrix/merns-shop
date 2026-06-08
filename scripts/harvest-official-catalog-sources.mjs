@@ -20,12 +20,13 @@ import {
   categoryKey,
   donorUrlFromModelKey
 } from './official-category-donors.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
-const reportPath = path.join(root, 'catalog-image-official-harvest-report.json');
+const manifestPath = catalogImagePaths.manifest;
+const officialPath = catalogImagePaths.sources.official;
+const reportPath = catalogImagePaths.reports.officialHarvest;
 
 const USER_AGENT = 'merns-shop-catalog/1.0 (educational demo)';
 const brandFilter = process.argv.find((arg) => arg.startsWith('--brand='))?.split('=')[1];

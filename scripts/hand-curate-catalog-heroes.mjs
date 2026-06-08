@@ -2,10 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
+const officialPath = catalogImagePaths.sources.official;
 
 const VIVO_X50_URL = 'https://upload.wikimedia.org/wikipedia/commons/6/63/Vivo_X50_Pro.jpg';
 

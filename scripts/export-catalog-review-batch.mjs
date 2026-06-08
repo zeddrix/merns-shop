@@ -2,10 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
+const manifestPath = catalogImagePaths.manifest;
 const outDir = path.join(root, '.catalog-visual-review');
 
 const BRAND_ORDER = ['Apple', 'Samsung', 'Vivo', 'Xiaomi', 'Sony', 'Amazon'];

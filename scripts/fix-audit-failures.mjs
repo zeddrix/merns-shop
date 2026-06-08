@@ -3,13 +3,14 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import { auditManifestEntry, pickRelevantCommonsCandidate } from './catalog-image-relevance.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
-const overridesPath = path.join(root, 'catalog-image-overrides.json');
-const reportPath = path.join(root, 'catalog-image-fix-report.json');
+const manifestPath = catalogImagePaths.manifest;
+const officialPath = catalogImagePaths.sources.official;
+const overridesPath = catalogImagePaths.sources.overrides;
+const reportPath = catalogImagePaths.reports.fix;
 
 const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
 const OFFICIAL_BRANDS = new Set(['Apple', 'Samsung', 'Sony']);

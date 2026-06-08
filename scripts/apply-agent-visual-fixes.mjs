@@ -4,10 +4,11 @@ import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import { APPLE_CDN_ASSETS } from './official-apple-cdn-assets.mjs';
 import { appleCdnCandidates, isReachableImage } from './official-source-helpers.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
+const officialPath = catalogImagePaths.sources.official;
 /** @param {object} row */
 function commons(row) {
   const title = row.commonsTitle;

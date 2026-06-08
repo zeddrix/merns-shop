@@ -2,12 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
-const reportPath = path.join(root, 'catalog-image-official-resolve-report.json');
+const manifestPath = catalogImagePaths.manifest;
+const officialPath = catalogImagePaths.sources.official;
+const reportPath = catalogImagePaths.reports.officialResolve;
 
 const loadOfficial = () => {
   if (!fs.existsSync(officialPath)) {
@@ -59,7 +60,7 @@ const main = () => {
   }
 
   manifest.note =
-    'Official CDN URLs merged from catalog-image-official-sources.json. Run pnpm catalog:sources:official then pnpm catalog:images.';
+    'Official CDN URLs merged from catalog/images/sources/official.json. Run pnpm catalog:sources:official then pnpm catalog:images.';
   manifest.generatedAt = new Date().toISOString();
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
   fs.writeFileSync(

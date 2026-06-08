@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
+const manifestPath = catalogImagePaths.manifest;
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const entries = (manifest.entries ?? []).map((entry) => ({

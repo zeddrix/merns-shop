@@ -7,12 +7,13 @@ import {
   pickRelevantCommonsCandidate,
   scoreManifestEntryRelevance
 } from './catalog-image-relevance.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
-const reportPath = path.join(root, 'catalog-image-search-curate-report.json');
+const manifestPath = catalogImagePaths.manifest;
+const officialPath = catalogImagePaths.sources.official;
+const reportPath = catalogImagePaths.reports.searchCurate;
 
 const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
 const OPENVERSE = 'https://api.openverse.org/v1/images/';

@@ -2,11 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
+const manifestPath = catalogImagePaths.manifest;
+const officialPath = catalogImagePaths.sources.official;
 
 const WAVE4_BRANDS = new Set(['Vivo', 'Xiaomi', 'Amazon']);
 

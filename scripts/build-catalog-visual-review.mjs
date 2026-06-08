@@ -2,12 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validateCatalogImageFile } from './catalog-image-quality.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const auditPath = path.join(root, 'catalog-image-audit-report.json');
-const outPath = path.join(root, 'catalog-image-visual-review.json');
+const manifestPath = catalogImagePaths.manifest;
+const auditPath = catalogImagePaths.reports.audit;
+const outPath = catalogImagePaths.reports.visualReview;
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));

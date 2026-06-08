@@ -5,8 +5,8 @@ Hero images for all catalog parents are normalized to **1200×900 WebP** under `
 ## Source policy
 
 - **Licensed/official only** — Apple/Samsung/Sony official CDN where reachable, otherwise Wikimedia Commons / Flickr (CC), documented in manifest.
-- **Vivo, Xiaomi, Amazon** — Wikimedia Commons via curated mappings in [`catalog-image-curated-sources.json`](../catalog-image-curated-sources.json).
-- **Overrides** — manual fixes in [`catalog-image-overrides.json`](../catalog-image-overrides.json).
+- **Vivo, Xiaomi, Amazon** — Wikimedia Commons via curated mappings in [`catalog/images/sources/curated.json`](../catalog/images/sources/curated.json).
+- **Overrides** — manual fixes in [`catalog/images/sources/overrides.json`](../catalog/images/sources/overrides.json).
 
 ## Full refresh workflow
 
@@ -19,22 +19,22 @@ pnpm catalog:sources --reaudit              # re-resolve Commons gaps (optional)
 pnpm catalog:images --force
 pnpm catalog:validate
 pnpm catalog:audit                          # metadata relevance gate (must be 0 failed)
-pnpm catalog:visual-review                  # writes catalog-image-visual-review.json
+pnpm catalog:visual-review                  # writes catalog/images/reports/visual-review.json
 ```
 
 ## Fixing a single bad image
 
-1. Add or update `catalog-image-overrides.json` (or `catalog-image-official-sources.json` for Apple/Samsung/Sony).
+1. Add or update `catalog/images/sources/overrides.json` (or `catalog/images/sources/official.json` for Apple/Samsung/Sony).
 2. `node scripts/fetch-catalog-images.mjs --fetch --webp --force --only=<modelKey>`
 3. `pnpm catalog:validate && pnpm catalog:audit`
 
 ## Audit and review artifacts
 
-| File                                 | Purpose                                         |
-| ------------------------------------ | ----------------------------------------------- |
-| `catalog-image-audit-report.json`    | Metadata relevance failures                     |
-| `catalog-image-visual-review.json`   | Per-product pass/fail after file + audit checks |
-| `catalog-image-curated-sources.json` | Licensed URL map for hard-to-harvest models     |
+| File                                        | Purpose                                         |
+| ------------------------------------------- | ----------------------------------------------- |
+| `catalog/images/reports/audit-report.json`  | Metadata relevance failures                     |
+| `catalog/images/reports/visual-review.json` | Per-product pass/fail after file + audit checks |
+| `catalog/images/sources/curated.json`       | Licensed URL map for hard-to-harvest models     |
 
 ## CDN patterns
 

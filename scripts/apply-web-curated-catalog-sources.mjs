@@ -3,13 +3,14 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import { auditManifestEntry } from './catalog-image-relevance.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const curatedPath = path.join(root, 'catalog-image-web-curated-sources.json');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
-const reportPath = path.join(root, 'catalog-image-web-curated-report.json');
+const curatedPath = catalogImagePaths.sources.webCurated;
+const manifestPath = catalogImagePaths.manifest;
+const officialPath = catalogImagePaths.sources.official;
+const reportPath = catalogImagePaths.reports.webCurated;
 
 const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
 const RATE_MS = 2500;
@@ -78,7 +79,7 @@ async function main() {
   if (modelArg) {
     targets = targets.filter(([modelKey]) => modelKey === modelArg);
   } else if (onlyArg === 'missing') {
-    const prior = path.join(root, 'catalog-image-web-curated-report.json');
+    const prior = catalogImagePaths.reports.webCurated;
     if (fs.existsSync(prior)) {
       const missing = new Set(
         JSON.parse(fs.readFileSync(prior, 'utf8')).missing.map((row) => row.modelKey)
@@ -86,7 +87,7 @@ async function main() {
       targets = targets.filter(([modelKey]) => missing.has(modelKey));
     }
   } else if (onlyArg === 'failures') {
-    const failReport = path.join(root, 'catalog-image-search-curate-report.json');
+    const failReport = catalogImagePaths.reports.searchCurate;
     if (fs.existsSync(failReport)) {
       const failed = new Set(
         JSON.parse(fs.readFileSync(failReport, 'utf8')).failed.map((row) => row.modelKey)

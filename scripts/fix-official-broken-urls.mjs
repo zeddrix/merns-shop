@@ -1,12 +1,9 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { isPollutedOfficialUrl } from './is-polluted-official-url.mjs';
 import { SUBCATEGORY_LICENSED_FALLBACK, categoryKey } from './official-category-donors.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.join(__dirname, '..');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
+const officialPath = catalogImagePaths.sources.official;
 
 const PLAYSTATION_PS5 =
   'https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21';

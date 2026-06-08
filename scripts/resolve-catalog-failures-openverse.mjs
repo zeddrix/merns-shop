@@ -1,12 +1,9 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const overridesPath = path.join(root, 'catalog-image-overrides.json');
-const reportPath = path.join(root, 'catalog-image-resolve-report.json');
+const manifestPath = catalogImagePaths.manifest;
+const overridesPath = catalogImagePaths.sources.overrides;
+const reportPath = catalogImagePaths.reports.resolve;
 
 const OPENVERSE = 'https://api.openverse.org/v1/images/';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

@@ -3,12 +3,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import { auditManifestEntry, pickRelevantCommonsCandidate } from './catalog-image-relevance.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const overridesPath = path.join(root, 'catalog-image-overrides.json');
-const reportPath = path.join(root, 'catalog-image-resolve-report.json');
+const manifestPath = catalogImagePaths.manifest;
+const overridesPath = catalogImagePaths.sources.overrides;
+const reportPath = catalogImagePaths.reports.resolve;
 
 const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
 const RATE_MS = 2000;
@@ -190,7 +191,7 @@ async function main() {
   );
   console.log(`Report: ${reportPath}`);
   if (report.failed.length > 0) {
-    console.error('Add catalog-image-overrides.json entries for failed modelKeys.');
+    console.error('Add catalog/images/sources/overrides.json entries for failed modelKeys.');
     process.exitCode = 1;
   }
 }

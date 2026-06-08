@@ -7,15 +7,14 @@ import {
   buildSamsungPageUrl,
   buildSonyPageUrl
 } from './official-source-helpers.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
+const officialPath = catalogImagePaths.sources.official;
 
 execSync('pnpm exec tsx scripts/generate-catalog-manifest.ts', { cwd: root, stdio: 'pipe' });
-const manifest = JSON.parse(
-  fs.readFileSync(path.join(root, 'catalog-image-manifest.json'), 'utf8')
-);
+const manifest = JSON.parse(fs.readFileSync(catalogImagePaths.manifest, 'utf8'));
 const official = fs.existsSync(officialPath)
   ? (JSON.parse(fs.readFileSync(officialPath, 'utf8')).entries ?? {})
   : {};

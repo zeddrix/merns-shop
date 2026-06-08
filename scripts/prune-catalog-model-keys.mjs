@@ -2,14 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
 const publicDir = path.join(root, 'frontend/public');
 
-const { modelKeys } = JSON.parse(
-  fs.readFileSync(path.join(root, 'catalog-severe-pruned-model-keys.json'), 'utf8')
-);
+const { modelKeys } = JSON.parse(fs.readFileSync(catalogImagePaths.prune.severeModelKeys, 'utf8'));
 const pruneSet = new Set(modelKeys);
 
 const removeKeysFromObject = (obj) => {
@@ -26,18 +25,17 @@ const removeKeysFromObject = (obj) => {
   return removed;
 };
 
-const pruneJsonFile = (relativePath, mutator) => {
-  const filePath = path.join(root, relativePath);
+const pruneJsonFile = (filePath, mutator) => {
   if (!fs.existsSync(filePath)) {
     return;
   }
   const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   const removed = mutator(raw);
   fs.writeFileSync(filePath, `${JSON.stringify(raw, null, 2)}\n`);
-  console.log(`${relativePath}: pruned ${removed} key(s)`);
+  console.log(`${path.relative(root, filePath)}: pruned ${removed} key(s)`);
 };
 
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
+const manifestPath = catalogImagePaths.manifest;
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const imagePaths = new Set();
 
@@ -57,25 +55,25 @@ for (const webPath of imagePaths) {
   }
 }
 
-pruneJsonFile('catalog-image-official-sources.json', (raw) => removeKeysFromObject(raw.entries));
-pruneJsonFile('catalog-image-web-curated-sources.json', (raw) => {
+pruneJsonFile(catalogImagePaths.sources.official, (raw) => removeKeysFromObject(raw.entries));
+pruneJsonFile(catalogImagePaths.sources.webCurated, (raw) => {
   let removed = removeKeysFromObject(raw.direct);
   removed += removeKeysFromObject(raw.commonsByModelKey);
   removed += removeKeysFromObject(raw.files);
   return removed;
 });
-pruneJsonFile('catalog-image-curated-sources.json', (raw) => removeKeysFromObject(raw.entries));
-pruneJsonFile('catalog-image-overrides.json', (raw) => removeKeysFromObject(raw.entries));
+pruneJsonFile(catalogImagePaths.sources.curated, (raw) => removeKeysFromObject(raw.entries));
+pruneJsonFile(catalogImagePaths.sources.overrides, (raw) => removeKeysFromObject(raw.entries));
 
-for (const reportPath of [
-  'catalog-image-audit-report.json',
-  'catalog-image-visual-review.json',
-  'catalog-image-search-curate-report.json',
-  'catalog-image-web-curated-report.json',
-  'catalog-image-fix-report.json',
-  'catalog-image-agent-visual-review.json'
+for (const reportFilePath of [
+  catalogImagePaths.reports.audit,
+  catalogImagePaths.reports.visualReview,
+  catalogImagePaths.reports.searchCurate,
+  catalogImagePaths.reports.webCurated,
+  catalogImagePaths.reports.fix,
+  catalogImagePaths.reviews.agentVisualReview
 ]) {
-  pruneJsonFile(reportPath, (raw) => {
+  pruneJsonFile(reportFilePath, (raw) => {
     if (Array.isArray(raw.entries)) {
       const before = raw.entries.length;
       raw.entries = raw.entries.filter((entry) => !pruneSet.has(entry.modelKey));

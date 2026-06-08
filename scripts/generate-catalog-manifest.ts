@@ -5,7 +5,7 @@ import buildSeedProducts from '../backend/data/catalog/index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
-const manifestPath = join(root, 'catalog-image-manifest.json');
+const manifestPath = join(root, 'catalog', 'images', 'manifest.json');
 
 const existingEntries = new Map();
 if (existsSync(manifestPath)) {
@@ -39,4 +39,4 @@ const manifest = {
 };
 
 writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-console.log(`Wrote ${entries.length} manifest entries to catalog-image-manifest.json`);
+console.log(`Wrote ${entries.length} manifest entries to catalog/images/manifest.json`);

@@ -1,12 +1,9 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { auditManifestEntry } from './catalog-image-relevance.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.join(__dirname, '..');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const reportPath = path.join(root, 'catalog-image-audit-report.json');
+const manifestPath = catalogImagePaths.manifest;
+const reportPath = catalogImagePaths.reports.audit;
 
 /** URLs intentionally shared across products (category fallbacks). */
 const ALLOWED_DUPLICATE_URLS = new Set([

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import { appleCdnCandidates, isReachableImage } from './official-source-helpers.mjs';
 import { APPLE_CDN_ASSETS } from './official-apple-cdn-assets.mjs';
+import { catalogImagePaths } from './catalog-image-paths.mjs';
 
 const APPLE_FALLBACK = {
   Phones: appleCdnCandidates(APPLE_CDN_ASSETS['iphone-15'])[0],
@@ -24,10 +25,10 @@ const APPLE_WIKIMEDIA_FALLBACK = {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const curatedPath = path.join(root, 'catalog-image-curated-sources.json');
-const manifestPath = path.join(root, 'catalog-image-manifest.json');
-const officialPath = path.join(root, 'catalog-image-official-sources.json');
-const overridesPath = path.join(root, 'catalog-image-overrides.json');
+const curatedPath = catalogImagePaths.sources.curated;
+const manifestPath = catalogImagePaths.manifest;
+const officialPath = catalogImagePaths.sources.official;
+const overridesPath = catalogImagePaths.sources.overrides;
 
 /** Licensed Wikimedia / Flickr URLs verified for product category. */
 const CURATED = {
