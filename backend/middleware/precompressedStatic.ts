@@ -1,8 +1,9 @@
-import type { ServeStaticOptions } from 'serve-static';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { NextFunction, Request, Response } from 'express';
 import express from 'express';
+
+type StaticOptions = NonNullable<Parameters<typeof express.static>[1]>;
 
 const encodingExtension = (encoding: string): string | null => {
   if (encoding.includes('br')) return '.br';
@@ -12,7 +13,7 @@ const encodingExtension = (encoding: string): string | null => {
 
 export const createPrecompressedStatic = (
   rootDir: string,
-  options: ServeStaticOptions = {}
+  options: StaticOptions = {}
 ): express.RequestHandler[] => {
   const staticHandler = express.static(rootDir, options);
 
