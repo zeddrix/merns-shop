@@ -413,12 +413,12 @@ Helpers in `tests/e2e/fixtures/test-helpers.ts`: `loginAs`, `loginAsAdmin`, `add
 
 PWA specs live under `tests/e2e/pwa/` and run only via `playwright.pwa.config.ts` (port **5040**, production Express build). Regular `playwright.config.ts` ignores `pwa.*` files and sets `serviceWorkers: 'block'`.
 
-| File                                   | Domain                                           |
-| -------------------------------------- | ------------------------------------------------ |
-| `pwa-install-and-manifest.e2e.test.ts` | Manifest, icons, install banner                  |
-| `pwa-offline-shell.e2e.test.ts`        | Offline banner, cached shell, cart offline       |
-| `pwa-update-and-recovery.e2e.test.ts`  | SW update banner and reload                      |
-| `pwa-order-push.e2e.test.ts`           | Order paid/delivered push + in-app notifications |
+| File                                   | Domain                                                     |
+| -------------------------------------- | ---------------------------------------------------------- |
+| `pwa-install-and-manifest.e2e.test.ts` | Manifest, icons, install banner, header icon, install hint |
+| `pwa-offline-shell.e2e.test.ts`        | Offline banner, cached shell, cart offline                 |
+| `pwa-update-and-recovery.e2e.test.ts`  | SW update banner and reload                                |
+| `pwa-order-push.e2e.test.ts`           | Order paid/delivered push + in-app notifications           |
 
 ### PWA / offline E2E commands
 
