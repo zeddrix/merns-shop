@@ -1,5 +1,10 @@
 import { expect, type BrowserContext, type Page } from '@playwright/test';
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}
+
 /**
  * PWA-only timed wait (service worker cache lifecycle).
  * This is the only E2E file allowed to use waitForTimeout.
@@ -74,10 +79,24 @@ export async function simulateSwUpdate(page: Page) {
   });
 }
 
+export async function clearInstallBannerDismiss(page: Page) {
+  await page.addInitScript(() => {
+    localStorage.removeItem('pwa-install-banner-dismissed');
+    window.__e2ePromptCalled = false;
+  });
+}
+
 export async function simulateInstallable(page: Page) {
   await page.evaluate(() => {
-    const event = new Event('test-simulate-installable');
-    window.dispatchEvent(event);
+    const prompt = {
+      prompt: async () => {
+        window.__e2ePromptCalled = true;
+      },
+      userChoice: Promise.resolve({ outcome: 'dismissed' as const })
+    };
+    window.__e2eInstallPrompt = prompt as BeforeInstallPromptEvent;
+    window.__deferredInstallPrompt = prompt as BeforeInstallPromptEvent;
+    window.dispatchEvent(new Event('test-simulate-installable'));
   });
 }
 
