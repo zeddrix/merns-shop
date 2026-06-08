@@ -4,13 +4,14 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { logout } from '../features/userSlice';
 import { clearStaleItemsNotice } from '../features/cartSlice';
-import { buildAuthSearch } from '../utils/authModalUrl';
 import SearchBox from './SearchBox';
 import SearchOverlay from './SearchOverlay';
 import CartPopover from './CartPopover';
 import { DISPLAY_BRAND_NAME } from '../constants/brand';
 import { useIsDesktop } from '../hooks/useIsDesktop';
-import { stripAuthSearch } from '../utils/authModalUrl';
+import AppIcon from './icons/AppIcon';
+import { faSearch, faShoppingBag, faUser } from './icons';
+import { buildAuthSearch, stripAuthSearch } from '../utils/authModalUrl';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -94,7 +95,7 @@ const Header = () => {
                 aria-label="Open search"
                 onClick={() => setSearchOpen(true)}
               >
-                <i className="fas fa-search" aria-hidden="true" />
+                <AppIcon icon={faSearch} />
               </button>
             </div>
             <div className="cart-nav-wrap" ref={cartWrapRef}>
@@ -105,7 +106,7 @@ const Header = () => {
                 data-testid="nav-cart"
                 onClick={cartClickHandler}
               >
-                <i className="fas fa-shopping-bag" aria-hidden="true" />
+                <AppIcon icon={faShoppingBag} />
                 <span className="cart-nav-label d-none d-lg-inline">Cart</span>
                 {cartCount > 0 && (
                   <span className="cart-badge" data-testid="nav-cart-count">
@@ -178,7 +179,7 @@ const Header = () => {
                     data-testid="nav-login"
                     onClick={openLoginHandler}
                   >
-                    <i className="fas fa-user" aria-hidden="true" />
+                    <AppIcon icon={faUser} />
                     <span className="d-none d-md-inline ms-1">Sign In</span>
                   </Nav.Link>
                   <Nav.Link

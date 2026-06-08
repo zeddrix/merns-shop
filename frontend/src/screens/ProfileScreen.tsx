@@ -15,6 +15,8 @@ import { listMyOrder } from '../features/orderSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
 import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
+import AppIcon from '../components/icons/AppIcon';
+import { faTimes } from '../components/icons';
 import PushNotificationSettings from '../components/PushNotificationSettings';
 
 const ProfileScreen = () => {
@@ -236,7 +238,7 @@ const ProfileScreen = () => {
                         {order.isPaid && order.paidAt ? (
                           order.paidAt.substring(0, 10)
                         ) : (
-                          <i className="fas fa-times" style={{ color: 'red' }} />
+                          <AppIcon icon={faTimes} style={{ color: 'red' }} />
                         )}
                       </span>
                     </div>
@@ -246,7 +248,7 @@ const ProfileScreen = () => {
                         {order.isDelivered && order.deliveredAt ? (
                           order.deliveredAt.substring(0, 10)
                         ) : (
-                          <i className="fas fa-times" style={{ color: 'red' }} />
+                          <AppIcon icon={faTimes} style={{ color: 'red' }} />
                         )}
                       </span>
                     </div>
@@ -290,14 +292,14 @@ const ProfileScreen = () => {
                         {order.isPaid && order.paidAt ? (
                           order.paidAt.substring(0, 10)
                         ) : (
-                          <i className="fas fa-times" style={{ color: 'red' }}></i>
+                          <AppIcon icon={faTimes} style={{ color: 'red' }} />
                         )}
                       </td>
                       <td data-testid={`my-order-delivered-${order._id}`}>
                         {order.isDelivered && order.deliveredAt ? (
                           order.deliveredAt.substring(0, 10)
                         ) : (
-                          <i className="fas fa-times" style={{ color: 'red' }}></i>
+                          <AppIcon icon={faTimes} style={{ color: 'red' }} />
                         )}
                       </td>
                       <td>

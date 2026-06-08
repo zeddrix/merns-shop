@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Row, Col, Image, Button, Form } from 'react-bootstrap';
+import { Row, Col, Button, Form } from 'react-bootstrap';
 import AppSelect from './AppSelect';
+import CatalogImage from './CatalogImage';
+import AppIcon from './icons/AppIcon';
+import { faTrash } from './icons';
+import { CART_CATALOG_SIZES } from '../utils/catalogImage';
 import type { CartItem } from '../types';
 import { cartLineTestId } from '../utils/cartTestId';
 import { formatPrice } from '../utils/formatPrice';
@@ -19,7 +23,12 @@ const CartLineItem = ({ item, maxQty, onQtyChange, onRemove }: CartLineItemProps
     <div className="cart-line-item" data-testid={`cart-item-${lineId}`}>
       <Row className="align-items-center g-2">
         <Col xs={4} md={2}>
-          <Image src={item.image} alt={item.name} fluid rounded />
+          <CatalogImage
+            src={item.image}
+            alt={item.name}
+            sizes={CART_CATALOG_SIZES}
+            className="img-fluid rounded"
+          />
         </Col>
         <Col xs={8} md={3}>
           <Link to={`/product/${item.product}`} className="fw-semibold">
@@ -54,7 +63,7 @@ const CartLineItem = ({ item, maxQty, onQtyChange, onRemove }: CartLineItemProps
             data-testid={`cart-remove-${lineId}`}
             onClick={onRemove}
           >
-            <i className="fas fa-trash"></i>
+            <AppIcon icon={faTrash} />
           </Button>
         </Col>
       </Row>

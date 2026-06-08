@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import type { AuthModalMode } from '../utils/authModalUrl';
+import AppIcon from './icons/AppIcon';
+import { faTimes } from './icons';
 
 interface AuthModalProps {
   open: boolean;
@@ -63,7 +65,7 @@ const AuthModal = ({ open, mode, redirectPath, onClose, onSwitchMode }: AuthModa
             onClick={onClose}
             aria-label="Close sign in"
           >
-            <i className="fas fa-times" aria-hidden="true" />
+            <AppIcon icon={faTimes} />
           </button>
         </div>
         <div className="auth-modal-body">

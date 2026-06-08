@@ -3,11 +3,14 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
+import { config } from '@fortawesome/fontawesome-svg-core';
 import { store } from './store/store';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import './styles/bootstrap.scss';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import './index.css';
 import App from './App';
+
+config.autoAddCss = false;
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

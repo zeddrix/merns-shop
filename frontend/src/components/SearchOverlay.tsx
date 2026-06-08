@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import SearchBox from './SearchBox';
+import AppIcon from './icons/AppIcon';
+import { faTimes } from './icons';
 
 interface SearchOverlayProps {
   open: boolean;
@@ -42,7 +44,7 @@ const SearchOverlay = ({ open, onClose }: SearchOverlayProps) => {
             onClick={onClose}
             aria-label="Close search"
           >
-            <i className="fas fa-times" aria-hidden="true" />
+            <AppIcon icon={faTimes} />
           </button>
         </div>
         <SearchBox onSubmit={onClose} autoFocus />

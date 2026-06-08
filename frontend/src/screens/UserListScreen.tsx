@@ -10,6 +10,8 @@ import { listUsers, deleteUser } from '../features/userSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
 import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
+import AppIcon from '../components/icons/AppIcon';
+import { faCheck, faEdit, faTimes, faTrash } from '../components/icons';
 
 const UserListScreen = () => {
   const dispatch = useAppDispatch();
@@ -91,7 +93,7 @@ const UserListScreen = () => {
                     className="btn btn-light btn-sm"
                     data-testid={`admin-user-card-edit-${user._id}`}
                   >
-                    <i className="fas fa-edit"></i> Edit
+                    <AppIcon icon={faEdit} /> Edit
                   </Link>
                   <Button
                     variant="danger"
@@ -99,7 +101,7 @@ const UserListScreen = () => {
                     data-testid={`admin-user-delete-${user._id}`}
                     onClick={() => deleteHandler(user._id)}
                   >
-                    <i className="fas fa-trash"></i>
+                    <AppIcon icon={faTrash} />
                   </Button>
                 </div>
               </div>
@@ -125,9 +127,9 @@ const UserListScreen = () => {
                   </td>
                   <td>
                     {user.isAdmin ? (
-                      <i className="fas fa-check" style={{ color: 'green' }}></i>
+                      <AppIcon icon={faCheck} style={{ color: 'green' }} />
                     ) : (
-                      <i className="fas fa-times" style={{ color: 'red' }}></i>
+                      <AppIcon icon={faTimes} style={{ color: 'red' }} />
                     )}
                   </td>
                   <td>
@@ -136,7 +138,7 @@ const UserListScreen = () => {
                       className="btn btn-light btn-sm"
                       data-testid={`admin-user-edit-${user._id}`}
                     >
-                      <i className="fas fa-edit"></i>
+                      <AppIcon icon={faEdit} />
                     </Link>
                     <Button
                       variant="danger"
@@ -144,7 +146,7 @@ const UserListScreen = () => {
                       data-testid={`admin-user-delete-${user._id}`}
                       onClick={() => deleteHandler(user._id)}
                     >
-                      <i className="fas fa-trash"></i>
+                      <AppIcon icon={faTrash} />
                     </Button>
                   </td>
                 </tr>

@@ -8,6 +8,8 @@ import {
   markNotificationRead,
   setLastPushTitle
 } from '../features/pushSlice';
+import AppIcon from './icons/AppIcon';
+import { faBell } from './icons';
 
 const NotificationBell = () => {
   const dispatch = useAppDispatch();
@@ -73,7 +75,7 @@ const NotificationBell = () => {
             setOpen(true);
           }}
         >
-          <i className="fas fa-bell" aria-hidden="true" />
+          <AppIcon icon={faBell} />
           {unreadCount > 0 && (
             <Badge
               bg="danger"

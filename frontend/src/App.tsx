@@ -1,3 +1,4 @@
+import { lazy, Suspense, type ReactNode } from 'react';
 import {
   BrowserRouter as Router,
   useLocation,
@@ -14,44 +15,48 @@ import PwaInstallBanner from './components/PwaInstallBanner';
 import PwaManager from './components/PwaManager';
 import NotificationBell from './components/NotificationBell';
 import PageTransition from './components/motion/PageTransition';
+import Loader from './components/Loader';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import AuthLegacyRedirect from './components/AuthLegacyRedirect';
 import AuthModalHost from './components/AuthModalHost';
-import ProfileScreen from './screens/ProfileScreen';
-import CheckoutScreen from './screens/CheckoutScreen';
-import ShippingScreen from './screens/ShippingScreen';
-import PaymentScreen from './screens/PaymentScreen';
-import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import ScrollToTop from './components/ScrollToTop';
-import OrderScreen from './screens/OrderScreen';
-import UserListScreen from './screens/UserListScreen';
-import UserEditScreen from './screens/UserEditScreen';
-import ProductListScreen from './screens/ProductListScreen';
-import ProductEditScreen from './screens/ProductEditScreen';
-import OrderListScreen from './screens/OrderListScreen';
 import AboutScreen from './screens/AboutScreen';
 import NotFoundScreen from './screens/NotFoundScreen';
 
+const ProfileScreen = lazy(() => import('./screens/ProfileScreen'));
+const CheckoutScreen = lazy(() => import('./screens/CheckoutScreen'));
+const ShippingScreen = lazy(() => import('./screens/ShippingScreen'));
+const PaymentScreen = lazy(() => import('./screens/PaymentScreen'));
+const PlaceOrderScreen = lazy(() => import('./screens/PlaceOrderScreen'));
+const OrderScreen = lazy(() => import('./screens/OrderScreen'));
+const UserListScreen = lazy(() => import('./screens/UserListScreen'));
+const UserEditScreen = lazy(() => import('./screens/UserEditScreen'));
+const ProductListScreen = lazy(() => import('./screens/ProductListScreen'));
+const ProductEditScreen = lazy(() => import('./screens/ProductEditScreen'));
+const OrderListScreen = lazy(() => import('./screens/OrderListScreen'));
+
+const lazyRoute = (element: ReactNode) => <Suspense fallback={<Loader />}>{element}</Suspense>;
+
 const appRouteObjects: RouteObject[] = [
-  { path: '/order/:id', element: <OrderScreen /> },
-  { path: '/checkout', element: <CheckoutScreen /> },
-  { path: '/shipping', element: <ShippingScreen /> },
-  { path: '/payment', element: <PaymentScreen /> },
-  { path: '/placeorder', element: <PlaceOrderScreen /> },
+  { path: '/order/:id', element: lazyRoute(<OrderScreen />) },
+  { path: '/checkout', element: lazyRoute(<CheckoutScreen />) },
+  { path: '/shipping', element: lazyRoute(<ShippingScreen />) },
+  { path: '/payment', element: lazyRoute(<PaymentScreen />) },
+  { path: '/placeorder', element: lazyRoute(<PlaceOrderScreen />) },
   { path: '/login', element: <AuthLegacyRedirect mode="login" /> },
   { path: '/register', element: <AuthLegacyRedirect mode="register" /> },
-  { path: '/profile', element: <ProfileScreen /> },
+  { path: '/profile', element: lazyRoute(<ProfileScreen />) },
   { path: '/about', element: <AboutScreen /> },
   { path: '/product/:id', element: <ProductScreen /> },
   { path: '/cart/:id?', element: <CartScreen /> },
-  { path: '/admin/userlist', element: <UserListScreen /> },
-  { path: '/admin/user/:id/edit', element: <UserEditScreen /> },
-  { path: '/admin/productlist', element: <ProductListScreen /> },
-  { path: '/admin/productlist/:pageNumber', element: <ProductListScreen /> },
-  { path: '/admin/product/:id/edit', element: <ProductEditScreen /> },
-  { path: '/admin/orderlist', element: <OrderListScreen /> },
+  { path: '/admin/userlist', element: lazyRoute(<UserListScreen />) },
+  { path: '/admin/user/:id/edit', element: lazyRoute(<UserEditScreen />) },
+  { path: '/admin/productlist', element: lazyRoute(<ProductListScreen />) },
+  { path: '/admin/productlist/:pageNumber', element: lazyRoute(<ProductListScreen />) },
+  { path: '/admin/product/:id/edit', element: lazyRoute(<ProductEditScreen />) },
+  { path: '/admin/orderlist', element: lazyRoute(<OrderListScreen />) },
   { path: '/search/:keyword', element: <HomeScreen /> },
   { path: '/page/:pageNumber', element: <HomeScreen /> },
   { path: '/search/:keyword/page/:pageNumber', element: <HomeScreen /> },
@@ -64,6 +69,7 @@ const AppRoutes = () => {
   useCartBootstrap();
   const location = useLocation();
   const routeElement = useRoutes(appRouteObjects);
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
     <>
@@ -76,9 +82,13 @@ const AppRoutes = () => {
       <main className="py-3">
         <Container>
           {routeElement ? (
-            <PageTransition key={location.pathname} routeKey={location.pathname}>
-              {routeElement}
-            </PageTransition>
+            isAdminRoute ? (
+              routeElement
+            ) : (
+              <PageTransition key={location.pathname} routeKey={location.pathname}>
+                {routeElement}
+              </PageTransition>
+            )
           ) : null}
         </Container>
       </main>

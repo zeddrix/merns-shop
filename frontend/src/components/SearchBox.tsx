@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import AppIcon from './icons/AppIcon';
+import { faSearch } from './icons';
 
 interface SearchBoxProps {
   onSubmit?: () => void;
@@ -41,7 +43,7 @@ const SearchBox = ({ onSubmit, autoFocus = false }: SearchBoxProps) => {
         aria-label="Search products"
       />
       <Button type="submit" className="site-search-submit touch-target" data-testid="search-submit">
-        <i className="fas fa-search" aria-hidden="true" />
+        <AppIcon icon={faSearch} />
         <span className="visually-hidden">Search</span>
       </Button>
     </Form>

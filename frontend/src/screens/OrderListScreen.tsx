@@ -10,6 +10,8 @@ import { listOrders } from '../features/orderSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
 import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
+import AppIcon from '../components/icons/AppIcon';
+import { faTimes } from '../components/icons';
 
 const OrderListScreen = () => {
   const dispatch = useAppDispatch();
@@ -79,7 +81,7 @@ const OrderListScreen = () => {
                     {order.isPaid && order.paidAt ? (
                       order.paidAt.substring(0, 10)
                     ) : (
-                      <i className="fas fa-times" style={{ color: 'red' }} />
+                      <AppIcon icon={faTimes} style={{ color: 'red' }} />
                     )}
                   </span>
                 </div>
@@ -89,7 +91,7 @@ const OrderListScreen = () => {
                     {order.isDelivered && order.deliveredAt ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
-                      <i className="fas fa-times" style={{ color: 'red' }} />
+                      <AppIcon icon={faTimes} style={{ color: 'red' }} />
                     )}
                   </span>
                 </div>
@@ -128,14 +130,14 @@ const OrderListScreen = () => {
                     {order.isPaid && order.paidAt ? (
                       order.paidAt.substring(0, 10)
                     ) : (
-                      <i className="fas fa-times" style={{ color: 'red' }}></i>
+                      <AppIcon icon={faTimes} style={{ color: 'red' }} />
                     )}
                   </td>
                   <td>
                     {order.isDelivered && order.deliveredAt ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
-                      <i className="fas fa-times" style={{ color: 'red' }}></i>
+                      <AppIcon icon={faTimes} style={{ color: 'red' }} />
                     )}
                   </td>
                   <td>
