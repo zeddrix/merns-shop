@@ -59,6 +59,10 @@ export const rehydrateCart = createAsyncThunk(
       return { cartItems: [], pruned: false };
     }
 
+    if (typeof navigator !== 'undefined' && !navigator.onLine) {
+      return { cartItems, pruned: false };
+    }
+
     const validItems: CartItem[] = [];
     for (const item of cartItems) {
       try {

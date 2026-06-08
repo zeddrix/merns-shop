@@ -36,14 +36,18 @@ registerRoute(
 );
 
 registerRoute(
-  ({ url }) => url.pathname.startsWith('/api/'),
+  ({ url, request }) =>
+    request.method === 'GET' &&
+    (url.pathname === '/api/products/meta' ||
+      url.pathname === '/api/products/top' ||
+      url.pathname === '/api/products'),
   new NetworkFirst({
-    cacheName: 'api-cache',
+    cacheName: 'api-read-cache',
     networkTimeoutSeconds: 5,
     plugins: [
       new ExpirationPlugin({
-        maxEntries: 50,
-        maxAgeSeconds: 60
+        maxEntries: 24,
+        maxAgeSeconds: 120
       })
     ]
   })
