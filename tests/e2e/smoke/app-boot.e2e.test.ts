@@ -40,8 +40,9 @@ test.describe('smoke app boot', () => {
     await expect(page.locator('[data-testid="site-footer"]')).toContainText(
       `Copyright © ${currentYear} MERN's Shop`
     );
-    await expect(page.locator('[data-testid="site-footer"]')).toContainText(
-      'About · Developed by Zeddrix Fabian'
+    await expect(page.locator('[data-testid="footer-about-link"]')).toHaveText('About');
+    await expect(page.locator('[data-testid="footer-developer-link"]')).toHaveText(
+      'Developed by Zeddrix Fabian'
     );
     const jsonLdScripts = page.locator('script[type="application/ld+json"]');
     const jsonLdTexts = await jsonLdScripts.allTextContents();

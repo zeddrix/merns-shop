@@ -58,6 +58,7 @@ test.describe('public seo', () => {
   test('home_meta_includes_developer', async ({ page }) => {
     await page.goto('/');
     await assertHomeCatalogHealthy(page);
+    await expect(page.locator('link[rel="preload"][as="image"]')).toHaveCount(1);
     await expect(page.locator('meta[name="description"]').first()).toHaveAttribute(
       'content',
       /Developed by Zeddrix Fabian/

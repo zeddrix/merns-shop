@@ -31,6 +31,11 @@ test.describe('responsive layout', () => {
 
     await clickProductCardToPdp(page.locator('[data-testid^="product-card-"]').first());
     await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
+    const heroImage = page.locator('[data-testid="product-details"] img').first();
+    await expect(heroImage).toHaveAttribute('srcset', /.+/);
+    await expect
+      .poll(async () => heroImage.evaluate((img: HTMLImageElement) => img.naturalWidth))
+      .toBeGreaterThan(200);
   });
 
   test('mobile_nav_search_category_journey', async ({ page }) => {

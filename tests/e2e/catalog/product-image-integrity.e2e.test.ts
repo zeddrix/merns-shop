@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { searchProducts, productCardByExactName } from '../fixtures/test-helpers';
+import {
+  searchProducts,
+  productCardByExactName,
+  clickProductCardToPdp
+} from '../fixtures/test-helpers';
 
 test.describe('catalog product image integrity', () => {
   test.beforeEach(async ({ page }) => {
@@ -17,10 +21,30 @@ test.describe('catalog product image integrity', () => {
       const media = card.locator('[data-testid="catalog-card-media"] img');
       await expect(media).toBeVisible();
       const src = await media.getAttribute('src');
+      const srcset = await media.getAttribute('srcset');
       expect(src).toMatch(/\/images\/catalog\/.*\.webp$/);
+      expect(srcset).toBeTruthy();
+      expect(srcset).toContain('400w');
       const naturalWidth = await media.evaluate((img: HTMLImageElement) => img.naturalWidth);
       expect(naturalWidth).toBeGreaterThan(0);
     }
+  });
+
+  test('catalog_card_srcset_variants_exist', async ({ page, request }) => {
+    await searchProducts(page, 'Galaxy M32');
+    const card = productCardByExactName(page, 'Galaxy M32');
+    await expect(card).toBeVisible();
+    const srcset = await card
+      .locator('[data-testid="catalog-card-media"] img')
+      .getAttribute('srcset');
+    expect(srcset).toBeTruthy();
+    const firstVariant = srcset?.split(',')[0]?.trim().split(' ')[0];
+    expect(firstVariant).toBeTruthy();
+    const imageRes = await request.get(firstVariant as string);
+    expect(imageRes.ok()).toBeTruthy();
+
+    await clickProductCardToPdp(card);
+    await expect(page.locator('[data-testid="product-details"]')).toBeVisible();
   });
 
   test('samsung_m_series_distinct_src', async ({ page }) => {

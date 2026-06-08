@@ -1,9 +1,14 @@
 import { test, expect } from '@playwright/test';
-import { addFirstInStockProductToCart, loginAs } from '../fixtures/test-helpers';
+import {
+  addFirstInStockProductToCart,
+  assertHomeCatalogHealthy,
+  loginAs
+} from '../fixtures/test-helpers';
 import {
   goOffline,
   goOnline,
   waitForPathCached,
+  waitForApiUrlCached,
   waitForPwaMilliseconds,
   waitForSWAndCaching
 } from './pwa-test-helpers';
@@ -44,6 +49,28 @@ test.describe('PWA offline shell', () => {
     await page.reload();
     await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible({ timeout: 15000 });
     await expect(page.locator('[data-testid^="cart-item-"]').first()).toBeVisible();
+  });
+
+  test('pwa_cached_catalog_image_loads_offline', async ({ page, context }) => {
+    await page.goto('/');
+    await waitForSWAndCaching(page);
+    await assertHomeCatalogHealthy(page);
+
+    const cardImage = page.locator('[data-testid="catalog-card-media"] img').first();
+    await expect(cardImage).toBeVisible();
+    const imageSrc = await cardImage.getAttribute('src');
+    expect(imageSrc).toBeTruthy();
+
+    await waitForApiUrlCached(page, '/api/products?');
+    await waitForPathCached(page, '/');
+    await context.setOffline(true);
+    await page.reload();
+    await expect(page.locator('[data-testid="home-heading"]')).toBeVisible({ timeout: 15000 });
+
+    const offlineImage = page.locator('[data-testid="catalog-card-media"] img').first();
+    await expect(offlineImage).toBeVisible();
+    const naturalWidth = await offlineImage.evaluate((img: HTMLImageElement) => img.naturalWidth);
+    expect(naturalWidth).toBeGreaterThanOrEqual(200);
   });
 
   test('pwa_uncached_route_shows_offline_fallback', async ({ page, context }) => {

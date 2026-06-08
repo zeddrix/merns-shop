@@ -270,7 +270,7 @@ test.describe('catalog browse and search', () => {
     expect(objectFits.every((fit) => fit === 'contain')).toBe(true);
   });
 
-  test('product_image_loads_offline', async ({ page }) => {
+  test('product_image_loads_online', async ({ page }) => {
     await fillSearchAndSubmit(page, 'Galaxy Tab');
     await expect(page.locator('[data-testid="product-list"]')).toBeVisible();
     const cardMedia = page.locator('[data-testid="catalog-card-media"] img').first();

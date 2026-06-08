@@ -43,6 +43,24 @@ export async function waitForPathCached(page: Page, pathname: string, timeoutMs 
   );
 }
 
+export async function waitForApiUrlCached(page: Page, urlPart: string, timeoutMs = 30000) {
+  await page.waitForFunction(
+    async (part) => {
+      const cacheNames = await caches.keys();
+      for (const name of cacheNames) {
+        const cache = await caches.open(name);
+        const keys = await cache.keys();
+        if (keys.some((request) => request.url.includes(part))) {
+          return true;
+        }
+      }
+      return false;
+    },
+    urlPart,
+    { timeout: timeoutMs }
+  );
+}
+
 export async function suppressUpdateBanner(page: Page) {
   const dismiss = page.locator('[data-testid="pwa-update-dismiss"]');
   if (await dismiss.isVisible({ timeout: 2000 }).catch(() => false)) {
