@@ -14,14 +14,19 @@ import {
   OrderAccessError
 } from '../utils/orderAccess.js';
 import { sendOrderNotification } from '../services/pushService.js';
+import { calculateOrderPages, parseOrderPagination } from '../utils/orderPagination.js';
 
 const resolveOrderItems = async (
   orderItems: Array<{ product: string; qty: number; variantSku: string }>
 ): Promise<ResolvedOrderItem[]> => {
+  const productIds = [...new Set(orderItems.map((item) => item.product))];
+  const products = await Product.find({ _id: { $in: productIds } });
+  const productById = new Map(products.map((p) => [String(p._id), p]));
+
   const resolved: ResolvedOrderItem[] = [];
 
   for (const item of orderItems) {
-    const product = await Product.findById(item.product);
+    const product = productById.get(item.product);
 
     if (!product) {
       throw new Error(`Product not found: ${item.product}`);
@@ -204,13 +209,40 @@ const listMyOrders = asyncHandler(async (req: Request, res: Response) => {
     throw new Error('Not authorized');
   }
 
-  const orders = await Order.find({ user: req.user._id });
-  res.json(orders);
+  const { page, limit, skip } = parseOrderPagination({
+    page: req.query.page ? String(req.query.page) : undefined,
+    limit: req.query.limit ? String(req.query.limit) : undefined
+  });
+  const filter = { user: req.user._id };
+  const total = await Order.countDocuments(filter);
+  const orders = await Order.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit);
+
+  res.json({
+    orders,
+    page,
+    pages: calculateOrderPages(total, limit),
+    total
+  });
 });
 
-const getOrders = asyncHandler(async (_req: Request, res: Response) => {
-  const orders = await Order.find({}).populate('user', 'id name');
-  res.json(orders);
+const getOrders = asyncHandler(async (req: Request, res: Response) => {
+  const { page, limit, skip } = parseOrderPagination({
+    page: req.query.page ? String(req.query.page) : undefined,
+    limit: req.query.limit ? String(req.query.limit) : undefined
+  });
+  const total = await Order.countDocuments({});
+  const orders = await Order.find({})
+    .populate('user', 'id name')
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
+
+  res.json({
+    orders,
+    page,
+    pages: calculateOrderPages(total, limit),
+    total
+  });
 });
 
 export {

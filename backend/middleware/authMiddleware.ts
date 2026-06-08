@@ -1,11 +1,15 @@
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import type { NextFunction, Request, Response } from 'express';
-import User from '../models/User.js';
+import type { Types } from 'mongoose';
 import { AUTH_COOKIE_NAME } from '../utils/authCookie.js';
+import type { AuthTokenPayload } from '../utils/generateToken.js';
 
-interface JwtPayload {
-  id: string;
+interface JwtUser {
+  _id: Types.ObjectId | string;
+  name: string;
+  email: string;
+  isAdmin: boolean;
 }
 
 const extractToken = (req: Request): string | undefined => {
@@ -20,6 +24,13 @@ const extractToken = (req: Request): string | undefined => {
   return undefined;
 };
 
+const userFromPayload = (payload: AuthTokenPayload): JwtUser => ({
+  _id: payload.id,
+  name: payload.name,
+  email: payload.email,
+  isAdmin: payload.isAdmin
+});
+
 const protect = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   const token = extractToken(req);
 
@@ -29,16 +40,14 @@ const protect = asyncHandler(async (req: Request, res: Response, next: NextFunct
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as AuthTokenPayload;
 
-    const user = await User.findById(decoded.id).select('-password');
-
-    if (!user) {
+    if (!decoded.id || !decoded.email) {
       res.status(401);
-      throw new Error('Not authorized, user not found');
+      throw new Error('Not authorized, token failed');
     }
 
-    req.user = user;
+    req.user = userFromPayload(decoded) as Request['user'];
     next();
   } catch (err) {
     console.error(err);
@@ -58,10 +67,9 @@ const optionalAuth = asyncHandler(async (req: Request, _res: Response, next: Nex
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
-    const user = await User.findById(decoded.id).select('-password');
-    if (user) {
-      req.user = user;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as AuthTokenPayload;
+    if (decoded.id && decoded.email) {
+      req.user = userFromPayload(decoded) as Request['user'];
     }
   } catch {
     // ignore invalid token for optional auth

@@ -4,9 +4,9 @@ import { syncCatalogOnly, syncFixturesOnly } from './utils/importSeedData.js';
 
 dotenv.config();
 
-connectDB();
-
 const run = async (): Promise<void> => {
+  await connectDB();
+
   const fixturesOnly = process.argv.includes('--fixtures');
   const catalogOnly = process.argv.includes('--catalog');
 

@@ -4,9 +4,8 @@ import { destroySeedData, importSeedData } from './utils/importSeedData.js';
 
 dotenv.config();
 
-connectDB();
-
 const runImport = async (): Promise<void> => {
+  await connectDB();
   try {
     await importSeedData();
     console.log('Data imported...');
@@ -18,6 +17,7 @@ const runImport = async (): Promise<void> => {
 };
 
 const runDestroy = async (): Promise<void> => {
+  await connectDB();
   try {
     await destroySeedData();
     console.log('Data destroyed...');

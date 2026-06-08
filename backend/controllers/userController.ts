@@ -17,7 +17,7 @@ const authUser = asyncHandler(async (req: Request, res: Response) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-    setAuthCookie(res, generateToken(user._id));
+    setAuthCookie(res, generateToken(user));
     res.json(toPublicUser(user));
   } else {
     res.status(401);
@@ -42,7 +42,7 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   });
 
   if (user) {
-    setAuthCookie(res, generateToken(user._id));
+    setAuthCookie(res, generateToken(user));
     res.status(201).json(toPublicUser(user));
   } else {
     res.status(400);
@@ -88,7 +88,7 @@ const updateUserProfile = asyncHandler(async (req: Request, res: Response) => {
 
     const updatedUser = await user.save();
 
-    setAuthCookie(res, generateToken(updatedUser._id));
+    setAuthCookie(res, generateToken(updatedUser));
     res.json(toPublicUser(updatedUser));
   } else {
     res.status(404);

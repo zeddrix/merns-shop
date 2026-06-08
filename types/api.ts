@@ -91,10 +91,37 @@ export interface ApiErrorResponse {
   message: string;
 }
 
+export interface ApiProductListItem {
+  _id: string;
+  name: string;
+  image: string;
+  brand: string;
+  category: string;
+  subcategory: string;
+  modelKey: string;
+  releaseYear: number;
+  condition: string;
+  rating: number;
+  numReviews: number;
+  variants: ApiProductVariant[];
+  priceFrom?: number;
+  listPriceFrom?: number;
+  savingsPercentMax?: number;
+  inStock?: boolean;
+  totalStock?: number;
+}
+
 export interface PaginatedProductsResponse {
-  products: ApiProduct[];
+  products: ApiProductListItem[];
   page: number;
   pages: number;
+}
+
+export interface PaginatedOrdersResponse {
+  orders: ApiOrder[];
+  page: number;
+  pages: number;
+  total: number;
 }
 
 export interface ProductMetaResponse {
