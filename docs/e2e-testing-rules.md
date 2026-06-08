@@ -59,6 +59,7 @@ Group tests by feature domain, not by individual scenario. The shop should keep 
 | Domain                                  | Canonical file(s)                                       |
 | --------------------------------------- | ------------------------------------------------------- |
 | Smoke / boot                            | `tests/e2e/smoke/app-boot.e2e.test.ts`                  |
+| Slow server / cold-start UX             | `tests/e2e/smoke/slow-server-notice.e2e.test.ts`        |
 | Auth & profile                          | `tests/e2e/auth/login-register-profile.e2e.test.ts`     |
 | Catalog browse & search                 | `tests/e2e/catalog/product-browse-search.e2e.test.ts`   |
 | Product reviews                         | `tests/e2e/catalog/product-reviews.e2e.test.ts`         |
@@ -380,21 +381,22 @@ Prefer **failing loudly** when seed data or MongoDB is wrong. Only skip when the
 
 ### Shop E2E file map
 
-| File                                                    | Domain                              |
-| ------------------------------------------------------- | ----------------------------------- |
-| `smoke/app-boot.e2e.test.ts`                            | App boots, homepage loads           |
-| `auth/login-register-profile.e2e.test.ts`               | Login, register, profile update     |
-| `catalog/product-browse-search.e2e.test.ts`             | Home list, search, pagination       |
-| `catalog/product-reviews.e2e.test.ts`                   | Review submit and display           |
-| `checkout/cart-shipping-payment.e2e.test.ts`            | Cart qty, shipping, payment method  |
-| `checkout/paypal-sandbox-payment.e2e.test.ts`           | Real PayPal sandbox (opt-in)        |
-| `admin/admin-products.e2e.test.ts`                      | Admin product CRUD                  |
-| `admin/admin-orders.e2e.test.ts`                        | Admin order list and delivery       |
-| `admin/admin-users.e2e.test.ts`                         | Admin user list and edit            |
-| `misc/api-security-auth.e2e.test.ts`                    | 401/403 API isolation               |
-| `journeys/journey-guest-purchase-lifecycle.e2e.test.ts` | Guest checkout golden path          |
-| `journeys/journey-admin-product-lifecycle.e2e.test.ts`  | Admin create → catalog visibility   |
-| `journeys/journey-admin-order-fulfillment.e2e.test.ts`  | Admin order fulfillment golden path |
+| File                                                    | Domain                                   |
+| ------------------------------------------------------- | ---------------------------------------- |
+| `smoke/app-boot.e2e.test.ts`                            | App boots, homepage loads                |
+| `smoke/slow-server-notice.e2e.test.ts`                  | Slow catalog load banner (cold-start UX) |
+| `auth/login-register-profile.e2e.test.ts`               | Login, register, profile update          |
+| `catalog/product-browse-search.e2e.test.ts`             | Home list, search, pagination            |
+| `catalog/product-reviews.e2e.test.ts`                   | Review submit and display                |
+| `checkout/cart-shipping-payment.e2e.test.ts`            | Cart qty, shipping, payment method       |
+| `checkout/paypal-sandbox-payment.e2e.test.ts`           | Real PayPal sandbox (opt-in)             |
+| `admin/admin-products.e2e.test.ts`                      | Admin product CRUD                       |
+| `admin/admin-orders.e2e.test.ts`                        | Admin order list and delivery            |
+| `admin/admin-users.e2e.test.ts`                         | Admin user list and edit                 |
+| `misc/api-security-auth.e2e.test.ts`                    | 401/403 API isolation                    |
+| `journeys/journey-guest-purchase-lifecycle.e2e.test.ts` | Guest checkout golden path               |
+| `journeys/journey-admin-product-lifecycle.e2e.test.ts`  | Admin create → catalog visibility        |
+| `journeys/journey-admin-order-fulfillment.e2e.test.ts`  | Admin order fulfillment golden path      |
 
 ### Deterministic waits (mandatory)
 
@@ -407,7 +409,9 @@ Do **not** use `page.waitForTimeout()` in E2E specs. It hides race conditions an
 | List refresh after admin action | `expect(page.locator('[data-testid="admin-product-list"]')).toBeVisible()` then row assertions                    |
 | URL-driven navigation           | `expect(page).toHaveURL(/pattern/)` or `waitForURL`                                                               |
 
-Helpers in `tests/e2e/fixtures/test-helpers.ts`: `loginAs`, `loginAsAdmin`, `addFirstProductToCart`, `completeShippingStep`, `completePaymentStep`. Add new domain helpers there instead of inline sleeps.
+Helpers in `tests/e2e/fixtures/test-helpers.ts`: `loginAs`, `loginAsAdmin`, `addFirstProductToCart`, `completeShippingStep`, `completePaymentStep`, `registerDelayedCatalogApi`. Add new domain helpers there instead of inline sleeps.
+
+**Simulating free-tier cold-start UX:** Use `registerDelayedCatalogApi(context, { delayMs, enabled })` to delay `**/api/products**` responses via `route.continue()` (real API, not fake JSON). Keep `delayMs` above the app threshold (`SLOW_SERVER_NOTICE_DELAY_MS`, 3000ms) — specs use 4000ms. Reset session state with `installSlowServerSessionReset(page)` in `beforeEach` when testing the notice. Use `clearClientFetchCache(page)` when a prior navigation warmed the in-memory catalog cache but the API must be blocked (see `api-unreachable.e2e.test.ts` admin list). Do not use `page.waitForTimeout()` in spec bodies to wait for the banner; assert `[data-testid="slow-server-banner"]` or `[data-testid="home-catalog-loader"]` with `expect(...).toBeVisible()` after navigation.
 
 ### PWA E2E file map
 
