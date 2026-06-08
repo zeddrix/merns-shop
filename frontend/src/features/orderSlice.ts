@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { axios } from '../api/http';
 import { hasSession } from '../utils/requireSession';
-import type { Order, PaymentResult } from '../types';
+import type { Order, PaymentResult, PaginatedOrdersResponse } from '../types';
 import type { UserInfo } from '../types';
 
 interface OrderSliceRootState {
@@ -124,8 +124,8 @@ export const listMyOrder = createAsyncThunk(
     try {
       const { userLogin } = getState() as OrderSliceRootState;
       if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
-      const { data } = await axios.get<Order[]>('/api/orders/myorders');
-      return data;
+      const { data } = await axios.get<PaginatedOrdersResponse>('/api/orders/myorders');
+      return data.orders;
     } catch (error) {
       const message = getErrorMessage(error);
       handleAuthError(message, dispatch);
@@ -140,8 +140,8 @@ export const listOrders = createAsyncThunk(
     try {
       const { userLogin } = getState() as OrderSliceRootState;
       if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
-      const { data } = await axios.get<Order[]>('/api/orders');
-      return data;
+      const { data } = await axios.get<PaginatedOrdersResponse>('/api/orders');
+      return data.orders;
     } catch (error) {
       const message = getErrorMessage(error);
       handleAuthError(message, dispatch);

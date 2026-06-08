@@ -4,6 +4,9 @@ import { Row, Col, Form } from 'react-bootstrap';
 import AppSelect from './AppSelect';
 import axios from 'axios';
 import type { ProductMetaResponse } from '../types';
+import { buildCacheKey, getCached, setCached } from '../utils/fetchCache';
+
+const META_CACHE_TTL_MS = 60_000;
 
 interface CatalogFiltersProps {
   keyword?: string;
@@ -27,7 +30,15 @@ const CatalogFilters = ({ keyword = '' }: CatalogFiltersProps) => {
 
   useEffect(() => {
     const loadMeta = async () => {
+      const cacheKey = buildCacheKey('/api/products/meta');
+      const cached = getCached<ProductMetaResponse>(cacheKey);
+      if (cached) {
+        setMeta(cached);
+        return;
+      }
+
       const { data } = await axios.get<ProductMetaResponse>('/api/products/meta');
+      setCached(cacheKey, data, META_CACHE_TTL_MS);
       setMeta(data);
     };
     void loadMeta();

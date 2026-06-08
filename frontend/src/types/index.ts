@@ -116,6 +116,13 @@ export interface Order {
   paymentResult?: PaymentResult;
 }
 
+export interface PaginatedOrdersResponse {
+  orders: Order[];
+  page: number;
+  pages: number;
+  total: number;
+}
+
 export interface ProductListResponse {
   products: Product[];
   page: number;

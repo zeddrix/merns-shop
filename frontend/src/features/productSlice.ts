@@ -3,6 +3,10 @@ import { axios } from '../api/http';
 import { hasSession } from '../utils/requireSession';
 import type { Product, ProductListResponse } from '../types';
 import type { UserInfo } from '../types';
+import { buildCacheKey, bustCache, getCached, setCached } from '../utils/fetchCache';
+import { getErrorMessage } from '../utils/getErrorMessage';
+import { logout } from './userSlice';
+import { DEFAULT_NEW_PRODUCT } from '../constants/defaultProduct';
 
 interface AuthSliceState {
   userInfo?: UserInfo;
@@ -11,9 +15,6 @@ interface AuthSliceState {
 interface ProductSliceRootState {
   userLogin: AuthSliceState;
 }
-import { getErrorMessage } from '../utils/getErrorMessage';
-import { logout } from './userSlice';
-import { DEFAULT_NEW_PRODUCT } from '../constants/defaultProduct';
 
 const handleAuthError = (message: string, dispatch: (action: unknown) => void) => {
   if (message === 'Not authorized, token failed') {
@@ -42,6 +43,12 @@ export interface ListProductsParams {
   sort?: string;
 }
 
+const PRODUCT_CACHE_TTL_MS = 60_000;
+
+const bustProductFetchCache = (): void => {
+  bustCache('/api/products');
+};
+
 export const listProducts = createAsyncThunk(
   'productList/list',
   async (params: ListProductsParams, { rejectWithValue }) => {
@@ -55,6 +62,22 @@ export const listProducts = createAsyncThunk(
       maxPrice = '',
       sort = ''
     } = params;
+
+    const cacheKey = buildCacheKey('/api/products', {
+      keyword,
+      pageNumber,
+      brand,
+      category,
+      subcategory,
+      minPrice,
+      maxPrice,
+      sort
+    });
+    const cached = getCached<ProductListResponse>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
     try {
       const query = new URLSearchParams();
       if (keyword) query.set('keyword', keyword);
@@ -66,6 +89,7 @@ export const listProducts = createAsyncThunk(
       if (maxPrice) query.set('maxPrice', maxPrice);
       if (sort) query.set('sort', sort);
       const { data } = await axios.get<ProductListResponse>(`/api/products?${query.toString()}`);
+      setCached(cacheKey, data, PRODUCT_CACHE_TTL_MS);
       return data;
     } catch (error) {
       return rejectWithValue(getErrorMessage(error));
@@ -152,6 +176,7 @@ export const deleteProduct = createAsyncThunk(
       const { userLogin } = getState() as ProductSliceRootState;
       if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
       await axios.delete(`/api/products/${id}`);
+      bustProductFetchCache();
       return undefined;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -190,6 +215,7 @@ export const createProduct = createAsyncThunk(
       const { userLogin } = getState() as ProductSliceRootState;
       if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
       const { data } = await axios.post<Product>('/api/products', DEFAULT_NEW_PRODUCT);
+      bustProductFetchCache();
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -231,6 +257,7 @@ export const updateProduct = createAsyncThunk(
       const { userLogin } = getState() as ProductSliceRootState;
       if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
       const { data } = await axios.put<Product>(`/api/products/${product._id}`, product);
+      bustProductFetchCache();
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -341,8 +368,15 @@ const productReviewCreateSlice = createSlice({
 export const listTopProducts = createAsyncThunk(
   'productTopRated/list',
   async (_void: undefined, { rejectWithValue }) => {
+    const cacheKey = '/api/products/top';
+    const cached = getCached<Product[]>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
     try {
       const { data } = await axios.get<Product[]>('/api/products/top');
+      setCached(cacheKey, data, PRODUCT_CACHE_TTL_MS);
       return data;
     } catch (error) {
       return rejectWithValue(getErrorMessage(error));
