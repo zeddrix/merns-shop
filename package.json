@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "preinstall": "node scripts/check-node-version.mjs",
-    "postinstall": "node scripts/validate-catalog-images.mjs || node scripts/fetch-catalog-images.mjs --fetch --webp",
+    "postinstall": "node scripts/validate-catalog-images.mjs || node scripts/fetch-catalog-images.mjs --fetch --webp && node scripts/generate-catalog-responsive.mjs",
     "images:ensure": "node scripts/ensure-product-images.mjs && node scripts/validate-catalog-images.mjs",
     "catalog:manifest": "tsx scripts/generate-catalog-manifest.ts",
     "catalog:sources": "node scripts/resolve-catalog-image-sources.mjs",
@@ -18,6 +18,7 @@
     "catalog:harvest:checklist": "node scripts/print-official-harvest-checklist.mjs",
     "catalog:sources:fallbacks": "node scripts/assign-catalog-fallback-sources.mjs",
     "catalog:images": "node scripts/fetch-catalog-images.mjs --fetch --webp --force",
+    "catalog:responsive": "node scripts/generate-catalog-responsive.mjs",
     "catalog:audit": "node scripts/audit-catalog-image-relevance.mjs",
     "catalog:fix:audit": "node scripts/fix-audit-failures.mjs",
     "catalog:apply:curated": "node scripts/apply-curated-catalog-sources.mjs",
@@ -38,6 +39,9 @@
     "dev:e2e": "bash scripts/run-with-project-node.sh run dev:e2e:inner",
     "build:inner": "pnpm --filter merns-shop-frontend build && pnpm build:backend",
     "build": "bash scripts/run-with-project-node.sh run build:inner",
+    "build:analyze": "pnpm --filter merns-shop-frontend build:analyze",
+    "perf:bundle-size": "node scripts/check-bundle-size.mjs",
+    "perf:lighthouse": "node scripts/lighthouse-ci.mjs",
     "build:backend": "tsc -p backend/tsconfig.build.json",
     "db:seed:inner": "tsx backend/seeder.ts -i",
     "db:seed": "bash scripts/run-with-project-node.sh run db:seed:inner",
@@ -93,6 +97,14 @@
     "verify": "bash scripts/run-with-project-node.sh run verify:inner",
     "verify:full": "bash scripts/run-with-project-node.sh exec bash scripts/pre-deploy-verify.sh"
   },
+  "size-limit": [
+    {
+      "name": "Main entry chunk (gzip)",
+      "path": "frontend/dist/assets/index-*.js",
+      "limit": "250 KB",
+      "gzip": true
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/zeddrix/merns-shop"
@@ -106,13 +118,14 @@
     "bcryptjs": "^3.0.2",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.7",
+    "compression": "^1.8.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "express-async-handler": "^1.2.0",
+    "express-rate-limit": "^7.5.0",
     "helmet": "^8.2.0",
     "jsonwebtoken": "^9.0.2",
-    "lodash": "^4.17.21",
     "mongoose": "^9.0.0",
     "morgan": "^1.10.0",
     "web-push": "^3.6.7",
@@ -121,6 +134,7 @@
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "@playwright/test": "^1.57.0",
+    "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
@@ -130,12 +144,16 @@
     "@types/supertest": "^6.0.3",
     "@types/web-push": "^3.6.4",
     "concurrently": "^9.1.2",
+    "chrome-launcher": "^1.1.2",
     "eslint": "^9.39.2",
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^16.0.0",
     "happy-dom": "^20.10.1",
+    "lighthouse": "^12.5.1",
     "nodemon": "^3.1.9",
     "prettier": "^3.5.3",
+    "size-limit": "^11.2.0",
+    "@size-limit/file": "^11.2.0",
     "sharp": "^0.34.5",
     "supertest": "^7.1.0",
     "tsx": "^4.19.3",

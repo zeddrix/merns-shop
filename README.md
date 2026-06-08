@@ -28,8 +28,8 @@
 
 ## Screenshots
 
-| Homepage | Product page | Admin products |
-| -------- | ------------ | -------------- |
+| Homepage                                                                                | Product page                                                                                | Admin products                                                                 |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | ![MERN's Shop homepage — product catalog and carousel](docs/images/readme/homepage.png) | ![Product detail page with variant picker and reviews](docs/images/readme/product-page.png) | ![Admin product list with CRUD actions](docs/images/readme/admin-products.png) |
 
 Regenerate locally: `pnpm readme:screenshots` (requires `pnpm dev` and MongoDB). See [`docs/images/readme/ATTRIBUTION.md`](docs/images/readme/ATTRIBUTION.md).
