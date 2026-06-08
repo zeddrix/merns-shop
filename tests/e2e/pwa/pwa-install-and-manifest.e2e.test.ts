@@ -16,8 +16,8 @@ test.describe('PWA manifest and install', () => {
     expect(response.status()).toBe(200);
 
     const manifest = await response.json();
-    expect(manifest.name).toBeTruthy();
-    expect(manifest.short_name).toBeTruthy();
+    expect(manifest.name).toBe("MERN's Shop");
+    expect(manifest.short_name).toBe("MERN's Shop");
     expect(manifest.start_url).toBe('/');
     expect(manifest.display).toBe('standalone');
     expect(manifest.theme_color).toBe('#212529');
