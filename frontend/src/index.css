@@ -1389,6 +1389,71 @@ strong {
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
+.pwa-install-banner {
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+.pwa-install-banner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+.pwa-install-banner__message {
+  flex: 1 1 auto;
+}
+
+.pwa-install-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 576px) {
+  .pwa-install-banner__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .pwa-install-banner__actions {
+    justify-content: flex-end;
+  }
+}
+
+.pwa-install-hint-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.pwa-install-hint-panel {
+  max-width: 22rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.pwa-install-hint-message {
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+}
+
 .pwa-update-banner__inner {
   display: flex;
   flex-direction: column;

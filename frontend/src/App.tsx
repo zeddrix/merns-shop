@@ -11,7 +11,9 @@ import { useCartBootstrap } from './features/cartBootstrap';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import OfflineBanner from './components/OfflineBanner';
+import PwaInstallBanner from './components/PwaInstallBanner';
 import PwaManager from './components/PwaManager';
+import { PwaInstallProvider } from './context/PwaInstallContext';
 import NotificationBell from './components/NotificationBell';
 import PageTransition from './components/motion/PageTransition';
 import Loader from './components/Loader';
@@ -71,9 +73,10 @@ const AppRoutes = () => {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <>
+    <PwaInstallProvider>
       <PwaManager />
       <OfflineBanner />
+      <PwaInstallBanner />
       <ScrollToTop />
       <Header />
       <NotificationBell />
@@ -91,7 +94,7 @@ const AppRoutes = () => {
         </Container>
       </main>
       <Footer />
-    </>
+    </PwaInstallProvider>
   );
 };
 

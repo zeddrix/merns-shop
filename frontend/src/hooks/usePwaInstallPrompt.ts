@@ -5,9 +5,13 @@ export interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
 }
 
+export const INSTALL_BANNER_DISMISSED_KEY = 'pwa-install-banner-dismissed';
+
 declare global {
   interface Window {
     __e2eInstallPrompt?: BeforeInstallPromptEvent;
+    __e2ePromptCalled?: boolean;
+    __deferredInstallPrompt?: BeforeInstallPromptEvent | null;
   }
 }
 
@@ -22,18 +26,80 @@ export const detectPwaInstalled = (): boolean => {
   return Boolean(nav.standalone);
 };
 
+export const isInstallCapableBrowser = (): boolean => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+  return 'serviceWorker' in navigator && Boolean(document.querySelector('link[rel="manifest"]'));
+};
+
+const readEarlyDeferredPrompt = (): BeforeInstallPromptEvent | null => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+  return window.__deferredInstallPrompt ?? null;
+};
+
+const readBannerDismissed = (): boolean => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+  return localStorage.getItem(INSTALL_BANNER_DISMISSED_KEY) === 'true';
+};
+
 export const usePwaInstallPrompt = () => {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(() =>
+    readEarlyDeferredPrompt()
+  );
   const [isInstalled, setIsInstalled] = useState(() => detectPwaInstalled());
+  const [installedCheckDone, setInstalledCheckDone] = useState(false);
+  const [bannerDismissed, setBannerDismissed] = useState(() => readBannerDismissed());
 
   useEffect(() => {
-    const handler = (event: Event) => {
+    let cancelled = false;
+
+    const resolveInstalledState = async () => {
+      let installed = detectPwaInstalled();
+      const getRelatedApps = (
+        navigator as Navigator & {
+          getInstalledRelatedApps?: () => Promise<{ id?: string }[]>;
+        }
+      ).getInstalledRelatedApps;
+
+      if (!installed && typeof getRelatedApps === 'function') {
+        try {
+          const relatedApps = await getRelatedApps.call(navigator);
+          installed = relatedApps.length > 0;
+        } catch {
+          // Unsupported or blocked — fall back to display-mode checks only.
+        }
+      }
+
+      if (!cancelled) {
+        setIsInstalled(installed);
+        setInstalledCheckDone(true);
+      }
+    };
+
+    void resolveInstalledState();
+
+    const capturePrompt = (event: Event) => {
       event.preventDefault();
-      setDeferredPrompt(event as BeforeInstallPromptEvent);
+      const promptEvent = event as BeforeInstallPromptEvent;
+      window.__deferredInstallPrompt = promptEvent;
+      setDeferredPrompt(promptEvent);
+    };
+
+    const earlyCaptureHandler = () => {
+      const prompt = readEarlyDeferredPrompt();
+      if (prompt) {
+        setDeferredPrompt(prompt);
+      }
     };
 
     const simulateHandler = () => {
       if (window.__e2eInstallPrompt) {
+        window.__deferredInstallPrompt = window.__e2eInstallPrompt;
         setDeferredPrompt(window.__e2eInstallPrompt);
       }
     };
@@ -41,14 +107,23 @@ export const usePwaInstallPrompt = () => {
     const installedHandler = () => {
       setIsInstalled(true);
       setDeferredPrompt(null);
+      window.__deferredInstallPrompt = null;
     };
 
-    window.addEventListener('beforeinstallprompt', handler);
+    const earlyPrompt = readEarlyDeferredPrompt();
+    if (earlyPrompt) {
+      setDeferredPrompt(earlyPrompt);
+    }
+
+    window.addEventListener('beforeinstallprompt', capturePrompt);
+    window.addEventListener('pwa-install-available', earlyCaptureHandler);
     window.addEventListener('test-simulate-installable', simulateHandler);
     window.addEventListener('appinstalled', installedHandler);
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handler);
+      cancelled = true;
+      window.removeEventListener('beforeinstallprompt', capturePrompt);
+      window.removeEventListener('pwa-install-available', earlyCaptureHandler);
       window.removeEventListener('test-simulate-installable', simulateHandler);
       window.removeEventListener('appinstalled', installedHandler);
     };
@@ -61,9 +136,24 @@ export const usePwaInstallPrompt = () => {
     await deferredPrompt.prompt();
     await deferredPrompt.userChoice;
     setDeferredPrompt(null);
+    window.__deferredInstallPrompt = null;
   }, [deferredPrompt]);
 
-  const canInstall = Boolean(deferredPrompt) && !isInstalled;
+  const dismissBanner = useCallback(() => {
+    localStorage.setItem(INSTALL_BANNER_DISMISSED_KEY, 'true');
+    setBannerDismissed(true);
+  }, []);
 
-  return { canInstall, install, isInstalled };
+  const hasNativePrompt = Boolean(deferredPrompt);
+  const showInstallButton = installedCheckDone && !isInstalled && isInstallCapableBrowser();
+  const showInstallBanner = showInstallButton && hasNativePrompt && !bannerDismissed;
+
+  return {
+    hasNativePrompt,
+    showInstallButton,
+    showInstallBanner,
+    install,
+    dismissBanner,
+    isInstalled
+  };
 };

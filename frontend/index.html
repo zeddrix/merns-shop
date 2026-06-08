@@ -14,6 +14,14 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script>
+      window.__deferredInstallPrompt = null;
+      window.addEventListener('beforeinstallprompt', function (event) {
+        event.preventDefault();
+        window.__deferredInstallPrompt = event;
+        window.dispatchEvent(new Event('pwa-install-available'));
+      });
+    </script>
     <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>

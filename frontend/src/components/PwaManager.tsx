@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { registerSW } from 'virtual:pwa-register';
+import { getUpdateServiceWorker, setPwaNeedRefreshHandler } from '../pwa/serviceWorkerRegistration';
 import PwaUpdateBanner from './PwaUpdateBanner';
 
 const PwaManager = () => {
@@ -7,12 +7,10 @@ const PwaManager = () => {
   const updateSWRef = useRef<((reloadPage?: boolean) => Promise<void>) | undefined>(undefined);
 
   useEffect(() => {
-    updateSWRef.current = registerSW({
-      onNeedRefresh() {
-        setNeedRefresh(true);
-      },
-      immediate: true
+    setPwaNeedRefreshHandler(() => {
+      setNeedRefresh(true);
     });
+    updateSWRef.current = getUpdateServiceWorker();
 
     const simulateUpdate = () => setNeedRefresh(true);
     window.addEventListener('test-simulate-sw-update', simulateUpdate);

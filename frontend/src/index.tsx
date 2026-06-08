@@ -9,8 +9,11 @@ import './styles/bootstrap.scss';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import './index.css';
 import App from './App';
+import { registerAppServiceWorker } from './pwa/serviceWorkerRegistration';
 
 config.autoAddCss = false;
+
+registerAppServiceWorker();
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
