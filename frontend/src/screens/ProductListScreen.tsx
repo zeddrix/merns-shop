@@ -7,6 +7,8 @@ import ApiUnreachablePanel from '../components/ApiUnreachablePanel';
 import Loader from '../components/Loader';
 import { isApiUnreachableMessage } from '../utils/getErrorMessage';
 import Paginate from '../components/Paginate';
+import AppIcon from '../components/icons/AppIcon';
+import { faEdit, faPlus, faTrash } from '../components/icons';
 import {
   listProducts,
   deleteProduct,
@@ -93,7 +95,7 @@ const ProductListScreen = () => {
             data-testid="admin-create-product"
             onClick={createProductHandler}
           >
-            <i className="fas fa-plus"></i> Create Product
+            <AppIcon icon={faPlus} /> Create Product
           </Button>
         </Col>
       </Row>
@@ -138,7 +140,7 @@ const ProductListScreen = () => {
                       className="btn btn-light btn-sm"
                       data-testid={`admin-product-edit-${product._id}`}
                     >
-                      <i className="fas fa-edit"></i>
+                      <AppIcon icon={faEdit} />
                     </Link>
                     <Button
                       variant="danger"
@@ -146,7 +148,7 @@ const ProductListScreen = () => {
                       data-testid={`admin-product-delete-${product._id}`}
                       onClick={() => deleteHandler(product._id)}
                     >
-                      <i className="fas fa-trash"></i>
+                      <AppIcon icon={faTrash} />
                     </Button>
                   </td>
                 </tr>

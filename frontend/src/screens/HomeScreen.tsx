@@ -111,6 +111,11 @@ const HomeScreen = () => {
   const listKey = `${keyword ?? ''}-${page}-${filterQuery}`;
   const itemVariants = staggerItemVariants(reducedMotion);
 
+  const lcpPreloadImage =
+    showCarousel && productTopRated.products[0]?.image
+      ? productTopRated.products[0].image
+      : undefined;
+
   return (
     <>
       <Meta
@@ -119,6 +124,7 @@ const HomeScreen = () => {
         canonicalPath={canonicalPath}
         robots={robots}
         jsonLd={jsonLd}
+        preloadImage={lcpPreloadImage}
       />
       {showCarousel ? (
         <ProductCarousel />

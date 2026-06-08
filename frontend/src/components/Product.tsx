@@ -1,8 +1,10 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Badge } from 'react-bootstrap';
 import type { Product as ProductType } from '../types';
 import Rating from './Rating';
 import PriceDisplay from './PriceDisplay';
+import CatalogImage from './CatalogImage';
 
 interface ProductProps {
   product: ProductType;
@@ -20,7 +22,7 @@ const Product = ({ product }: ProductProps) => {
       data-testid={`product-card-${product._id}`}
     >
       <div className="product-card__media" data-testid="catalog-card-media">
-        <img src={product.image} alt={product.name} loading="lazy" />
+        <CatalogImage src={product.image} alt={product.name} loading="lazy" />
       </div>
 
       <Card.Body className="d-flex flex-column">
@@ -49,4 +51,4 @@ const Product = ({ product }: ProductProps) => {
   );
 };
 
-export default Product;
+export default memo(Product);

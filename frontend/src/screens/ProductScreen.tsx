@@ -1,6 +1,8 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { Row, Col, Image, ListGroup, Card, Button, Form, Badge } from 'react-bootstrap';
+import { Row, Col, ListGroup, Card, Button, Form, Badge } from 'react-bootstrap';
+import CatalogImage from '../components/CatalogImage';
+import { PDP_CATALOG_SIZES } from '../utils/catalogImage';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Rating from '../components/Rating';
 import Message from '../components/Message';
@@ -194,7 +196,14 @@ const ProductScreen = () => {
           />
           <Row data-testid="product-details">
             <Col xs={12} lg={6}>
-              <Image src={displayImage} alt={product.name} fluid className="rounded" />
+              <CatalogImage
+                src={displayImage}
+                alt={product.name}
+                loading="eager"
+                fetchPriority="high"
+                sizes={PDP_CATALOG_SIZES}
+                className="img-fluid rounded"
+              />
             </Col>
             <Col xs={12} lg={3}>
               <ListGroup variant="flush">

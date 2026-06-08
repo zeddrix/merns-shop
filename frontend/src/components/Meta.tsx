@@ -18,6 +18,7 @@ interface MetaProps {
   ogType?: 'website' | 'product';
   keywords?: string;
   jsonLd?: JsonLdValue;
+  preloadImage?: string;
 }
 
 const Meta = ({
@@ -28,7 +29,8 @@ const Meta = ({
   ogImage,
   ogType = 'website',
   keywords,
-  jsonLd
+  jsonLd,
+  preloadImage
 }: MetaProps) => {
   const canonicalUrl = buildCanonicalUrl(canonicalPath);
   const imageUrl = ogImage ?? defaultOgImageUrl();
@@ -42,6 +44,9 @@ const Meta = ({
       {keywords ? <meta name="keywords" content={keywords} /> : null}
       <meta name="robots" content={robots} />
       <link rel="canonical" href={canonicalUrl} />
+      {preloadImage ? (
+        <link rel="preload" as="image" href={preloadImage} fetchPriority="high" />
+      ) : null}
       <meta property="og:site_name" content={DISPLAY_BRAND_NAME} />
       <meta property="og:locale" content="en_US" />
       <meta property="og:title" content={title} />
