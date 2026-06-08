@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Running pre-deploy verification (ISSUE-015 gate)..."
-pnpm format:check
-pnpm quality:fast
+echo "Running pre-deploy verification (full gate)..."
+pnpm predeploy:inner
 pnpm test:unit:inner
 pnpm test:integration:inner
-pnpm build:inner
 PW_DISABLE_REUSE_SERVER=1 pnpm test:e2e
 
 echo ""

@@ -51,6 +51,18 @@ E2E uses sandbox buyer credentials in `.env.test` only (`PAYPAL_SANDBOX_BUYER_EM
 
 ## Part C — Render free web service (after GitHub rename)
 
+### Before every push to `main`
+
+Render builds with `pnpm install && pnpm build`. Catch failures locally first:
+
+```bash
+pnpm predeploy
+```
+
+This runs format check, lint, type-check (backend **build** tsconfig), and the full production build (Vite + backend `tsc`). See [`CLAUDE.md`](../CLAUDE.md) for the full gate ladder (`quality` → `predeploy` → `verify` → `verify:full`).
+
+Wait for the GitHub Actions **`build`** job to pass on your PR — not only **`quality`**.
+
 1. GitHub → rename repo to **`merns-shop`** (ISSUE-015).
 2. Render → **New Web Service** → connect **`merns-shop`** repo.
 3. **Build command:** `pnpm install && pnpm build` (compiles frontend to `frontend/dist` and backend to `dist/backend/`)
