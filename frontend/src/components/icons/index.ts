@@ -1,6 +1,7 @@
 import {
   faBell,
   faCheck,
+  faDownload,
   faEdit,
   faPlus,
   faSearch,
@@ -16,6 +17,7 @@ import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 export {
   faBell,
   faCheck,
+  faDownload,
   faEdit,
   faPlus,
   faSearch,

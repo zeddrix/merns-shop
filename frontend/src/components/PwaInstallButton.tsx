@@ -1,4 +1,6 @@
 import { usePwaInstallPrompt } from '../hooks/usePwaInstallPrompt';
+import AppIcon from './icons/AppIcon';
+import { faDownload } from './icons';
 
 const PwaInstallButton = () => {
   const { canInstall, install } = usePwaInstallPrompt();
@@ -15,7 +17,7 @@ const PwaInstallButton = () => {
       aria-label="Install app"
       onClick={() => void install()}
     >
-      <i className="fas fa-download" aria-hidden="true" />
+      <AppIcon icon={faDownload} />
     </button>
   );
 };
