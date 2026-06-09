@@ -242,7 +242,7 @@ const ProductScreen = () => {
               </ListGroup>
             </Col>
             <Col xs={12} lg={3}>
-              <Card className="product-buy-card sticky-lg-top">
+              <Card className="product-buy-card sticky-lg-top" data-testid="product-buy-card">
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     <ProductVariantPicker
@@ -264,10 +264,10 @@ const ProductScreen = () => {
                   )}
 
                   {selectedVariant && !allVariantsOutOfStock && (
-                    <ListGroup.Item>
-                      <Row>
+                    <ListGroup.Item className="product-buy-card__row">
+                      <Row className="align-items-center">
                         <Col>Status:</Col>
-                        <Col>
+                        <Col className="text-end text-md-start">
                           {selectedVariant.countInStock > 0 ? (
                             'In Stock'
                           ) : (
@@ -281,10 +281,10 @@ const ProductScreen = () => {
                   )}
 
                   {selectedVariant && selectedVariant.countInStock > 0 && maxQty > 0 && (
-                    <ListGroup.Item>
-                      <Row>
+                    <ListGroup.Item className="product-buy-card__row">
+                      <Row className="align-items-center">
                         <Col>Qty</Col>
-                        <Col>
+                        <Col className="text-end text-md-start">
                           <AppSelect
                             value={qty}
                             data-testid="product-qty"
@@ -296,7 +296,7 @@ const ProductScreen = () => {
                     </ListGroup.Item>
                   )}
 
-                  <ListGroup.Item>
+                  <ListGroup.Item className="product-buy-card__cta">
                     <AddToCartButton
                       state={addCartState}
                       onClick={addToCartHandler}

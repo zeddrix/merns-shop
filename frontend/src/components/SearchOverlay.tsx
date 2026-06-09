@@ -35,7 +35,7 @@ const SearchOverlay = ({ open, onClose }: SearchOverlayProps) => {
         data-testid="search-overlay-backdrop"
         onClick={onClose}
       />
-      <div ref={panelRef} className="search-overlay-panel">
+      <div ref={panelRef} className="search-overlay-panel search-overlay-panel--dark">
         <div className="search-overlay-header">
           <button
             type="button"
