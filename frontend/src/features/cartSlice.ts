@@ -43,6 +43,19 @@ const initialState: CartState = {
 
 const cartLineKey = (productId: string, variantSku: string) => `${productId}:${variantSku}`;
 
+export const cartItemKey = (item: Pick<CartItem, 'product' | 'variantSku' | 'orderId'>) =>
+  item.orderId
+    ? `${item.product}:${item.variantSku}:${item.orderId}`
+    : cartLineKey(item.product, item.variantSku);
+
+export const isShoppingItem = (item: CartItem): boolean => !item.orderId;
+
+export const isToPayItem = (item: CartItem): boolean => Boolean(item.orderId);
+
+const persistCartItems = (items: CartItem[]) => {
+  localStorage.setItem('cartItems', JSON.stringify(items));
+};
+
 const resolveVariantFromProduct = (
   product: Product,
   variantSku: string
@@ -116,10 +129,12 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     removeFromCart: (state, action: PayloadAction<string>) => {
-      state.cartItems = state.cartItems.filter(
-        (x) => cartLineKey(x.product, x.variantSku) !== action.payload
-      );
-      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+      state.cartItems = state.cartItems.filter((x) => cartItemKey(x) !== action.payload);
+      if (state.cartItems.length === 0) {
+        localStorage.removeItem('cartItems');
+      } else {
+        persistCartItems(state.cartItems);
+      }
     },
     saveShippingAddress: (state, action: PayloadAction<ShippingAddress>) => {
       state.shippingAddress = action.payload;
@@ -133,6 +148,26 @@ const cartSlice = createSlice({
       state.cartItems = [];
       state.staleItemsPruned = false;
       localStorage.removeItem('cartItems');
+    },
+    markCartItemsToPay: (state, action: PayloadAction<{ orderId: string; lineKeys: string[] }>) => {
+      const { orderId, lineKeys } = action.payload;
+      const keySet = new Set(lineKeys);
+      state.cartItems = state.cartItems.map((item) => {
+        const key = cartLineKey(item.product, item.variantSku);
+        if (keySet.has(key) && isShoppingItem(item)) {
+          return { ...item, orderId };
+        }
+        return item;
+      });
+      persistCartItems(state.cartItems);
+    },
+    clearCartItemsForOrder: (state, action: PayloadAction<string>) => {
+      state.cartItems = state.cartItems.filter((item) => item.orderId !== action.payload);
+      if (state.cartItems.length === 0) {
+        localStorage.removeItem('cartItems');
+      } else {
+        persistCartItems(state.cartItems);
+      }
     },
     clearStaleItemsNotice: (state) => {
       state.staleItemsPruned = false;
@@ -155,13 +190,20 @@ const cartSlice = createSlice({
     builder.addCase(addToCart.fulfilled, (state, action) => {
       const item = action.payload;
       const key = cartLineKey(item.product, item.variantSku);
-      const existItem = state.cartItems.find((x) => cartLineKey(x.product, x.variantSku) === key);
-      if (existItem) {
+      const existShopping = state.cartItems.find(
+        (x) => !x.orderId && cartLineKey(x.product, x.variantSku) === key
+      );
+      if (existShopping) {
         state.cartItems = state.cartItems.map((x) =>
-          cartLineKey(x.product, x.variantSku) === key ? item : x
+          !x.orderId && cartLineKey(x.product, x.variantSku) === key ? item : x
         );
       } else {
-        state.cartItems.push(item);
+        const duplicateShopping = state.cartItems.some(
+          (x) => !x.orderId && cartLineKey(x.product, x.variantSku) === key
+        );
+        if (!duplicateShopping) {
+          state.cartItems.push(item);
+        }
       }
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     });
@@ -173,6 +215,8 @@ export const {
   saveShippingAddress,
   savePaymentMethod,
   clearCartItems,
+  markCartItemsToPay,
+  clearCartItemsForOrder,
   clearStaleItemsNotice
 } = cartSlice.actions;
 

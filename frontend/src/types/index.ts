@@ -55,6 +55,8 @@ export interface CartItem {
   price: number;
   countInStock: number;
   qty: number;
+  /** Set when item was submitted in an unpaid order — cleared after payment. */
+  orderId?: string;
 }
 
 export interface ShippingAddress {

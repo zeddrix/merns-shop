@@ -8,7 +8,7 @@ interface OrderSliceRootState {
   userLogin: { userInfo?: UserInfo };
 }
 import { getErrorMessage } from '../utils/getErrorMessage';
-import { clearCartItems } from './cartSlice';
+import { cartLineKey, clearCartItemsForOrder, markCartItemsToPay } from './cartSlice';
 import { logout } from './userSlice';
 
 export interface OrderMutationState {
@@ -57,7 +57,10 @@ export const createOrder = createAsyncThunk(
           variantSku: item.variantSku
         }))
       });
-      dispatch(clearCartItems());
+      const lineKeys = order.orderItems.map((item) =>
+        cartLineKey(String(item.product), item.variantSku ?? '')
+      );
+      dispatch(markCartItemsToPay({ orderId: data._id, lineKeys }));
       return data;
     } catch (error) {
       const message = getErrorMessage(error);
@@ -93,7 +96,8 @@ export const payOrder = createAsyncThunk(
       const { userLogin } = getState() as OrderSliceRootState;
       if (!hasSession(userLogin.userInfo)) throw new Error('Not authenticated');
       await axios.put(`/api/orders/${orderId}/pay`, paymentResult);
-      return undefined;
+      dispatch(clearCartItemsForOrder(orderId));
+      return orderId;
     } catch (error) {
       const message = getErrorMessage(error);
       handleAuthError(message, dispatch);

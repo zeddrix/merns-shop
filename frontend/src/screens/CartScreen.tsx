@@ -4,7 +4,7 @@ import { Row, Col, ListGroup, Button, Card } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import Message from '../components/Message';
 import CartLineItem from '../components/CartLineItem';
-import { addToCart, removeFromCart, cartLineKey } from '../features/cartSlice';
+import { addToCart, removeFromCart, cartItemKey, isShoppingItem } from '../features/cartSlice';
 import { capQtyOptions } from '../constants/cartLimits';
 import { formatPrice } from '../utils/formatPrice';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
@@ -23,13 +23,26 @@ const CartScreen = () => {
 
   const cart = useAppSelector((state) => state.cart);
   const { cartItems } = cart;
+  const shoppingItems = cartItems.filter(isShoppingItem);
+  const hasShoppingItems = shoppingItems.length > 0;
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
 
   useEffect(() => {
-    if (productId && variantSku) {
-      dispatch(addToCart({ id: productId, qty, variantSku }));
+    if (!productId || !variantSku) {
+      return;
     }
-  }, [dispatch, productId, qty, variantSku]);
+    const hasMatchingShoppingLine = cartItems.some(
+      (item) =>
+        !item.orderId &&
+        item.product === productId &&
+        item.variantSku === variantSku &&
+        item.qty === qty
+    );
+    if (hasMatchingShoppingLine) {
+      return;
+    }
+    dispatch(addToCart({ id: productId, qty, variantSku }));
+  }, [dispatch, productId, qty, variantSku, cartItems]);
 
   const removeFromCartHandler = (lineKey: string) => {
     dispatch(removeFromCart(lineKey));
@@ -56,7 +69,7 @@ const CartScreen = () => {
           ) : (
             <ListGroup variant="flush">
               {cartItems.map((item) => {
-                const lineKey = cartLineKey(item.product, item.variantSku);
+                const lineKey = cartItemKey(item);
                 const maxQty = capQtyOptions(item.countInStock);
                 return (
                   <ListGroup.Item key={lineKey}>
@@ -87,7 +100,7 @@ const CartScreen = () => {
                 <h2>Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h2>
                 {formatPrice(cartItems.reduce((acc, item) => acc + item.qty * item.price, 0))}
               </ListGroup.Item>
-              {cartItems.length > 0 && (
+              {hasShoppingItems && (
                 <ListGroup.Item>
                   <Button
                     type="button"
