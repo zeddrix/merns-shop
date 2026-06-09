@@ -93,6 +93,7 @@ test.describe('smoke app boot', () => {
     await assertHomeCatalogHealthy(page);
     await page.locator('[data-testid="nav-search-open"]').click();
     await expect(page.locator('[data-testid="search-overlay"]')).toBeVisible();
+    await expect(page.locator('.search-overlay-panel--dark')).toBeVisible();
     await fillSearchAndSubmit(page, 'iPhone');
     await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
     await expect(page.locator('[data-testid="search-overlay"]')).toHaveCount(0);

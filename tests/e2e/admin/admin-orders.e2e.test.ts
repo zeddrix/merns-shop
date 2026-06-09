@@ -106,6 +106,9 @@ test.describe('admin orders', () => {
         response.ok()
     );
     await expect(page.locator(`[data-testid="admin-order-${orderId}"]`)).toBeVisible();
+    await expect(
+      page.locator(`[data-testid="admin-order-${orderId}"] [data-testid="order-status-paid"]`)
+    ).toBeVisible();
     await page
       .locator(
         `[data-testid="admin-order-${orderId}"] [data-testid="admin-order-details-${orderId}"]`

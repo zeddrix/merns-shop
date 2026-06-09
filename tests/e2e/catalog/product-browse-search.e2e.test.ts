@@ -58,6 +58,15 @@ test.describe('catalog browse and search', () => {
     await expect(page.locator('[data-testid="product-variant-details"]')).toBeVisible();
   });
 
+  test('product_buy_card_shows_status_qty_and_add_to_cart', async ({ page }) => {
+    await openProductByExactName(page, IPHONE_15_PRO);
+    await expect(page.locator('[data-testid="product-buy-card"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-qty"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-add-cart"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-stock-status"]')).toHaveCount(0);
+    await expect(page.getByText('In Stock')).toBeVisible();
+  });
+
   test('default_variant_preselected_on_product_load', async ({ page }) => {
     await openProductByExactName(page, 'iPad Air (M2)', 'iPad Air');
 

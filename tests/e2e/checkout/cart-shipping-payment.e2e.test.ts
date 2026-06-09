@@ -73,6 +73,9 @@ async function addProductViaCartDeepLink(
   variantSku: string,
   qty = 1
 ): Promise<void> {
+  const countLocator = page.locator('[data-testid="nav-cart-count"]');
+  const countBefore = (await countLocator.count()) > 0 ? Number(await countLocator.innerText()) : 0;
+
   await Promise.all([
     page.waitForResponse(
       (response) => response.url().includes(`/api/products/${productId}`) && response.ok()
@@ -80,7 +83,51 @@ async function addProductViaCartDeepLink(
     page.goto(`/cart/${productId}?qty=${qty}&variantSku=${variantSku}`)
   ]);
   await expect(page.locator('[data-testid="cart-screen"]')).toBeVisible();
-  await expect(page.locator('[data-testid^="cart-item-"]').first()).toBeVisible();
+  await expect
+    .poll(async () => {
+      if ((await countLocator.count()) === 0) {
+        return 0;
+      }
+      return Number(await countLocator.innerText());
+    })
+    .toBeGreaterThanOrEqual(countBefore + qty);
+  await expect(page.locator('[data-testid="cart-screen"] .cart-line-item').first()).toBeVisible();
+}
+
+async function fetchTwoDistinctInStockProducts(
+  page: import('@playwright/test').Page
+): Promise<
+  [
+    { productId: string; variantSku: string; productName: string },
+    { productId: string; variantSku: string; productName: string }
+  ]
+> {
+  const response = await page.request.get('/api/products');
+  expect(response.ok()).toBeTruthy();
+  const { products } = (await response.json()) as { products: ApiProduct[] };
+  const inStock = products.filter((p) => p.variants.some((v) => v.countInStock > 0));
+  expect(inStock.length).toBeGreaterThanOrEqual(2);
+  const first = inStock[0]!;
+  const second = inStock.find((p) => p._id !== first._id)!;
+  const firstVariant = first.variants.find((v) => v.countInStock > 0)!;
+  const secondVariant = second.variants.find((v) => v.countInStock > 0)!;
+  return [
+    { productId: first._id, variantSku: firstVariant.sku, productName: first.name },
+    { productId: second._id, variantSku: secondVariant.sku, productName: second.name }
+  ];
+}
+
+async function placeOrderFromCheckout(page: import('@playwright/test').Page): Promise<string> {
+  await Promise.all([
+    page.waitForResponse(
+      (response) => response.url().includes('/api/orders') && response.status() === 201
+    ),
+    page.locator('[data-testid="checkout-place-order-submit"]').click()
+  ]);
+  await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
+  const orderId = page.url().split('/order/')[1]?.split(/[/?#]/)[0];
+  expect(orderId).toBeTruthy();
+  return orderId as string;
 }
 
 test.describe('checkout cart shipping payment', () => {
@@ -218,6 +265,38 @@ test.describe('checkout cart shipping payment', () => {
 
     await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
     await expect(page.locator('[data-testid="order-shipping"]')).toContainText('Philippines');
+    await expect(page.locator('[data-testid="order-items"]')).toBeVisible();
+    await expect(page.locator('[data-testid="order-payment"]')).toBeVisible();
+    const itemsBox = await page.locator('[data-testid="order-items"]').boundingBox();
+    const paymentBox = await page.locator('[data-testid="order-payment"]').boundingBox();
+    expect(itemsBox!.y).toBeLessThan(paymentBox!.y);
+  });
+
+  test('checkout_only_to_pay_items_shows_pending_not_empty', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstProductToCart(page);
+    await completeCheckoutStep(page);
+    await placeOrderFromCheckout(page);
+
+    await page.goto('/checkout');
+    await expect(page.locator('[data-testid="checkout-empty"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="checkout-pending-section"]')).toBeVisible();
+    await expect(page.locator('[data-testid="cart-item-to-pay-badge"]')).toBeVisible();
+    await expect(page.locator('[data-testid="checkout-place-order-submit"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
+  });
+
+  test('logout_clears_to_pay_cart_items', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstProductToCart(page);
+    await completeCheckoutStep(page);
+    await placeOrderFromCheckout(page);
+    await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
+
+    const { logout } = await import('../fixtures/test-helpers');
+    await logout(page);
+    await page.goto('/');
+    await expect(page.locator('[data-testid="nav-cart-count"]')).toHaveCount(0);
   });
 
   test('cart_deep_link_adds_variant_qty', async ({ page }) => {
@@ -301,6 +380,95 @@ test.describe('checkout cart shipping payment', () => {
     await loginAs(page, 'customer');
     await page.goto('/checkout');
     await expect(page.locator('[data-testid="checkout-empty"]')).toBeVisible();
+    await page.goto('/cart');
+    await expect(page.locator('[data-testid="cart-empty"]')).toBeVisible();
     await expect(page.locator('[data-testid="checkout-place-order-submit"]')).toHaveCount(0);
+  });
+
+  test('placed_order_keeps_cart_with_to_pay_badge', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstProductToCart(page);
+    await completeCheckoutStep(page);
+    await placeOrderFromCheckout(page);
+
+    await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
+    await page.locator('[data-testid="nav-cart"]').click();
+    await expect(page.locator('[data-testid="cart-popover"]')).toBeVisible();
+    await expect(page.locator('[data-testid="cart-item-to-pay-badge"]').first()).toBeVisible();
+    await expect(page.locator('[data-testid="cart-popover"] a').first()).toHaveAttribute(
+      'href',
+      /\/order\//
+    );
+  });
+
+  test('new_items_checkout_separately_while_to_pay_items_remain', async ({ page }) => {
+    await loginAs(page, 'customer');
+    const [firstProduct, secondProduct] = await fetchTwoDistinctInStockProducts(page);
+
+    await addProductViaCartDeepLink(page, firstProduct.productId, firstProduct.variantSku);
+    await page.goto('/checkout');
+    await completeCheckoutStep(page);
+    const firstOrderId = await placeOrderFromCheckout(page);
+
+    await addProductViaCartDeepLink(page, secondProduct.productId, secondProduct.variantSku);
+    await expect
+      .poll(async () => page.locator('[data-testid="cart-screen"] .cart-line-item').count())
+      .toBe(2);
+    await page.goto('/checkout');
+    await expect(page.locator('[data-testid="checkout-pending-section"]')).toBeVisible();
+    await expect(page.locator('[data-testid="checkout-summary-card"]')).toContainText(
+      secondProduct.productName.split(' ')[0] ?? secondProduct.productName
+    );
+    await expect(
+      page.locator('[data-testid="checkout-summary-card"] [data-testid="order-line-qty-price"]')
+    ).toHaveCount(1);
+
+    await page.locator('[data-testid="checkout-address"]').fill('456 Second St');
+    await page.locator('[data-testid="checkout-city"]').fill('Testville');
+    await page.locator('[data-testid="checkout-postal-code"]').fill('54321');
+    await selectAppOption(page, 'checkout-country', 'United States', 'united');
+    const secondOrderId = await placeOrderFromCheckout(page);
+    expect(secondOrderId).not.toBe(firstOrderId);
+  });
+
+  test('cart_clears_to_pay_items_after_payment', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstProductToCart(page);
+    await completeCheckoutStep(page);
+    const orderId = await placeOrderFromCheckout(page);
+
+    await expect(page.locator('[data-testid="nav-cart-count"]')).toBeVisible();
+    const { payOrderViaApi } = await import('../fixtures/test-helpers');
+    await payOrderViaApi(page, orderId);
+    await page.goto(`/order/${orderId}`);
+    await expect(page.locator('[data-testid="order-paid-message"]')).toBeVisible();
+    await expect.poll(async () => page.locator('[data-testid="nav-cart-count"]').count()).toBe(0);
+  });
+
+  test('order_line_item_shows_single_price_line', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await loginAs(page, 'customer');
+    await addFirstProductToCart(page);
+    await page.goto('/checkout');
+    await expect(page.locator('[data-testid="order-line-qty-price"]')).toHaveCount(1);
+    await expect(page.locator('[data-testid="order-line-total"]')).toHaveCount(1);
+  });
+
+  test('order_detail_sections_follow_items_payment_shipping_order', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await addFirstProductToCart(page);
+    await completeCheckoutStep(page);
+    await placeOrderFromCheckout(page);
+
+    const itemsBox = await page.locator('[data-testid="order-items"]').boundingBox();
+    const paymentBox = await page.locator('[data-testid="order-payment"]').boundingBox();
+    const shippingBox = await page.locator('[data-testid="order-shipping"]').boundingBox();
+    expect(itemsBox).toBeTruthy();
+    expect(paymentBox).toBeTruthy();
+    expect(shippingBox).toBeTruthy();
+    expect(itemsBox!.y).toBeLessThan(paymentBox!.y);
+    expect(paymentBox!.y).toBeLessThan(shippingBox!.y);
+    await expect(page.locator('[data-testid="order-payment-badge"]')).toContainText('To Pay');
+    await expect(page.locator('[data-testid="order-summary"]')).toBeVisible();
   });
 });

@@ -83,7 +83,15 @@ test.describe('order access', () => {
     await page.goto(`/order/${orderId}`);
     await expect(page.locator('[data-testid="order-screen"]')).toBeVisible();
     await expect(page.locator('[data-testid="order-summary"]')).toBeVisible();
+    await expect(page.locator('[data-testid="order-items"]')).toBeVisible();
+    await expect(page.locator('[data-testid="order-payment"]')).toBeVisible();
     await expect(page.locator('[data-testid="order-shipping"]')).toBeVisible();
+    const itemsBox = await page.locator('[data-testid="order-items"]').boundingBox();
+    const paymentBox = await page.locator('[data-testid="order-payment"]').boundingBox();
+    const shippingBox = await page.locator('[data-testid="order-shipping"]').boundingBox();
+    expect(itemsBox!.y).toBeLessThan(paymentBox!.y);
+    expect(paymentBox!.y).toBeLessThan(shippingBox!.y);
+    await expect(page.locator('[data-testid="order-line-qty-price"]')).toHaveCount(1);
     await expect(page.locator('[data-testid="order-shipping"]')).toContainText('123 Test St');
     await expect(page.locator('[data-testid="order-paid-message"]')).toBeVisible();
     await expect(page.locator('[data-testid="order-not-delivered-message"]')).toBeVisible();

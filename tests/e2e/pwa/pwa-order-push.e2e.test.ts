@@ -62,6 +62,7 @@ test.describe('Order push notifications (production build)', () => {
       ),
       page.locator('[data-testid="notification-bell"]').click()
     ]);
+    await expect(page.locator('[data-testid="notification-popover"]')).toBeVisible();
     await expect(page.locator('[data-testid="notification-list"]')).toContainText(
       'Payment confirmed'
     );
@@ -92,6 +93,7 @@ test.describe('Order push notifications (production build)', () => {
       ),
       page.locator('[data-testid="notification-bell"]').click()
     ]);
+    await expect(page.locator('[data-testid="notification-popover"]')).toBeVisible();
     await expect(page.locator('[data-testid="notification-list"]')).toContainText(
       'Order delivered'
     );

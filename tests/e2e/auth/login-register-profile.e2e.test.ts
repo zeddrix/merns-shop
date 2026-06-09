@@ -343,10 +343,27 @@ test.describe('auth login register profile', () => {
     await page.goto('/profile');
     await expect(page.locator('[data-testid="profile-screen"]')).toBeVisible();
     await expect(page.locator('[data-testid="my-orders-table"]')).toBeVisible();
+    await expect(
+      page.locator('[data-testid="my-orders-table"] [data-testid="order-status-paid"]').first()
+    ).toBeVisible();
 
     await logout(page);
     await openAuthModal(page, 'login');
     await expect(page.locator('[data-testid="login-heading"]')).toBeVisible();
+  });
+
+  test('user_dropdown_uses_dark_menu', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await loginAs(page, 'customer');
+    await page.goto('/');
+    const userDropdown = page.locator('[data-testid="nav-user-dropdown"]');
+    await userDropdown.locator('.dropdown-toggle').click();
+    const menu = userDropdown.locator('.dropdown-menu.show');
+    await expect(menu).toBeVisible();
+    const background = await menu.evaluate((el) => getComputedStyle(el).backgroundColor);
+    expect(background).toBe('rgb(29, 29, 31)');
+    await page.locator('[data-testid="nav-profile"]').click();
+    await expect(page).toHaveURL(/\/profile/);
   });
 
   test('mobile_profile_orders_card_layout', async ({ page }) => {
@@ -356,6 +373,11 @@ test.describe('auth login register profile', () => {
     await expect(page.locator('[data-testid="profile-screen"]')).toBeVisible();
     const firstOrderCard = page.locator('[data-testid^="profile-order-card-"]').first();
     await expect(firstOrderCard).toBeVisible();
+    await expect(
+      firstOrderCard.locator(
+        '[data-testid="order-status-paid"], [data-testid="order-status-unpaid"]'
+      )
+    ).toBeVisible();
     await expect(page.locator('[data-testid="my-orders-table"]')).toBeHidden();
     const detailsLink = firstOrderCard.locator('[data-testid^="profile-order-details-"]');
     await detailsLink.click();

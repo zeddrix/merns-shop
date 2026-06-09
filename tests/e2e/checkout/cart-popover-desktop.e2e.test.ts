@@ -76,4 +76,33 @@ test.describe('desktop cart popover', () => {
     await expect(page.locator('[data-testid="cart-popover-empty"]')).toBeVisible();
     await expect(page.locator('[data-testid="cart-popover-checkout"]')).toHaveCount(0);
   });
+
+  test('cart_popover_uses_dark_panel', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await openProductByExactName(page, 'iPhone 15 Pro');
+    await selectVariantAndAddToCart(page);
+    await page.locator('[data-testid="nav-cart"]').click();
+    await expect(page.locator('[data-testid="cart-popover"]')).toHaveClass(/header-panel-dark/);
+  });
+
+  test('popover_shows_to_pay_items_with_badge', async ({ page }) => {
+    await loginAs(page, 'customer');
+    await openProductByExactName(page, 'iPhone 15 Pro');
+    await selectVariantAndAddToCart(page);
+    await page.goto('/checkout');
+    await page.locator('[data-testid="checkout-address"]').fill('123 Test St');
+    await page.locator('[data-testid="checkout-city"]').fill('Testville');
+    await page.locator('[data-testid="checkout-postal-code"]').fill('12345');
+    const { selectAppOption } = await import('../fixtures/test-helpers');
+    await selectAppOption(page, 'checkout-country', 'United States', 'united');
+    await Promise.all([
+      page.waitForResponse(
+        (response) => response.url().includes('/api/orders') && response.status() === 201
+      ),
+      page.locator('[data-testid="checkout-place-order-submit"]').click()
+    ]);
+    await page.locator('[data-testid="nav-cart"]').click();
+    await expect(page.locator('[data-testid="cart-item-to-pay-badge"]')).toBeVisible();
+    await expect(page.locator('[data-testid="cart-popover-checkout"]')).toHaveCount(0);
+  });
 });
