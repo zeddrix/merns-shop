@@ -25,6 +25,8 @@ import AuthRequiredGate from '../components/AuthRequiredGate';
 import type { Order, PaymentResult } from '../types';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
 import CheckoutProgress from '../components/CheckoutProgress';
+import OrderStatusBadge from '../components/OrderStatusBadge';
+import { clearCartItemsForOrder } from '../features/cartSlice';
 
 const addDecimals = (num: number) => {
   return (Math.round(num * 100) / 100).toFixed(2);
@@ -102,6 +104,12 @@ const OrderScreen = () => {
     }
   }, [dispatch, isAuthenticated, orderId, successPay, order, successDeliver]);
 
+  useEffect(() => {
+    if (order?.isPaid && order._id) {
+      dispatch(clearCartItemsForOrder(order._id));
+    }
+  }, [dispatch, order?.isPaid, order?._id]);
+
   const successPaymentHandler: NonNullable<PayPalButtonsComponentProps['onApprove']> = async (
     _data,
     actions
@@ -169,9 +177,41 @@ const OrderScreen = () => {
       <h1 data-testid="order-heading">Order {displayOrder._id}</h1>
       <Row>
         <Col xs={12} lg={8}>
-          <ListGroup variant="flush">
-            <ListGroup.Item data-testid="order-shipping">
-              <h2>Shipping</h2>
+          <ListGroup variant="flush" className="order-sections">
+            <ListGroup.Item className="order-section" data-testid="order-items">
+              <h2 className="order-section-heading">Order Items</h2>
+              {displayOrder.orderItems.length === 0 ? (
+                <Message>Order is empty</Message>
+              ) : (
+                <ListGroup variant="flush">
+                  {displayOrder.orderItems.map((item) => (
+                    <ListGroup.Item key={`${item.product}-${item.name}`} className="px-0">
+                      <OrderLineItem item={item} />
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
+              )}
+            </ListGroup.Item>
+
+            <ListGroup.Item className="order-section" data-testid="order-payment">
+              <h2 className="order-section-heading">Payment Method</h2>
+              <p className="mb-2">
+                <strong>Method: </strong>
+                {displayOrder.paymentMethod}
+              </p>
+              {displayOrder.isPaid ? (
+                <OrderStatusBadge
+                  kind="paid"
+                  dateLabel={displayOrder.paidAt}
+                  testId="order-paid-message"
+                />
+              ) : (
+                <OrderStatusBadge kind="unpaid" testId="order-payment-badge" />
+              )}
+            </ListGroup.Item>
+
+            <ListGroup.Item className="order-section" data-testid="order-shipping">
+              <h2 className="order-section-heading">Shipping</h2>
               <p>
                 <strong>Name: </strong> {displayOrder.user.name}
               </p>
@@ -179,85 +219,60 @@ const OrderScreen = () => {
                 <strong>Email: </strong>{' '}
                 <a href={`mailto:${displayOrder.user.email}`}>{displayOrder.user.email}</a>
               </p>
-              <p>
-                <strong>Address:</strong>
-                {displayOrder.shippingAddress.address}, {displayOrder.shippingAddress.city}{' '}
-                {displayOrder.shippingAddress.postalCode}, {displayOrder.shippingAddress.country}
+              <p className="mb-2">
+                <strong>Address:</strong> {displayOrder.shippingAddress.address},{' '}
+                {displayOrder.shippingAddress.city} {displayOrder.shippingAddress.postalCode},{' '}
+                {displayOrder.shippingAddress.country}
               </p>
               {displayOrder.isDelivered ? (
-                <Message variant="success" data-testid="order-delivered-message">
-                  Delivered on {displayOrder.deliveredAt}
-                </Message>
+                <OrderStatusBadge
+                  kind="delivered"
+                  dateLabel={displayOrder.deliveredAt}
+                  testId="order-delivered-message"
+                />
               ) : (
-                <Message variant="danger" data-testid="order-not-delivered-message">
-                  Not Delivered
-                </Message>
-              )}
-            </ListGroup.Item>
-
-            <ListGroup.Item>
-              <h2>Payment Method</h2>
-              <p>
-                <strong>Method: </strong>
-                {displayOrder.paymentMethod}
-              </p>
-              {displayOrder.isPaid ? (
-                <Message variant="success" data-testid="order-paid-message">
-                  Paid on {displayOrder.paidAt}
-                </Message>
-              ) : (
-                <Message variant="danger">Not Paid</Message>
-              )}
-            </ListGroup.Item>
-
-            <ListGroup.Item>
-              <h2>Order Items</h2>
-              {displayOrder.orderItems.length === 0 ? (
-                <Message>Order is empty</Message>
-              ) : (
-                <ListGroup variant="flush">
-                  {displayOrder.orderItems.map((item) => (
-                    <ListGroup.Item key={`${item.product}-${item.name}`}>
-                      <OrderLineItem item={item} />
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
+                <OrderStatusBadge kind="pending" testId="order-not-delivered-message" />
               )}
             </ListGroup.Item>
           </ListGroup>
         </Col>
         <Col md={4}>
-          <Card data-testid="order-summary">
+          <Card className="order-summary-card" data-testid="order-summary">
             <ListGroup variant="flush">
-              <ListGroup.Item>
-                <h2>Order Summary</h2>
+              <ListGroup.Item className="order-summary-heading">
+                <h2 className="h5 mb-0">Order Summary</h2>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className="order-summary-row">
                 <Row>
                   <Col>Items</Col>
-                  <Col>${displayOrder.itemsPrice}</Col>
+                  <Col className="text-end">${displayOrder.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className="order-summary-row">
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${displayOrder.shippingPrice}</Col>
+                  <Col className="text-end">${displayOrder.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className="order-summary-row">
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${displayOrder.taxPrice}</Col>
+                  <Col className="text-end">${displayOrder.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className="order-summary-row order-summary-total">
                 <Row>
-                  <Col>Total</Col>
-                  <Col>${displayOrder.totalPrice}</Col>
+                  <Col>
+                    <strong>Total</strong>
+                  </Col>
+                  <Col className="text-end">
+                    <strong>${displayOrder.totalPrice}</strong>
+                  </Col>
                 </Row>
               </ListGroup.Item>
               {!displayOrder.isPaid && clientId && (
                 <ListGroup.Item
+                  className="order-summary-paypal"
                   data-testid={paypalButtonsReady ? 'paypal-buttons-ready' : 'paypal-buttons'}
                 >
                   {loadingPay && <Loader />}

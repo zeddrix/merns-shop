@@ -15,8 +15,7 @@ import { listMyOrder } from '../features/orderSlice';
 import { useRequireAuth } from '../hooks/useRequireAuth';
 import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
-import AppIcon from '../components/icons/AppIcon';
-import { faTimes } from '../components/icons';
+import OrderTableStatusCell from '../components/OrderTableStatusCell';
 import PushNotificationSettings from '../components/PushNotificationSettings';
 
 const ProfileScreen = () => {
@@ -235,21 +234,21 @@ const ProfileScreen = () => {
                     <div className="profile-order-card__row">
                       <span className="profile-order-card__label">Paid</span>
                       <span>
-                        {order.isPaid && order.paidAt ? (
-                          order.paidAt.substring(0, 10)
-                        ) : (
-                          <AppIcon icon={faTimes} style={{ color: 'red' }} />
-                        )}
+                        <OrderTableStatusCell
+                          kind="paid"
+                          isComplete={Boolean(order.isPaid && order.paidAt)}
+                          dateValue={order.paidAt}
+                        />
                       </span>
                     </div>
                     <div className="profile-order-card__row">
                       <span className="profile-order-card__label">Delivered</span>
                       <span data-testid={`my-order-delivered-${order._id}`}>
-                        {order.isDelivered && order.deliveredAt ? (
-                          order.deliveredAt.substring(0, 10)
-                        ) : (
-                          <AppIcon icon={faTimes} style={{ color: 'red' }} />
-                        )}
+                        <OrderTableStatusCell
+                          kind="delivered"
+                          isComplete={Boolean(order.isDelivered && order.deliveredAt)}
+                          dateValue={order.deliveredAt}
+                        />
                       </span>
                     </div>
                     <div className="profile-order-card__actions">
@@ -289,18 +288,18 @@ const ProfileScreen = () => {
                       <td>{order.createdAt.substring(0, 10)}</td>
                       <td>{order.totalPrice}</td>
                       <td>
-                        {order.isPaid && order.paidAt ? (
-                          order.paidAt.substring(0, 10)
-                        ) : (
-                          <AppIcon icon={faTimes} style={{ color: 'red' }} />
-                        )}
+                        <OrderTableStatusCell
+                          kind="paid"
+                          isComplete={Boolean(order.isPaid && order.paidAt)}
+                          dateValue={order.paidAt}
+                        />
                       </td>
                       <td data-testid={`my-order-delivered-${order._id}`}>
-                        {order.isDelivered && order.deliveredAt ? (
-                          order.deliveredAt.substring(0, 10)
-                        ) : (
-                          <AppIcon icon={faTimes} style={{ color: 'red' }} />
-                        )}
+                        <OrderTableStatusCell
+                          kind="delivered"
+                          isComplete={Boolean(order.isDelivered && order.deliveredAt)}
+                          dateValue={order.deliveredAt}
+                        />
                       </td>
                       <td>
                         <Link

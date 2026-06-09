@@ -10,8 +10,7 @@ import { listOrders } from '../features/orderSlice';
 import { useRequireAdmin } from '../hooks/useRequireAdmin';
 import AuthRequiredGate from '../components/AuthRequiredGate';
 import SeoPrivateMeta from '../components/SeoPrivateMeta';
-import AppIcon from '../components/icons/AppIcon';
-import { faTimes } from '../components/icons';
+import OrderTableStatusCell from '../components/OrderTableStatusCell';
 
 const OrderListScreen = () => {
   const dispatch = useAppDispatch();
@@ -78,21 +77,21 @@ const OrderListScreen = () => {
                 <div className="admin-order-card__row">
                   <span className="admin-order-card__label">Paid</span>
                   <span>
-                    {order.isPaid && order.paidAt ? (
-                      order.paidAt.substring(0, 10)
-                    ) : (
-                      <AppIcon icon={faTimes} style={{ color: 'red' }} />
-                    )}
+                    <OrderTableStatusCell
+                      kind="paid"
+                      isComplete={Boolean(order.isPaid && order.paidAt)}
+                      dateValue={order.paidAt}
+                    />
                   </span>
                 </div>
                 <div className="admin-order-card__row">
                   <span className="admin-order-card__label">Delivered</span>
                   <span>
-                    {order.isDelivered && order.deliveredAt ? (
-                      order.deliveredAt.substring(0, 10)
-                    ) : (
-                      <AppIcon icon={faTimes} style={{ color: 'red' }} />
-                    )}
+                    <OrderTableStatusCell
+                      kind="delivered"
+                      isComplete={Boolean(order.isDelivered && order.deliveredAt)}
+                      dateValue={order.deliveredAt}
+                    />
                   </span>
                 </div>
                 <div className="admin-order-card__actions">
@@ -127,18 +126,18 @@ const OrderListScreen = () => {
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>${order.totalPrice}</td>
                   <td>
-                    {order.isPaid && order.paidAt ? (
-                      order.paidAt.substring(0, 10)
-                    ) : (
-                      <AppIcon icon={faTimes} style={{ color: 'red' }} />
-                    )}
+                    <OrderTableStatusCell
+                      kind="paid"
+                      isComplete={Boolean(order.isPaid && order.paidAt)}
+                      dateValue={order.paidAt}
+                    />
                   </td>
                   <td>
-                    {order.isDelivered && order.deliveredAt ? (
-                      order.deliveredAt.substring(0, 10)
-                    ) : (
-                      <AppIcon icon={faTimes} style={{ color: 'red' }} />
-                    )}
+                    <OrderTableStatusCell
+                      kind="delivered"
+                      isComplete={Boolean(order.isDelivered && order.deliveredAt)}
+                      dateValue={order.deliveredAt}
+                    />
                   </td>
                   <td>
                     <Link
