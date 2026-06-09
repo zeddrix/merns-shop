@@ -15,7 +15,6 @@ import SlowServerBanner from './components/SlowServerBanner';
 import PwaInstallBanner from './components/PwaInstallBanner';
 import PwaManager from './components/PwaManager';
 import { PwaInstallProvider } from './context/PwaInstallContext';
-import NotificationBell from './components/NotificationBell';
 import PageTransition from './components/motion/PageTransition';
 import Loader from './components/Loader';
 import HomeScreen from './screens/HomeScreen';
@@ -81,7 +80,6 @@ const AppRoutes = () => {
       <PwaInstallBanner />
       <ScrollToTop />
       <Header />
-      <NotificationBell />
       <main className="py-3">
         <Container>
           {routeElement ? (

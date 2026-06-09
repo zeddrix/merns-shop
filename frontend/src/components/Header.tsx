@@ -1,17 +1,23 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
 import { logout } from '../features/userSlice';
 import { clearStaleItemsNotice } from '../features/cartSlice';
+import {
+  fetchNotifications,
+  setLastPushTitle,
+  addNotificationFromPush
+} from '../features/pushSlice';
 import SearchBox from './SearchBox';
 import SearchOverlay from './SearchOverlay';
 import CartPopover from './CartPopover';
+import NotificationPopover from './NotificationPopover';
 import PwaInstallButton from './PwaInstallButton';
 import { DISPLAY_BRAND_NAME } from '../constants/brand';
 import { useIsDesktop } from '../hooks/useIsDesktop';
 import AppIcon from './icons/AppIcon';
-import { faSearch, faShoppingBag, faUser } from './icons';
+import { faBell, faSearch, faShoppingBag, faUser } from './icons';
 import { buildAuthSearch, stripAuthSearch } from '../utils/authModalUrl';
 
 const Header = () => {
@@ -20,13 +26,17 @@ const Header = () => {
   const location = useLocation();
   const isDesktop = useIsDesktop();
   const [cartOpen, setCartOpen] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const cartWrapRef = useRef<HTMLDivElement>(null);
+  const notificationWrapRef = useRef<HTMLDivElement>(null);
 
   const userInfo = useAppSelector((state) => state.userLogin.userInfo);
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
   const staleItemsPruned = useAppSelector((state) => state.cart.staleItemsPruned);
+  const { notifications } = useAppSelector((state) => state.push);
+  const unreadCount = notifications.filter((n) => !n.read).length;
   const currentPath = `${location.pathname}${stripAuthSearch(location.search)}`;
 
   const logoutHandler = () => {
@@ -48,6 +58,45 @@ const Header = () => {
   };
 
   useEffect(() => {
+    if (!userInfo) {
+      return;
+    }
+    void dispatch(fetchNotifications());
+  }, [dispatch, userInfo]);
+
+  useEffect(() => {
+    if (!userInfo || !('serviceWorker' in navigator)) {
+      return;
+    }
+
+    const handler = (event: MessageEvent) => {
+      const data = event.data as {
+        type?: string;
+        payload?: { title?: string; body?: string; url?: string; tag?: string };
+      };
+      if (data?.type !== 'push-received' || !data.payload?.title) {
+        return;
+      }
+
+      dispatch(setLastPushTitle(data.payload.title));
+      dispatch(
+        addNotificationFromPush({
+          _id: `push-${Date.now()}`,
+          type: data.payload.tag === 'order_delivered' ? 'order_delivered' : 'order_paid',
+          title: data.payload.title,
+          body: data.payload.body ?? '',
+          url: data.payload.url ?? '/profile',
+          read: false,
+          createdAt: new Date().toISOString()
+        })
+      );
+    };
+
+    navigator.serviceWorker.addEventListener('message', handler);
+    return () => navigator.serviceWorker.removeEventListener('message', handler);
+  }, [dispatch, userInfo]);
+
+  useEffect(() => {
     if (!cartOpen) return;
     const handlePointerDown = (event: Event) => {
       if (!cartWrapRef.current?.contains(event.target as Node)) {
@@ -58,13 +107,31 @@ const Header = () => {
     return () => document.removeEventListener('mousedown', handlePointerDown);
   }, [cartOpen]);
 
+  useEffect(() => {
+    if (!notificationOpen) return;
+    const handlePointerDown = (event: Event) => {
+      if (!notificationWrapRef.current?.contains(event.target as Node)) {
+        setNotificationOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handlePointerDown);
+    return () => document.removeEventListener('mousedown', handlePointerDown);
+  }, [notificationOpen]);
+
   const cartClickHandler = (event: MouseEvent) => {
+    setNotificationOpen(false);
     if (isDesktop) {
       event.preventDefault();
       setCartOpen((open) => !open);
       return;
     }
     navigate('/cart');
+  };
+
+  const notificationClickHandler = () => {
+    setCartOpen(false);
+    void dispatch(fetchNotifications());
+    setNotificationOpen((open) => !open);
   };
 
   return (
@@ -118,6 +185,31 @@ const Header = () => {
               </Nav.Link>
               {isDesktop && cartOpen && <CartPopover onClose={() => setCartOpen(false)} />}
             </div>
+            {userInfo && (
+              <div className="notification-nav-wrap" ref={notificationWrapRef}>
+                <button
+                  type="button"
+                  className="notification-nav-link touch-target"
+                  data-testid="notification-bell"
+                  aria-label="Notifications"
+                  onClick={notificationClickHandler}
+                >
+                  <AppIcon icon={faBell} />
+                  {unreadCount > 0 && (
+                    <Badge
+                      bg="danger"
+                      className="notification-nav-badge"
+                      data-testid="notification-unread-count"
+                    >
+                      {unreadCount}
+                    </Badge>
+                  )}
+                </button>
+                {notificationOpen && (
+                  <NotificationPopover onClose={() => setNotificationOpen(false)} />
+                )}
+              </div>
+            )}
             <Navbar.Toggle
               aria-controls="basic-navbar-nav"
               data-testid="navbar-toggle"
@@ -164,7 +256,14 @@ const Header = () => {
                 About
               </Nav.Link>
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id="username" align="end">
+                <NavDropdown
+                  title={userInfo.name}
+                  id="username"
+                  align="end"
+                  menuVariant="dark"
+                  className="header-nav-dropdown"
+                  data-testid="nav-user-dropdown"
+                >
                   <NavDropdown.Item as={Link} to="/profile" data-testid="nav-profile">
                     Profile
                   </NavDropdown.Item>
@@ -196,7 +295,13 @@ const Header = () => {
                 </>
               )}
               {userInfo?.isAdmin && (
-                <NavDropdown title="Admin" id="adminmenu" align="end">
+                <NavDropdown
+                  title="Admin"
+                  id="adminmenu"
+                  align="end"
+                  menuVariant="dark"
+                  className="header-nav-dropdown"
+                >
                   <NavDropdown.Item as={Link} to="/admin/userlist" data-testid="nav-admin-users">
                     Users
                   </NavDropdown.Item>
