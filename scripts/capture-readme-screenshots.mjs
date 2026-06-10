@@ -11,6 +11,9 @@ const BASE_URL = (process.env.README_SCREENSHOT_BASE_URL ?? 'http://localhost:50
   /\/+$/,
   ''
 );
+const API_BASE = (
+  process.env.README_SCREENSHOT_API_URL ?? BASE_URL.replace(':5020', ':5021')
+).replace(/\/+$/, '');
 const OUT_DIR = path.resolve('docs/images/readme');
 const VIEWPORT = { width: 1280, height: 800 };
 const ADMIN_EMAIL = 'admin@gmail.com';
@@ -49,6 +52,19 @@ async function loginAdmin(page) {
   await page.locator('[data-testid="nav-login"]').waitFor({ state: 'hidden' });
 }
 
+async function resolveIphone14ProductId(page) {
+  const response = await page.request.get(`${API_BASE}/api/products?keyword=iPhone%2014`);
+  if (!response.ok()) {
+    throw new Error(`Failed to load products for README screenshot: ${response.status()}`);
+  }
+  const body = await response.json();
+  const iphone14 = body.products.find((product) => product.name === 'iPhone 14');
+  if (!iphone14) {
+    throw new Error('Seeded iPhone 14 product not found for README product-page screenshot');
+  }
+  return iphone14._id;
+}
+
 async function capture(page, filename) {
   const filePath = path.join(OUT_DIR, filename);
   await page.screenshot({ path: filePath, fullPage: false, type: 'png' });
@@ -65,8 +81,8 @@ async function main() {
     await waitForApp(page);
     await capture(page, 'homepage.png');
 
-    const firstProduct = page.locator('[data-testid^="product-card-"]').first();
-    await firstProduct.click();
+    const iphone14Id = await resolveIphone14ProductId(page);
+    await page.goto(`${BASE_URL}/product/${iphone14Id}`);
     await page.locator('[data-testid="product-details"]').waitFor({ state: 'visible' });
     await capture(page, 'product-page.png');
 
