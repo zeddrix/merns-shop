@@ -6,14 +6,11 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { useSlowServerNotice } from '../../../frontend/src/hooks/useSlowServerNotice';
 import { SLOW_SERVER_SESSION_WARMED_KEY } from '../../../frontend/src/constants/slowServerNotice';
-import catalogMetaReducer from '../../../frontend/src/features/catalogMetaSlice';
-import cartReducer from '../../../frontend/src/features/cartSlice';
 import {
-  listProducts,
-  productListReducer,
-  productDetailsReducer,
-  productTopRatedReducer
-} from '../../../frontend/src/features/productSlice';
+  apiLoadingReducer,
+  apiRequestFinished,
+  apiRequestStarted
+} from '../../../frontend/src/features/apiLoadingSlice';
 
 function HookProbe({ onReady }: { onReady?: (showNotice: boolean) => void }) {
   const showNotice = useSlowServerNotice();
@@ -21,26 +18,13 @@ function HookProbe({ onReady }: { onReady?: (showNotice: boolean) => void }) {
   return <div data-testid="hook-probe" data-show-notice={String(showNotice)} />;
 }
 
-const createTestStore = (loading: boolean) =>
+const createTestStore = (inFlight: boolean) =>
   configureStore({
     reducer: {
-      productList: productListReducer,
-      productTopRated: productTopRatedReducer,
-      productDetails: productDetailsReducer,
-      catalogMeta: catalogMetaReducer,
-      cart: cartReducer
+      apiLoading: apiLoadingReducer
     },
     preloadedState: {
-      productList: { products: [], loading },
-      productTopRated: { products: [], loading: false },
-      productDetails: { loading: false, product: { variants: [] } },
-      catalogMeta: { meta: { brands: [], categories: [], subcategories: [] }, loading: false },
-      cart: {
-        cartItems: [],
-        shippingAddress: {},
-        staleItemsPruned: false,
-        rehydrating: false
-      }
+      apiLoading: { inFlightCount: inFlight ? 1 : 0 }
     }
   });
 
@@ -64,8 +48,8 @@ describe('useSlowServerNotice', () => {
     vi.useRealTimers();
   });
 
-  const renderWithStore = async (loading: boolean) => {
-    const store = createTestStore(loading);
+  const renderWithStore = async (inFlight: boolean) => {
+    const store = createTestStore(inFlight);
     await act(async () => {
       root.render(
         <Provider store={store}>
@@ -73,11 +57,11 @@ describe('useSlowServerNotice', () => {
         </Provider>
       );
     });
-    return container.querySelector('[data-testid="hook-probe"]') as HTMLElement;
+    return { probe: container.querySelector('[data-testid="hook-probe"]') as HTMLElement, store };
   };
 
-  it('shows_notice_after_delay_when_catalog_loading', async () => {
-    const probe = await renderWithStore(true);
+  it('shows_notice_after_delay_when_api_loading', async () => {
+    const { probe } = await renderWithStore(true);
 
     await act(async () => {
       vi.advanceTimersByTime(3000);
@@ -88,7 +72,7 @@ describe('useSlowServerNotice', () => {
 
   it('suppresses_notice_when_session_already_warmed', async () => {
     sessionStorage.setItem(SLOW_SERVER_SESSION_WARMED_KEY, '1');
-    const probe = await renderWithStore(true);
+    const { probe } = await renderWithStore(true);
 
     await act(async () => {
       vi.advanceTimersByTime(3000);
@@ -112,14 +96,31 @@ describe('useSlowServerNotice', () => {
     });
 
     await act(async () => {
-      store.dispatch(
-        listProducts.fulfilled({ products: [], page: 1, pages: 1 }, '', {
-          keyword: '',
-          pageNumber: '1'
-        })
-      );
+      store.dispatch(apiRequestFinished());
     });
 
     expect(sessionStorage.getItem(SLOW_SERVER_SESSION_WARMED_KEY)).toBe('1');
+  });
+
+  it('tracks_started_requests_via_api_loading_slice', async () => {
+    const store = createTestStore(false);
+    await act(async () => {
+      root.render(
+        <Provider store={store}>
+          <HookProbe />
+        </Provider>
+      );
+    });
+
+    await act(async () => {
+      store.dispatch(apiRequestStarted());
+    });
+
+    await act(async () => {
+      vi.advanceTimersByTime(3000);
+    });
+
+    const probe = container.querySelector('[data-testid="hook-probe"]') as HTMLElement;
+    expect(probe.getAttribute('data-show-notice')).toBe('true');
   });
 });

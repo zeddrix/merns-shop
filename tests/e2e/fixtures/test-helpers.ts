@@ -81,22 +81,35 @@ export async function assertNoHorizontalOverflow(page: Page): Promise<void> {
   expect(overflows).toBe(false);
 }
 
-/** Delays catalog API responses to simulate free-tier cold-start UX in E2E. */
+/** Delays API responses to simulate free-tier cold-start UX in E2E. */
 export interface DelayedCatalogApiOptions {
   delayMs: number;
   enabled: { value: boolean };
+}
+
+export interface DelayedApiOptions extends DelayedCatalogApiOptions {
+  method?: string;
+}
+
+export async function registerDelayedApi(
+  context: BrowserContext,
+  urlPattern: string,
+  options: DelayedApiOptions
+): Promise<void> {
+  await context.route(urlPattern, async (route) => {
+    const methodMatches = !options.method || route.request().method() === options.method;
+    if (options.enabled.value && methodMatches) {
+      await new Promise((resolve) => setTimeout(resolve, options.delayMs));
+    }
+    await route.continue();
+  });
 }
 
 export async function registerDelayedCatalogApi(
   context: BrowserContext,
   options: DelayedCatalogApiOptions
 ): Promise<void> {
-  await context.route('**/api/products**', async (route) => {
-    if (options.enabled.value) {
-      await new Promise((resolve) => setTimeout(resolve, options.delayMs));
-    }
-    await route.continue();
-  });
+  await registerDelayedApi(context, '**/api/products**', options);
 }
 
 /** Clears slow-server session warmed flag before the next navigation (E2E isolation). */

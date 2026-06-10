@@ -29,6 +29,8 @@ import {
 import { authModalReducer } from '../features/authModalSlice';
 import { pushReducer } from '../features/pushSlice';
 import catalogMetaReducer from '../features/catalogMetaSlice';
+import { apiLoadingReducer } from '../features/apiLoadingSlice';
+import { setupApiLoadingInterceptors } from '../api/setupApiLoadingInterceptors';
 import type { CartItem, ShippingAddress } from '../types';
 
 const cartItemsFromStorage = (): CartItem[] => {
@@ -66,7 +68,8 @@ export const store = configureStore({
     orderList: orderListReducer,
     authModal: authModalReducer,
     push: pushReducer,
-    catalogMeta: catalogMetaReducer
+    catalogMeta: catalogMetaReducer,
+    apiLoading: apiLoadingReducer
   },
   preloadedState: {
     cart: {
@@ -82,6 +85,8 @@ export const store = configureStore({
       serializableCheck: false
     })
 });
+
+setupApiLoadingInterceptors(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

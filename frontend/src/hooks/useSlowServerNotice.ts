@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAppSelector } from '../store/hooks';
-import { selectIsCatalogApiLoading } from '../features/catalogLoadingSelectors';
+import { selectIsApiInFlight } from '../features/apiLoadingSlice';
 import { isSlowServerSessionWarmed, markSlowServerSessionWarmed } from '../utils/slowServerSession';
 import { useSlowLoadingNotice } from './useSlowLoadingNotice';
 
 export const useSlowServerNotice = (): boolean => {
-  const isCatalogLoading = useAppSelector(selectIsCatalogApiLoading);
-  const showSlowNotice = useSlowLoadingNotice(isCatalogLoading);
+  const isApiLoading = useAppSelector(selectIsApiInFlight);
+  const showSlowNotice = useSlowLoadingNotice(isApiLoading);
   const [sessionWarmed, setSessionWarmed] = useState(isSlowServerSessionWarmed);
   const hadSlowLoadRef = useRef(false);
 
@@ -17,12 +17,12 @@ export const useSlowServerNotice = (): boolean => {
   }, [showSlowNotice]);
 
   useEffect(() => {
-    if (!isCatalogLoading && hadSlowLoadRef.current) {
+    if (!isApiLoading && hadSlowLoadRef.current) {
       markSlowServerSessionWarmed();
       setSessionWarmed(true);
       hadSlowLoadRef.current = false;
     }
-  }, [isCatalogLoading]);
+  }, [isApiLoading]);
 
   return showSlowNotice && !sessionWarmed;
 };
