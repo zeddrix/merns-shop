@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   getPageTransition,
   getReducedMotionFromMatchMedia,
+  getSearchOverlayTransition,
   getStaggerTransition
 } from '../../../frontend/src/utils/motion';
 
@@ -25,5 +26,13 @@ describe('motion utilities', () => {
   it('getReducedMotionFromMatchMedia_reflects_query', () => {
     expect(getReducedMotionFromMatchMedia(true)).toBe(true);
     expect(getReducedMotionFromMatchMedia(false)).toBe(false);
+  });
+
+  it('getSearchOverlayTransition_returns_zero_motion_when_reduced', () => {
+    expect(getSearchOverlayTransition(true)).toEqual({ duration: 0, y: 0 });
+  });
+
+  it('getSearchOverlayTransition_returns_slide_down_when_not_reduced', () => {
+    expect(getSearchOverlayTransition(false)).toEqual({ duration: 0.3, y: '-100%' });
   });
 });

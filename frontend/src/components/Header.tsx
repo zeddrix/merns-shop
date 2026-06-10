@@ -216,7 +216,6 @@ const Header = () => {
               className="d-lg-none"
             />
           </div>
-          <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
           <Navbar.Collapse id="basic-navbar-nav" className="site-navbar-collapse">
             <div className="site-search-mobile d-lg-none w-100">
               <SearchBox />
@@ -321,6 +320,7 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 };

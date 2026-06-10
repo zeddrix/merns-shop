@@ -405,6 +405,7 @@ strong {
   position: sticky;
   top: 0;
   z-index: 1030;
+  overflow: visible;
 }
 
 .site-navbar {
@@ -542,27 +543,29 @@ strong {
 }
 
 .search-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1200;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 1.5rem 1rem 2rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 1040;
+  pointer-events: none;
 }
 
 .search-overlay-backdrop {
-  position: absolute;
+  position: fixed;
   inset: 0;
+  z-index: 1035;
   border: none;
   background: rgba(0, 0, 0, 0.55);
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .search-overlay-panel {
   position: relative;
-  width: min(720px, 100%);
-  z-index: 1;
+  z-index: 1040;
+  width: 100%;
+  pointer-events: auto;
 }
 
 .search-overlay-header {
@@ -587,7 +590,8 @@ strong {
 .search-overlay-panel--dark {
   background: rgba(29, 29, 31, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-md);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
   padding: var(--space-lg);
   box-shadow: var(--shadow-md);
   backdrop-filter: saturate(180%) blur(20px);

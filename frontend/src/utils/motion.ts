@@ -23,3 +23,15 @@ export function getStaggerTransition(reducedMotion: boolean): {
 export function getReducedMotionFromMatchMedia(matches: boolean): boolean {
   return matches;
 }
+
+export interface SearchOverlayTransitionConfig {
+  duration: number;
+  y: number | string;
+}
+
+export function getSearchOverlayTransition(reducedMotion: boolean): SearchOverlayTransitionConfig {
+  if (reducedMotion) {
+    return { duration: 0, y: 0 };
+  }
+  return { duration: 0.3, y: '-100%' };
+}

@@ -93,10 +93,36 @@ test.describe('smoke app boot', () => {
     await assertHomeCatalogHealthy(page);
     await page.locator('[data-testid="nav-search-open"]').click();
     await expect(page.locator('[data-testid="search-overlay"]')).toBeVisible();
-    await expect(page.locator('.search-overlay-panel--dark')).toBeVisible();
+    await expect(page.locator('[data-testid="search-overlay-panel"]')).toBeVisible();
+
+    await expect
+      .poll(async () => {
+        const navbarBottom = await page
+          .locator('.site-navbar')
+          .evaluate((el) => el.getBoundingClientRect().bottom);
+        const panelTop = await page
+          .locator('[data-testid="search-overlay-panel"]')
+          .evaluate((el) => el.getBoundingClientRect().top);
+        return panelTop >= navbarBottom - 2;
+      })
+      .toBe(true);
+
     await fillSearchAndSubmit(page, 'iPhone');
     await expect(page.locator('[data-testid="product-list"]').first()).toBeVisible();
     await expect(page.locator('[data-testid="search-overlay"]')).toHaveCount(0);
+  });
+
+  test('desktop_search_overlay_closes_with_slide_up', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.goto('/');
+    await assertHomeCatalogHealthy(page);
+    await page.locator('[data-testid="nav-search-open"]').click();
+    await expect(page.locator('[data-testid="search-overlay-panel"]')).toBeVisible();
+    await page.locator('[data-testid="search-overlay-close"]').click();
+    await expect(page.locator('[data-testid="search-overlay"]')).toHaveCount(0);
+    await expect(
+      page.locator('[data-testid="search-overlay"] [data-testid="search-input"]')
+    ).toHaveCount(0);
   });
 
   test('auth_modal_register_link_not_default_blue', async ({ page }) => {
