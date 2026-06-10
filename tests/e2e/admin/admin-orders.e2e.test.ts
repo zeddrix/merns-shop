@@ -97,14 +97,16 @@ test.describe('admin orders', () => {
     expect(dbOrder).not.toBeNull();
 
     await loginAsAdmin(page);
-    await page.goto('/admin/orderlist');
+    await Promise.all([
+      page.waitForResponse(
+        (response) =>
+          response.url().includes('/api/orders') &&
+          response.request().method() === 'GET' &&
+          response.ok()
+      ),
+      page.goto('/admin/orderlist')
+    ]);
     await expect(page.locator('[data-testid="admin-order-list"]')).toBeVisible();
-    await page.waitForResponse(
-      (response) =>
-        response.url().endsWith('/api/orders') &&
-        response.request().method() === 'GET' &&
-        response.ok()
-    );
     await expect(page.locator(`[data-testid="admin-order-${orderId}"]`)).toBeVisible();
     await expect(
       page.locator(`[data-testid="admin-order-${orderId}"] [data-testid="order-status-paid"]`)
