@@ -243,7 +243,7 @@ const ProfileScreen = () => {
                     </div>
                     <div className="profile-order-card__row">
                       <span className="profile-order-card__label">Delivered</span>
-                      <span data-testid={`my-order-delivered-${order._id}`}>
+                      <span data-testid={`profile-order-delivered-${order._id}`}>
                         <OrderTableStatusCell
                           kind="delivered"
                           isComplete={Boolean(order.isDelivered && order.deliveredAt)}

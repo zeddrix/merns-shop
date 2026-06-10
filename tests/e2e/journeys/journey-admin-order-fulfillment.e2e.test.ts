@@ -29,9 +29,9 @@ test.describe('journey admin order fulfillment', () => {
     await page.goto('/profile');
     await expect(page.locator('[data-testid="my-orders-table"]')).toBeVisible();
     await expect(page.locator(`[data-testid="my-order-${orderId}"]`)).toBeVisible();
-    await expect(page.locator(`[data-testid="my-order-delivered-${orderId}"]`)).toHaveText(
-      /\d{4}-\d{2}-\d{2}/
-    );
+    await expect(
+      page.locator(`[data-testid="my-orders-table"] [data-testid="my-order-delivered-${orderId}"]`)
+    ).toHaveText(/\d{4}-\d{2}-\d{2}/);
 
     const dbOrder = await findOrderById(orderId);
     expect(dbOrder?.isDelivered).toBe(true);
